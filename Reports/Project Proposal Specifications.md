@@ -62,6 +62,8 @@ Questions to consider:
 
 Research existing solutions, whether in literature, on the market, or within the industry. Present these findings in a coherent, organized manner. Remember to cite all information that is not common knowledge.
 
+Lochinvar already has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar has a complete control panel [2] available for purchase for about $5300. 
+
 
 ## Measures of Success - Aaron
 
@@ -103,6 +105,12 @@ Consider the project’s broader impacts in global, economic, environmental, and
 
 All sources used in the project proposal that are not common knowledge must be cited. Multiple references are required.
 
+[1]“Smart Touch Control | Lochinvar,” Lochinvar.com, 2025. https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html (accessed Sep. 24, 2025).
+
+[2]“Lochinvar 100164434 Complete Control Panel,” NorthStock, 2022. https://northstock.com/lochinvar-100164434-complete-control-panel/ (accessed Sep. 24, 2025).
+
+‌
+‌
 
 ## Statement of Contributions - Everyone
 
