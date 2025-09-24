@@ -92,7 +92,7 @@ Provide a detailed timeline, including all major deadlines and tasks. This shoul
 ## Specific Implications - Dow
 
 Explain the implications of solving the problem for the customer. After reading this section, the reader should understand the tangible benefits and the worthiness of the proposed work.
-
+The implications of solving this problem is faster heating, more precise temperature control, and improved safety. 
 
 ## Broader Implications, Ethics, and Responsibility as Engineers - Dow
 
