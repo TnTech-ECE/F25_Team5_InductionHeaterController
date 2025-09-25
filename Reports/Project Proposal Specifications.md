@@ -73,12 +73,16 @@ Questions to consider:
 - What impact will the engineering, manufacturing, or final product have on public health, safety, and welfare?
 - Are there global, cultural, social, environmental, or economic factors that must be considered?
 
+NEC Article 427 [4] Part V covers the codes regarding Induction Heating, and Part VII covers the Controls and Protection. Notably if the controller contains an off switch it should not be able to enerize automatically while in the off position, and selecting off should open all ungrounded conductors. 
+
 
 ## Survey of Existing Solutions - Cole
 
 Research existing solutions, whether in literature, on the market, or within the industry. Present these findings in a coherent, organized manner. Remember to cite all information that is not common knowledge.
 
 Lochinvar already has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar also sells a complete control panel [2] available for purchase for about $5300. 
+
+You can also find simple controllers sold by companies, such as Automation Direct's SOLO Basic Temperature Controller [3] for much cheaper, closer to $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second. 
 
 
 ## Measures of Success - Aaron
@@ -145,6 +149,10 @@ All sources used in the project proposal that are not common knowledge must be c
 
 [2]“Lochinvar 100164434 Complete Control Panel,” NorthStock, 2022. https://northstock.com/lochinvar-100164434-complete-control-panel/ (accessed Sep. 24, 2025).
 
+[3]“SLB4848 Series Overview.” Accessed: Sep. 25, 2025. [Online]. Available: https://cdn.automationdirect.com/static/specs/solobasic4848.pdf
+
+[4]opitts2k, “Article 427,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-427/ (accessed Sep. 25, 2025).
+‌
 ‌
 ‌
 
