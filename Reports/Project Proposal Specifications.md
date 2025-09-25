@@ -89,9 +89,10 @@ The budget of the project will need to not only meet the expenses required for a
 
 The team has a strong foundation in analyzing electrical circuits and programming. However, to meet the goal of designing an induction coil controller to heat a circular heating element, our team will need to possess the following additional skills:
 
- - Circuit Design
  - AutoCAD Electrical
  - C++
+ - Circuit Design
+ - PCB Design
  - Control System Design
  - Power System Design
 
