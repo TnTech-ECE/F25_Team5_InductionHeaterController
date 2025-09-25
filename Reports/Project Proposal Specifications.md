@@ -80,7 +80,7 @@ Provide a budget proposal with justifications for expenses such as software, equ
 
 ### Personnel - Aaron
 
-The team has a strong foundation in analyzing electrical circuits as well as programming. However, to meet the goal of designing an induction coil controller to heat a circular heating element, the team will need to possess the following additional skills:
+The team has a strong foundation in analyzing electrical circuits and programming. However, to meet the goal of designing an induction coil controller to heat a circular heating element, our team will need to possess the following additional skills:
 
  - Circuit Design
  - AutoCAD Electrical
@@ -88,7 +88,7 @@ The team has a strong foundation in analyzing electrical circuits as well as pro
  - Control System Design
  - Power System Design
 
-Additional, the team will need to a fundamental understanding of key topics including:
+Additionaly, the team will need to have a fundamental understanding of key topics including:
  - Data Analysis from Measurements
  - Material Response to Induction Heating
 
