@@ -47,6 +47,22 @@ Specifications and constraints define the system's requirements. They can be pos
 
 Specifications are requirements imposed by **stakeholders** to meet their needs. If a specification seems unattainable, it is necessary to discuss and negotiate with the stakeholders.
 
+1. This controller shall have multiple power settings similar to current induction cook tops. 
+
+
+2. This controller shall be capable of inducing surface eddy currents and internal heating. 
+
+
+3. This controller shall test circular bar stock and standard black pipe thermocouple in such a manner to validate the success of the heating. 
+
+
+4. This controller shall measure total electrical power consumed.  
+
+
+5. This controller shall measure the total temperature rise of the metal.
+
+
+
 #### Constraints - Austin & Cole
 
 Constraints often stem from governing bodies, standards organizations, and broader considerations beyond the requirements set by stakeholders.
@@ -62,7 +78,7 @@ Questions to consider:
 
 Research existing solutions, whether in literature, on the market, or within the industry. Present these findings in a coherent, organized manner. Remember to cite all information that is not common knowledge.
 
-Lochinvar already has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar has a complete control panel [2] available for purchase for about $5300. 
+Lochinvar already has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar also sells a complete control panel [2] available for purchase for about $5300. 
 
 
 ## Measures of Success - Aaron
