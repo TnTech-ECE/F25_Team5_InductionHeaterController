@@ -78,6 +78,13 @@ Each project proposal must include a comprehensive description of the necessary 
 
 Provide a budget proposal with justifications for expenses such as software, equipment, components, testing machinery, and prototyping costs. This should be an estimate, not a detailed bill of materials.
 
+The budget of the project will need to not only meet the expenses required for any components required for the induction controller, but also take into account unforseen expsenses. Below is a table that shows a list of components needed as well as an estimated cost for each listed.
+| Components | Estimated Cost |
+|---|---|
+| Row 1, Col 1 | Row 1, Col 2 |
+| Row 2, Col 1 | Row 2, Col 2 |
+| Row 2, Col 1 | Row 2, Col 2 |
+
 ### Personnel - Aaron
 
 The team has a strong foundation in analyzing electrical circuits and programming. However, to meet the goal of designing an induction coil controller to heat a circular heating element, our team will need to possess the following additional skills:
