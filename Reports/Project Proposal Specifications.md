@@ -94,24 +94,29 @@ Provide a detailed timeline, including all major deadlines and tasks. This shoul
 ## Specific Implications - Dow
 
 Explain the implications of solving the problem for the customer. After reading this section, the reader should understand the tangible benefits and the worthiness of the proposed work.
-The implications of solving this problem is faster heating, more precise temperature control, and improved safety. 
+The specific implications of solving this problem is faster heating, more precise temperature control, better efficiency, and improved safety. Induction heating is faster as it heats directly within the object as apposed to indirectly with conventual resistance based heating methods. Since the heating is faster, the temperature of the object can be controlled more precisely. Also, induction heating has more control over how deep and which parts the material is heated. The energy efficiency is improved as a majority of the energy is directly entering the material from the electric current from the electromagnetic fields from the inductions coils. With tradition electric heating the resistive elements blasts a lot more heat energy into the air as not all the energy conductively transfers to the material being heated. Induction is safer as only the material heats up not the coils unlike regular electric heating.
 
 ## Broader Implications, Ethics, and Responsibility as Engineers - Dow
 
 Consider the project’s broader impacts in global, economic, environmental, and societal contexts. Identify potential negative impacts and propose mitigation strategies. Detail the ethical considerations and responsibilities each team member bears as an engineer.
+
+The boarder impacts of this problem are creating a cheaper option for controlling industrial induction heating applications which through the teams success the industry hopefully will gain a cost effective option. The ethical considerations and responsibilities of solving of this problem are notifying the the user that it is heating the object, the cost of controller compared to other heating options, proprietary objects, making sure it operates within intended temperatures, and does not use more power then the specified recommend amount. With an induction cooktop user report that they have a hard time telling that the stove is heating a pot as without some notification or signal there is no indication that the cooktop is working. When the team designs the controller, telling the user that it is on with an led light or message will be crucial for the heater to be safe. Checking a heater by touching it is dangerous. Induction heating can be more expensive than traditional heating method, but the advantages explained above in the Specific Implications out weigh the increased cost. The team will have to make sure the heater does not overheat the object as that could damage it through being heated pasted its melting point or make sure it does not surpass the object's temperature differential maximum by heating the material too quickly. The heater with have to be controlled with out surpassing the amperage limit of the circuit the heater is wired to. The Team will need to make the temperature range, maximum power draw, and temperature differential are configurable making this controller more versatile and allows the heater to operate safely. 
 
 
 ## References - Everyone
 
 All sources used in the project proposal that are not common knowledge must be cited. Multiple references are required.
 
-[1]“Smart Touch Control | Lochinvar,” Lochinvar.com, 2025. https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html (accessed Sep. 24, 2025).
+[1]“Smart Touch Control | Lochinvar,” Lochinvar.com, 2025. [https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html](https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html) (accessed Sep. 24, 2025).
 
-[2]“Lochinvar 100164434 Complete Control Panel,” NorthStock, 2022. https://northstock.com/lochinvar-100164434-complete-control-panel/ (accessed Sep. 24, 2025).
+[2]“Lochinvar 100164434 Complete Control Panel,” NorthStock, 2022. [https://northstock.com/lochinvar-100164434-complete-control-panel/](https://northstock.com/lochinvar-100164434-complete-control-panel/) (accessed Sep. 24, 2025).
 
+[3] S. Salkowski, “Hot topic: Dispelling the myths about induction stoves,” Acadia Center, [https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB](https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB) (accessed Sep. 25, 2025). 
 ‌
-‌
+‌[4] P. Hope, A. St. John                                                                                                                                        Senior Home & Tech Writer, and D. Yao, “Pros and cons of induction cooktops and ranges,” Consumer Reports, [https://www.consumerreports.org/appliances/ranges/pros-and-cons-of-induction-cooktops-and-ranges-a5854942923/](https://www.consumerreports.org/appliances/ranges/pros-and-cons-of-induction-cooktops-and-ranges-a5854942923/) (accessed Sep. 25, 2025). 
 
 ## Statement of Contributions - Everyone
 
 Each team member must contribute meaningfully to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
+
+Dow Cox - Specific Implications and Broader Implications, Ethics, and Responsibility as Engineers. Reference [3] and [4]
