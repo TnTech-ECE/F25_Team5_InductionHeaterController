@@ -99,11 +99,11 @@ Each project proposal must include a comprehensive description of the necessary 
 Provide a budget proposal with justifications for expenses such as software, equipment, components, testing machinery, and prototyping costs. This should be an estimate, not a detailed bill of materials.
 
 The budget of the project will need to not only meet the expenses required for any components required for the induction controller, but also take into account unforseen expsenses. Below is a table that shows a list of components needed as well as an estimated cost for each listed.
-| Components | Estimated Cost |
-|---|---|
-| Row 1, Col 1 | Row 1, Col 2 |
-| Row 2, Col 1 | Row 2, Col 2 |
-| Row 2, Col 1 | Row 2, Col 2 |
+| Components   | Estimated Cost |
+| ------------ | -------------- |
+| Row 1, Col 1 | Row 1, Col 2   |
+| Row 2, Col 1 | Row 2, Col 2   |
+| Row 2, Col 1 | Row 2, Col 2   |
 
 ### Personnel - Aaron
 
@@ -134,13 +134,15 @@ Provide a detailed timeline, including all major deadlines and tasks. This shoul
 ## Specific Implications - Dow
 
 Explain the implications of solving the problem for the customer. After reading this section, the reader should understand the tangible benefits and the worthiness of the proposed work.
-The specific implications of solving this problem is faster heating, more precise temperature control, better efficiency, and improved safety. Induction heating is faster as it heats directly within the object as apposed to indirectly with conventual resistance based heating methods. Since the heating is faster, the temperature of the object can be controlled more precisely. Also, induction heating has more control over how deep and which parts the material is heated. The energy efficiency is improved as a majority of the energy is directly entering the material from the electric current from the electromagnetic fields from the inductions coils. With tradition electric heating the resistive elements blasts a lot more heat energy into the air as not all the energy conductively transfers to the material being heated. Induction is safer as only the material heats up not the coils unlike regular electric heating.
+
+The specific implications of solving this problem is faster heating, more precise temperature control, better efficiency, and improved safety. Induction heating is faster as it heats directly within the object as opposed to indirectly with conventional resistance-based heating methods. Since the heating is faster, the temperature of the object can be controlled more precisely. Also, induction heating has more control over how deep and which parts of the material are heated. The energy efficiency is improved as a majority of the energy is directly entering the material from the electric current from the electromagnetic fields from the induction coils. With traditional electric heating, the resistive elements blast a lot more heat energy into the air, as not all the energy is conductively transferred to the material being heated. Induction is safer as only the material heats up, not the coils, unlike regular electric heating.
+
 
 ## Broader Implications, Ethics, and Responsibility as Engineers - Dow
 
 Consider the project’s broader impacts in global, economic, environmental, and societal contexts. Identify potential negative impacts and propose mitigation strategies. Detail the ethical considerations and responsibilities each team member bears as an engineer.
 
-The boarder impacts of this problem are creating a cheaper option for controlling industrial induction heating applications which through the teams success the industry hopefully will gain a cost effective option. The ethical considerations and responsibilities of solving of this problem are notifying the the user that it is heating the object, the cost of controller compared to other heating options, proprietary objects, making sure it operates within intended temperatures, and does not use more power then the specified recommend amount. With an induction cooktop user report that they have a hard time telling that the stove is heating a pot as without some notification or signal there is no indication that the cooktop is working. When the team designs the controller, telling the user that it is on with an led light or message will be crucial for the heater to be safe. Checking a heater by touching it is dangerous. Induction heating can be more expensive than traditional heating method, but the advantages explained above in the Specific Implications out weigh the increased cost. The team will have to make sure the heater does not overheat the object as that could damage it through being heated pasted its melting point or make sure it does not surpass the object's temperature differential maximum by heating the material too quickly. The heater with have to be controlled with out surpassing the amperage limit of the circuit the heater is wired to. The Team will need to make the temperature range, maximum power draw, and temperature differential are configurable making this controller more versatile and allows the heater to operate safely.
+The broader impacts of this problem are creating a cheaper option for controlling industrial induction heating applications, which, through the team's success, the industry will hopefully gain a cost-effective option. The ethical considerations and responsibilities of solving this problem are notifying the user that it is heating the object, the cost of the controller compared to other heating options, proprietary objects, making sure it operates within intended temperatures, and does not use more power than the specified recommended amount. With an induction cooktop, users report that they have a hard time telling that the stove is heating a pot, as without some notification or signal, there is no indication that the cooktop is working. When the team designs the controller, telling the user that it is on with an LED light or message will be crucial for the heater to be safe. Checking a heater by touching it is dangerous. Induction heating can be more expensive than traditional heating methods, but the advantages explained above in the Specific Implications outweigh the increased cost. The team will have to make sure the heater does not overheat the object, as that could damage it by being heated past its melting point, or make sure it does not surpass the object's temperature differential maximum by heating the material too quickly. The heater has to be controlled without surpassing the amperage limit of the circuit the heater is wired to. The Team will need to make the temperature range, maximum power draw, and temperature differential configurable, making this controller more versatile and allowing the heater to operate safely. 
 
 
 ## References - Everyone
