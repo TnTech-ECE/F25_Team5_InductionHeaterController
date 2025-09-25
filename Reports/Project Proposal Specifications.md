@@ -78,13 +78,25 @@ Each project proposal must include a comprehensive description of the necessary 
 
 Provide a budget proposal with justifications for expenses such as software, equipment, components, testing machinery, and prototyping costs. This should be an estimate, not a detailed bill of materials.
 
-### Personel - Aaron
+### Personnel - Aaron
 
-Identify the skills present in the team and compare them to those required to complete the project. Address any skill gaps with a plan to acquire the necessary knowledge.
+The team has a strong foundation in analyzing electrical circuits as well as programming. However, to meet the goal of designing an induction coil controller to heat a circular heating element, the team will need to possess the following additional skills:
 
-Besides the team, also state who you choose to be you supervisor and why.
+ - Circuit Design
+ - AutoCAD Electrical
+ - C++
+ - Control System Design
+ - Power System Design
 
-State who your instrucotr is and what role you expect them to play in the project.
+Additional, the team will need to a fundamental understanding of key topics including:
+ - Data Analysis from Measurements
+ - Material Response to Induction Heating
+
+Through the use of these skills and topics, the team will be able to successfully navigate the design and prototyping of an induction heater controller.
+
+Daniel Rushing, an electrical engineer from Lochinvar, has stepped in as our supervisor over this project. Rushing will provide guidance and direction for the project.
+
+The team has asked Dr. Ali Alouani to assist in analyzing the controls for an induction coil as he has extensive knowledge of controls and sensor analysis.
 
 ### Timeline - Aaron
 
