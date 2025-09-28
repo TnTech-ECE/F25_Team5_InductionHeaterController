@@ -37,7 +37,25 @@ Questions to consider:
 
 ### Background
 
-Provide context and details necessary to define the problem clearly and delineate its boundaries.
+Induction heating is a non-contact method of transferring energy into conductive materials through electromagnetic induction. When a time-varying magnetic field surrounds a conductive body, eddy currents are induced within the material. These currents, along with losses due to magnetic hysteresis in ferromagnetic materials, generate heat. The technique is valued for its efficiency, cleanliness, and ability to deliver rapid and localized heating. 
+
+In applications where uniform heating is critical, focusing exclusively on surface-level heating can lead to problems such as overheating of the outer regions while the core lags behind in temperature. Conversely, targeting only internal heating may cause surface underheating or delays in reaching the desired surface temperature. This imbalance can reduce efficiency, compromise material performance, or, in consumer contexts, lead to poor user experience. For a circular heating element, in particular, the ability to regulate both surface and core heating ensures even temperature distribution, faster thermal response, and improved overall performance.
+
+The key to addressing this challenge lies in the design of the induction heater’s controller. By enabling real-time adjustment of inverter frequency and output power, the controller can shift the balance between surface-level and internal heating according to operational needs. Furthermore, modern control strategies may integrate feedback from temperature sensors or current sensors, allowing closed-loop operation that adapts dynamically to the heating profile. Such an approach has the potential to improve efficiency, enhance safety, and expand the flexibility of induction heating systems in both industrial and consumer applications. 
+
+For the scope of this problem, an example of the data we will collect and provide to our customer to prove our design capability is as shown below.
+
+1. Similar to current induction cook tops the control will have multiple power settings.
+
+2. The controller will be capable of inducing surface eddy currents and internal heating.
+
+3. Prototype shall be testing circular bar stock and standard black pipe thermocouple in such a manner to valid date the success of the heating.
+
+4. Total electrical power is to be measured.
+
+5. Total temperature rise of the metal shall be measured.
+
+
 
 ### Specifications and Constraints
 
