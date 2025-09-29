@@ -78,7 +78,17 @@ Questions to consider:
 - What impact will the engineering, manufacturing, or final product have on public health, safety, and welfare?
 - Are there global, cultural, social, environmental, or economic factors that must be considered?
 
-NEC Article 427 [4] Part V covers the codes regarding Induction Heating, and Part VII covers the Controls and Protection. Notably if the controller contains an off switch it should not be able to enerize automatically while in the off position, and selecting off should open all ungrounded conductors.
+NEC Article 427 [4] covers Fixed Electric Heating Equipment for Pipelines and Vessels. Part V covers the codes regarding Induction Heating, and Part VII covers the Controls and Protection. Notably if the controller contains an off switch it should not be able to enerize automatically while in the off position, and selecting off should open all ungrounded conductors.
+
+
+NEC Article 665 [7] covers Induction and Dielectric Heating Equipment. Part I has guidelines "the current flow from the output circuit to ground under operating and ground-fault conditions shall be limited to a value that does not cause 50 volts or more to ground to appear on any accessible part of the heating equipment and its load." Part II states the control panel should be dead front construction, that is: no live circuits at risk of shocking people. 
+
+
+ANSI and IEEE also have many standards that will be useful for our project. Notably: IEEE 844-200 applies directly to induction heating for pipelines and vessels. 
+
+
+This standard and a couple other standards with their names are listed [4]: ANSI/IEEE 515-2011, Standard for the Testing, Design, Installation and Mainte‐ nance of Electrical Resistance Trace Heating for Industrial Applications; ANSI/IEEE 844-2000, Recommended Practice for Electrical Impe‐ dance, Induction, and Skin Effect Heating of Pipelines and Vessels; and ANSI/NECA 202-2013, Standard for Installing and Maintaining Industrial Heat Tracing Systems. [4]
+
 
 
 ## Survey of Existing Solutions - Cole
@@ -165,6 +175,9 @@ All sources used in the project proposal that are not common knowledge must be c
 [5] S. Salkowski, “Hot topic: Dispelling the myths about induction stoves,” Acadia Center, [https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB](https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB) (accessed Sep. 25, 2025).
 ‌
 ‌[6] P. Hope, A. St. John                                                                                                                                        Senior Home & Tech Writer, and D. Yao, “Pros and cons of induction cooktops and ranges,” Consumer Reports, [https://www.consumerreports.org/appliances/ranges/pros-and-cons-of-induction-cooktops-and-ranges-a5854942923/](https://www.consumerreports.org/appliances/ranges/pros-and-cons-of-induction-cooktops-and-ranges-a5854942923/) (accessed Sep. 25, 2025).
+
+[7] opitts2k, “Article 665,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-665/ (accessed Sep. 29, 2025).
+‌
 
 ## Statement of Contributions - Everyone
 
