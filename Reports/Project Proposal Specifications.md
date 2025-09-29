@@ -43,19 +43,6 @@ In applications where uniform heating is critical, focusing exclusively on surfa
 
 The key to addressing this challenge lies in the design of the induction heater’s controller. By enabling real-time adjustment of inverter frequency and output power, the controller can shift the balance between surface-level and internal heating according to operational needs. Furthermore, modern control strategies may integrate feedback from temperature sensors or current sensors, allowing closed-loop operation that adapts dynamically to the heating profile. Such an approach has the potential to improve efficiency, enhance safety, and expand the flexibility of induction heating systems in both industrial and consumer applications. 
 
-For the scope of this problem, an example of the data we will collect and provide to our customer to prove our design capability is as shown below.
-
-1. Similar to current induction cook tops the control will have multiple power settings.
-
-2. The controller will be capable of inducing surface eddy currents and internal heating.
-
-3. Prototype shall be testing circular bar stock and standard black pipe thermocouple in such a manner to valid date the success of the heating.
-
-4. Total electrical power is to be measured.
-
-5. Total temperature rise of the metal shall be measured.
-
-
 
 ### Specifications and Constraints - Austin & Cole
 
