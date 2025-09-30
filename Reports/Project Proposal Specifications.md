@@ -67,6 +67,8 @@ Specifications are requirements imposed by **stakeholders** to meet their needs.
 5. This controller shall measure the total temperature rise of the metal.
 
 
+Outside of the specifications mentioned, the team has been given absolute authority over the design of the controller. The team shall go above and beyond to engineer the best possible design to satisfy stakeholders.
+
 
 #### Constraints - Austin & Cole
 
