@@ -94,9 +94,9 @@ ANSI/IEEE 844-200 [8] applies directly to induction heating for pipelines and ve
 
 Research existing solutions, whether in literature, on the market, or within the industry. Present these findings in a coherent, organized manner. Remember to cite all information that is not common knowledge.
 
-Lochinvar already has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar also sells a complete control panel [2] available for purchase for about $5300.
+Our team is supplied with a SK-IH18G23T induction cooker. It comes with some basic controls already including: on/off button, a minus and a plus button for adjusting time, temperature, or power, a keep warm button, and a lock button. Likewise the cooker has check points for voltage, surface temperature, and some indicators for if the IGBT sensor is working. These built in existing solutions work great for many of the specifications, but the cooker will still need adjustment to meet additional specifications to properly measure total electrical power consumed and total temperature rise of the metal.
 
-There are simple controllers available for purchase, such as Automation Direct's SOLO Basic Temperature Controller [3] for much cheaper, closer to $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second.
+There are simple controllers available for purchase, such as Automation Direct's SOLO Basic Temperature Controller [3] for about $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second.
 
 
 ## Measures of Success - Aaron
@@ -163,9 +163,7 @@ The broader impacts of this problem are creating a cheaper option for controllin
 
 All sources used in the project proposal that are not common knowledge must be cited. Multiple references are required.
 
-[1]“Smart Touch Control | Lochinvar,” Lochinvar.com, 2025. [https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html](https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html) (accessed Sep. 24, 2025).
 
-[2]“Lochinvar 100164434 Complete Control Panel,” NorthStock, 2022. [https://northstock.com/lochinvar-100164434-complete-control-panel/](https://northstock.com/lochinvar-100164434-complete-control-panel/) (accessed Sep. 24, 2025).
 
 [3]“SLB4848 Series Overview.” Accessed: Sep. 25, 2025. [Online]. Available: https://cdn.automationdirect.com/static/specs/solobasic4848.pdf
 
