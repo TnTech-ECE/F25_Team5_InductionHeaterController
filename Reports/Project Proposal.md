@@ -1,14 +1,12 @@
 # Project Proposal
 
-## Introduction - John
+## Introduction
 
 Induction heating has proven itself to be a reliable and effective method for transferring energy into materials. By allowing eddy currents to flow through conductive materials, this technology enables accurate and controllable heating for various applications, including metal processing and induction cooktops. Although the fundamentals of the heating process are well known, the controller, on the other hand, which allows power delivery, modes of operation, as well as feedback measurements, wholeheartedly determines how well the induction system works.
 
 This project proposes the design and prototyping of an induction coil controller that can heat both the internal and surface-level material of a circular heating element. The prototype will also be able to verify temperature rise against electrical power, as well as deliver measured performance data and offer a variety of user-selectable power settings.
 
-
-
-## Formulating the Problem - John
+## Formulating the Problem
 
 The issue at hand is not the induction heater itself; however, it’s the controller that needs to be able to be customizable for the many applications and particular use cases. There are industrial and commercial induction heaters that lack vital measurement capabilities in addition to the flexibility required for controlled testing and validation. A customized controller is necessary if we want to show variable heating performances, collect data, and act as a prototype platform for additional research.
 
