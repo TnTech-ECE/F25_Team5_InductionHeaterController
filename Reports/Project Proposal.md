@@ -12,12 +12,6 @@ This project proposes the design and prototyping of an induction coil controller
 
 The issue at hand is not the induction heater itself; however, it’s the controller that needs to be able to be customizable for the many applications and particular use cases. There are industrial and commercial induction heaters that lack vital measurement capabilities in addition to the flexibility required for controlled testing and validation. A customized controller is necessary if we want to show variable heating performances, collect data, and act as a prototype platform for additional research.
 
-The objective of this project is therefore to design and prototype a controller that can:
--Provide a range of power levels comparable to those of consumer induction devices.
--The controller will be capable of inducing surface eddy currents and internal heating.
--During operation, measure the total electrical input power.
--Measure the temperature rise of the metal itself.
-
 The controller must safely and efficiently handle high power transfer while also allowing accurate user control and measurement; this is not a single person task.  Current consumer grade induction heaters lack the instrumentation and adjustability needed for this project because they are designed for cooking applications. Thus, a customized engineered system is required, which involves a multiple disciplinary engineering effort.
 
 ### Background
