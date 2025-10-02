@@ -1,23 +1,5 @@
 # Project Proposal
 
-This document provides a comprehensive explanation of what a project proposal should encompass. The content here is detailed and is intended to highlight the guiding principles rather than merely listing expectations. The sections that follow contain all the necessary information to understand the requirements for creating a project proposal.
-
-
-## General Requirements for the Document
-- All submissions must be composed in markdown format.
-- All sources must be cited unless the information is common knowledge for the target audience.
-- The document must be written in third person.
-- The document must identify all stakeholders including the instuctor, supervisor, and cusotmer.
-- The problem must be clearly defined using "shall" statements.
-- Existing solutions or technologies that enable novel solutions must be identified.
-- Success criteria must be explicitly stated.
-- An estimate of required skills, costs, and time to implement the solution must be provided.
-- The document must explain how the customer will benefit from the solution.
-- Broader implications, including ethical considerations and responsibilities as engineers, must be explored.
-- A list of references must be included.
-- A statement detailing the contributions of each team member must be provided.
-
-
 ## Introduction - John
 
 The introduction must be the opening section of the proposal. It acts as the "elevator pitch" of the project, briefly introducing the objective, its importance, and the proposed solution. Because readers may only read this section, it should effectively capture their attention and encourage them to read further. something something something 
@@ -35,7 +17,7 @@ Questions to consider:
 - What challenges necessitate a dedicated, multi-person engineering team?
 - Why aren’t off-the-shelf solutions sufficient?
 
-### Background - Austin
+### Background
 
 Induction heating is a non-contact method of transferring energy into conductive materials through electromagnetic induction. When a time-varying magnetic field surrounds a conductive body, eddy currents are induced within the material. These currents, along with losses due to magnetic hysteresis in ferromagnetic materials, generate heat. The technique is valued for its efficiency, cleanliness, and ability to deliver rapid and localized heating. 
 
@@ -44,13 +26,11 @@ In applications where uniform heating is critical, focusing exclusively on surfa
 The key to addressing this challenge lies in the design of the induction heater’s controller. By enabling real-time adjustment of inverter frequency and output power, the controller can shift the balance between surface-level and internal heating according to operational needs. Furthermore, modern control strategies may integrate feedback from temperature sensors or current sensors, allowing closed-loop operation that adapts dynamically to the heating profile. Such an approach has the potential to improve efficiency, enhance safety, and expand the flexibility of induction heating systems in both industrial and consumer applications. 
 
 
-### Specifications and Constraints - Austin & Cole
+### Specifications and Constraints
 
-Specifications and constraints define the system's requirements. They can be positive (do this) or negative (don't do that). They can be mandatory (shall or must) or optional (may). They can cover performance, accuracy, interfaces, or limitations. Regardless of their origin, they must be unambiguous and impose measurable requirements.
+#### Specifications
 
-#### Specifications - Austin & Cole
-
-Specifications are requirements imposed by **stakeholders** to meet their needs. If a specification seems unattainable, it is necessary to discuss and negotiate with the stakeholders.
+Based on the deliverables given to us by Lochinvar:
 
 1. This controller shall have multiple power settings similar to current induction cook tops.
 
@@ -67,18 +47,8 @@ Specifications are requirements imposed by **stakeholders** to meet their needs.
 5. This controller shall measure the total temperature rise of the metal.
 
 
-Outside of the specifications mentioned, the team has been given absolute authority over the design of the controller. The team shall go above and beyond to engineer the best possible design to satisfy stakeholders.
+#### Constraints
 
-
-#### Constraints - Austin & Cole
-
-Constraints often stem from governing bodies, standards organizations, and broader considerations beyond the requirements set by stakeholders.
-
-Questions to consider:
-- Do governing bodies regulate the solution in any way?
-- Are there industrial standards that need to be considered and followed?
-- What impact will the engineering, manufacturing, or final product have on public health, safety, and welfare?
-- Are there global, cultural, social, environmental, or economic factors that must be considered?
 
 NEC Article 427 [4] covers Fixed Electric Heating Equipment for Pipelines and Vessels. Part V covers the codes regarding Induction Heating, and Part VII covers the Controls and Protection. Notably if the controller contains an off switch it should not be able to enerize automatically while in the off position, and selecting off should open all ungrounded conductors.
 
@@ -90,36 +60,50 @@ ANSI/IEEE 844-200 [8] applies directly to induction heating for pipelines and ve
 
 
 
-## Survey of Existing Solutions - Cole
+## Survey of Existing Solutions
 
-Research existing solutions, whether in literature, on the market, or within the industry. Present these findings in a coherent, organized manner. Remember to cite all information that is not common knowledge.
+Lochinvar already has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar also sells a complete control panel [2] available for purchase for about $5300.
 
-Our team is supplied with a SK-IH18G23T induction cooker. It comes with some basic controls already including: on/off button, a minus and a plus button for adjusting time, temperature, or power, a keep warm button, and a lock button. Likewise the cooker has check points for voltage, surface temperature, and some indicators for if the IGBT sensor is working. These built in existing solutions work great for many of the specifications, but the cooker will still need adjustment to meet additional specifications to properly measure total electrical power consumed and total temperature rise of the metal.
-
-There are simple controllers available for purchase, such as Automation Direct's SOLO Basic Temperature Controller [3] for about $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second.
+There are simple controllers available for purchase, such as Automation Direct's SOLO Basic Temperature Controller [3] for much cheaper, closer to $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second.
 
 
-## Measures of Success - Aaron
+## Measures of Success
 
-Define how the project’s success will be measured. This involves explaining the experiments and methodologies to verify that the system meets its specifications and constraints.
+The project is a success if it meets each of the following deliverables assigned by Lochinvar:
+
+1. The induction controller shall have multiple power settings similar to current induction cook tops (ie. 0-460F, 0-1800W)
 
 
-## Resources - Aaron
+2. The induction controller shall be capable of inducing surface eddy currents and internal heating.
 
-Each project proposal must include a comprehensive description of the necessary resources.
 
-### Budget - Aaron
+3. The controller shall heat a circular bar stock and a standard black pipe thermocouple in such a manner to validate the success of the heating.
 
-Provide a budget proposal with justifications for expenses such as software, equipment, components, testing machinery, and prototyping costs. This should be an estimate, not a detailed bill of materials.
+
+4. Total electrical power consumed shall be measured.  
+
+
+5. Total temperature rise of the heated metal shall be measured.
+
+Once these deliverables are met, the project has succeeded. Any further benefits outside of the deliverables from the new induction heater controller shall be counted as a bonus.
+
+## Resources
+For this project to be successful, an estimated budget and allocation of personnel is needed to ensure adequate preparations are made in a timely manner. Below, the budget and personnel is shown.
+
+### Budget
 
 The budget of the project will need to not only meet the expenses required for any components required for the induction controller, but also take into account unforseen expsenses. Below is a table that shows a list of components needed as well as an estimated cost for each listed.
-| Components   | Estimated Cost |
-| ------------ | -------------- |
-| Row 1, Col 1 | Row 1, Col 2   |
-| Row 2, Col 1 | Row 2, Col 2   |
-| Row 2, Col 1 | Row 2, Col 2   |
+| Components      | Estimated Cost |      Link      |
+| ------------    | -------------- | -------------- |
+| Litz Wire       |       $30      |       N/A      |
+| PCB             |       $50      |       N/A      |
+| Display         |       $10      |      [Link](https://www.digikey.com/en/products/detail/display-visions/EA-DOGM132L-5/4896710)              |
+| Microcontroller |       $25      |      [Link](https://www.bestmodulescorp.com/en/ht45f0059-16nsop.html)       |
+| Encasing        |       $70      |       N/A      |
 
-### Personnel - Aaron
+This brings the total estimated budget for the project to be $185
+
+### Personnel
 
 The team has a strong foundation in analyzing electrical circuits and programming. However, to meet the goal of designing an induction coil controller to heat a circular heating element, our team will need to possess the following additional skills:
 
@@ -140,30 +124,30 @@ Daniel Rushing, an electrical engineer from Lochinvar, has stepped in as our sup
 
 The team has asked Dr. Ali Alouani to assist in analyzing the controls for an induction coil as he has extensive knowledge of controls and sensor analysis.
 
-### Timeline - Aaron
+### Timeline
 
-Provide a detailed timeline, including all major deadlines and tasks. This should be illustrated with a professional Gantt chart.
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
 
-
-## Specific Implications - Dow
-
-Explain the implications of solving the problem for the customer. After reading this section, the reader should understand the tangible benefits and the worthiness of the proposed work.
+## Specific Implications
 
 The specific implications of solving this problem is faster heating, more precise temperature control, better efficiency, and improved safety. Induction heating is faster as it heats directly within the object as opposed to indirectly with conventional resistance-based heating methods. Since the heating is faster, the temperature of the object can be controlled more precisely. Also, induction heating has more control over how deep and which parts of the material are heated. The energy efficiency is improved as a majority of the energy is directly entering the material from the electric current from the electromagnetic fields from the induction coils. With traditional electric heating, the resistive elements blast a lot more heat energy into the air, as not all the energy is conductively transferred to the material being heated. Induction is safer as only the material heats up, not the coils, unlike regular electric heating.
 
 
-## Broader Implications, Ethics, and Responsibility as Engineers - Dow
-
-Consider the project’s broader impacts in global, economic, environmental, and societal contexts. Identify potential negative impacts and propose mitigation strategies. Detail the ethical considerations and responsibilities each team member bears as an engineer.
-
-The broader impacts of this problem are creating a cheaper option for controlling industrial induction heating applications, which, through the team's success, the industry will hopefully gain a cost-effective option. The ethical considerations and responsibilities of solving this problem are notifying the user that it is heating the object, the cost of the controller compared to other heating options, proprietary objects, making sure it operates within intended temperatures, and does not use more power than the specified recommended amount. With an induction cooktop, users report that they have a hard time telling that the stove is heating a pot, as without some notification or signal, there is no indication that the cooktop is working. When the team designs the controller, telling the user that it is on with an LED light or message will be crucial for the heater to be safe. Checking a heater by touching it is dangerous. Induction heating can be more expensive than traditional heating methods, but the advantages explained above in the Specific Implications outweigh the increased cost. The team will have to make sure the heater does not overheat the object, as that could damage it by being heated past its melting point, or make sure it does not surpass the object's temperature differential maximum by heating the material too quickly. The heater has to be controlled without surpassing the amperage limit of the circuit the heater is wired to. The Team will need to make the temperature range, maximum power draw, and temperature differential configurable, making this controller more versatile and allowing the heater to operate safely. 
+## Broader Implications, Ethics, and Responsibility as Engineers
 
 
-## References - Everyone
+The broader impacts of this problem include creating a cheaper option for controlling industrial induction heating applications, which, through the team's success, the industry will hopefully gain a cost-effective option. The ethical considerations and responsibilities of solving this problem are notifying the user that it is heating the object, the cost of the controller compared to other heating options, making sure it operates within intended temperatures, and does not use more power than the specified recommended amount. With an induction cooktop, users report that they have a hard time telling that the stove is heating a pot, as without some notification or signal, there is no indication that the cooktop is working. When the team designs the controller, telling the user that it is on with an LED light or message will be crucial for the heater to be safe. Checking a heater by touching it is dangerous. 
 
-All sources used in the project proposal that are not common knowledge must be cited. Multiple references are required.
+Although induction heating can be more expensive than traditional heating methods, the advantages explained above in the Specific Implications outweigh the increased cost. The team will have to make sure the heater does not overheat the object, as that could damage it by being heated past its melting point. Along with this, the controller must make sure it does not surpass the object's temperature differential maximum by heating the material too quickly. The heater has to be controlled without surpassing the amperage limit of the circuit the heater is wired to. Finally, the team will need to make the temperature range, maximum power draw, and temperature differential all configurable, making this controller more versatile and allowing the heater to operate more efficiently. 
 
 
+## References
+
+[1]“Smart Touch Control | Lochinvar,” Lochinvar.com, 2025. [https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html](https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html) (accessed Sep. 24, 2025).
+
+[2]“Lochinvar 100164434 Complete Control Panel,” NorthStock, 2022. [https://northstock.com/lochinvar-100164434-complete-control-panel/](https://northstock.com/lochinvar-100164434-complete-control-panel/) (accessed Sep. 24, 2025).
 
 [3]“SLB4848 Series Overview.” Accessed: Sep. 25, 2025. [Online]. Available: https://cdn.automationdirect.com/static/specs/solobasic4848.pdf
 
@@ -179,9 +163,7 @@ All sources used in the project proposal that are not common knowledge must be c
 ‌
 ‌
 
-## Statement of Contributions - Everyone
-
-Each team member must contribute meaningfully to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
+## Statement of Contributions
+Aaron Neuharth - Measures of Success, Resources, Budget, Timeline, Personnel
 
 Dow Cox - Specific Implications and Broader Implications, Ethics, and Responsibility as Engineers. Reference [5] and [6]
-Cole Wilson - Specifications and Contraints and Survey of Existing Solutions. Reference [1], [2],[3], [4], [7], [8]
