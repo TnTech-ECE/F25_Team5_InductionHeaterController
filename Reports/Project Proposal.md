@@ -168,5 +168,9 @@ Although induction heating can be more expensive than traditional heating method
 Aaron Neuharth - Measures of Success, Resources, Budget, Timeline, Personnel
 
 Dow Cox - Specific Implications and Broader Implications, Ethics, and Responsibility as Engineers. Reference [5] and [6]
+<<<<<<< HEAD
 
 John Donnell - Introduction and formulating the problem 
+=======
+Cole Wilson - Specifications, Contraints, and Survey of Existing Solutions. Reference [1], [2], [3], [4], [7], [8]
+>>>>>>> 89dec51abcbfdb9a87461fe56229858f571f69e5
