@@ -60,11 +60,15 @@ ANSI/IEEE 844-200 [8] applies directly to induction heating for pipelines and ve
 
 
 
-## Survey of Existing Solutions
+## Survey of Existing Solutions 
 
-Lochinvar already has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar also sells a complete control panel [2] available for purchase for about $5300.
+Our team is supplied with a SK-IH18G23T induction cooker with a cost of about $75. It comes with some basic controls already including: on/off button, a minus and a plus button for adjusting time, temperature, or power, a keep warm button, and a lock button. Likewise the cooker has check points for voltage, surface temperature, and some indicators for if the IGBT sensor is working. These built in existing solutions work great for many of the specifications, but the cooker will still need adjustment to be able to heat a circular bar stock and standard black pipe thermocouple. Measuring the total temperature rise of the metal may also be more complicated than simply measuring the surface temperature. 
 
-There are simple controllers available for purchase, such as Automation Direct's SOLO Basic Temperature Controller [3] for much cheaper, closer to $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second.
+
+There are simple controllers available for purchase, such as Automation Direct's SOLO Basic Temperature Controller [3] close to $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second.
+
+
+Lochinvar has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar also sells a complete control panel [2] available for purchase for about $5300. These solutions would meet and exceed our required specifications, but they also exceed our budget by thousands of dollars. 
 
 
 ## Measures of Success
