@@ -14,11 +14,11 @@ The controller must safely and efficiently handle high power transfer while also
 
 ### Background
 
-Induction heating is a non-contact method of transferring energy into conductive materials through electromagnetic induction. When a time-varying magnetic field surrounds a conductive body, eddy currents are induced within the material. These currents, along with losses due to magnetic hysteresis in ferromagnetic materials, generate heat. The technique is valued for its efficiency, cleanliness, and ability to deliver rapid and localized heating. 
+Induction heating is a non-contact method of transferring energy into conductive materials through electromagnetic induction. When a time-varying magnetic field surrounds a conductive body, eddy currents are induced within the material, and in ferromagnetic materials additional heat arises from magnetic hysteresis losses [9]. These induced currents are typically concentrated near the surface due to the skin effect, which means the depth of heating strongly depends on frequency and material properties [10]. The technique is valued for its efficiency, cleanliness, and ability to deliver rapid and localized heating [11].
 
-In applications where uniform heating is critical, focusing exclusively on surface-level heating can lead to problems such as overheating of the outer regions while the core lags behind in temperature. Conversely, targeting only internal heating may cause surface underheating or delays in reaching the desired surface temperature. This imbalance can reduce efficiency, compromise material performance, or, in consumer contexts, lead to poor user experience. For a circular heating element, in particular, the ability to regulate both surface and core heating ensures even temperature distribution, faster thermal response, and improved overall performance.
+In applications where uniform heating is critical, focusing exclusively on surface-level heating can lead to overheating of the outer regions while the core lags behind in temperature. Conversely, targeting only internal heating may cause surface underheating or delays in reaching the desired surface temperature. This imbalance reduces efficiency and can compromise performance. For circular heating elements in particular, temperature uniformity is heavily influenced by coil geometry, pattern design, and coil–workpiece spacing; suboptimal coil layouts produce visible nonuniformities across the surface [12]. Multi-field finite element and semi-analytical simulations confirm that coupling between electromagnetic fields and thermal diffusion results in uneven temperature distribution, especially in thicker or more complex shapes [13].
 
-The key to addressing this challenge lies in the design of the induction heater’s controller. By enabling real-time adjustment of inverter frequency and output power, the controller can shift the balance between surface-level and internal heating according to operational needs. Furthermore, modern control strategies may integrate feedback from temperature sensors or current sensors, allowing closed-loop operation that adapts dynamically to the heating profile. Such an approach has the potential to improve efficiency, enhance safety, and expand the flexibility of induction heating systems in both industrial and consumer applications. 
+The key to addressing this challenge lies in the design of the induction heater’s controller. By enabling real-time adjustment of inverter frequency and output power, the controller can shift the balance between surface-level and internal heating depending on operational needs [14]. Modern inverter designs use resonant tracking, frequency modulation, and energy-dosing strategies to maintain efficiency while adapting penetration depth [15],[16]. Furthermore, modern control strategies integrate feedback from sensors—ranging from infrared temperature sensors to magnetic-field or inductive sensors that respond to changes near the Curie point—allowing closed-loop operation that dynamically adapts to the heating profile [17]. Such adaptive approaches improve energy efficiency, enhance safety, and expand the flexibility of induction heating systems in both industrial and consumer applications [18].
 
 
 ### Specifications and Constraints
@@ -68,23 +68,21 @@ Lochinvar has many industrial solutions for induction heater controllers. Lochin
 
 ## Measures of Success
 
-The project is a success if it meets each of the following deliverables assigned by Lochinvar:
+The success of the induction heating controller will be defined through a series of structured experiments designed to evaluate its ability to meet the outlined specifications. Each specification corresponds to a measurable performance indicator, and the validation process ensures that the system satisfies both functional and operational constraints.
 
-1. The induction controller shall have multiple power settings similar to current induction cook tops (ie. 0-460F, 0-1800W)
+First, the controller’s ability to operate at multiple power settings will be assessed in a manner consistent with current induction cooktops. The verification will involve subjecting the system to incremental power adjustments and recording the output response. Successful operation will be demonstrated if the controller reliably delivers stable heating at all programmed power levels without introducing instability or performance degradation.
+
+Second, the project will evaluate the controller’s capacity to induce both surface-level eddy currents and deeper internal heating. This will be verified using test samples of circular bar stock and standard black pipe equipped with thermocouples at different depths. By monitoring the thermal gradients, it will be possible to confirm whether the controller can effectively shift between surface heating and volumetric heating modes. The degree of temperature penetration will serve as a benchmark for success.
+
+Third, the system will undergo thermal validation tests to confirm the heating outcomes on the specified test materials. Thermocouples attached at critical points on the bar stock and pipe will provide direct feedback on the temperature rise over time. A successful outcome will be indicated by consistent and reproducible heating profiles that match the expected thermal response under each power setting.
+
+Fourth, the measurement of total electrical power consumed will be incorporated into the test methodology. Power sensors will record the input energy drawn by the induction system under varying operational modes. Success will be determined by the controller’s ability to provide accurate energy usage data, which will later serve as the basis for efficiency calculations.
+
+Finally, the total temperature rise of the metal will be analyzed to verify thermal performance. The methodology will involve comparing the recorded thermal rise against expected values derived from simulation and analytical predictions. A successful result will show alignment between predicted and experimental data, demonstrating both accuracy of control and effectiveness of the heating process.
+
+Through this combination of controlled experiments, sensor-based measurements, and comparative analysis, the project will establish clear criteria for determining whether the induction heating controller meets its specifications. The ability to validate performance across multiple dimensions—power flexibility, surface versus internal heating, energy monitoring, and temperature control—will collectively define the success of the system.
 
 
-2. The induction controller shall be capable of inducing surface eddy currents and internal heating.
-
-
-3. The controller shall heat a circular bar stock and a standard black pipe thermocouple in such a manner to validate the success of the heating.
-
-
-4. Total electrical power consumed shall be measured.  
-
-
-5. Total temperature rise of the heated metal shall be measured.
-
-Once these deliverables are met, the project has succeeded. Any further benefits outside of the deliverables from the new induction heater controller shall be counted as a bonus.
 
 ## Resources
 For this project to be successful, an estimated budget and allocation of personnel is needed to ensure adequate preparations are made in a timely manner. Below, the budget and personnel is shown.
@@ -160,14 +158,32 @@ Although induction heating can be more expensive than traditional heating method
 
 [8]N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.
 ‌
-‌
+[9] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025, https://pubmed.ncbi.nlm.nih.gov/39831469/. Accessed 3 Oct. 2025.
+
+[10] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015, https://www.osti.gov/pages/biblio/1225114. Accessed 3 Oct. 2025.
+
+[11] “State of the Art and Future Trends in Monitoring for Induction Surface Hardening.” Electronics, 2024, https://www.mdpi.com/2079-9292/13/13/2591. Accessed 3 Oct. 2025.
+
+[12] Xia, Z., et al. “Design and Temperature Uniformity Optimization of Three Circular Coil Patterns.” Energies, 2025, https://www.mdpi.com/1996-1073/18/11/2695. Accessed 3 Oct. 2025.
+
+[13] Areitioaurtena, M., et al. “A Semi-Analytical Coupled Simulation Approach for Induction Heating.” AMSES Journal, 2021, https://amses-journal.springeropen.com/articles/10.1186/s40323-021-00199-0. Accessed 3 Oct. 2025.
+
+[14] Madzharov, N., B. Gilev, and N. Hinov. “Design of Resonant Inverters with Energy Dosing, Based on Optimization with Reference Curve.” Electronics, 2025, https://www.mdpi.com/2079-9292/14/2/327. Accessed 3 Oct. 2025.
+
+[15] Madzharov, N., and N. Hinov. “Analysis and Design of Resonant DC/AC Converters with Energy Dosing for Induction Heating.” Energies, 2023, https://www.mdpi.com/1996-1073/16/3/1462. Accessed 3 Oct. 2025.
+
+[16] Shimizu, M., et al. “Fully soft switched high step-up/down bidirectional buck/boost converter with reduced switch voltage stress.” IET Power Electronics, vol. 16, no. 2, 2023, pp. 250–259. https://doi.org/10.1049/pel2.12457. Accessed 3 Oct. 2025.
+
+[17] “Non-Contact Infrared Sensing in Induction Heating: Thermal Monitoring of Inductive Hardening.” Optris, https://optris.com/application/metal/inductive-hardening-of-a-crankshaft/. Accessed 3 Oct. 2025.
+
+[18] “Validation of the Analytical Approximation for Induction Heating of Ionic Solutions Using COMSOL.” COMSOL, 2017, https://www.comsol.de/paper/download/680221/Validation_of_the_analytical_approximation_for_induction_heating_ionic_solutions_using_COMSOL.pdf. Accessed 3 Oct. 2025.
 
 ## Statement of Contributions
 Aaron Neuharth - Measures of Success, Resources, Budget, Timeline, Personnel
 
 Dow Cox - Specific Implications and Broader Implications, Ethics, and Responsibility as Engineers. Reference [5] and [6]
 
-Austin DuCrest - Background, Survey of Existing Solutions, Measures of success
+Austin DuCrest - Background, Survey of Existing Solutions, Measures of Success. Reference [9], [10], [11], [12], [13], [14], [15], [16], [17], [18] 
 
 John Donnell - Introduction and formulating the problem 
 
