@@ -2,13 +2,21 @@
 
 ## Introduction
 
-Induction heating has proven itself to be a reliable and effective method for transferring energy into materials. By allowing eddy currents to flow through conductive materials, this technology enables accurate and controllable heating for various applications, including metal processing and induction cooktops. Although the fundamentals of the heating process are well known, the controller, on the other hand, which allows power delivery, modes of operation, as well as feedback measurements, wholeheartedly determines how well the induction system works.
+Induction heating has proven itself to be a reliable and effective method for transferring energy into materials. By allowing eddy currents to flow through conductive materials, this technology enables accurate and controllable heating for various applications, including industrial metal processing and consumer induction cooktops. Although the fundamentals of the heating process are well known, the controller, on the other hand, the component that is responsible for regulating power delivery, modes of operation, as well as feedback measurements, wholeheartedly determines the performance of the induction system.
 
-This project proposes the design and prototyping of an induction coil controller that can heat both the internal and surface-level material of a circular heating element. The prototype will also be able to verify temperature rise against electrical power, as well as deliver measured performance data and offer a variety of user-selectable power settings.
+This project proposes the design and prototyping of an induction heater controller that can heat both the internal and surface-level material of a circular heating element. The prototype will also be able to verify temperature rise against electrical power, as well as deliver measured performance data and offer a variety of user-selectable power settings.This prototype will also be validated by its effectiveness through testing circular bar stock and standard black pipe, with thermocouples measuring temperature rise against electrical power input. With the gathering of this data, the system will supply a clear display of how different control modes can and will affect heating performance, efficiency, and usability.
+
+Within this proposal, the remainder of the document will discuss:
+- The formulation of the problem at hand 
+- The background of induction heating and control systems 
+- The specifications anf constraints that go into the controller 
+- Surveying of already existing solutions to the problem of controlling induction heating
+- Timeline of the project 
+- What will be the expected outcome and benefits of the project
 
 ## Formulating the Problem
 
-The issue at hand is not the induction heater itself; however, it’s the controller that needs to be able to be customizable for the many applications and particular use cases. There are industrial and commercial induction heaters that lack vital measurement capabilities in addition to the flexibility required for controlled testing and validation. A customized controller is necessary if we want to show variable heating performances, collect data, and act as a prototype platform for additional research.
+The issue at hand is not the induction heater itself; however, it’s the controller that needs to be able to be customizable for the many applications and particular use cases. There are industrial and commercial induction heaters that lack vital measurement capabilities in addition to the flexibility required for controlled testing and validation. A customized controller is necessary if wanted to show variable heating performances, collect data, and act as a prototype platform for additional research.
 
 The controller must safely and efficiently handle high power transfer while also allowing accurate user control and measurement; this is not a single person task.  Current consumer grade induction heaters lack the instrumentation and adjustability needed for this project because they are designed for cooking applications. Thus, a customized engineered system is required, which involves a multiple disciplinary engineering effort.
 
