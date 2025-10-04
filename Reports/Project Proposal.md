@@ -65,8 +65,7 @@ ANSI/IEEE 844-200 [8] applies directly to induction heating for pipelines and ve
 
 ## Survey of Existing Solutions 
 
-Our team is supplied with a SK-IH18G23T induction cooker with a cost of about $75. It comes with some basic controls already including: on/off button, a minus and a plus button for adjusting time, temperature, or power, a keep warm button, and a lock button. Likewise the cooker has check points for voltage, surface temperature, and some indicators for if the IGBT sensor is working. These built in existing solutions work great for many of the specifications, but the cooker will still need adjustment to be able to heat a circular bar stock and standard black pipe thermocouple. Measuring the total temperature rise of the metal may also be more complicated than simply measuring the surface temperature. 
-
+Lochinvar has supplied the team with an Intertek SK-IH18G23T induction cooker[1]. This induction cooker is designed to be used with smooth, flat bottom base cookware and would not be sufficient to properly accurately control the temperature of circular bar stock or standard black pipe thermocouple. However, this cooker provides insight into some commercial induction heating controllers available. The cooker utilizes an open loop control system operating based on user selcted power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective solution but would require knowledge of the thermodynamics of the part heated and would require the same or similar parts to be heated every time to produce accurate, consistent results. 
 
 There are simple controllers available for purchase, such as Automation Direct's SOLO Basic Temperature Controller [3] close to $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second.
 
@@ -150,6 +149,11 @@ Although induction heating can be more expensive than traditional heating method
 
 ## References
 
+
+[1]“Amazon.com: OMEO Portable Induction Cooktop Hot Plate Countertop Burner 1800 Watts Induction Burner with LCD Sensor Touch, LED Display, 10 Temperature Levels, Child Safety Lock, Auto Shutoff Function: Home & Kitchen,” Amazon.com, 2025. https://www.amazon.com/OMEO-Portable-Induction-Cooktop-Function/dp/B0CQMHM9G6?th=1 (accessed Oct. 04, 2025).
+
+[2]“INDUCTION COOKER User Manual Model: SK-IH18G23T.”
+‌
 [1]“Smart Touch Control | Lochinvar,” Lochinvar.com, 2025. [https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html](https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html) (accessed Sep. 24, 2025).
 
 [2]“Lochinvar 100164434 Complete Control Panel,” NorthStock, 2022. [https://northstock.com/lochinvar-100164434-complete-control-panel/](https://northstock.com/lochinvar-100164434-complete-control-panel/) (accessed Sep. 24, 2025).
