@@ -65,12 +65,10 @@ ANSI/IEEE 844-200 [8] applies directly to induction heating for pipelines and ve
 
 ## Survey of Existing Solutions 
 
-Lochinvar has supplied the team with an Intertek SK-IH18G23T induction cooker[1]. This induction cooker is designed to be used with smooth, flat bottom base cookware and would not be sufficient to properly accurately control the temperature of circular bar stock or standard black pipe thermocouple. However, this cooker provides insight into some commercial induction heating controllers available. The cooker utilizes an open loop control system operating based on user selcted power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective solution but would require knowledge of the thermodynamics of the part heated and would require the same or similar parts to be heated every time to produce accurate, consistent results. 
-
-There are simple controllers available for purchase, such as Automation Direct's SOLO Basic Temperature Controller [3] close to $52 or $150. However, these controllers would still need to be interfaced with additional hardware to actually control the induction heating. Likewise the 100 ms sampling rate [3] may be too slow to properly control the induction heating if there is a sudden spike in temperature. In induction heating, temperature spikes may rise thousands of degress in fractions of a second.
+Lochinvar has supplied the team with an Intertek SK-IH18G23T induction cooker[1]. This induction cooker is designed to be used with smooth, flat bottom base cookware and would not be sufficient to properly accurately control the temperature of circular bar stock or standard black pipe thermocouple. However, this cooker provides insight into some commercial induction heating controllers available. The cooker utilizes an open loop control system operating based on user selcted power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor for this project's specifications. 
 
 
-Lochinvar has many industrial solutions for induction heater controllers. Lochinvar's boilers and water heaters often contain a Smart Touch Control [1] that allow the user to control the heater's setpoint and many other parameters. Lochinvar also sells a complete control panel [2] available for purchase for about $5300. These solutions would meet and exceed our required specifications, but they also exceed our budget by thousands of dollars. 
+Commercially there are a few induction heaters available with closed loop control, such as Impulse Labs' Impulse Cooktop[3]. The Impulse Cooktop features sensors in each burner [3] which allows for much more accurate temperature control and faster heating. These sensors allow the cooktop to know the actual temperature of the part being measured, so the controller does not have to approximate the part's temperature based on previous tests. This solution is more expensive than open loop control and requires more time to design the system to properly respond to the feedback loops. 
 
 
 ## Measures of Success
@@ -153,12 +151,8 @@ Although induction heating can be more expensive than traditional heating method
 [1]“Amazon.com: OMEO Portable Induction Cooktop Hot Plate Countertop Burner 1800 Watts Induction Burner with LCD Sensor Touch, LED Display, 10 Temperature Levels, Child Safety Lock, Auto Shutoff Function: Home & Kitchen,” Amazon.com, 2025. https://www.amazon.com/OMEO-Portable-Induction-Cooktop-Function/dp/B0CQMHM9G6?th=1 (accessed Oct. 04, 2025).
 
 [2]“INDUCTION COOKER User Manual Model: SK-IH18G23T.”
-‌
-[1]“Smart Touch Control | Lochinvar,” Lochinvar.com, 2025. [https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html](https://www.lochinvar.com/en_US/lochinvaru-video-tutorials/smart-touch-control.html) (accessed Sep. 24, 2025).
 
-[2]“Lochinvar 100164434 Complete Control Panel,” NorthStock, 2022. [https://northstock.com/lochinvar-100164434-complete-control-panel/](https://northstock.com/lochinvar-100164434-complete-control-panel/) (accessed Sep. 24, 2025).
-
-[3]“SLB4848 Series Overview.” Accessed: Sep. 25, 2025. [Online]. Available: https://cdn.automationdirect.com/static/specs/solobasic4848.pdf
+[3]Impulse Labs, “The Impulse Cooktop: The Highest Performing Stove,” YouTube, Jan. 09, 2024. https://www.youtube.com/watch?v=r0U3mTAiV-k (accessed Oct. 04, 2025).
 
 [4]opitts2k, “Article 427,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-427/ (accessed Sep. 25, 2025).
 ‌
