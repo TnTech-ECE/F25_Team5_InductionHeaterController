@@ -94,16 +94,22 @@ For this project to be successful, an estimated budget and allocation of personn
 
 ### Budget
 
-The budget of the project will need to not only meet the expenses required for any components required for the induction controller, but also take into account unforseen expsenses. Below is a table that shows a list of components needed as well as an estimated cost for each listed.
-| Components      | Estimated Cost |      Link      |
-| ------------    | -------------- | -------------- |
-| Litz Wire       |       $30      |       N/A      |
-| PCB             |       $50      |       N/A      |
-| Display         |       $10      |      [Link](https://www.digikey.com/en/products/detail/display-visions/EA-DOGM132L-5/4896710)              |
-| Microcontroller |       $25      |      [Link](https://www.bestmodulescorp.com/en/ht45f0059-16nsop.html)       |
-| Encasing        |       $70      |       N/A      |
+The budget of the project will need to not only meet the expenses required for any components required for the induction controller but also consider unforeseen expenses. Below is a table that shows a list of components needed as well as an estimated cost for each listed. 
 
-This brings the total estimated budget for the project to be $185
+|  Components  | Estimated Cost |      Link      | 
+| ------------ | -------------- | -------------- | 
+| Litz Wire    |      $50       |       N/A      | 
+|     PCB      |      $50       |       N/A      | 
+|   Display    |      $10       | [Link](https://www.digikey.com/en/products/detail/display-visions/EA-DOGM132L-5/4896710) | 
+|Semiconductors|      $50       |       N/A      | 
+| Microcontroller|    $25       | [Link](https://www.bestmodulescorp.com/en/ht45f0059-16nsop.html) |
+| Capacitors   |      $40       |       N/A      |
+|  Encasing    |      $100      |       N/A      | 
+|   Sensors    |      $60       | [Link](https://www.digikey.com/en/products/detail/olimex-ltd/TC-K-TYPE/21662067) | 
+|   Fuses      |      $30       |       N/A      |
+| Contingency  |      $35       |       N/A      |
+
+This brings the total estimated budget for the project to be $430. A good portion of our budget is allocated to the components that will enable high-power energy transfer, which will he needed to effectively heat circular bars. These components include the semiconductors(i.e. IGBTS, MOSFETS), the tank capacitors, and the Litz wire. Because the project requires collecting data, this means a portion of the budget needs to be allocated to sensors like thermocouples and current/voltage sensors. Along with these sensors, a microcontroller and a display will be needed to handle the control logic and processing of sensor inputs. Finally, the project budgets $100 for an encasing as it must meet the NEC 665, Part II standard and protect the users from the high-frequency circuit inside.
 
 ### Personnel
 
@@ -116,15 +122,11 @@ The team has a strong foundation in analyzing electrical circuits and programmin
  - Control System Design
  - Power System Design
 
-Additionaly, the team will need to have a fundamental understanding of key topics including:
+Additionally, the team will need to have a fundamental understanding of key topics including:
  - Data Analysis from Measurements
  - Material Response to Induction Heating
 
-Through the use of these skills and topics, the team will be able to successfully navigate the design and prototyping of an induction heater controller.
-
-Daniel Rushing, an electrical engineer from Lochinvar, has stepped in as our supervisor over this project. Rushing will provide guidance and direction for the project.
-
-The team has asked Dr. Ali Alouani to assist in analyzing the controls for an induction coil as he has extensive knowledge of controls and sensor analysis.
+Through the use of these skills, the team will be able to successfully navigate the design and prototyping of an induction heater controller. These fundamental topics are crucial for the proper testing of our materials and will impact the results we get from these tests. To address any skill gaps we may have on the material response, the team will consult with Daneil Rushing, an electrical engineer from Lochinvar, on any specific thermal properties as well as any desired heating profiles of the thermal bars that will be tested. Rushing will also provide additional guidance and direction on the project. To fix any issues involving data analysis, our team will develop consistent test protocols to ensure any results logged can be used efficiently and effectively. Additionally, the team has asked Dr. Ali Alouani to assist in analyzing the controls for an induction coil as he has extensive knowledge of controls and sensor analysis.
 
 ### Timeline
 
