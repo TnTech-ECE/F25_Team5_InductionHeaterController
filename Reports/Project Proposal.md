@@ -179,7 +179,7 @@ Although induction heating can be more expensive than traditional heating method
 
 [15] “INDUCTION COOKER User Manual Model: SK-IH18G23T.”
 
-[16] Impulse Labs, “The Impulse Cooktop: The Highest Performing Stove,” YouTube, Jan. 09, 2024. https://www.youtube.com/watch?v=r0U3mTAiV-k (accessed Oct. 04, 2025).
+[16] Impulse Labs, “The Impulse Cooktop: The Highest Performing Stove,” YouTube, Jan. 09, 2024. https://www.youtube.com/watch?v=r0U3mTAiV-k (accessed Oct. 04, 2025).  
 ‌
 [17] S. Salkowski, “Hot topic: Dispelling the myths about induction stoves,” Acadia Center, [https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB](https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB) (accessed Sep. 25, 2025).  
 ‌
