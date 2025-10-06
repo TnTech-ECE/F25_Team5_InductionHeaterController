@@ -26,17 +26,17 @@ With these guidelines, each team is expected to create a suitable document to ac
 - The solution must include a refined estimate of the resources needed, including: costs, allocation of responsibilities for each subsystem, and a Gantt chart.
 
 
-## Introduction
+## Introduction - John
 
 The introduction is intended to reintroduce the fully formulated problem. 
 
 
-## Restating the Fully Formulated Problem
+## Restating the Fully Formulated Problem - John
 
 The fully formulated problem is the overall objective and scope complete with the set of shall statements. This was part of the project proposal. However, it may be that the scope has changed. So, state the fully formulated problem in the introduction of the conceptual design and planning document. For each of the constraints, explain the origin of the constraint (customer specification, standards, ethical concern, broader implication concern, etc).
 
 
-## Comparative Analysis of Potential Solutions
+## Comparative Analysis of Potential Solutions - Cole
 
 In this section, various potential solutions are hypothesized, design considerations are discussed, and factors influencing the selection of a solution are outlined. The chosen solution is then identified with justifications for its selection.
 
@@ -46,7 +46,7 @@ In this section, various potential solutions are hypothesized, design considerat
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
 
-### Hardware Block Diagram
+### Hardware Block Diagram - Everyone
 
 Block diagrams are an excellent way to provide an overarching understanding of a system and the relationships among its individual components. Generally, block diagrams draw from visual modeling languages like the Universal Modeling Language (UML). Each block represents a subsystem, and each connection indicates a relationship between the connected blocks. Typically, the relationship in a system diagram denotes an input-output interaction.
 
@@ -55,7 +55,7 @@ In the block diagram, each subsystem should be depicted by a single block. For e
 The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
 
 
-### Operational Flow Chart
+### Operational Flow Chart - Everyone
 
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
@@ -76,8 +76,16 @@ Detail the operation of the subsystem:
 
 For all subsystems, formulate detailed "shall" statements. Ensure these statements are comprehensive enough so that an engineer who is unfamiliar with your project can design the subsystem based on your specifications. Assume the role of the customer in this context to provide clear and precise requirements.
 
+### Power System
 
-## Ethical, Professional, and Standards Considerations
+### Control System
+
+### Embedded System
+
+- #### Software Subsystem
+- #### PCB Subsystem
+
+## Ethical, Professional, and Standards Considerations - Aaron
 
 In the project proposal, each team must evaluate the broader impacts of the project on culture, society, the environment, public health, public safety, and the economy. Additionally, teams must consider relevant standards organizations that will inform the design process. A comprehensive discussion should be included on how these considerations have influenced the design. This includes detailing constraints, specifications, and practices implemented as a result, and how these address the identified considerations.
 
@@ -86,25 +94,25 @@ In the project proposal, each team must evaluate the broader impacts of the proj
 
 You have already estimated the resources needed to complete the solution. Now, let's refine those estimates.
 
-### Budget
+### Budget - Aaron
 
 Develop a budget proposal with justifications for expenses associated with each subsystem. Note that the total of this budget proposal can also serve as a specification for each subsystem. After creating the budgets for individual subsystems, merge them to create a comprehensive budget for the entire solution.
 
-### Division of Labor
+### Division of Labor - Aaron
 
 First, conduct a thorough analysis of the skills currently available within the team, and then compare these skills to the specific requirements of each subsystem. Based on this analysis, appoint a team member to take the specifications for each subsystem and generate a corresponding solution (i.e. detailed design). If there are more team members than subsystems, consider further subdividing the solutions into smaller tasks or components, thereby allowing each team member the opportunity to design a subsystem.
 
-### Timeline
+### Timeline - Aaron
 
 Revise the detailed timeline (Gantt chart) you created in the project proposal. Ensure that the timeline is optimized for detailed design. Address critical unknowns early and determine if a prototype needs to be constructed before the final build to validate a subsystem. Additionally, if subsystem $A$ imposes constraints on subsystem $B$, generally, subsystem $A$ should be designed first.
 
 
-## References
+## References - Everyone
 
 All sources utilized in the conceptual design that are not considered common knowledge must be properly cited. Multiple references should be included.
 
 
-## Statement of Contributions
+## Statement of Contributions - Everyone
 
 Each team member is required to make a meaningful contribution to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
 
