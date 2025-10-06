@@ -1,0 +1,38 @@
+# Minutes - 2025-10-06
+
+## Meeting Info
+- **Date:** 2025-10-06  
+- **Time:** 12:00-1:00  
+- **Location:** Library  
+- **Notetaker:** John Donnell  
+- **Week #:** 5
+
+## Attendees
+- **Present:** Aaron Neuharth, Austin DuCrest, Cole Wilson, Dow Cox, John Donnell  
+- **Absent:** nobody  
+- **Quorum met:** Yes
+
+## Agenda (brief)
+- discussing Conceptual Design proposal 
+
+## Discussion Notes (brief bullets)
+- **12:00** - discussing in detail the conceptual design proposal and dividing th work 
+- **12:15** - Subsystem Specifications; Power subsystem, controller subsystem, PCB/software subsystem 
+- John Donnell - introduction
+- John Donnell - Restating the Fully Formulated Problem
+- Cole Wilson - Comparative Analysis of Potential Solutions
+- Everyone - High-Level Solution
+- John Donnell - Hardware Block Diagram
+- someone - Operational Flow Chart
+- Everyone - Atomic Subsystem Specifications
+- Aaron Neuharth - Ethical, Professional, and Standards Considerations
+- Aaron Neuharth - Resources
+- Aaron Neuharth - Budget
+- Aaron Neuharth - Division of Labor
+- someone - Timeline
+- someone - References
+- someone - Statement of Contributions
+
+## Next Meeting
+- **Date:** 2025-10-30  1:30 
+- **Tentative agenda:** taking measurements from induction heater
