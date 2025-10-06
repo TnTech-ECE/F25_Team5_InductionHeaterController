@@ -41,9 +41,27 @@ The fully formulated problem is the overall objective and scope complete with th
 In this section, various potential solutions are hypothesized, design considerations are discussed, and factors influencing the selection of a solution are outlined. The chosen solution is then identified with justifications for its selection.
 
 
+open loop vs. closed loop [Cole]
+
+
+pancake coil vs. wrapped coil for bar end heating [Cole]
+
+
+Microcontroller and PCB stuff which one [Dow and John]
+
+
+power stuff -> full bridge rectifier [Austin]
+
+
+
 ## High-Level Solution
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
+
+
+User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed. 
+
+
 
 
 ### Hardware Block Diagram - Everyone
