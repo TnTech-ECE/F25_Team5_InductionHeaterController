@@ -22,11 +22,11 @@ The controller must safely and efficiently handle high power transfer while also
 
 ### Background
 
-Induction heating is a non-contact method of transferring energy into conductive materials through electromagnetic induction. When a time-varying magnetic field surrounds a conductive body, eddy currents are induced within the material, and in ferromagnetic materials additional heat arises from magnetic hysteresis losses [9]. These induced currents are typically concentrated near the surface due to the skin effect, which means the depth of heating strongly depends on frequency and material properties [10]. The technique is valued for its efficiency, cleanliness, and ability to deliver rapid and localized heating [11].
+Induction heating is a non-contact method of transferring energy into conductive materials through electromagnetic induction. When a time-varying magnetic field surrounds a conductive body, eddy currents are induced within the material, and in ferromagnetic materials additional heat arises from magnetic hysteresis losses [1]. These induced currents are typically concentrated near the surface due to the skin effect, which means the depth of heating strongly depends on frequency and material properties [2]. The technique is valued for its efficiency, cleanliness, and ability to deliver rapid and localized heating [3].
 
-In applications where uniform heating is critical, focusing exclusively on surface-level heating can lead to overheating of the outer regions while the core lags behind in temperature. Conversely, targeting only internal heating may cause surface underheating or delays in reaching the desired surface temperature. This imbalance reduces efficiency and can compromise performance. For circular heating elements in particular, temperature uniformity is heavily influenced by coil geometry, pattern design, and coil–workpiece spacing; suboptimal coil layouts produce visible non-uniformities across the surface [12]. Multi-field finite element and semi-analytical simulations confirm that coupling between electromagnetic fields and thermal diffusion results in uneven temperature distribution, especially in thicker or more complex shapes [13].
+In applications where uniform heating is critical, focusing exclusively on surface-level heating can lead to overheating of the outer regions while the core lags behind in temperature. Conversely, targeting only internal heating may cause surface underheating or delays in reaching the desired surface temperature. This imbalance reduces efficiency and can compromise performance. For circular heating elements in particular, temperature uniformity is heavily influenced by coil geometry, pattern design, and coil–workpiece spacing; suboptimal coil layouts produce visible non-uniformities across the surface [4]. Multi-field finite element and semi-analytical simulations confirm that coupling between electromagnetic fields and thermal diffusion results in uneven temperature distribution, especially in thicker or more complex shapes [5].
 
-The key to addressing this challenge lies in the design of the induction heater’s controller. By enabling real-time adjustment of inverter frequency and output power, the controller can shift the balance between surface-level and internal heating depending on operational needs [14]. Modern inverter designs use resonant tracking, frequency modulation, and energy-dosing strategies to maintain efficiency while adapting penetration depth [15],[16]. Furthermore, modern control strategies integrate feedback from sensors—ranging from infrared temperature sensors to magnetic-field or inductive sensors that respond to changes near the Curie point—allowing closed-loop operation that dynamically adapts to the heating profile [17]. Such adaptive approaches improve energy efficiency, enhance safety, and expand the flexibility of induction heating systems in both industrial and consumer applications [18].
+The key to addressing this challenge lies in the design of the induction heater’s controller. By enabling real-time adjustment of inverter frequency and output power, the controller can shift the balance between surface-level and internal heating depending on operational needs [6]. Modern inverter designs use resonant tracking, frequency modulation, and energy-dosing strategies to maintain efficiency while adapting penetration depth [7],[8]. Furthermore, modern control strategies integrate feedback from sensors—ranging from infrared temperature sensors to magnetic-field or inductive sensors that respond to changes near the Curie point—allowing closed-loop operation that dynamically adapts to the heating profile [9]. Such adaptive approaches improve energy efficiency, enhance safety, and expand the flexibility of induction heating systems in both industrial and consumer applications [10].
 
 
 ### Specifications and Constraints
@@ -53,22 +53,22 @@ Based on the deliverables given to us by Lochinvar:
 #### Constraints
 
 
-NEC Article 427 [4] covers Fixed Electric Heating Equipment for Pipelines and Vessels. Part V covers the codes regarding Induction Heating, and Part VII covers the Controls and Protection. Notably if the controller contains an off switch it should not be able to energize automatically while in the off position, and selecting off should open all ungrounded conductors.
+NEC Article 427 [11] covers Fixed Electric Heating Equipment for Pipelines and Vessels. Part V covers the codes regarding Induction Heating, and Part VII covers the Controls and Protection. Notably if the controller contains an off switch it should not be able to energize automatically while in the off position, and selecting off should open all ungrounded conductors.
 
 
-NEC Article 665 [7] covers Induction and Dielectric Heating Equipment. Part I has guidelines "the current flow from the output circuit to ground under operating and ground-fault conditions shall be limited to a value that does not cause 50 volts or more to ground to appear on any accessible part of the heating equipment and its load." Part II states the control panel should be dead front construction, that is: no live circuits at risk of shocking people. 
+NEC Article 665 [12] covers Induction and Dielectric Heating Equipment. Part I has guidelines "the current flow from the output circuit to ground under operating and ground-fault conditions shall be limited to a value that does not cause 50 volts or more to ground to appear on any accessible part of the heating equipment and its load." Part II states the control panel should be dead front construction, that is: no live circuits at risk of shocking people. 
 
 
-ANSI/IEEE 844-200 [8] applies directly to induction heating for pipelines and vessels. It states that the electric shock hazard for induction heating is minimal, but the high temperatures and induced current flow are design considerations [8]. There are a couple other IEEE standards related to heating such as ANSI/IEEE 515-2011 with standards for industrial electrical trace heating applications and ANSI/NECA 202-2013 with standards for installing and maintaining industrial heat tracing systems [4]. 
+ANSI/IEEE 844-200 [13] applies directly to induction heating for pipelines and vessels. It states that the electric shock hazard for induction heating is minimal, but the high temperatures and induced current flow are design considerations [13]. There are a couple other IEEE standards related to heating such as ANSI/IEEE 515-2011 with standards for industrial electrical trace heating applications and ANSI/NECA 202-2013 with standards for installing and maintaining industrial heat tracing systems [11]. 
 
 
 
 ## Survey of Existing Solutions 
 
-Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker[1]. This induction cooker is designed to be used with smooth, flat bottom base cookware and would not be sufficient to properly accurately control the temperature of circular bar stock or pipe. However, this cooker provides insight into some commercial induction heating controllers available. The cooker utilizes an open loop control system operating based on user selected power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. The sensors utilized in this cooker are oriented towards user safety rather than controlling the heating directly, such as checking for compatible cookware or if the cooker itself is being overheated [2]. The team's solution may include similar safety features to protect the user and the project. 
+Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker[14]. This induction cooker is designed to be used with smooth, flat bottom base cookware and would not be sufficient to properly accurately control the temperature of circular bar stock or pipe. However, this cooker provides insight into some commercial induction heating controllers available. The cooker utilizes an open loop control system operating based on user selected power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [15]. Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. The sensors utilized in this cooker are oriented towards user safety rather than controlling the heating directly, such as checking for compatible cookware or if the cooker itself is being overheated [15]. The team's solution may include similar safety features to protect the user and the project. 
 
 
-Commercially there are a few induction heaters available with closed loop control, such as Impulse Labs' Impulse Cooktop[3]. Analyzing this cooktop allows the team to get an idea of the benefits of closed loop induction heating control compared to the SK-IH18G23T's open loop control, but this cooktop is designed for use with cookware rather than our specified testing components. The Impulse Cooktop features sensors in each burner [3] which allows for much more accurate temperature control. These sensors allow the cooktop to know the actual temperature of the part being measured, so the controller does not have to approximate the part's temperature based on previous tests. Closed loop control is more expensive than open loop control and requires more time to design the system to properly respond to the feedback loops, but may be necessary depending on how if knowing the actual temperature of the part is critical and cannot simply be approximated. To meet specifications the team may need to implement a similar closed loop control without exceeding budget or time constraints and coordinate with the customer to verify how accurate the customer needs their solution to be. 
+Commercially there are a few induction heaters available with closed loop control, such as Impulse Labs' Impulse Cooktop[16]. Analyzing this cooktop allows the team to get an idea of the benefits of closed loop induction heating control compared to the SK-IH18G23T's open loop control, but this cooktop is designed for use with cookware rather than our specified testing components. The Impulse Cooktop features sensors in each burner [16] which allows for much more accurate temperature control. These sensors allow the cooktop to know the actual temperature of the part being measured, so the controller does not have to approximate the part's temperature based on previous tests. Closed loop control is more expensive than open loop control and requires more time to design the system to properly respond to the feedback loops, but may be necessary depending on how if knowing the actual temperature of the part is critical and cannot simply be approximated. To meet specifications the team may need to implement a similar closed loop control without exceeding budget or time constraints and coordinate with the customer to verify how accurate the customer needs their solution to be. 
 
 
 ## Measures of Success
@@ -149,52 +149,54 @@ Although induction heating can be more expensive than traditional heating method
 
 ## References
 
+[1] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025, https://pubmed.ncbi.nlm.nih.gov/39831469/. Accessed 3 Oct. 2025.
 
-[1] “Amazon.com: OMEO Portable Induction Cooktop Hot Plate Countertop Burner 1800 Watts Induction Burner with LCD Sensor Touch, LED Display, 10 Temperature Levels, Child Safety Lock, Auto Shutoff Function: Home & Kitchen,” Amazon.com, 2025. https://www.amazon.com/OMEO-Portable-Induction-Cooktop-Function/dp/B0CQMHM9G6?th=1 (accessed Oct. 04, 2025).
+[2] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015, https://www.osti.gov/pages/biblio/1225114. Accessed 3 Oct. 2025.
 
-[2] “INDUCTION COOKER User Manual Model: SK-IH18G23T.”
+[3] “State of the Art and Future Trends in Monitoring for Induction Surface Hardening.” Electronics, 2024, https://www.mdpi.com/2079-9292/13/13/2591. Accessed 3 Oct. 2025.
 
-[3] Impulse Labs, “The Impulse Cooktop: The Highest Performing Stove,” YouTube, Jan. 09, 2024. https://www.youtube.com/watch?v=r0U3mTAiV-k (accessed Oct. 04, 2025).
+[4] Xia, Z., et al. “Design and Temperature Uniformity Optimization of Three Circular Coil Patterns.” Energies, 2025, https://www.mdpi.com/1996-1073/18/11/2695. Accessed 3 Oct. 2025.
 
-[4] opitts2k, “Article 427,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-427/ (accessed Sep. 25, 2025).
+[5] Areitioaurtena, M., et al. “A Semi-Analytical Coupled Simulation Approach for Induction Heating.” AMSES Journal, 2021, https://amses-journal.springeropen.com/articles/10.1186/s40323-021-00199-0. Accessed 3 Oct. 2025.
+
+[6] Madzharov, N., B. Gilev, and N. Hinov. “Design of Resonant Inverters with Energy Dosing, Based on Optimization with Reference Curve.” Electronics, 2025, https://www.mdpi.com/2079-9292/14/2/327. Accessed 3 Oct. 2025.
+
+[7] Madzharov, N., and N. Hinov. “Analysis and Design of Resonant DC/AC Converters with Energy Dosing for Induction Heating.” Energies, 2023, https://www.mdpi.com/1996-1073/16/3/1462. Accessed 3 Oct. 2025.
+
+[8] Shimizu, M., et al. “Fully soft switched high step-up/down bidirectional buck/boost converter with reduced switch voltage stress.” IET Power Electronics, vol. 16, no. 2, 2023, pp. 250–259. https://doi.org/10.1049/pel2.12457. Accessed 3 Oct. 2025.
+
+[9] “Non-Contact Infrared Sensing in Induction Heating: Thermal Monitoring of Inductive Hardening.” Optris, https://optris.com/application/metal/inductive-hardening-of-a-crankshaft/. Accessed 3 Oct. 2025.
+
+[10] “Validation of the Analytical Approximation for Induction Heating of Ionic Solutions Using COMSOL.” COMSOL, 2017, https://www.comsol.de/paper/download/680221/Validation_of_the_analytical_approximation_for_induction_heating_ionic_solutions_using_COMSOL.pdf. Accessed 3 Oct. 2025.
+
+[11] opitts2k, “Article 427,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-427/ (accessed Sep. 25, 2025).
+
+[12] opitts2k, “Article 665,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-665/ (accessed Sep. 29, 2025).
+
+[13] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
+
+[14] “Amazon.com: OMEO Portable Induction Cooktop Hot Plate Countertop Burner 1800 Watts Induction Burner with LCD Sensor Touch, LED Display, 10 Temperature Levels, Child Safety Lock, Auto Shutoff Function: Home & Kitchen,” Amazon.com, 2025. https://www.amazon.com/OMEO-Portable-Induction-Cooktop-Function/dp/B0CQMHM9G6?th=1 (accessed Oct. 04, 2025).
+
+[15] “INDUCTION COOKER User Manual Model: SK-IH18G23T.”
+
+[16] Impulse Labs, “The Impulse Cooktop: The Highest Performing Stove,” YouTube, Jan. 09, 2024. https://www.youtube.com/watch?v=r0U3mTAiV-k (accessed Oct. 04, 2025).
 ‌
-[5] S. Salkowski, “Hot topic: Dispelling the myths about induction stoves,” Acadia Center, [https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB](https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB) (accessed Sep. 25, 2025).
+[17] S. Salkowski, “Hot topic: Dispelling the myths about induction stoves,” Acadia Center, [https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB](https://acadiacenter.org/hot-topic-dispelling-the-myths-about-induction-stoves/?gad_source=1&gad_campaignid=22858216787&gbraid=0AAAAADcED4I34TheDlrXP_tno7EhyL51z&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp32uNfoZ_91Cf5AoCcbgiRRpbQHGZyFujKQ54woGBVXDbM_sppvIYEaAhEvEALw_wcB) (accessed Sep. 25, 2025).
 ‌
-‌[6] P. Hope, A. St. John. Senior Home & Tech Writer, and D. Yao, “Pros and cons of induction cooktops and ranges,” Consumer Reports, [https://www.consumerreports.org/appliances/ranges/pros-and-cons-of-induction-cooktops-and-ranges-a5854942923/](https://www.consumerreports.org/appliances/ranges/pros-and-cons-of-induction-cooktops-and-ranges-a5854942923/) (accessed Sep. 25, 2025).
+‌[18] P. Hope, A. St. John. Senior Home & Tech Writer, and D. Yao, “Pros and cons of induction cooktops and ranges,” Consumer Reports, [https://www.consumerreports.org/appliances/ranges/pros-and-cons-of-induction-cooktops-and-ranges-a5854942923/](https://www.consumerreports.org/appliances/ranges/pros-and-cons-of-induction-cooktops-and-ranges-a5854942923/) (accessed Sep. 25, 2025).
 
-[7] opitts2k, “Article 665,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-665/ (accessed Sep. 29, 2025).
 
-[8] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
-‌
-[9] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025, https://pubmed.ncbi.nlm.nih.gov/39831469/. Accessed 3 Oct. 2025.
 
-[10] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015, https://www.osti.gov/pages/biblio/1225114. Accessed 3 Oct. 2025.
-
-[11] “State of the Art and Future Trends in Monitoring for Induction Surface Hardening.” Electronics, 2024, https://www.mdpi.com/2079-9292/13/13/2591. Accessed 3 Oct. 2025.
-
-[12] Xia, Z., et al. “Design and Temperature Uniformity Optimization of Three Circular Coil Patterns.” Energies, 2025, https://www.mdpi.com/1996-1073/18/11/2695. Accessed 3 Oct. 2025.
-
-[13] Areitioaurtena, M., et al. “A Semi-Analytical Coupled Simulation Approach for Induction Heating.” AMSES Journal, 2021, https://amses-journal.springeropen.com/articles/10.1186/s40323-021-00199-0. Accessed 3 Oct. 2025.
-
-[14] Madzharov, N., B. Gilev, and N. Hinov. “Design of Resonant Inverters with Energy Dosing, Based on Optimization with Reference Curve.” Electronics, 2025, https://www.mdpi.com/2079-9292/14/2/327. Accessed 3 Oct. 2025.
-
-[15] Madzharov, N., and N. Hinov. “Analysis and Design of Resonant DC/AC Converters with Energy Dosing for Induction Heating.” Energies, 2023, https://www.mdpi.com/1996-1073/16/3/1462. Accessed 3 Oct. 2025.
-
-[16] Shimizu, M., et al. “Fully soft switched high step-up/down bidirectional buck/boost converter with reduced switch voltage stress.” IET Power Electronics, vol. 16, no. 2, 2023, pp. 250–259. https://doi.org/10.1049/pel2.12457. Accessed 3 Oct. 2025.
-
-[17] “Non-Contact Infrared Sensing in Induction Heating: Thermal Monitoring of Inductive Hardening.” Optris, https://optris.com/application/metal/inductive-hardening-of-a-crankshaft/. Accessed 3 Oct. 2025.
-
-[18] “Validation of the Analytical Approximation for Induction Heating of Ionic Solutions Using COMSOL.” COMSOL, 2017, https://www.comsol.de/paper/download/680221/Validation_of_the_analytical_approximation_for_induction_heating_ionic_solutions_using_COMSOL.pdf. Accessed 3 Oct. 2025.
 
 
 ## Statement of Contributions
 Aaron Neuharth - Measures of Success, Resources, Budget, Timeline, Personnel
 
-Dow Cox - Specific Implications and Broader Implications, Ethics, and Responsibility as Engineers. Reference [5] and [6]
+Dow Cox - Specific Implications and Broader Implications, Ethics, and Responsibility as Engineers. Reference [17] and [18]
 
-Austin DuCrest - Background, Survey of Existing Solutions, Measures of Success. Reference [9], [10], [11], [12], [13], [14], [15], [16], [17], [18] 
+Austin DuCrest - Background, Survey of Existing Solutions, Measures of Success. Reference [1], [2], [3], [4], [5], [6], [7], [8], [9], [10] 
 
 John Donnell - Introduction and formulating the problem 
 
-Cole Wilson - Specifications, Contraints, and Survey of Existing Solutions. Reference [1], [2], [3], [4], [7], [8]
+Cole Wilson - Specifications, Contraints, and Survey of Existing Solutions. Reference [11], [12], [13], [14], [16]
 
