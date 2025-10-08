@@ -56,7 +56,10 @@ Microcontroller and PCB stuff which one [Dow and John]
 
 power stuff -> full bridge rectifier [Austin]
 
-Induction cooker interfaces with a standard 120 VAC outlet and draws 110 V constant. The frequency remains constant around 20 kHz. The current increases with to increases in power. The PWM switching speed is what changes the amount current current delivered since power equal energy divided by time
+The induction cooker given by Lochinvar interfaces with a standard 120 VAC outlet and draws 110 V constant. The frequency remains constant around 20 kHz.  The PWM switching speed is what changes the amount of current delivered since power is the time derivative of energy. This concept of varying the on/off time of the transistors to dictate the amount of energy transferred over time to change the power is seen in pretty much every induction heating design. There were 2 different types of induction cookers given to us as reference by our EE contact, Mr. Rushing. These solutions are real life designs that have been implemented for civilian-use. The way these designs differ is by the way the voltage source signal is rectified.  
+
+A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the transformer’s secondary winding, delivering a higher average DC output voltage and smoother waveform with reduced ripple. In design, key considerations include voltage and current ratings of the diodes, transformer configuration, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications, justifying its use despite the slightly higher component count.
+
 
 
 ## High-Level Solution
@@ -101,6 +104,8 @@ For all subsystems, formulate detailed "shall" statements. Ensure these statemen
 
 ### Power System
 
+
+
 ### Control System
 
 ### Embedded System
@@ -138,4 +143,10 @@ All sources utilized in the conceptual design that are not considered common kno
 ## Statement of Contributions - Everyone
 
 Each team member is required to make a meaningful contribution to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
+
+
+
+Comparative Analysis of Existing Solutions - Power System  - [Austin]
+
+
 
