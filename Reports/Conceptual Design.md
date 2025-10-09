@@ -27,16 +27,19 @@ With these guidelines, each team is expected to create a suitable document to ac
 
 
 ## Introduction - John
+***
 
 The introduction is intended to reintroduce the fully formulated problem. 
 
 
 ## Restating the Fully Formulated Problem - John
+***
 
 The fully formulated problem is the overall objective and scope complete with the set of shall statements. This was part of the project proposal. However, it may be that the scope has changed. So, state the fully formulated problem in the introduction of the conceptual design and planning document. For each of the constraints, explain the origin of the constraint (customer specification, standards, ethical concern, broader implication concern, etc).
 
 
 ## Comparative Analysis of Potential Solutions - Cole
+***
 
 In this section, various potential solutions are hypothesized, design considerations are discussed, and factors influencing the selection of a solution are outlined. The chosen solution is then identified with justifications for its selection.
 
@@ -79,6 +82,7 @@ A full-bridge rectifier shall be chosen over a half-bridge rectifier because it 
 
 
 ## High-Level Solution - Cole
+***
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
@@ -93,6 +97,7 @@ The team will utilize a microcontroller to properly implement closed loop contro
 
 
 ### Hardware Block Diagram - John & Everyone
+***
 
 Block diagrams are an excellent way to provide an overarching understanding of a system and the relationships among its individual components. Generally, block diagrams draw from visual modeling languages like the Universal Modeling Language (UML). Each block represents a subsystem, and each connection indicates a relationship between the connected blocks. Typically, the relationship in a system diagram denotes an input-output interaction.
 
@@ -102,11 +107,13 @@ The end result should present a comprehensive view of a well-defined system, del
 
 
 ### Operational Flow Chart - Dow & Everyone
+***
 
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
 
 ## Atomic Subsystem Specifications
+***
 
 Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
 
@@ -122,16 +129,18 @@ Detail the operation of the subsystem:
 
 For all subsystems, formulate detailed "shall" statements. Ensure these statements are comprehensive enough so that an engineer who is unfamiliar with your project can design the subsystem based on your specifications. Assume the role of the customer in this context to provide clear and precise requirements.
 
+( We need to address what each system is doing as well as what systems our system supports/provides information to. Each system should have a customer and a )
+
 ### Power System - Austin 
 
 
 
 ### Control System - Cole and Aaron
 
-- #### Heat Generation 
+- #### Heat Generation - Cole
 Meet customer specifications 
 
-- #### Safety and Protection Controls  
+- #### Safety and Protection Controls - Aaron
 Protect user and project and fulfill ethical standards 
 
 
@@ -142,11 +151,13 @@ Protect user and project and fulfill ethical standards
 - #### PCB Subsystem - John
 
 ## Ethical, Professional, and Standards Considerations - Aaron
+***
 
 In the project proposal, each team must evaluate the broader impacts of the project on culture, society, the environment, public health, public safety, and the economy. Additionally, teams must consider relevant standards organizations that will inform the design process. A comprehensive discussion should be included on how these considerations have influenced the design. This includes detailing constraints, specifications, and practices implemented as a result, and how these address the identified considerations.
 
 
 ## Resources
+***
 
 You have already estimated the resources needed to complete the solution. Now, let's refine those estimates.
 
@@ -154,9 +165,17 @@ You have already estimated the resources needed to complete the solution. Now, l
 
 Develop a budget proposal with justifications for expenses associated with each subsystem. Note that the total of this budget proposal can also serve as a specification for each subsystem. After creating the budgets for individual subsystems, merge them to create a comprehensive budget for the entire solution.
 
+#### Controls System Budget
+
+#### Power Systems Budget
+
+#### Embedded Systems Budget
+
 ### Division of Labor - Aaron
 
 First, conduct a thorough analysis of the skills currently available within the team, and then compare these skills to the specific requirements of each subsystem. Based on this analysis, appoint a team member to take the specifications for each subsystem and generate a corresponding solution (i.e. detailed design). If there are more team members than subsystems, consider further subdividing the solutions into smaller tasks or components, thereby allowing each team member the opportunity to design a subsystem.
+
+To accomplish our projects goals, it is crucial to appoint specific members to areas they will achieve the highest success in. 
 
 ### Timeline - Aaron
 
@@ -164,6 +183,7 @@ Revise the detailed timeline (Gantt chart) you created in the project proposal. 
 
 
 ## References - Everyone
+***
 
 All sources utilized in the conceptual design that are not considered common knowledge must be properly cited. Multiple references should be included.
 
@@ -173,6 +193,7 @@ All sources utilized in the conceptual design that are not considered common kno
 
 
 ## Statement of Contributions - Everyone
+***
 
 Each team member is required to make a meaningful contribution to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
 
@@ -181,4 +202,4 @@ Each team member is required to make a meaningful contribution to the project pr
 Comparative Analysis of Existing Solutions - Power System  - [Austin]
 Comparative Analysis of Existing Solutions - Control System  - [Cole]
 
-
+clear
