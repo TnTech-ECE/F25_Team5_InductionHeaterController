@@ -43,15 +43,31 @@ In this section, various potential solutions are hypothesized, design considerat
 
 open loop vs. closed loop [Cole]
 
-The team must be able to have multiple power settings similar to an induction cooktop. The provided OMEO SK-IH18G23T induction cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts. The manufacturer must have done previous testing on their part to be measured as specified in their user manual to use flat bottom, magnetic cookware. Our team will utilize a similar solution to test circular bar stock and have a touble of expected values. The cooker utilizes an open loop control to lower costs, but does employ some thermocouple sensors and feedback to provide safety features to prevent the cooker from overheating. The team will employ similar safety solutions to prevent overheating of the project to protect operators and the controller. The team could either employ a similar open loop solution, or the team could improve the design and add proper control feedback loops to reduce error and improve the accuracy of the part being measured. 
+Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker [1]. This induction cooker is designed to be used with smooth, flat bottom base cookware. The cooker utilizes an open loop control system operating based on user selected power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. A sensor would need to be budgetted for whether the team utilzes open or closed loop control becasue of this. Closed loop control requires more time to design the system to properly integrate the sensor(s) into feedback loops, but it would allow for more accurate and reliable temperature control. 
+
+Safety controls will be essential to prevent overheating of components. The OMEO SK-IH18G23T, though the heating itself is open loop, contains sensors providing feedback to protect the cooker. Notably it contains a thermocouple to measure the surface temperature of the induction cooker and an IGBT sensor placed underneath the heatsink to ensure the PCB was not getting too hot. 
+
+
+OMEO PCB with Heatsink:
+![alt text](<Induction PCB with Heatsink.jpeg>)
+
+
+OMEO PCB without  Heatsink: 
+![alt text](<Induction PCB without Heatsink.jpeg>)
+
+
+The surface temperature is kept below 280°F while the PCB is kept under 105°F [2]. Ideally, the cooker should remain relatively cool while the part is being heated. If the cooker's surface temperature or the IGBT's temperature rises too high, the controller produces an error code and stops heating [2]. The cooker's heat sink absorbs much of the heat, but if the heat sink fails the controller's components will fail due to overheating and may fail violently at risk of causing harm to operators. The team's solution will include similar safety controls to protect the user and the controller itself. 
+ 
 
 
 pancake coil vs. wrapped coil for bar end heating [Cole]
 
-The team must be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock. If the circular bar stock is laid flat on its end heated utilizing bar end heating, the end heated would heat faster than the opposite end. More efficient bar end heating operates by wrapping around one end of the circular bar stock, but this would require rearranging the existing pancake coil without compromising its ability to properly induce currents on the part heated. For simplicity and to remain within the scope of the project, the team will utilize the existing solution of the pancake coil configuration while acknowledging that this may not be the most efficient set up for heating circular bar stock with a long length. 
+The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock. If the circular bar stock is laid flat on its end heated utilizing bar end heating, the end heated would heat much faster than the opposite end. More efficient bar end heating operates by wrapping around one end of the circular bar stock, but this would require rearranging the existing pancake coil without compromising its ability to properly induce currents on the part heated. For simplicity and to remain within the scope of the project, the team will utilize the existing solution of the pancake coil configuration while acknowledging that this may not be the most efficient set up for heating circular bar stock with a long length. 
 
 
-Microcontroller and PCB stuff which one [Dow and John]
+Microcontroller and PCB stuff which one [Dow] and [John]
+
+
 
 
 power stuff -> full bridge rectifier, DC transformers, filtering / resonance, transistors  [Austin]
@@ -62,17 +78,21 @@ A full-bridge rectifier shall be chosen over a half-bridge rectifier because it 
 
 
 
-## High-Level Solution
+## High-Level Solution - Cole
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
-
+[brainstorm]
 User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed. 
 
+[closed-loop]
+[mircrocontroller]
+The team will utilize a microcontroller to properly implement closed loop control. A software control solution would be best to minimize costs and lead times associated with an analog controller. If more accurate control is needed, PID compensation may be implemented digitally to likewise reduce costs and lead times. The team will need to interface the microcontroller with 
 
 
 
-### Hardware Block Diagram - Everyone
+
+### Hardware Block Diagram - John & Everyone
 
 Block diagrams are an excellent way to provide an overarching understanding of a system and the relationships among its individual components. Generally, block diagrams draw from visual modeling languages like the Universal Modeling Language (UML). Each block represents a subsystem, and each connection indicates a relationship between the connected blocks. Typically, the relationship in a system diagram denotes an input-output interaction.
 
@@ -81,7 +101,7 @@ In the block diagram, each subsystem should be depicted by a single block. For e
 The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
 
 
-### Operational Flow Chart - Everyone
+### Operational Flow Chart - Dow & Everyone
 
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
@@ -102,16 +122,24 @@ Detail the operation of the subsystem:
 
 For all subsystems, formulate detailed "shall" statements. Ensure these statements are comprehensive enough so that an engineer who is unfamiliar with your project can design the subsystem based on your specifications. Assume the role of the customer in this context to provide clear and precise requirements.
 
-### Power System
+### Power System - Austin 
 
 
 
-### Control System
+### Control System - Cole and Aaron
 
-### Embedded System
+- #### Heat Generation 
+Meet customer specifications 
 
-- #### Software Subsystem
-- #### PCB Subsystem
+- #### Safety and Protection Controls  
+Protect user and project and fulfill ethical standards 
+
+
+### Embedded System - Dow and John
+
+- #### Software Subsystem - Dow
+
+- #### PCB Subsystem - John
 
 ## Ethical, Professional, and Standards Considerations - Aaron
 
@@ -139,6 +167,10 @@ Revise the detailed timeline (Gantt chart) you created in the project proposal. 
 
 All sources utilized in the conceptual design that are not considered common knowledge must be properly cited. Multiple references should be included.
 
+[1] “Amazon.com: OMEO Portable Induction Cooktop Hot Plate Countertop Burner 1800 Watts Induction Burner with LCD Sensor Touch, LED Display, 10 Temperature Levels, Child Safety Lock, Auto Shutoff Function: Home & Kitchen,” Amazon.com, 2025. https://www.amazon.com/OMEO-Portable-Induction-Cooktop-Function/dp/B0CQMHM9G6?th=1 (accessed Oct. 04, 2025).
+
+[2] “INDUCTION COOKER User Manual Model: SK-IH18G23T.”
+
 
 ## Statement of Contributions - Everyone
 
@@ -147,6 +179,6 @@ Each team member is required to make a meaningful contribution to the project pr
 
 
 Comparative Analysis of Existing Solutions - Power System  - [Austin]
-
+Comparative Analysis of Existing Solutions - Control System  - [Cole]
 
 
