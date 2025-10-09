@@ -73,7 +73,7 @@ Microcontroller and PCB stuff which one [Dow] and [John]
 
 
 
-power stuff -> full bridge rectifier [Austin]
+power stuff -> full bridge rectifier, DC transformers, filtering / resonance, transistors  [Austin]
 
 The induction cooker given by Lochinvar interfaces with a standard 120 VAC outlet and draws 110 V constant. The frequency remains constant around 20 kHz.  The PWM switching speed is what changes the amount of current delivered since power is the time derivative of energy. This concept of varying the on/off time of the transistors to dictate the amount of energy transferred over time to change the power is seen in pretty much every induction heating design. There were 2 different types of induction cookers given to us as reference by our EE contact, Mr. Rushing. These solutions are real life designs that have been implemented for civilian-use. The way these designs differ is by the way the voltage source signal is rectified.  
 
