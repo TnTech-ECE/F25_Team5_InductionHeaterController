@@ -111,16 +111,24 @@ Detail the operation of the subsystem:
 
 For all subsystems, formulate detailed "shall" statements. Ensure these statements are comprehensive enough so that an engineer who is unfamiliar with your project can design the subsystem based on your specifications. Assume the role of the customer in this context to provide clear and precise requirements.
 
-### Power System
+### Power System - Austin 
 
 
 
-### Control System
+### Control System - Cole and Aaron
 
-### Embedded System
+- #### Heat Generation 
+Meet customer specifications 
 
-- #### Software Subsystem
-- #### PCB Subsystem
+- #### Safety and Protection Controls  
+Protect user and project and fulfill ethical standards 
+
+
+### Embedded System - Dow and John
+
+- #### Software Subsystem - Dow
+
+- #### PCB Subsystem - John
 
 ## Ethical, Professional, and Standards Considerations - Aaron
 
@@ -160,6 +168,6 @@ Each team member is required to make a meaningful contribution to the project pr
 
 
 Comparative Analysis of Existing Solutions - Power System  - [Austin]
-
+Comparative Analysis of Existing Solutions - Control System  - [Cole]
 
 
