@@ -64,7 +64,7 @@ A full-bridge rectifier shall be chosen over a half-bridge rectifier because it 
 
 
 
-## High-Level Solution
+## High-Level Solution - Cole
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
@@ -74,7 +74,7 @@ User has options to choose 10 different power levels to produce certain temperat
 
 
 
-### Hardware Block Diagram - Everyone
+### Hardware Block Diagram - John & Everyone
 
 Block diagrams are an excellent way to provide an overarching understanding of a system and the relationships among its individual components. Generally, block diagrams draw from visual modeling languages like the Universal Modeling Language (UML). Each block represents a subsystem, and each connection indicates a relationship between the connected blocks. Typically, the relationship in a system diagram denotes an input-output interaction.
 
@@ -83,7 +83,7 @@ In the block diagram, each subsystem should be depicted by a single block. For e
 The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
 
 
-### Operational Flow Chart - Everyone
+### Operational Flow Chart - Dow & Everyone
 
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
