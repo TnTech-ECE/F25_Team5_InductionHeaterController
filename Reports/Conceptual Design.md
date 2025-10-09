@@ -57,6 +57,8 @@ The project shall be able to induce surface eddy currents and produce internal h
 Microcontroller and PCB stuff which one [Dow] and [John]
 
 
+
+
 power stuff -> full bridge rectifier [Austin]
 
 The induction cooker given by Lochinvar interfaces with a standard 120 VAC outlet and draws 110 V constant. The frequency remains constant around 20 kHz.  The PWM switching speed is what changes the amount of current delivered since power is the time derivative of energy. This concept of varying the on/off time of the transistors to dictate the amount of energy transferred over time to change the power is seen in pretty much every induction heating design. There were 2 different types of induction cookers given to us as reference by our EE contact, Mr. Rushing. These solutions are real life designs that have been implemented for civilian-use. The way these designs differ is by the way the voltage source signal is rectified.  
@@ -69,8 +71,12 @@ A full-bridge rectifier shall be chosen over a half-bridge rectifier because it 
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
-
+[brainstorm]
 User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed. 
+
+[closed-loop]
+[mircrocontroller]
+The team will utilize a microcontroller to properly implement closed loop control. A software control solution would be best to minimize costs and lead times associated with an analog controller. If more accurate control is needed, PID compensation may be implemented digitally to likewise reduce costs and lead times. The team will need to interface the microcontroller with 
 
 
 
