@@ -93,8 +93,8 @@ User has options to choose 10 different power levels to produce certain temperat
 This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. 
 
 
-[HeatControl]
-This controller shall implement a closed loop feedback system to ensure that the controller is properly and efficients inducing eddy currents in order to heat the specified circular bar stock. 
+[HeatControl] 
+This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. The controller will utlize a closed loop feedback control system to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, the controller will recognize that input and adjust the power / current delivered to the induction coil. The controller will interface with temperature sensors to verify that the circular bar stock is being heated correctly. The controller will utilize feedback loops to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating of the circular bar stock. 
 
 [SafetyControl]
 This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks. 
