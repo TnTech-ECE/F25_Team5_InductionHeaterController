@@ -149,7 +149,7 @@ For all subsystems, formulate detailed "shall" statements. Ensure these statemen
 ### Control System - Cole and Aaron
 
 - #### Heat Generation - Cole
-Meet customer specifications 
+This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. The Heat Generation Control subsystem shall be able to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, this subsystem will recognize that input and adjust the power / current delivered to the induction coil. As the induction coil produces a magnetic field and induces eddy currents on the part, this subsystem will interface with temperature sensors to verify that the part is being heated in a consistent, repeatable manner. The subsystem will utilize feedback loops implemented using software to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating. 
 
 - #### Safety and Protection Controls - Aaron
 Protect user and project and fulfill ethical standards 
