@@ -86,14 +86,25 @@ A full-bridge rectifier shall be chosen over a half-bridge rectifier because it 
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
-[brainstorm]
-User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed. 
+[Brainstorm,Fix/RemoveLater]
+User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed.
 
-[closed-loop]
-[mircrocontroller]
-The team will utilize a microcontroller to properly implement closed loop control. A software control solution would be best to minimize costs and lead times associated with an analog controller. If more accurate control is needed, PID compensation may be implemented digitally to likewise reduce costs and lead times. The team will need to interface the microcontroller with 
+[Power]
+This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. 
 
 
+[HeatControl]
+This controller shall implement a closed loop feedback system to ensure that the controller is properly and efficients inducing eddy currents in order to heat the specified circular bar stock. 
+
+[SafetyControl]
+This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks. 
+
+[Software]
+This controller shall have preprogrammed power settings to ensure a user friendly and safe heating operation. 
+
+-> add stuff about LCD or keypad input or whatever
+
+[PCB]
 
 
 ### Hardware Block Diagram - John & Everyone
@@ -190,6 +201,9 @@ All sources utilized in the conceptual design that are not considered common kno
 [1] “Amazon.com: OMEO Portable Induction Cooktop Hot Plate Countertop Burner 1800 Watts Induction Burner with LCD Sensor Touch, LED Display, 10 Temperature Levels, Child Safety Lock, Auto Shutoff Function: Home & Kitchen,” Amazon.com, 2025. https://www.amazon.com/OMEO-Portable-Induction-Cooktop-Function/dp/B0CQMHM9G6?th=1 (accessed Oct. 04, 2025).
 
 [2] “INDUCTION COOKER User Manual Model: SK-IH18G23T.”
+
+[3] J. Lasobras, R. Alonso, C. Carretero, E. Carretero, and E. Imaz, “Infrared Sensor-Based Temperature Control for Domestic Induction Cooktops,” Sensors, vol. 14, no. 3, pp. 5278–5295, Mar. 2014, doi: https://doi.org/10.3390/s140305278.
+‌
 
 
 ## Statement of Contributions - Everyone
