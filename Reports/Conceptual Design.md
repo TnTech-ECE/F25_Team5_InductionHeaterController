@@ -29,7 +29,16 @@ With these guidelines, each team is expected to create a suitable document to ac
 ## Introduction - John
 ***
 
-The introduction is intended to reintroduce the fully formulated problem. 
+Induction heating remains one of the most effective methods for transferring energy into conductive materials by applying time-varying magnetic fields to create eddy current. Performance, repeatability, and efficiency are all fundamentally determined by the level of control over the physical process of induction heating. The controller allows for the delivery of power, measures and adjusts temperature, and ensures operational safety. Even a well-designed induction coil cannot consistently provide precise heating performance without an efficient controller.
+
+This project addresses the challenge of by designing and prototyping a custom induction heater controller capable of heating both the internal and surface-level regions of circular metallic elements such as bar stock and standard black pipe. Unlike commercial cooktop controllers, which operate in open-loop configurations, this system will implement closed-loop control to verify temperature rise against electrical power input, gather experimental data, and allow flexible user-defined operating modes.
+
+The fully formulated problem is essentially to design a controller that can sense and control temperature, safely and effectively manage power delivery, and provide real-time feedback for experimental validation of induction heating performance. To meet customer requirements and IEEE safety standards, the system shall strike a balance between safety, measurement accuracy, and adaptability.
+
+This conceptual design expands upon the original project proposal by breaking down the system into functional subsystems, defining their specifications, and identifying hardware, software, and safety requirements that collectively achieve these goals. The following sections restate the detailed problem statement, present the system architecture, and outline the printed circuit board (PCB) subsystem that integrates the control and power electronics required to operate the induction heater safely and effectively.
+
+
+
 
 
 ## Restating the Fully Formulated Problem - John
@@ -153,7 +162,49 @@ For all subsystems, formulate detailed "shall" statements. Ensure these statemen
 This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. The Heat Generation Control subsystem shall be able to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, this subsystem will recognize that input and adjust the power / current delivered to the induction coil. As the induction coil produces a magnetic field and induces eddy currents on the part, this subsystem will interface with temperature sensors to verify that the part is being heated in a consistent, repeatable manner. The subsystem will utilize feedback loops implemented using software to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating. 
 
 - #### Safety and Protection Controls - Aaron
-Protect user and project and fulfill ethical standards 
+
+This subsystem is responsible for ensuring the induction heater operates within safe limits, protecting both the user from harm and the device from damage. It will function in the background, continuously monitoring signals such as temperature and current to ensure the system is operating within these safe limits, and if not, shuts down accordingly. It directly enforces the constraints set in ethical, professional, and standards considerations.
+
+
+1. The safety subsystem shall continuously monitor the temperature of the power switching transistors' (IGBT) heatsink using a dedicated thermocouple.
+2. The safety subsystem shall shut down the induction heating if the IGBT heatsink temperature exceeds 105°F (40.5°C) [2].
+3. The safety subsystem shall trigger a system shutdown if the heating surface temperature exceeds 280°F (138°C) when no workpiece is present [2].
+4. The safety subsystem shall continuously monitor the total AC current drawn by the device.
+5. The safety subsystem shall trigger a system shutdown if the current draw exceeds the rated amperage of a standard 15A circuit for more than 500 milliseconds.
+6. The safety subsystem shall limit ground fault current such that no more than 50 volts appears on any accessible metal part, per NEC Article 665 [4].
+7. The "Off" switch shall physically open all ungrounded conductors, ensuring no power can be supplied to the heating coil, per NEC Article 427 [5].
+8. The safety subsystem shall prevent the induction coil from energizing if a compatible workpiece (circular bar stock, pipe) is not detected.
+9. Upon detecting any fault condition, the safety subsystem shall provide a specific error code to the user display that identifies the cause of the fault.
+10. Once a fault state is triggered, the safety subsystem shall remain in a safe, non-operational mode until the user performs a manual power cycle.
+
+##### Interfaces with Other Subsystems
+The Safety and Protection Controls subsystem acts as the central control. It will be crucial for monitoring and responding to hazards. It interfaces with nearly all other project subsystems. In the following descriptions, an output signal refers to a signal sent from the safety subsystem to another system, while an input signal refers to a signal received by the safety subsystem.
+
+##### - Power System
+
+Output Signal : Digital Signal
+
+Data: A binary signal. A logic LOW signal will be sent to the power transistors (IGBTs/MOSFETs) or a relay to immediately cutting off power to the induction coil in the event of a fault condition.
+
+Input Signal : Analog Voltage
+
+Data: A voltage signal proportional to the total current draw, received from a current sensor located in the power system. This is used for over-current monitoring.
+
+##### - Heat Generation Control
+
+Input Signal: Analog Voltage
+
+Data: Temperature readings from thermocouples placed on the heatsink (monitoring IGBT temperature), the cooking surface, and the workpiece itself.
+
+Output Signal: Digital Interrupt
+
+Data: A signal sent to the Heat Generation software module to command it to stop PWM signal generation in the event of a fault.
+
+##### - Embedded System (Software & User Interface)
+
+Output Signal: Error Codes
+
+Data: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
 
 
 ### Embedded System - Dow and John
@@ -204,6 +255,10 @@ All sources utilized in the conceptual design that are not considered common kno
 [2] “INDUCTION COOKER User Manual Model: SK-IH18G23T.”
 
 [3] J. Lasobras, R. Alonso, C. Carretero, E. Carretero, and E. Imaz, “Infrared Sensor-Based Temperature Control for Domestic Induction Cooktops,” Sensors, vol. 14, no. 3, pp. 5278–5295, Mar. 2014, doi: https://doi.org/10.3390/s140305278.
+
+[4] opitts2k, “Article 665,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-665/ (accessed Sep. 29, 2025).
+
+[5] opitts2k, “Article 427,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-427/ (accessed Sep. 25, 2025).
 ‌
 
 
