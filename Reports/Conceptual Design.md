@@ -29,7 +29,16 @@ With these guidelines, each team is expected to create a suitable document to ac
 ## Introduction - John
 ***
 
-The introduction is intended to reintroduce the fully formulated problem. 
+Using time-varying magnetic fields to create eddy currents, induction heating remains one of the most effective methods for transferring energy into conductive materials. Performance, repeatability, and efficiency are ultimately determined by the level of control over the well-established physical process of induction heating. The controller enables the delivery of power, measures and adjusts temperature, and ensures operational safety. Even a well-designed induction coil cannot consistently provide precise heating performance without an efficient controller.
+
+The project addresses this challenge by designing and prototyping a custom induction heater controller capable of heating both the internal and surface-level regions of circular metallic elements such as bar stock and standard black pipe. Unlike commercial cooktop controllers, which operate in open-loop configurations, this system will implement closed-loop control to verify temperature rise against electrical power input, gather experimental data, and allow flexible user-defined operating modes.
+
+The fully formulated problem is essentially to design a controller that can sense and control temperature, safely and effectively manage power delivery, and provide real-time feedback for experimental validation of induction heating performance. To meet customer requirements and electrical safety standards, the system must strike a balance between safety, measurement accuracy, and adaptability.
+
+This conceptual design expands upon the original project proposal by decomposing the system into functional subsystems, defining their specifications, and identifying hardware, software, and safety requirements that collectively achieve these goals. The following sections restate the detailed problem statement, present the system architecture, and outline the printed circuit board (PCB) subsystem that integrates the control and power electronics required to operate the induction heater safely and effectively.
+
+
+
 
 
 ## Restating the Fully Formulated Problem - John
