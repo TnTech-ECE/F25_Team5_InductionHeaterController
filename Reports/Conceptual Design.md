@@ -158,7 +158,7 @@ Protect user and project and fulfill ethical standards
 ### Embedded System - Dow and John
 
 - #### Software Subsystem - Dow
-
+This software shall interpret the output of sensors, toggle the output of pins on a microcontroller, calculate the how much power to send to the induction coil, and transcribe inputs from the user to set the desired values. The software will understand the sensors via a few methods. If the sensor outputs on or off, no parsing is required. Some sensors output a voltage range which also does not usually need much more processing than scaling the voltage.  Others output a digital waveform which is on or off or specific amounts of time representing a binary value similar to a morris code of sorts. This digital waveform can be interpreted using timers and interrupts on the board. There is also digital protocols for getting information from sensors which use APIs to process what it send to the microcontroller.
 - #### PCB Subsystem - John
 
 ## Ethical, Professional, and Standards Considerations - Aaron
