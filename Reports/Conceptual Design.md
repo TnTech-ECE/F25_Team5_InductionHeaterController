@@ -155,7 +155,8 @@ The end result should present a comprehensive view of a well-defined system, del
 
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
-
+https://drive.google.com/file/d/1H84D3nlYPLJDFGQF3kWs2CwpNOFCGdcv/view?usp=sharing
+![flow chart...](control_system_flow_chart.jpg)
 ## Atomic Subsystem Specifications
 ***
 
