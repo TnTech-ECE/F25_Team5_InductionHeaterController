@@ -38,13 +38,37 @@ The fully formulated problem is essentially to design a controller that can sens
 This conceptual design expands upon the original project proposal by breaking down the system into functional subsystems, defining their specifications, and identifying hardware, software, and safety requirements that collectively achieve these goals. The following sections restate the detailed problem statement, present the system architecture, and outline the printed circuit board (PCB) subsystem that integrates the control and power electronics required to operate the induction heater safely and effectively.
 
 
-
-
-
 ## Restating the Fully Formulated Problem - John
 ***
 
-The fully formulated problem is the overall objective and scope complete with the set of shall statements. This was part of the project proposal. However, it may be that the scope has changed. So, state the fully formulated problem in the introduction of the conceptual design and planning document. For each of the constraints, explain the origin of the constraint (customer specification, standards, ethical concern, broader implication concern, etc).
+The objective of this project is to design and prototype a custom induction heating controller that can safely heat circular metallic materials such as bar stock and/or regular black pipe in a repeatable fashion. This system will apply closed-loop feedback mechanisms that uses temperature sensors to monitor and control heat production in real time, contrary to typical scommercial induction cooktops that depend on open-loop controls and lack Temperature sensing ability.
+
+The scope of the project includes:  
+- Designing a controller to integrate power and measurement systems.  
+- Applying control algorithms that grant user-selectable power modes and maintain consistent thermal output.  
+- Measuring and displaying both electrical input power and resulting temperature rise.  
+- Ensuring compliance with Lochinvar’s customer specifications and relevant NEC and IEEE safety standards.  
+
+The controller will act as a proof-of-concept platform that illustrates the connection between electrical input power and thermal output while carrying-out safety, measurement precision, and adaptability. It will be constructed as a working prototype for upcoming research and the improvement of industrial applications.
+
+### Shall Statements and Constraint Origins
+
+| **ID** | **System Requirement ("Shall" Statement)** | **Origin of Constraint** |
+|:--:|:--|:--|
+| 1 | In order to create a controlled high-frequency output appropriate for induction heating, the controller **shall run from a standard 120 VAC source**. | Customer specification; NEC Article 665 [4]  |
+| 2 | The controller **shall provide at least ten user-selectable power settings**, enabling adjustable heating intensity. | Customer specification (Lochinvar requirement) |
+| 3 | The controller **shall cause internal heating and surface eddy currents** in cylindrical metallic samples (black pipe and bar stock). | Functional design requirement; project objective |
+| 4 | Based on temperature measurements, the controller **shall have a closed-loop feedback system** that modifies power delivery. | Design enhancement identified from comparative analysis; accuracy and safety concern |
+| 5 |  Throughout operation, the system **shall measure and display electrical input power and corresponding temperature rise** | Customer specification; data acquisition requirement |
+| 6 | By making sure that all ungrounded conductors are disconnected, the controller **shall prevent energization when in the OFF state** | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment) |
+| 7 | To avoid hardware failure, the PCB **shall have overtemperature, overcurrent, and ground-fault protection**.  | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating) |
+| 8 | The system **shall use an LCD interface to show temperature readings, power level, and operational data.**  | Customer usability requirement; ethical and safety design concern |
+| 9 | To avoid unintentional user contact with energized circuits, the controller **shall be housed in an insulated, non-conductive housing**. | NEC 665, Part II; ethical responsibility for user safety |
+| 10 |  For the purpose of experimental analysis and performance validation, the system **shall record and store temperature and power data**. | Research and educational requirement; customer specification |
+| 11 |  During regular operation, the controller **shall not surpass a maximum enclosure temperature of 105°C**. | Component protection limit; derived from OMEO unit analysis; IEEE and thermal safety standards |
+| 12 | In order to minimize energy waste, prevent harm, and promote transparent operation, the system **shall adhere to ethical engineering practices**.  | Ethical and professional standards (IEEE Code of Ethics) |
+
+
 
 
 ## Comparative Analysis of Potential Solutions - Cole
