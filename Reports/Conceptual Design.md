@@ -103,7 +103,7 @@ The project shall be able to induce surface eddy currents and produce internal h
 
 Microcontroller and PCB stuff which one [Dow] and [John]
 
-
+Hardware control is not desirable because the parts can have long lead times and the project does not have high voltage components that would necessitate the need for relays or similiar hardware. 
 
 
 power stuff -> full bridge rectifier, DC transformers, filtering / resonance, transistors  [Austin]
@@ -123,7 +123,7 @@ This section presents a comprehensive, high-level solution aimed at efficiently 
 User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed.
 
 [Power]
-This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. 
+This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered since power is the time derivative of energy. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the bar stock.  
 
 
 [HeatControl] 
@@ -133,12 +133,10 @@ This controller shall be able to induce surface eddy currents and be able to pro
 This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks to the controller and the user. The controller shall continuously monitor signals such as temperature and current to ensure the system is operating within safe limits and turn the device off whenvever the system is not. The controller shall have additional user protections to ensure that the controller cannot operate when the user desires it to be off and produce error codes to tell the user why the system is not letting them do something that could be potentially dangerous. 
 
 [Software]
-This controller shall have preprogrammed power settings to ensure a user friendly and safe heating operation. 
-
--> add stuff about LCD or keypad input or whatever
+This controller shall utilize a microcontroller to be able to recieve and interpret signals from the thermocouples and from user interfaces. The microcontroller will enable the team to implement any necessay feedback loops digitally by coding the microcontroller rather than relying on hardware. This controller shall have preprogrammed power settings to ensure a user friendly and safe heating operation. 
 
 [PCB]
-
+This controller shall provide a user interface by utilizing a PCB. 
 
 ### Hardware Block Diagram - John & Everyone
 ***
