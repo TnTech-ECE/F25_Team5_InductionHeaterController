@@ -98,7 +98,7 @@ The surface temperature is kept below 280°F while the PCB is kept under 105°F 
 
 pancake coil vs. wrapped coil for bar end heating [Cole]
 
-The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock. If the circular bar stock is laid flat on its end heated utilizing bar end heating, the end heated would heat much faster than the opposite end. More efficient bar end heating operates by wrapping around one end of the circular bar stock, but this would require rearranging the existing pancake coil without compromising its ability to properly induce currents on the part heated. For simplicity and to remain within the scope of the project, the team will utilize the existing solution of the pancake coil configuration while acknowledging that this may not be the most efficient set up for heating circular bar stock with a long length. 
+The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock. If the circular bar stock is laid flat on its end heated utilizing bar end heating, the end heated would heat much faster than the opposite end. More efficient bar end heating operates by wrapping around the length of the circular bar stock. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller. 
 
 
 Microcontroller and PCB stuff which one [Dow] and [John]
@@ -183,7 +183,13 @@ For all subsystems, formulate detailed "shall" statements. Ensure these statemen
 ### Control System - Cole and Aaron
 
 - #### Heat Generation - Cole
-This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. The Heat Generation Control subsystem shall be able to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, this subsystem will recognize that input and adjust the power / current delivered to the induction coil. As the induction coil produces a magnetic field and induces eddy currents on the part, this subsystem will interface with temperature sensors to verify that the part is being heated in a consistent, repeatable manner. The subsystem will utilize feedback loops implemented using software to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating. 
+This subsystem is responsible for ensuring the induction heater is able to produce accurate temperature outputs based on user-specified power inputs. This subsystem ensures that customer specifications are met accurately and reliably utilizing closed loop feedback. 
+ 
+1. The heat generation subsystem shall measure the initial temperature of the bar stock using a thermocouple and store this temperature using a microcontroller. 
+2.  The heat generation subsystem shall ensure magnetic isolation is obtained by checking for over- and under- heating throughout the length of the bar stock using thermocouple(s). 
+3. The heat generation subsystem shall increase the power delivered to the induction coil if the thermocouple senses temperatures below the desired temperature output based on user specified power input. 
+4. The heat generation subsystem shall reduce the power delivered to the induction coil if the thermocouple senses temperatures exceeding the desired temperature output based on user specified power input. 
+5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
 
 - #### Safety and Protection Controls - Aaron
 
