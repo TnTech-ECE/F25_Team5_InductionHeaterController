@@ -49,7 +49,7 @@ The scope of the project includes:
 - Measuring and displaying both electrical input power and resulting temperature rise.  
 - Ensuring compliance with Lochinvar’s customer specifications and relevant NEC and IEEE safety standards.  
 
-The controller will act as a proof-of-concept platform that illustrates the connection between electrical input power and thermal output while carrying-out safety, measurement precision, and adaptability. 
+The controller will act as a proof-of-concept platform that illustrates the connection between electrical input power and thermal output while carrying-out safety, measurement precision, and adaptability.
 
 ### Shall Statements and Constraint Origins
 
@@ -79,31 +79,31 @@ In this section, various potential solutions are hypothesized, design considerat
 
 open loop vs. closed loop [Cole]
 
-Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker [1]. This induction cooker is designed to be used with smooth, flat bottom base cookware. The cooker utilizes an open loop control system operating based on user selected power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. A sensor would need to be budgetted for whether the team utilzes open or closed loop control becasue of this. Closed loop control requires more time to design the system to properly integrate the sensor(s) into feedback loops, but it would allow for more accurate and reliable temperature control. 
+Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker [1]. This induction cooker is designed to be used with smooth, flat bottom base cookware. The cooker utilizes an open loop control system operating based on user selected power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. A sensor would need to be budgetted for whether the team utilzes open or closed loop control becasue of this. Closed loop control requires more time to design the system to properly integrate the sensor(s) into feedback loops, but it would allow for more accurate and reliable temperature control.
 
-Safety controls will be essential to prevent overheating of components. The OMEO SK-IH18G23T, though the heating itself is open loop, contains sensors providing feedback to protect the cooker. Notably it contains a thermocouple to measure the surface temperature of the induction cooker and an IGBT sensor placed underneath the heatsink to ensure the PCB was not getting too hot. 
+Safety controls will be essential to prevent overheating of components. The OMEO SK-IH18G23T, though the heating itself is open loop, contains sensors providing feedback to protect the cooker. Notably it contains a thermocouple to measure the surface temperature of the induction cooker and an IGBT sensor placed underneath the heatsink to ensure the PCB was not getting too hot.
 
 
 OMEO PCB with Heatsink:
 ![alt text](<Induction PCB with Heatsink.jpeg>)
 
 
-OMEO PCB without  Heatsink: 
+OMEO PCB without  Heatsink:
 ![alt text](<Induction PCB without Heatsink.jpeg>)
 
 
-The surface temperature is kept below 280°F while the PCB is kept under 105°F [2]. Ideally, the cooker should remain relatively cool while the part is being heated. If the cooker's surface temperature or the IGBT's temperature rises too high, the controller produces an error code and stops heating [2]. The cooker's heat sink absorbs much of the heat, but if the heat sink fails the controller's components will fail due to overheating and may fail violently at risk of causing harm to operators. The team's solution will include similar safety controls to protect the user and the controller itself. 
- 
+The surface temperature is kept below 280°F while the PCB is kept under 105°F [2]. Ideally, the cooker should remain relatively cool while the part is being heated. If the cooker's surface temperature or the IGBT's temperature rises too high, the controller produces an error code and stops heating [2]. The cooker's heat sink absorbs much of the heat, but if the heat sink fails the controller's components will fail due to overheating and may fail violently at risk of causing harm to operators. The team's solution will include similar safety controls to protect the user and the controller itself.
+
 
 
 pancake coil vs. wrapped coil for bar end heating [Cole]
 
-The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock. If the circular bar stock is laid flat on its end heated utilizing bar end heating, the end heated would heat much faster than the opposite end. More efficient bar end heating operates by wrapping around one end of the circular bar stock, but this would require rearranging the existing pancake coil without compromising its ability to properly induce currents on the part heated. For simplicity and to remain within the scope of the project, the team will utilize the existing solution of the pancake coil configuration while acknowledging that this may not be the most efficient set up for heating circular bar stock with a long length. 
+The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock. If the circular bar stock is laid flat on its end heated utilizing bar end heating, the end heated would heat much faster than the opposite end. More efficient bar end heating operates by wrapping around the length of the circular bar stock. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
 
 
 Microcontroller and PCB stuff which one [Dow] and [John]
 
-
+Hardware control is not desirable because the parts can have long lead times and the project does not have high voltage components that would necessitate the need for relays or similiar hardware.
 
 
 power stuff -> full bridge rectifier, DC transformers, filtering / resonance, transistors  [Austin]
@@ -123,20 +123,21 @@ This section presents a comprehensive, high-level solution aimed at efficiently 
 User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed.
 
 [Power]
-This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. 
+This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered since power is the time derivative of energy. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the bar stock.  
 
 
-[HeatControl] 
-This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. The controller will utlize a closed loop feedback control system to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, the controller will recognize that input and adjust the power / current delivered to the induction coil. The controller will interface with temperature sensors to verify that the circular bar stock is being heated correctly. The controller will utilize feedback loops to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating of the circular bar stock. 
+[HeatControl]
+This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. This controller shall interface with an induction coil wrapped around the circular bar stock to ensure magnetic isolation is achieved to prevent stray or uneven heating. The controller will utlize a closed loop feedback control system to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, the controller will recognize that input and adjust the power / current delivered to the induction coil. The controller will interface with temperature sensors to verify that the circular bar stock is being heated correctly. The controller will utilize feedback loops to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating of the circular bar stock.
 
 [SafetyControl]
-This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks. 
+This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks to the controller and the user. The controller shall continuously monitor signals such as temperature and current to ensure the system is operating within safe limits and turn the device off whenvever the system is not. The controller shall have additional user protections to ensure that the controller cannot operate when the user desires it to be off and produce error codes to tell the user why the system is not letting them do something that could be potentially dangerous.
 
 [Software]
+This controller shall utilize a microcontroller to be able to recieve and interpret signals from the thermocouples and from user interfaces. The microcontroller will enable the team to implement any necessay feedback loops digitally by coding the microcontroller rather than relying on hardware. This controller shall have preprogrammed power settings to ensure a user friendly and safe heating operation.
 The controller shall have software to convert the deserved temperature to power level as well as the sensors to useable values. The keypad stall switch the mode of the LCD and enter the desired temperature. The lcd shall display the desired temperature and the values of the sensors
 
 [PCB]
-
+This controller shall provide a user interface by utilizing a PCB.
 
 ### Hardware Block Diagram - John & Everyone
 ***
@@ -174,14 +175,20 @@ For all subsystems, formulate detailed "shall" statements. Ensure these statemen
 
 ( We need to address what each system is doing as well as what systems our system supports/provides information to. Each system should have a customer and a )
 
-### Power System - Austin 
+### Power System - Austin
 
 
 
 ### Control System - Cole and Aaron
 
 - #### Heat Generation - Cole
-This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. The Heat Generation Control subsystem shall be able to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, this subsystem will recognize that input and adjust the power / current delivered to the induction coil. As the induction coil produces a magnetic field and induces eddy currents on the part, this subsystem will interface with temperature sensors to verify that the part is being heated in a consistent, repeatable manner. The subsystem will utilize feedback loops implemented using software to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating. 
+This subsystem is responsible for ensuring the induction heater is able to produce accurate temperature outputs based on user-specified power inputs. This subsystem ensures that customer specifications are met accurately and reliably utilizing closed loop feedback.
+
+1. The heat generation subsystem shall measure the initial temperature of the bar stock using a thermocouple and store this temperature using a microcontroller.
+2.  The heat generation subsystem shall ensure magnetic isolation is obtained by checking for over- and under- heating throughout the length of the bar stock using thermocouple(s).
+3. The heat generation subsystem shall increase the power delivered to the induction coil if the thermocouple senses temperatures below the desired temperature output based on user specified power input.
+4. The heat generation subsystem shall reduce the power delivered to the induction coil if the thermocouple senses temperatures exceeding the desired temperature output based on user specified power input.
+5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
 
 - #### Safety and Protection Controls - Aaron
 
@@ -232,7 +239,7 @@ Data: Error codes and status flags will be sent to the embedded subsystem to be 
 ### Embedded System - Dow and John
 
 - #### Software Subsystem - Dow
-This software shall interpret the output of sensors, toggle the output of pins on a microcontroller, calculate the how much power to send to the induction coil, and transcribe inputs from the user to set the desired values. The software will understand the sensors via a few methods. If the sensor outputs on or off, no parsing is required. Some sensors output a voltage range which also does not usually need much more processing than scaling the voltage.  Others output a digital waveform which is on or off or specific amounts of time representing a binary value similar to a morris code of sorts. This digital waveform can be interpreted using timers and interrupts on the board. There is also digital protocols for getting information from sensors which use APIs to process what it send to the microcontroller. Once the microcontroller interprets the sensor it must convert it to some output; for instance, power or amperage. The microcontroller stall read the keypad through scanning each row and column. The keypad will change the mode of the lcd and set the deserted value depending on the buttons pressed. The sensors and desired value will be combined via a starting value which will calculate a power out to start with then using the temperature sensor value the power output will be adjusted to get a closer value to the desired value. 
+This software shall interpret the output of sensors, toggle the output of pins on a microcontroller, calculate the how much power to send to the induction coil, and transcribe inputs from the user to set the desired values. The software will understand the sensors via a few methods. If the sensor outputs on or off, no parsing is required. Some sensors output a voltage range which also does not usually need much more processing than scaling the voltage.  Others output a digital waveform which is on or off or specific amounts of time representing a binary value similar to a morris code of sorts. This digital waveform can be interpreted using timers and interrupts on the board. There is also digital protocols for getting information from sensors which use APIs to process what it send to the microcontroller. Once the microcontroller interprets the sensor it must convert it to some output; for instance, power or amperage. The microcontroller stall read the keypad through scanning each row and column. The keypad will change the mode of the lcd and set the deserted value depending on the buttons pressed. The sensors and desired value will be combined via a starting value which will calculate a power out to start with then using the temperature sensor value the power output will be adjusted to get a closer value to the desired value.
 
 - #### PCB Subsystem - John
 
@@ -253,7 +260,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
   - PWM gate control signals to the power switching devices (MOSFETs/IGBTs)  
   - Digital data to the LCD display (SPI or I²C communication)  
   - Safety disable signals to cut power during fault conditions  
-  
+
 
 
 #### Expected User Interaction
@@ -278,7 +285,7 @@ The PCB communicates with the user through the LCD and keypad interface. The dis
 - **Grounding Strategy:** The design shall implement a star-ground or split-ground configuration, separating high-current and logic grounds to mitigate EMI.  
 - **Trace Sizing:** Power traces shall be sized to handle expected peak currents with minimal voltage drop, while signal traces are routed with controlled impedance where applicable.  
 - **Component Placement:** Sensitive analog components (e.g., thermocouple amplifier, voltage sensors) shall be placed away from high-frequency switching paths to minimize noise interference.  
-- **Safety Compliance:** The PCB shall adhere to NEC 665 spacing and creepage distance requirements for induction heating systems, ensuring that no live circuits are exposed. 
+- **Safety Compliance:** The PCB shall adhere to NEC 665 spacing and creepage distance requirements for induction heating systems, ensuring that no live circuits are exposed.
 
 #### Subsystem Operation
 
@@ -321,7 +328,7 @@ Develop a budget proposal with justifications for expenses associated with each 
 
 First, conduct a thorough analysis of the skills currently available within the team, and then compare these skills to the specific requirements of each subsystem. Based on this analysis, appoint a team member to take the specifications for each subsystem and generate a corresponding solution (i.e. detailed design). If there are more team members than subsystems, consider further subdividing the solutions into smaller tasks or components, thereby allowing each team member the opportunity to design a subsystem.
 
-To accomplish our projects goals, it is crucial to appoint specific members to areas they will achieve the highest success in. 
+To accomplish our projects goals, it is crucial to appoint specific members to areas they will achieve the highest success in.
 
 ### Timeline - Aaron
 
