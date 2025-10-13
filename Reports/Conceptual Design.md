@@ -360,5 +360,7 @@ Each team member is required to make a meaningful contribution to the project pr
 
 Comparative Analysis of Existing Solutions - Power System  - [Austin]
 Comparative Analysis of Existing Solutions - Control System  - [Cole]
-
+Started Operational Flow Chart - [Dow]
+Atomic Subsystem Specifications - Software - [Dow]
+High-Level Solution - Software - [Dow]
 clear
