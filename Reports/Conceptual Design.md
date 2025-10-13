@@ -53,20 +53,20 @@ The controller will act as a proof-of-concept platform that illustrates the conn
 
 ### Shall Statements and Constraint Origins
 
-| **ID** | **System Requirement ("Shall" Statement)** | **Origin of Constraint** |
-|:--:|:--|:--|
-| 1 | This controller **shall** run from a standard 120 VAC source. | Customer specification; NEC Article 665 [4]  | 
-| 2 | This controller **shall** provide at least ten user-selectable power settings, allowing for adjustable heating intensity. | Customer specification (Lochinvar requirement) |
-| 3 | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective |
-| 4 | This controller **shall** have a closed-loop feedback system that changes power delivery based on temperature measurements. | Design enhancement identified from comparative analysis; accuracy and safety concern |
-| 5 |  This controller **shall** measure and display electrical input power and corresponding temperature rise. | Customer specification; data acquisition requirement |
-| 6 | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.| Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment) |
-| 7 | This controller **shall** have overtemperature, overcurrent, and ground-fault protection to avoid hardware failure.  | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating) |
-| 8 | This controller **shall** use an LCD screen to show temperature readings, power usage, and operational data.  | Customer usability requirement; ethical and safety design concern |
-| 9 | This controller **shall** be housed in an insulated, non-conductive housing. | NEC 665, Part II; ethical responsibility for user safety |
-| 10 | This controller **shall** record and store temperature and power data. | Research and educational requirement; customer specification |
-| 11 | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation. | Component protection limit; derived from OMEO unit analysis; IEEE and thermal safety standards |
-| 12 | This controller **shall** adhere to ethical engineering practices.  | Ethical and professional standards (IEEE Code of Ethics) |
+| **ID** | **System Requirement ("Shall" Statement)**                                                                                                        | **Origin of Constraint**                                                                       |
+| :----: | :------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------- |
+|   1    | This controller **shall** run from a standard 120 VAC source.                                                                                     | Customer specification; NEC Article 665 [4]                                                    |
+|   2    | This controller **shall** provide at least ten user-selectable power settings, allowing for adjustable heating intensity.                         | Customer specification (Lochinvar requirement)                                                 |
+|   3    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective                                               |
+|   4    | This controller **shall** have a closed-loop feedback system that changes power delivery based on temperature measurements.                       | Design enhancement identified from comparative analysis; accuracy and safety concern           |
+|   5    | This controller **shall** measure and display electrical input power and corresponding temperature rise.                                          | Customer specification; data acquisition requirement                                           |
+|   6    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment)                         |
+|   7    | This controller **shall** have overtemperature, overcurrent, and ground-fault protection to avoid hardware failure.                               | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating)            |
+|   8    | This controller **shall** use an LCD screen to show temperature readings, power usage, and operational data.                                      | Customer usability requirement; ethical and safety design concern                              |
+|   9    | This controller **shall** be housed in an insulated, non-conductive housing.                                                                      | NEC 665, Part II; ethical responsibility for user safety                                       |
+|   10   | This controller **shall** record and store temperature and power data.                                                                            | Research and educational requirement; customer specification                                   |
+|   11   | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation.                                                   | Component protection limit; derived from OMEO unit analysis; IEEE and thermal safety standards |
+|   12   | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics)                                       |
 
 
 
@@ -133,9 +133,7 @@ This controller shall be able to induce surface eddy currents and be able to pro
 This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks. 
 
 [Software]
-This controller shall have preprogrammed power settings to ensure a user friendly and safe heating operation. 
-
--> add stuff about LCD or keypad input or whatever
+The controller shall have software to convert the deserved temperature to power level as well as the sensors to useable values. The keypad stall switch the mode of the LCD and enter the desired temperature. The lcd shall display the desired temperature and the values of the sensors
 
 [PCB]
 
@@ -156,7 +154,7 @@ The end result should present a comprehensive view of a well-defined system, del
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
 https://drive.google.com/file/d/1H84D3nlYPLJDFGQF3kWs2CwpNOFCGdcv/view?usp=sharing
-![flow chart...](control_system_flow_chart.jpg)
+![flow chart...](control_system_flow_chart.drawio.png)
 ## Atomic Subsystem Specifications
 ***
 
@@ -234,7 +232,7 @@ Data: Error codes and status flags will be sent to the embedded subsystem to be 
 ### Embedded System - Dow and John
 
 - #### Software Subsystem - Dow
-This software shall interpret the output of sensors, toggle the output of pins on a microcontroller, calculate the how much power to send to the induction coil, and transcribe inputs from the user to set the desired values. The software will understand the sensors via a few methods. If the sensor outputs on or off, no parsing is required. Some sensors output a voltage range which also does not usually need much more processing than scaling the voltage.  Others output a digital waveform which is on or off or specific amounts of time representing a binary value similar to a morris code of sorts. This digital waveform can be interpreted using timers and interrupts on the board. There is also digital protocols for getting information from sensors which use APIs to process what it send to the microcontroller.
+This software shall interpret the output of sensors, toggle the output of pins on a microcontroller, calculate the how much power to send to the induction coil, and transcribe inputs from the user to set the desired values. The software will understand the sensors via a few methods. If the sensor outputs on or off, no parsing is required. Some sensors output a voltage range which also does not usually need much more processing than scaling the voltage.  Others output a digital waveform which is on or off or specific amounts of time representing a binary value similar to a morris code of sorts. This digital waveform can be interpreted using timers and interrupts on the board. There is also digital protocols for getting information from sensors which use APIs to process what it send to the microcontroller. Once the microcontroller interprets the sensor it must convert it to some output; for instance, power or amperage. The microcontroller stall read the keypad through scanning each row and column. The keypad will change the mode of the lcd and set the deserted value depending on the buttons pressed. The sensors and desired value will be combined via a starting value which will calculate a power out to start with then using the temperature sensor value the power output will be adjusted to get a closer value to the desired value. 
 
 - #### PCB Subsystem - John
 
