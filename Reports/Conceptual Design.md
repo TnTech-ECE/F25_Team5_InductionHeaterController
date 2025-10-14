@@ -346,6 +346,20 @@ You have already estimated the resources needed to complete the solution. Now, l
 Develop a budget proposal with justifications for expenses associated with each subsystem. Note that the total of this budget proposal can also serve as a specification for each subsystem. After creating the budgets for individual subsystems, merge them to create a comprehensive budget for the entire solution.
 
 #### Controls System Budget
+Thermocouples: 
+
+Wrap-Around Pipe: https://www.tcdirect.com/product-2-180-26/Adjustable-Ring-Thermocouple
+
+Inside of Pipe: https://www.tcdirect.com/product-2-180-22/Self-Adhesive-Patch-Thermocouple
+
+Voltmeter (if needed): 
+
+Small numeric: https://www.walmart.com/ip/30V-0-28-LED-Display-Mini-Voltmeter-Tester-Digital-Meter-Car-Volt-Test-O5E6/1854060728?wmlspartner=wlpa&selectedSellerId=102512586&adid=22222222222000000000&wmlspartner=wmtlabs&wl0=e&wl1=o&wl2=c&wl3=10352200394&wl4=pla-1103028060075&wl5=84181&wl6=&wl7=&wl10=Walmart&wl11=Online&wl12=1854060728_10002531948&wl14=30V%200.28%22%20LED%20Display%20Mini%20Voltmeter%20Tester%20Digital%20Meter%20Car%20Volt%20Test%20O5e6&veh=sem&msclkid=b99d5b0a348b1d9e183733e4b2864359&gclid=b99d5b0a348b1d9e183733e4b2864359&gclsrc=3p.ds 
+
+Ammeter (if needed): 
+
+Analog: https://www.amazon.com/Baomain-Ammeter-0-500mA-Current-Measurement/dp/B01EKV9OLU/ref=asc_df_B01EKV9OLU?tag=bingshoppinga-20&linkCode=df0&hvadid=80539318474370&hvnetw=o&hvqmt=e&hvbmt=be&hvdev=c&hvlocint=&hvlocphy=84181&hvtargid=pla-4584138884653520&psc=1 
+
 
 #### Power Systems Budget
 
