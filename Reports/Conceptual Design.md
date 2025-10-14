@@ -216,6 +216,16 @@ This subsystem is responsible for ensuring the induction heater is able to produ
 5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
 6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintainance temperature for induction heating [21].
 
+###### Inputs and Outputs
+
+- **Inputs:**
+  - Analog voltage signal from microcontroller specifying what power level / temperature is desired
+  - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is 
+
+- **Outputs:**
+  - Analog voltage signal to microcontroller indicating error signal between desired and actual temperature
+  - Analog voltage signal to PID control implemented in microcontroller indicating to increase / decrease current supplied to induction coil as necessary 
+
 - #### Safety and Protection Controls - Aaron
 
 This subsystem is responsible for ensuring the induction heater operates within safe limits, protecting both the user from harm and the device from damage. It will function in the background, continuously monitoring signals such as temperature and current to ensure the system is operating within these safe limits, and if not, shuts down accordingly. It directly enforces the constraints set in ethical, professional, and standards considerations.
