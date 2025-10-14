@@ -219,13 +219,15 @@ The heat generation subsystem primarily focuses on ensuring the output temperatu
 
 - **Inputs:**
   - Analog voltage signal from microcontroller specifying what power level / temperature is desired
-  
-
-- **Outputs:**
+  - Signal from safety subsystem to stop current flow to induction coil based on error signals 
   - Analog voltage signal to microcontroller indicating error signal between desired and actual temperature
   - Analog voltage signal to microcontroller indicating to increase / decrease current supplied to induction coil as necessary 
   - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is 
   - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is 
+  
+
+- **Outputs:**
+  - Outputs the desired PWM signal switching speed to produce the correct power corresponding to desired temperature output
 
 - #### Safety and Protection Controls - Aaron
 
