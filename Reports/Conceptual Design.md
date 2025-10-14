@@ -324,8 +324,41 @@ Throughout the operation, there will be analog feedback from temperature, voltag
 ## Ethical, Professional, and Standards Considerations
 ***
 
-In the project proposal, each team must evaluate the broader impacts of the project on culture, society, the environment, public health, public safety, and the economy. Additionally, teams must consider relevant standards organizations that will inform the design process. A comprehensive discussion should be included on how these considerations have influenced the design. This includes detailing constraints, specifications, and practices implemented as a result, and how these address the identified considerations.
+The design and prototyping of an induction heater controller has a crucial need for ethical engineering practices, professional responsibilities, and adherence to industry standards. These considerations are important to ensure the system's safety, reliability, and societal impact.
 
+#### Public Health and Safety
+The main priority when it comes to ethics and professional responsibility is the users safety. The use of regulatory standards is crucial to prevent harm and damage to the system.
+
+**Electrical Safety**: The design will adhere to NEC Article 427 [5] and NEC Article 665 [4], which govern fixed electric heating equipment and induction heating equipment, respectively. 
+
+Key considerations from these two codes include:
+
+ - Ensuring the "OFF" switch physically disconnects all ungrounded conductors, preventing automatic energization [5].
+
+ - Limiting ground fault current to prevent more than 50 volts to ground on accessible parts [4].
+
+ - Implementing a dead-front construction for the control panel to protect users from live circuits [4].
+
+**Thermal Safety**: The controller will incorporate multiple safety features to prevent overheating of both the workpiece and the device itself.
+
+ - Monitoring the IGBT heatsink temperature and triggering a fault state shutdown if it exceeds 105°C (221°F) [2].
+
+ - Shutting down if the heating surface temperature exceeds 280°F (138°C)[2].
+
+ - Preventing the workpiece from exceeding 1200°F (649°C) based on an IEEE recommended maximum maintenance temperature for induction heating [21].
+
+**User Notification**: An important ethical consideration for induction cooktops is the lack of visible heating. The controller will address this by providing clear user feedback through an LCD screen and status LEDs, indicating power on, heating activity, and error codes if applicable. This ensures users are aware of the system's current state, preventing accidental burns or misuse.
+
+**Enclosure Design**: The system will be housed in an insulated, non-conductive encasing to protect users from the high-frequency circuits inside, in accordance with NEC 665, Part II [8].
+
+Efficiency and Environmental Impact
+The project inherently seeks to improve energy efficiency in heating processes:
+
+**Improved Efficiency**: Induction heating is inherently more energy-efficient than traditional resistive heating methods, as it directly transfers energy to the material. The controller's ability to precisely control power delivery and heating profiles will further optimize efficiency, reducing energy waste and operating costs
+
+**Ethical Engineering Practices:** The project explicitly commits to adhering to ethical engineering practices, including the IEEE Code of Ethics. This includes transparent reporting of costs, ensuring the system operates within intended temperatures, and preventing excessive power draw.
+
+To summarize, the induction heater controller's design process is built off of a foundation of ethical, professional, and standards-based considerations. These aspects are integrated into every layer of the design, from the functional requirements and safety protocols to the selection of components and user interface, ensuring a responsible and high-performing solution.
 
 ## Resources
 ***
@@ -372,18 +405,6 @@ We will estimate a budget of $40 for the microcontroller.
 | LCD Display/Keypad    | $10            | N/A       |
 | Encasing Budget Total | $100           |
 
-#### Encasing Budget
-| Components            | Estimated Cost | Link |
-| --------------------- | -------------- | ---- |
-| Housing               | $65            | N/A  |
-| Heatsink              | $35            | N/A  |
-| Encasing Budget Total | $100           |
-| Components      | Estimated Cost | Link                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Microcontroller       | $40            | See Above    |
-| PCB Design      | $50            | N/A       |
-| LCD Display/Keypad | $10  | N/A
-|Microcontroller Budget Total | $100 |
 
 #### Encasing/Workpiece Budget
 | Components      | Estimated Cost | Link                                              |
@@ -391,7 +412,7 @@ We will estimate a budget of $40 for the microcontroller.
 | Housing       | $65            | N/A       |
 | Heatsink      | $35            | N/A       |
 | 1in x 6ft Iron Piping | $20            | [Link](https://www.homedepot.com/p/STZ-1-in-x-6-ft-Black-Steel-Sch-40-Cut-Pipe-PDB-P1X72/316939789?source=shoppingads&locale=en-US&srsltid=AfmBOop3FSQzS-H3pE595Qtrp1V-svMthRHS9okUbeQpmTK88EaYwic0S8g)      |
-|Encasing/Workpiece Budget Total | $100 |
+|Encasing/Workpiece Budget Total | $120 |
 
 #### Total Project Budget
 | Components      | Estimated Cost | Link                                              |
@@ -399,7 +420,7 @@ We will estimate a budget of $40 for the microcontroller.
 | Controls Systems Budget       | $92            | N/A       |
 | Power Systems Budget          | $~~            | N/A       |
 | Embedded Systems Budget       | $100           | N/A       |
-| Encasing/Workpiece Budget               | $100           | N/A       |
+| Encasing/Workpiece Budget               | $120           | N/A       |
 | Project Budget Total          | $~~ |
 
 ### Division of Labor
