@@ -266,18 +266,18 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 
 #### Expected User Interaction
 
-The PCB communicates with the user through the LCD and keypad interface. The display provides live readings of temperature, power level, and system status. The keypad allows the user to select one of ten power levels, start or stop the heating cycle, and reset the system after a fault condition. Status LEDs on the PCB indicate power-on, fault, and heating activity states.  
+The PCB will communicate to the user through a LCD screen and a keypad interface. The display will provide live readings of temperature, voltage, and current information. The keypad will allow the user to select the power level desired, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB indicate power on, fault, and heating activity condition.  
 
 
 #### Operational Flow
 
-1. **Initialization:** When powered on, the PCB initializes the microcontroller, performs self-checks, and confirms all sensors are functional.  
-2. **Standby Mode:** The system waits for user input from the keypad or LCD interface.  
-3. **Active Heating:** Upon user command, PWM gate signals drive the inverter stage.  
-4. **Feedback Monitoring:** Temperature, voltage, and current sensors continuously feed data to the microcontroller.  
-5. **Control Adjustment:** The microcontroller adjusts PWM duty cycle in real time to maintain the desired power level and prevent overheating.  
-6. **Fault Handling:** If overtemperature or overcurrent conditions occur, the PCB asserts a safety shutdown signal and displays a fault message.  
-7. **Data Logging:** The system stores power and temperature data for post-test analysis.  
+1. **Initialization:** When the PCB is powered on, it will boot up the microcontroller, performing self-checks, and confirm functionality.  
+2. **Standby Mode:** The system will wait for user input from a keypad or other user interface.  
+3. **Active Heating:** Upon user activation, the PWM gate will signal the inverter circuit. 
+4. **Feedback Monitoring:** Temperature, voltage, and current data will be continuously feed to the microcontroller through sensors.  
+5. **Control Adjustment:** The microcontroller will prevent heating and maintain the desired power level by adjusting the PWM duty cycle in real time. 
+6. **Fault Handling:** The PCB will maintain safety through a shutdown signal and will display a fault message if overtemperature or overcurrent occasion happens.  
+7. **Data Logging:** The system will store temperature, voltage, and current data for post-test analysis.  
 
 #### PCB Design Considerations
 
@@ -296,12 +296,11 @@ Thermal sensors continuously check the PCB's temperature in the vicinity of high
 
 #### Subsystem “Shall” Statements
 
-1. This PCB **shall** integrate both high- and low-voltage circuits while maintaining isolation boundaries compliant with NEC and IEEE standards.  
-2. The PCB **shall** support MOSFET/IGBT switching frequencies between 20 kHz and 40 kHz with minimal electromagnetic interference.  
-3. The PCB **shall** provide thermal management sufficient to keep board temperatures below 105°C under maximum load.  
-4. The PCB **shall** include fault detection and shutdown circuitry to prevent component failure due to overheating or overcurrent.  
-5. The PCB **shall** accommodate modular connection points for sensors, user interface, and external testing equipment.  
-6. The PCB **shall** be designed with appropriate trace width, creepage distance, and protective coatings to ensure long-term reliability.  
+1. This PCB **shall** ble nd both high- and low-voltage circuits while maintaining isolation between them. 
+2. This PCB **shall** support MOSFET/IGBT switching frequencies between 20 kHz and 40 kHz with minimal electromagnetic interference.  
+3. This PCB **shall** provide temperature regulation adequate enough to keep board temperatures below 105°C.  
+4. This PCB **shall** include fault detection and shutdown circuitry to prevent component failure.  
+5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.  
 
 
 ## Ethical, Professional, and Standards Considerations - Aaron
