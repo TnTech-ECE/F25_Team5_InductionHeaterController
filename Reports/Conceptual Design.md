@@ -231,7 +231,7 @@ The heat generation subsystem primarily focuses on ensuring the output temperatu
 Shown below is a detailed flow chart of the Heat Generation Subsystem:
 
 
-![alt text](HeatGenerationSubsystem.drawio.png)
+![alt text](<HeatGenerationSubsystem.drawio (1).png>)
 
 - #### Safety and Protection Controls - Aaron
 
