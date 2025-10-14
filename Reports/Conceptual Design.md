@@ -98,7 +98,7 @@ The surface temperature is kept below 280°F while the PCB is kept under 105°F 
 
 pancake coil vs. wrapped coil for bar end heating [Cole]
 
-The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock. If the circular bar stock is laid flat on its end heated utilizing bar end heating, the end heated would heat much faster than the opposite end. More efficient bar end heating operates by wrapping around the length of the circular bar stock. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
+The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock due to wide range of heating behaviors pancake coils may produce [22]. More efficient coil configurations for induction heating are achieved by wrapping around the length of the circular bar stock [22]. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
 
 
 Microcontroller and PCB stuff which one [Dow] and [John]
@@ -411,6 +411,8 @@ All sources utilized in the conceptual design that are not considered common kno
 
 [21] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
 
+[22]B. Daly, “Solenoid Coil Designs & Calculations for Efficient Induction Heating,” Ambrell.com, May 20, 2019. https://www.ambrell.com/blog/solenoid-coil-designs-calculations-for-efficient-induction-heating (accessed Oct. 14, 2025).
+‌
 
 ## Statement of Contributions - Everyone
 ***
