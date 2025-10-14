@@ -102,6 +102,13 @@ The project shall be able to induce surface eddy currents and produce internal h
 
 
 Microcontroller and PCB stuff which one [Dow] and [John]
+Microcontroller Options:
+
+| Stat            | [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) for [$15.56](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585) | [ST-Nucleo-L476RG](https://os.mbed.com/platforms/ST-Nucleo-L476RG/) for [$14.85](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711) | [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA) | [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA) |
+| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| ADCs            | 5                                                                                                                                                                      | 3                                                                                                                                                                     |                                                                                                                                                                                                                                                                         1 |                                                                                                                                                                                                                                                                         1 |
+| ADC Sample Rate | 4 Msps                                                                                                                                                                 | 5 Msps                                                                                                                                                                |                                                                                                                                                                                                                                                                    5 Msps |                                                                                                                                                                                                                                                                  2.4 MSPS |
+| ADC Channels    | 26                                                                                                                                                                     | 16                                                                                                                                                                    |                                                                                                                                                                                                                                                                        16 |                                                                                                                                                                                                                                                                        16 |
 
 Hardware control is not desirable because the parts can have long lead times and the project does not have high voltage components that would necessitate the need for relays or similar hardware.
 
@@ -378,23 +385,23 @@ The budget of the project will need to not only meet the expenses required for a
 #### Controls System Budget
 The Controls System budget is based on the need for sensors measuring temperature, current, and voltage coming from the IGBT's, the heating surface, and the actual work piece being heated.
 
-| Components      | Estimated Cost | Link                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Adjustable Ring Thermocouple         | $32            | [Link](https://www.digikey.com/en/products/detail/olimex-ltd/TC-K-TYPE/21662067)         |
-| Self-Adhesive Patch Thermocouple      | $28           | [Link](https://www.tcdirect.com/product-2-180-22/Self-Adhesive-Patch-Thermocouple)                                                                                      |
-| Safety & Monitoring Sensors (Thermistors, Current Sensors, Voltage Sensors)     | $32      | [Link](https://www.digikey.com/en/products/detail/littelfuse-inc/103FG1K/4027447?gclsrc=aw.ds&gad_source=4&gad_campaignid=20232005509&gclid=Cj0KCQjw6bfHBhDNARIsAIGsqLjZe2uuipLixISORm3qzIifPLPojmfRx1Rdaim569587GjOb78s3EIaAlwXEALw_wcB)                                                                                     |
-|Control Subsystem Total | $92 |
+| Components                                                                  | Estimated Cost | Link                                                                                                                                                                                                                                      |
+| --------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Adjustable Ring Thermocouple                                                | $32            | [Link](https://www.digikey.com/en/products/detail/olimex-ltd/TC-K-TYPE/21662067)                                                                                                                                                          |
+| Self-Adhesive Patch Thermocouple                                            | $28            | [Link](https://www.tcdirect.com/product-2-180-22/Self-Adhesive-Patch-Thermocouple)                                                                                                                                                        |
+| Safety & Monitoring Sensors (Thermistors, Current Sensors, Voltage Sensors) | $32            | [Link](https://www.digikey.com/en/products/detail/littelfuse-inc/103FG1K/4027447?gclsrc=aw.ds&gad_source=4&gad_campaignid=20232005509&gclid=Cj0KCQjw6bfHBhDNARIsAIGsqLjZe2uuipLixISORm3qzIifPLPojmfRx1Rdaim569587GjOb78s3EIaAlwXEALw_wcB) |
+| Control Subsystem Total                                                     | $92            |
 
 #### Power Systems Budget
 
-| Components      | Estimated Cost | Link                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Litz Wire        | $50 ( Some Provided by Lochinvar )        | N/A     |
-| *Insert component Here*        | *Price*          | *Link*     |
-| *Insert component Here*        | *Price*          | *Link*     |
-| *Insert component Here*        | *Price*          | *Link*     |
-| *Insert component Here*        | *Price*          | *Link*     |
-|Power System Budget Total | *Total Price* |
+| Components                | Estimated Cost                     | Link   |
+| ------------------------- | ---------------------------------- | ------ |
+| Litz Wire                 | $50 ( Some Provided by Lochinvar ) | N/A    |
+| *Insert component Here*   | *Price*                            | *Link* |
+| *Insert component Here*   | *Price*                            | *Link* |
+| *Insert component Here*   | *Price*                            | *Link* |
+| *Insert component Here*   | *Price*                            | *Link* |
+| Power System Budget Total | *Total Price*                      |
 
 #### Embedded Systems Budget
 Based on our specifcations, we are split between multiple Microcontrollers that range from $14.85-76.09. These are not the only ones being considered.
@@ -406,19 +413,19 @@ Microcontroller Options:
 
 We will estimate a budget of $40 for the microcontroller.
 
-| Components      | Estimated Cost | Link                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Microcontroller       | $40            | See Above    |
-| PCB Design      | $50            | N/A       |
-| LCD Display/Keypad | $10  | N/A
-|Encasing Budget Total | $100 |
+| Components            | Estimated Cost | Link      |
+| --------------------- | -------------- | --------- |
+| Microcontroller       | $40            | See Above |
+| PCB Design            | $50            | N/A       |
+| LCD Display/Keypad    | $10            | N/A       |
+| Encasing Budget Total | $100           |
 
 #### Encasing Budget
-| Components      | Estimated Cost | Link                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Housing       | $65            | N/A       |
-| Heatsink      | $35            | N/A       |
-|Encasing Budget Total | $100 |
+| Components            | Estimated Cost | Link |
+| --------------------- | -------------- | ---- |
+| Housing               | $65            | N/A  |
+| Heatsink              | $35            | N/A  |
+| Encasing Budget Total | $100           |
 
 ### Division of Labor - Aaron
 
