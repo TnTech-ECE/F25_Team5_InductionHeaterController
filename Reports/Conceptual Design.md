@@ -103,12 +103,6 @@ The project shall be able to induce surface eddy currents and produce internal h
 
 Microcontroller and PCB stuff which one [Dow] and [John]
 
-Microcontroller Options:
- - [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) DAC and ADC for [$15.56](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585)
- - [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-L476RG/) DAC and ADC for [$14.85](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711)
- - [DISCO-L4S5I](https://os.mbed.com/platforms/B-L4S5I-IOT01A/) DAC, ADC and WIFI for [$55.26](https://www.digikey.com/en/products/detail/stmicroelectronics/B-L4S5I-IOT01A/12395902)
- - [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) DAC ADC and wifi for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA)
-
 Hardware control is not desirable because the parts can have long lead times and the project does not have high voltage components that would necessitate the need for relays or similar hardware.
 
 
@@ -397,7 +391,7 @@ Develop a budget proposal with justifications for expenses associated with each 
 
 The budget of the project will need to not only meet the expenses required for any components required for the induction controller but also consider unforeseen expenses.
 
-| Components      | Estimated Cost | Link                                                                                     |
+| Components      | Estimated Cost | Link                                              |
 | --------------- | -------------- | ---------------------------------------------------------------------------------------- |
 | Litz Wire       | $50            | N/A                                                                                      |
 | PCB             | $50            | N/A                                                                                      |
@@ -411,19 +405,44 @@ The budget of the project will need to not only meet the expenses required for a
 | Contingency     | $35            | N/A                                                                                      |
 
 
+
 #### Controls System Budget
-Thermocouples: 
+The Controls System budget is based on the need for sensors measuring temperature, current, and voltage coming from the IGBT's, the heating surface, and the actual work piece being heated.
 
-Wrap-Around Pipe: https://www.tcdirect.com/product-2-180-26/Adjustable-Ring-Thermocouple
-
-Inside of Pipe: https://www.tcdirect.com/product-2-180-22/Self-Adhesive-Patch-Thermocouple
-
+| Components      | Estimated Cost | Link                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Adjustable Ring Thermocouple         | $32            | [Link](https://www.digikey.com/en/products/detail/olimex-ltd/TC-K-TYPE/21662067)         |
+| Self-Adhesive Patch Thermocouple      | $28           | [Link](https://www.tcdirect.com/product-2-180-22/Self-Adhesive-Patch-Thermocouple)                                                                                      |
+| Safety & Monitoring Sensors (Thermistors, Current Sensors, Voltage Sensors)     | $32      | [Link](https://www.digikey.com/en/products/detail/littelfuse-inc/103FG1K/4027447?gclsrc=aw.ds&gad_source=4&gad_campaignid=20232005509&gclid=Cj0KCQjw6bfHBhDNARIsAIGsqLjZe2uuipLixISORm3qzIifPLPojmfRx1Rdaim569587GjOb78s3EIaAlwXEALw_wcB)                                                                                     |
+|Control Subsystem Total | $92 |
 
 #### Power Systems Budget
 
 I'll get this done tuesday 10/13/2025.
 
 #### Embedded Systems Budget
+Based on our specifcations, we are split between multiple Microcontrollers that range from $14.85-76.09. These are not the only ones being considered.
+Microcontroller Options:
+ - [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) DAC and ADC for [$15.56](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585)
+ - [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-L476RG/) DAC and ADC for [$14.85](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711)
+ - [DISCO-L4S5I](https://os.mbed.com/platforms/B-L4S5I-IOT01A/) DAC, ADC and WIFI for [$55.26](https://www.digikey.com/en/products/detail/stmicroelectronics/B-L4S5I-IOT01A/12395902)
+ - [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) DAC ADC and wifi for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA)
+
+We will estimate a budget of $40 for the microcontroller.
+
+| Components      | Estimated Cost | Link                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Microcontroller       | $40            | N/A       |
+| PCB Design      | $50            | N/A       |
+| LCD Display/Keypad | $10  | N/A
+|Encasing Budget Total | $100 |
+
+#### Encasing Budget
+| Components      | Estimated Cost | Link                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Housing       | $65            | N/A       |
+| Heatsink      | $35            | N/A       |
+|Encasing Budget Total | $100 |
 
 ### Division of Labor - Aaron
 
@@ -435,6 +454,7 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 * <u>**Power Subsystem**</u>
     * Assigned to: **Austin**, based on his focus on power system design.
+      - Austin is assigned the task of creating the schematics for the AC-DC rectifier, DC-link filtering, the high-frequency inverter, and all power distribution rails (5 VDC, 18 VDC). He will also design the analog monitoring circuits for voltage, current, and temperature, and will select all critical power components needed to complete the circuit.
 
 * <u>**Controls Subsystem**</u>
     * <u>**Heat Generation Control:**</u> Assigned to **Cole**, leveraging his background in Mechatronics and Controls.
@@ -511,6 +531,8 @@ Comparative Analysis of Existing Solutions - Power System  - [Austin]
 Comparative Analysis of Existing Solutions - Control System  - [Cole]
 Started Operational Flow Chart - [Dow]
 Atomic Subsystem Specifications - Software - [Dow]
-Atomic Subsystem Specifications - Power System- [Austin]
+Atomic Subsystem Specifications - Power System - [Austin]
+Atomic Subsystem Specifications - Heat Generation Control - [Cole]
+Atomic Subsystem Specifications - Safety and Protections Control - [Aaron]
 High-Level Solution - Software - [Dow]
 clear
