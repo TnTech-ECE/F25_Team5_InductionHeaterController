@@ -249,10 +249,6 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
 
 ##### - Power System
 
-- **Output Signal : Digital Signal**
-
-  **Data**: A binary signal. A logic LOW signal will be sent to the power transistors (IGBTs/MOSFETs) or a relay to immediately cutting off power to the induction coil in the event of a fault condition.
-
 - **Input Signal**: Analog Voltage
   **Data**: A voltage signal proportional to the total current draw, received from a current sensor located in the power system. This is used for over-current monitoring.
 
