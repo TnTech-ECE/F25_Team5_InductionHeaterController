@@ -250,29 +250,31 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
 
 ##### - Power System
 
-Output Signal : Digital Signal
+- **Output Signal : Digital Signal**
 
-Data: A binary signal. A logic LOW signal will be sent to the power transistors (IGBTs/MOSFETs) or a relay to immediately cutting off power to the induction coil in the event of a fault condition.
+  **Data**: A binary signal. A logic LOW signal will be sent to the power transistors (IGBTs/MOSFETs) or a relay to immediately cutting off power to the induction coil in the event of a fault condition.
 
-Input Signal : Analog Voltage
-
-Data: A voltage signal proportional to the total current draw, received from a current sensor located in the power system. This is used for over-current monitoring.
+- **Input Signal**: Analog Voltage
+  **Data**: A voltage signal proportional to the total current draw, received from a current sensor located in the power system. This is used for over-current monitoring.
 
 ##### - Heat Generation Control
 
-Input Signal: Analog Voltage
+ - **Input Signal**: Analog Voltage
 
-Data: Temperature readings from thermocouples placed on the heatsink (monitoring IGBT temperature), the cooking surface, and the workpiece itself.
+    **Data**: Temperature readings from thermocouples placed on the heatsink (monitoring IGBT temperature), and the workpiece itself.
 
-Output Signal: Digital Interrupt
-
-Data: A signal sent to the Heat Generation software module to command it to stop PWM signal generation in the event of a fault.
+ - **Output Signal**: Digital Interrupt
+  **Data**: A signal sent to the Heat Generation software module to command it to stop PWM signal generation in the event of a fault.
 
 ##### - Embedded System (Software & User Interface)
 
-Output Signal: Error Codes
+ - **Output Signal**: Error Codes
+  **Data**: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
 
-Data: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
+#### Operation Flow
+Shown below is a detailed flow chart of the Safety and Protections Subsystem:
+
+![alt text](<Safety Flowchart.drawio.png>)
 
 
 ### Embedded System - Dow and John
