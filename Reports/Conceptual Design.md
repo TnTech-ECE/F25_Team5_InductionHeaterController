@@ -226,6 +226,11 @@ The microcontroller(within the Control System) will send a digital PWM high or l
 The Power System will route power throughout the PCB in such a way that tap-points for 18 VDC and 5 VDC are available for whatever needs arise. This signal is in the form of a power signal.
 
 
+#### Power Tree
+
+Please view the Power Tree below to see how the power will be distributed to across the design.
+
+
 
 
 
