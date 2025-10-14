@@ -351,6 +351,23 @@ You have already estimated the resources needed to complete the solution. Now, l
 
 Develop a budget proposal with justifications for expenses associated with each subsystem. Note that the total of this budget proposal can also serve as a specification for each subsystem. After creating the budgets for individual subsystems, merge them to create a comprehensive budget for the entire solution.
 
+
+The budget of the project will need to not only meet the expenses required for any components required for the induction controller but also consider unforeseen expenses.
+
+| Components      | Estimated Cost | Link                                                                                     |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Litz Wire       | $50            | N/A                                                                                      |
+| PCB             | $50            | N/A                                                                                      |
+| Display         | $10            | [Link](https://www.digikey.com/en/products/detail/display-visions/EA-DOGM132L-5/4896710) |
+| Semiconductors  | $50            | N/A                                                                                      |
+| Microcontroller | $25            | [Link](https://www.bestmodulescorp.com/en/ht45f0059-16nsop.html)                         |
+| Capacitors      | $40            | N/A                                                                                      |
+| Encasing        | $100           | N/A                                                                                      |
+| Sensors         | $60            | [Link](https://www.digikey.com/en/products/detail/olimex-ltd/TC-K-TYPE/21662067)         |
+| Fuses           | $30            | N/A                                                                                      |
+| Contingency     | $35            | N/A                                                                                      |
+
+
 #### Controls System Budget
 Thermocouples: 
 
@@ -369,7 +386,21 @@ I'll get this done tuesday 10/13/2025.
 
 First, conduct a thorough analysis of the skills currently available within the team, and then compare these skills to the specific requirements of each subsystem. Based on this analysis, appoint a team member to take the specifications for each subsystem and generate a corresponding solution (i.e. detailed design). If there are more team members than subsystems, consider further subdividing the solutions into smaller tasks or components, thereby allowing each team member the opportunity to design a subsystem.
 
-To accomplish our projects goals, it is crucial to appoint specific members to areas they will achieve the highest success in.
+First, a thorough analysis of the skills currently available within the team was conducted, and then these skills were compared to the specific requirements of each subsystem. Based on this analysis, a team member has been appointed to take the specifications for each subsystem and generate a corresponding detailed design.
+
+The responsibilities for designing each subsystem are allocated as follows:
+
+* <u>**Power Subsystem**</u>
+    * Assigned to: **Austin**, based on his focus on power system design.
+
+* <u>**Controls Subsystem**</u>
+    * <u>**Heat Generation Control:**</u> Assigned to **Cole**, leveraging his background in Mechatronics and Controls.
+    * <u>**Safety and Protections Control:**</u> Assigned to **Aaron**, utilizing his focus in Control Systems and skills in Safety Analysis.
+
+* <u>**Embedded Subsystem**</u>
+    * <u>**Software:**</u> Assigned to **Dow**, due to his knowledge of microcontrollers and software design concepts.
+    * <u>**PCB:**</u> Assigned to **John**, based on his experience in PCB design, debugging, and testing.
+
 
 ### Timeline - Aaron
 
