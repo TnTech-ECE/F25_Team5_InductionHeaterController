@@ -277,7 +277,7 @@ The heat generation subsystem primarily focuses on ensuring the output temperatu
 Shown below is a detailed flow chart of the Heat Generation Subsystem:
 
 
-![alt text](<HeatGenerationSubsystem.drawio (1).png>)
+![alt text](HeatGenerationSubsystem.drawio.png)
 
 - #### Safety and Protection Controls - Aaron
 
@@ -428,9 +428,6 @@ I'll get this done tuesday 10/13/2025.
 #### Embedded Systems Budget
 
 ### Division of Labor - Aaron
-
-First, conduct a thorough analysis of the skills currently available within the team, and then compare these skills to the specific requirements of each subsystem. Based on this analysis, appoint a team member to take the specifications for each subsystem and generate a corresponding solution (i.e. detailed design). If there are more team members than subsystems, consider further subdividing the solutions into smaller tasks or components, thereby allowing each team member the opportunity to design a subsystem.
-
 First, a thorough analysis of the skills currently available within the team was conducted, and then these skills were compared to the specific requirements of each subsystem. Based on this analysis, a team member has been appointed to take the specifications for each subsystem and generate a corresponding detailed design.
 
 The responsibilities for designing each subsystem are allocated as follows:
@@ -439,12 +436,18 @@ The responsibilities for designing each subsystem are allocated as follows:
     * Assigned to: **Austin**, based on his focus on power system design.
 
 * <u>**Controls Subsystem**</u>
-    * <u>**Heat Generation Control:**</u> Assigned to **Cole**, leveraging his background in Mechatronics and Controls.
+    * <u>**Heat Generation Control:**</u> Assigned to **Cole**, due to his background in Mechatronics and Controls.
+      - Cole is responsible for designing the closed-loop control system of our induction heater. This involves selecting the appropriate thermocouples for accurate workpiece measurement and defining the control logic that uses temperature errors to change the power system's PWM signal.
     * <u>**Safety and Protections Control:**</u> Assigned to **Aaron**, utilizing his focus in Control Systems and skills in Safety Analysis.
+      - Aaron will design the safety and protection control system. This includes the logic for detecting all fault conditions (overcurrent, IGBT overtemperature) and designing the interrupts that place the system into a non-operational fault state.
 
 * <u>**Embedded Subsystem**</u>
     * <u>**Software:**</u> Assigned to **Dow**, due to his knowledge of microcontrollers and software design concepts.
-    * <u>**PCB:**</u> Assigned to **John**, based on his experience in PCB design, debugging, and testing.
+      - Dow is assigned with programming the microcontroller to operate with the control systems in place. His tasks include writing drivers for reading sensor data, managing user input from the keypad, and controlling the LCD display.
+
+
+    * <u>**PCB:**</u> Assigned to **John**, based on his experience in PCB design, debugging, and testing. 
+      - John will be creating the physical design of all electrical components used in the project.
 
 
 ### Timeline - Aaron
