@@ -252,16 +252,18 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
 - **Input Signal**: Analog Voltage
   **Data**: A voltage signal proportional to the total current draw, received from a current sensor located in the power system. This is used for over-current monitoring.
 
+  **Input Signal**: Analog Voltage
+  **Data**: A voltage signal corresponding to the temperature readings from thermocouples on the IGBT's.
+
 ##### - Heat Generation Control
 
  - **Input Signal**: Analog Voltage
-
-    **Data**: Temperature readings from thermocouples placed on the heatsink (monitoring IGBT temperature), and the workpiece itself.
+  **Data**: Temperature readings from thermocouples placed on the workpiece itself as well as the water temperature sensors.
 
  - **Output Signal**: Digital Interrupt
   **Data**: A signal sent to the Heat Generation software module to command it to stop PWM signal generation in the event of a fault.
 
-##### - Embedded System (Software & User Interface)
+##### - Embedded System (Software & PCB)
 
  - **Output Signal**: Error Codes
   **Data**: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
