@@ -170,14 +170,14 @@ In the block diagram, each subsystem should be depicted by a single block. For e
 
 The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
 
-![alt text](<Block Diagram Project.drawio.png>)
+![alt text](<Block Diagram Project.drawio (1).png>)
 
 ### Operational Flow Chart - Dow & Everyone
 ***
 
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
-![alt text](<control_system_flow_chart.drawio (1).png>)
+![alt text](<control_system_flow_chart.drawio (2).png>)
 
 ## Atomic Subsystem Specifications
 ***
@@ -276,8 +276,7 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
 #### Operation Flow
 Shown below is a detailed flow chart of the Safety and Protections Subsystem:
 
-![alt text](<Safety Flowchart.drawio.png>)
-
+![alt text](<Safety Flowchart.drawio (1).png>)
 
 ### Embedded System - Dow and John
 
