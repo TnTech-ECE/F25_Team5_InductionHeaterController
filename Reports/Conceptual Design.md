@@ -145,11 +145,8 @@ Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater p
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
-[Brainstorm,Fix/RemoveLater]
-User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed.
-
 [Power]
-This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered since power is the time derivative of energy. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the bar stock.  
+This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. The controller must be able to convert the 120 VAC to 150 DC, then step that voltage down to 5 V to ensure a safe operating voltage for the microcontroller that will operate as the brain for our control system. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered since power is the time derivative of energy. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the bar stock.  
 
 
 [HeatControl]
@@ -159,10 +156,10 @@ This controller shall be able to induce surface eddy currents and be able to pro
 This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks to the controller and the user. The controller shall continuously monitor signals such as temperature and current to ensure the system is operating within safe limits and turn the device off whenvever the system is not. The controller shall have additional user protections to ensure that the controller cannot operate when the user desires it to be off and produce error codes to tell the user why the system is not letting them do something that could be potentially dangerous.
 
 [Software]
-This controller shall utilize a microcontroller to be able to receive and interpret signals from the thermocouples and from user interfaces. The microcontroller will enable the team to implement any necessary feedback loops digitally by coding the microcontroller rather than relying on hardware. This controller shall have preprogrammed power settings to ensure a user friendly and safe heating operation. The keypad stall switch the mode of the LCD and enter the desired temperature. The lcd shall display the desired temperature and the values of the sensors
+This controller shall utilize a microcontroller to be able to receive and interpret signals from the thermocouples and from user interfaces. The microcontroller will serve as the brain for the control system. The microcontroller will be the connection point between the data transmitted from the sensors and user inputs, and it will be programmed by the team to control the PWM signals determining the amount of current delivered to the induction coil which determines the amount of heating produced on the circular bar stock. 
 
 [PCB]
-This controller shall provide a user interface by utilizing a PCB.
+This controller shall provide a user interface by utilizing a PCB. The PCB will be connected to the microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will display the total temperature rise of the metal and the total electrical power consumed by the controller. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
 
 ### Hardware Block Diagram - John & Everyone
 ***
