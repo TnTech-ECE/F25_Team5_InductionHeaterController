@@ -321,7 +321,7 @@ Throughout the operation, there will be analog feedback from temperature, voltag
 5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.  
 
 
-## Ethical, Professional, and Standards Considerations - Aaron
+## Ethical, Professional, and Standards Considerations
 ***
 
 In the project proposal, each team must evaluate the broader impacts of the project on culture, society, the environment, public health, public safety, and the economy. Additionally, teams must consider relevant standards organizations that will inform the design process. A comprehensive discussion should be included on how these considerations have influenced the design. This includes detailing constraints, specifications, and practices implemented as a result, and how these address the identified considerations.
@@ -330,7 +330,7 @@ In the project proposal, each team must evaluate the broader impacts of the proj
 ## Resources
 ***
 
-### Budget - Aaron
+### Budget
 
 The budget of the project will need to not only meet the expenses required for any components required for the induction controller but also consider unforeseen expenses.
 
@@ -372,12 +372,13 @@ We will estimate a budget of $40 for the microcontroller.
 | LCD Display/Keypad | $10  | N/A
 |Microcontroller Budget Total | $100 |
 
-#### Encasing Budget
+#### Encasing/Workpiece Budget
 | Components      | Estimated Cost | Link                                              |
 | --------------- | -------------- | ---------------------------------------------------------------------------------------- |
 | Housing       | $65            | N/A       |
 | Heatsink      | $35            | N/A       |
-|Encasing Budget Total | $100 |
+| 1in x 6ft Iron Piping | $20            | [Link](https://www.homedepot.com/p/STZ-1-in-x-6-ft-Black-Steel-Sch-40-Cut-Pipe-PDB-P1X72/316939789?source=shoppingads&locale=en-US&srsltid=AfmBOop3FSQzS-H3pE595Qtrp1V-svMthRHS9okUbeQpmTK88EaYwic0S8g)      |
+|Encasing/Workpiece Budget Total | $100 |
 
 #### Total Project Budget
 | Components      | Estimated Cost | Link                                              |
@@ -385,10 +386,10 @@ We will estimate a budget of $40 for the microcontroller.
 | Controls Systems Budget       | $92            | N/A       |
 | Power Systems Budget          | $~~            | N/A       |
 | Embedded Systems Budget       | $100           | N/A       |
-| Encasing Budget               | $100           | N/A       |
+| Encasing/Workpiece Budget               | $100           | N/A       |
 | Project Budget Total          | $~~ |
 
-### Division of Labor - Aaron
+### Division of Labor
 
 First, a thorough analysis of the skills currently available within the team was conducted, and then these skills were compared to the specific requirements of each subsystem. Based on this analysis, a team member has been appointed to take the specifications for each subsystem and generate a corresponding detailed design.
 
@@ -399,7 +400,7 @@ The responsibilities for designing each subsystem are allocated as follows:
       - Austin is assigned the task of creating the schematics for the AC-DC rectifier, DC-link filtering, the high-frequency inverter, and all power distribution rails (5 VDC, 18 VDC). He will also design the analog monitoring circuits for voltage, current, and temperature, and will select all critical power components needed to complete the circuit.
 
 * <u>**Controls Subsystem**</u>
-    * <u>**Heat Generation Control:**</u> Assigned to **Cole**, leveraging his background in Mechatronics and Controls.
+    * <u>**Heat Generation Control:**</u> Assigned to **Cole**, based on his background in Mechatronics and Controls.
 
       - Cole is responsible for designing the closed-loop control system of our induction heater. This involves selecting the appropriate thermocouples for accurate workpiece measurement and defining the control logic that uses temperature errors to change the power system's PWM signal.
     * <u>**Safety and Protections Control:**</u> Assigned to **Aaron**, utilizing his focus in Control Systems and skills in Safety Analysis.
@@ -407,14 +408,14 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 * <u>**Embedded Subsystem**</u>
     * <u>**Software:**</u> Assigned to **Dow**, due to his knowledge of microcontrollers and software design concepts.
-      - Dow is assigned with programming the microcontroller to operate with the control systems in place. His tasks include writing drivers for reading sensor data, managing user input from the keypad, and controlling the LCD display.
+      - Dow is tasked with programming the microcontroller to operate with the control systems in place. This includes writing drivers for reading sensor data, managing user input from the keypad, and controlling the LCD display.
 
 
     * <u>**PCB:**</u> Assigned to **John**, based on his experience in PCB design, debugging, and testing. 
       - John will be creating the physical design of all electrical components used in the project.
 
 
-### Timeline - Aaron
+### Timeline
 
 ![alt text](image-1.png)
 ![alt text](image-2.png)
