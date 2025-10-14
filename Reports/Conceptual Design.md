@@ -98,7 +98,7 @@ The surface temperature is kept below 280°F while the PCB is kept under 105°F 
 
 pancake coil vs. wrapped coil for bar end heating [Cole]
 
-The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock. If the circular bar stock is laid flat on its end heated utilizing bar end heating, the end heated would heat much faster than the opposite end. More efficient bar end heating operates by wrapping around the length of the circular bar stock. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
+The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock due to wide range of heating behaviors pancake coils may produce [22]. More efficient coil configurations for induction heating are achieved by wrapping around the length of the circular bar stock [22]. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
 
 
 Microcontroller and PCB stuff which one [Dow] and [John]
@@ -145,11 +145,8 @@ Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater p
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
-[Brainstorm,Fix/RemoveLater]
-User has options to choose 10 different power levels to produce certain temperatures on the circular bar stock. This will be accomplished user a human machine interface (HMI) that will talk to the microcontroller to tell it to change the current induced to the coils. We will utilize a thermocouple temperature sensor to measure the temperature of the part to calculate the temperature rise and display to the user using the HMI / LCD. We will also calculate the total power consumed using a wattmeter and display that to the LCD. The microcontroller will be able to send feedback to adjust the current delivered as needed.
-
 [Power]
-This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered since power is the time derivative of energy. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the bar stock.  
+This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. The controller must be able to convert the 120 VAC to 150 DC, then step that voltage down to 5 V to ensure a safe operating voltage for the microcontroller that will operate as the brain for our control system. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered since power is the time derivative of energy. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the bar stock.  
 
 
 [HeatControl]
@@ -159,10 +156,10 @@ This controller shall be able to induce surface eddy currents and be able to pro
 This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks to the controller and the user. The controller shall continuously monitor signals such as temperature and current to ensure the system is operating within safe limits and turn the device off whenvever the system is not. The controller shall have additional user protections to ensure that the controller cannot operate when the user desires it to be off and produce error codes to tell the user why the system is not letting them do something that could be potentially dangerous.
 
 [Software]
-This controller shall utilize a microcontroller to be able to receive and interpret signals from the thermocouples and from user interfaces. The microcontroller will enable the team to implement any necessary feedback loops digitally by coding the microcontroller rather than relying on hardware. This controller shall have preprogrammed power settings to ensure a user friendly and safe heating operation. The keypad stall switch the mode of the LCD and enter the desired temperature. The lcd shall display the desired temperature and the values of the sensors
+This controller shall utilize a microcontroller to be able to receive and interpret signals from the thermocouples and from user interfaces. The microcontroller will serve as the brain for the control system. The microcontroller will be the connection point between the data transmitted from the sensors and user inputs, and it will be programmed by the team to control the PWM signals determining the amount of current delivered to the induction coil which determines the amount of heating produced on the circular bar stock. 
 
 [PCB]
-This controller shall provide a user interface by utilizing a PCB.
+This controller shall provide a user interface by utilizing a PCB. The PCB will be connected to the microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will display the total temperature rise of the metal and the total electrical power consumed by the controller. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
 
 ### Hardware Block Diagram - John & Everyone
 ***
@@ -173,14 +170,15 @@ In the block diagram, each subsystem should be depicted by a single block. For e
 
 The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
 
+![alt text](<Block Diagram Project.drawio (1).png>)
 
 ### Operational Flow Chart - Dow & Everyone
 ***
 
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
-https://drive.google.com/file/d/1H84D3nlYPLJDFGQF3kWs2CwpNOFCGdcv/view?usp=sharing
-![flow chart...](control_system_flow_chart.drawio.png)
+![alt text](<control_system_flow_chart.drawio (2).png>)
+
 ## Atomic Subsystem Specifications
 ***
 
@@ -246,6 +244,26 @@ This subsystem is responsible for ensuring the induction heater is able to produ
 3. The heat generation subsystem shall increase the power delivered to the induction coil if the thermocouple senses temperatures below the desired temperature output based on user specified power input.
 4. The heat generation subsystem shall reduce the power delivered to the induction coil if the thermocouple senses temperatures exceeding the desired temperature output based on user specified power input.
 5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
+6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintainance temperature for induction heating [21].
+
+The heat generation subsystem primarily focuses on ensuring the output temperature is reached and providing critical information specified by the customer such as total power consumed and total temperature rise of the metal. This subsystem serves as the basis for correcting any errors in the output to best meet customer specifications. 
+
+##### Inputs and Outputs
+
+- **Inputs:**
+  - Analog voltage signal from microcontroller specifying what power level / temperature is desired
+  
+
+- **Outputs:**
+  - PWM signal from microcontroller to tell the power subsystem to increase the duty cycle to increase power delivered or decrease duty cycle to decrease power delivered to increase / decrease temperature of part respectively  
+  - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is 
+  - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is 
+
+#### Operation Flow
+Shown below is a detailed flow chart of the Heat Generation Subsystem:
+
+
+![alt text](<HeatGenerationSubsystem.drawio (1).png>)
 
 - #### Safety and Protection Controls - Aaron
 
@@ -268,30 +286,29 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
 
 ##### - Power System
 
-Output Signal : Digital Signal
+- **Input Signal**: Analog Voltage
+  **Data**: A voltage signal proportional to the total current draw, received from a current sensor located in the power system. This is used for over-current monitoring.
 
-Data: A binary signal. A logic LOW signal will be sent to the power transistors (IGBTs/MOSFETs) or a relay to immediately cutting off power to the induction coil in the event of a fault condition.
-
-Input Signal : Analog Voltage
-
-Data: A voltage signal proportional to the total current draw, received from a current sensor located in the power system. This is used for over-current monitoring.
+  **Input Signal**: Analog Voltage
+  **Data**: A voltage signal corresponding to the temperature readings from thermocouples on the IGBT's.
 
 ##### - Heat Generation Control
 
-Input Signal: Analog Voltage
+ - **Input Signal**: Analog Voltage
+  **Data**: Temperature readings from thermocouples placed on the workpiece itself as well as the water temperature sensors.
 
-Data: Temperature readings from thermocouples placed on the heatsink (monitoring IGBT temperature), the cooking surface, and the workpiece itself.
+ - **Output Signal**: Digital Interrupt
+  **Data**: A signal sent to the Heat Generation software module to command it to stop PWM signal generation in the event of a fault.
 
-Output Signal: Digital Interrupt
+##### - Embedded System (Software & PCB)
 
-Data: A signal sent to the Heat Generation software module to command it to stop PWM signal generation in the event of a fault.
+ - **Output Signal**: Error Codes
+  **Data**: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
 
-##### - Embedded System (Software & User Interface)
+#### Operation Flow
+Shown below is a detailed flow chart of the Safety and Protections Subsystem:
 
-Output Signal: Error Codes
-
-Data: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
-
+![alt text](<Safety Flowchart.drawio (1).png>)
 
 ### Embedded System - Dow and John
 
@@ -322,7 +339,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 
 #### Expected User Interaction
 
-The PCB will communicate to the user through a LCD screen and a keypad interface. The display will provide live readings of temperature, voltage, and current information. The keypad will allow the user to select the power level desired, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB indicate power on, fault, and heating activity condition.  
+The PCB will be connected to a microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will supply live data of temperature, voltage, and current to the user. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
 
 
 #### Operational Flow
@@ -335,24 +352,15 @@ The PCB will communicate to the user through a LCD screen and a keypad interface
 6. **Fault Handling:** The PCB will maintain safety through a shutdown signal and will display a fault message if overtemperature or overcurrent occasion happens.  
 7. **Data Logging:** The system will store temperature, voltage, and current data for post-test analysis.  
 
-#### PCB Design Considerations
-
-- **Isolation:** The high-voltage section (rectifier, inverter, coil connection) shall be galvanically isolated from the logic and sensor sections to prevent ground coupling and electrical hazards.  
-- **Thermal Management:** The PCB shall include large copper pours, heat sinks, and, where necessary, thermal vias to distribute heat away from switching components.  
-- **Grounding Strategy:** The design shall implement a star-ground or split-ground configuration, separating high-current and logic grounds to mitigate EMI.  
-- **Trace Sizing:** Power traces shall be sized to handle expected peak currents with minimal voltage drop, while signal traces are routed with controlled impedance where applicable.  
-- **Component Placement:** Sensitive analog components (e.g., thermocouple amplifier, voltage sensors) shall be placed away from high-frequency switching paths to minimize noise interference.  
-- **Safety Compliance:** The PCB shall adhere to NEC 665 spacing and creepage distance requirements for induction heating systems, ensuring that no live circuits are exposed.
-
 #### Subsystem Operation
 
-The PCB feeds the inverter section that powers the induction coil with AC input after converting it to DC and distributing it to the rectification stage. By using analog channels to monitor current and temperature feedback, the microcontroller—which can be installed on the same board or a separate control board—manages inverter operation. To switch the power transistors at the appropriate frequency and duty cycle, the PCB's gate driver circuits amplify microcontroller control signals.
+The power PCB will convert AC input power into DC through the rectification process; it will then distribute its power to the inverter circuit. The inverter circuit drives the induction coil under the control of PWM signals generated by the microcontroller. Gate driver circuits on the PCB amplify these control signals to switch the power transistors efficiently at the required frequency and duty cycle.
 
-Thermal sensors continuously check the PCB's temperature in the vicinity of high-power components while it is operating. The protection circuit stops energy transfer to prevent damage by asserting a shutdown signal to the control system if limits are exceeded. The microcontroller waits for additional user commands, communicates data to the LCD, and logs operational parameters.
+Throughout the operation, there will be analog feedback from temperature, voltage, and current sensors that will be continuously monitored and fed to the microcontroller’s ADC channels. The feedback data is used to continuously correct power output through a closed-loop balancing of power output, ensuring system stability. Thermal protection circuits located near high-power components automatically assert a shutdown signal if safe operating limits are exceeded. The microcontroller will communicate status information to the LCD screen, log operational data, and wait for further commands from the user once any fault has occurred and cleared.
 
 #### Subsystem “Shall” Statements
 
-1. This PCB **shall** ble nd both high- and low-voltage circuits while maintaining isolation between them. 
+1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. 
 2. This PCB **shall** support MOSFET/IGBT switching frequencies between 20 kHz and 40 kHz with minimal electromagnetic interference.  
 3. This PCB **shall** provide temperature regulation adequate enough to keep board temperatures below 105°C.  
 4. This PCB **shall** include fault detection and shutdown circuitry to prevent component failure.  
@@ -374,7 +382,30 @@ You have already estimated the resources needed to complete the solution. Now, l
 
 Develop a budget proposal with justifications for expenses associated with each subsystem. Note that the total of this budget proposal can also serve as a specification for each subsystem. After creating the budgets for individual subsystems, merge them to create a comprehensive budget for the entire solution.
 
+
+The budget of the project will need to not only meet the expenses required for any components required for the induction controller but also consider unforeseen expenses.
+
+| Components      | Estimated Cost | Link                                                                                     |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Litz Wire       | $50            | N/A                                                                                      |
+| PCB             | $50            | N/A                                                                                      |
+| Display         | $10            | [Link](https://www.digikey.com/en/products/detail/display-visions/EA-DOGM132L-5/4896710) |
+| Semiconductors  | $50            | N/A                                                                                      |
+| Microcontroller | $25            | [Link](https://www.bestmodulescorp.com/en/ht45f0059-16nsop.html)                         |
+| Capacitors      | $40            | N/A                                                                                      |
+| Encasing        | $100           | N/A                                                                                      |
+| Sensors         | $60            | [Link](https://www.digikey.com/en/products/detail/olimex-ltd/TC-K-TYPE/21662067)         |
+| Fuses           | $30            | N/A                                                                                      |
+| Contingency     | $35            | N/A                                                                                      |
+
+
 #### Controls System Budget
+Thermocouples: 
+
+Wrap-Around Pipe: https://www.tcdirect.com/product-2-180-26/Adjustable-Ring-Thermocouple
+
+Inside of Pipe: https://www.tcdirect.com/product-2-180-22/Self-Adhesive-Patch-Thermocouple
+
 
 #### Power Systems Budget
 
@@ -386,7 +417,21 @@ I'll get this done tuesday 10/13/2025.
 
 First, conduct a thorough analysis of the skills currently available within the team, and then compare these skills to the specific requirements of each subsystem. Based on this analysis, appoint a team member to take the specifications for each subsystem and generate a corresponding solution (i.e. detailed design). If there are more team members than subsystems, consider further subdividing the solutions into smaller tasks or components, thereby allowing each team member the opportunity to design a subsystem.
 
-To accomplish our projects goals, it is crucial to appoint specific members to areas they will achieve the highest success in.
+First, a thorough analysis of the skills currently available within the team was conducted, and then these skills were compared to the specific requirements of each subsystem. Based on this analysis, a team member has been appointed to take the specifications for each subsystem and generate a corresponding detailed design.
+
+The responsibilities for designing each subsystem are allocated as follows:
+
+* <u>**Power Subsystem**</u>
+    * Assigned to: **Austin**, based on his focus on power system design.
+
+* <u>**Controls Subsystem**</u>
+    * <u>**Heat Generation Control:**</u> Assigned to **Cole**, leveraging his background in Mechatronics and Controls.
+    * <u>**Safety and Protections Control:**</u> Assigned to **Aaron**, utilizing his focus in Control Systems and skills in Safety Analysis.
+
+* <u>**Embedded Subsystem**</u>
+    * <u>**Software:**</u> Assigned to **Dow**, due to his knowledge of microcontrollers and software design concepts.
+    * <u>**PCB:**</u> Assigned to **John**, based on his experience in PCB design, debugging, and testing.
+
 
 ### Timeline - Aaron
 
@@ -438,6 +483,10 @@ All sources utilized in the conceptual design that are not considered common kno
 
 [20] “Bipolar Junction Transistor (BJT).” GeeksforGeeks, 2023, https://www.geeksforgeeks.org/bipolar-junction-transistor/
 
+[21] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
+
+[22]B. Daly, “Solenoid Coil Designs & Calculations for Efficient Induction Heating,” Ambrell.com, May 20, 2019. https://www.ambrell.com/blog/solenoid-coil-designs-calculations-for-efficient-induction-heating (accessed Oct. 14, 2025).
+‌
 
 ## Statement of Contributions - Everyone
 ***
