@@ -170,14 +170,15 @@ In the block diagram, each subsystem should be depicted by a single block. For e
 
 The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
 
+![alt text](<Block Diagram Project.drawio.png>)
 
 ### Operational Flow Chart - Dow & Everyone
 ***
 
 Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
-https://drive.google.com/file/d/1H84D3nlYPLJDFGQF3kWs2CwpNOFCGdcv/view?usp=sharing
-![flow chart...](control_system_flow_chart.drawio.png)
+![alt text](<control_system_flow_chart.drawio (1).png>)
+
 ## Atomic Subsystem Specifications
 ***
 
@@ -219,15 +220,13 @@ The heat generation subsystem primarily focuses on ensuring the output temperatu
 
 - **Inputs:**
   - Analog voltage signal from microcontroller specifying what power level / temperature is desired
-  - Signal from safety subsystem to stop current flow to induction coil based on error signals 
+  
+
+- **Outputs:**
   - Analog voltage signal to microcontroller indicating error signal between desired and actual temperature
   - Analog voltage signal to microcontroller indicating to increase / decrease current supplied to induction coil as necessary 
   - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is 
   - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is 
-  
-
-- **Outputs:**
-  - Outputs the desired PWM signal switching speed to produce the correct power corresponding to desired temperature output
 
 - #### Safety and Protection Controls - Aaron
 
@@ -295,7 +294,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 - **Inputs:**
   - 120 VAC main power (via shielded connector)  
   - Sensor feedback (thermocouple signal, current, and voltage sense lines)  
-  - User input commands from the LCD buttons or keypad  
+  - User input commands from the HMI (LCD buttons or keypad)  
 
 - **Outputs:**
   - PWM gate control signals to the power switching devices (MOSFETs/IGBTs)  
@@ -306,30 +305,30 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 
 #### Expected User Interaction
 
-The PCB will be connected to a microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will supply live data of temperature, power, and current flow to the user. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
+The PCB will be connected to a microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will supply live data of temperature, voltage, and current to the user. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
 
 
 #### Operational Flow
 
-1. **Initialization:** When the PCB is powered on, it will boot up the microcontroller, performing system diagnostics, and confirm hardware readiness.  
+1. **Initialization:** When the PCB is powered on, it will boot up the microcontroller, performing self-checks, and confirm functionality.  
 2. **Standby Mode:** The system will wait for user input from a keypad or other user interface.  
 3. **Active Heating:** Upon user activation, the PWM gate will signal the inverter circuit. 
 4. **Feedback Monitoring:** Temperature, voltage, and current data will be continuously feed to the microcontroller through sensors.  
 5. **Control Adjustment:** The microcontroller will prevent heating and maintain the desired power level by adjusting the PWM duty cycle in real time. 
 6. **Fault Handling:** The PCB will maintain safety through a shutdown signal and will display a fault message if overtemperature or overcurrent occasion happens.  
-7. **Data Logging:** The system will show temperature, power, and current flow data for post-test analysis.  
+7. **Data Logging:** The system will store temperature, voltage, and current data for post-test analysis.  
 
 #### Subsystem Operation
 
 The power PCB will convert AC input power into DC through the rectification process; it will then distribute its power to the inverter circuit. The inverter circuit drives the induction coil under the control of PWM signals generated by the microcontroller. Gate driver circuits on the PCB amplify these control signals to switch the power transistors efficiently at the required frequency and duty cycle.
 
-Throughout the operation, there will be analog feedback from temperature, power, and current flow sensors that will be continuously monitored and fed to the microcontroller’s ADC channels. The feedback data is used to continuously correct power output through a closed-loop balancing of power output, ensuring system stability. Thermal protection circuits located near high-power components automatically assert a shutdown signal if safe operating limits are exceeded. The microcontroller will communicate status information to the LCD screen, and wait for further commands from the user once any fault has occurred and cleared.
+Throughout the operation, there will be analog feedback from temperature, voltage, and current sensors that will be continuously monitored and fed to the microcontroller’s ADC channels. The feedback data is used to continuously correct power output through a closed-loop balancing of power output, ensuring system stability. Thermal protection circuits located near high-power components automatically assert a shutdown signal if safe operating limits are exceeded. The microcontroller will communicate status information to the LCD screen, log operational data, and wait for further commands from the user once any fault has occurred and cleared.
 
 #### Subsystem “Shall” Statements
 
-1. This PCB **shall** incorporate both high and low voltage circuits while maintaining isolation between them. 
+1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. 
 2. This PCB **shall** support MOSFET/IGBT switching frequencies between 20 kHz and 40 kHz with minimal electromagnetic interference.  
-3. This PCB **shall** provide temperature regulation well enough to keep the PCB temperatures below 105°C.  
+3. This PCB **shall** provide temperature regulation adequate enough to keep board temperatures below 105°C.  
 4. This PCB **shall** include fault detection and shutdown circuitry to prevent component failure.  
 5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.  
 
