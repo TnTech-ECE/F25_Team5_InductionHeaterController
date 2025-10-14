@@ -234,6 +234,20 @@ The Power System will route power throughout the PCB in such a way that tap-poin
 
 
 
+
+
+
+
+
+For the color Red, the voltage level is to be a pulsating DC bus mimicking AC nature.
+For the color green, the voltage level is to be the same as the AC source, and the output is an 18 VDC source.
+For color Orange, the voltage level is to be 5 VDC.
+For color Blue, the voltage level is to be 18VDC at input.
+The rectifier will take AC and convert it to choppy pulsing DC.
+
+
+
+
 ### Control System - Cole and Aaron
 
 - #### Heat Generation - Cole
