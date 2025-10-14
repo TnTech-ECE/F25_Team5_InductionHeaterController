@@ -1,44 +1,17 @@
 # Conceptual Design
-
-This document outlines the objectives of a conceptual design. After reading your conceptual design, the reader should understand:
-
-- The fully formulated problem.
-- The fully decomposed conceptual solution.
-- Specifications for each of the atomic pieces of the solution.
-- Any additional constraints and their origins.
-- How the team will accomplish their goals given the available resources.
-
-With these guidelines, each team is expected to create a suitable document to achieve the intended objectives and effectively inform their stakeholders.
-
-
-## General Requirements for the Document
-- Submissions must be composed in Markdown format. Submitting PDFs or Word documents is not permitted.
-- All information that is not considered common knowledge among the audience must be properly cited.
-- The document should be written in the third person.
-- An introduction section should be included.
-- The latest fully formulated problem must be clearly articulated using explicit "shall" statements.
-- A comparative analysis of potential solutions must be performed
-- The document must present a comprehensive, well-specified high-level solution.
-- The solution must contain a hardware block diagram.
-- The solution must contain an operational flowchart.
-- For every atomic subsystem, a detailed functional description, inputs, outputs, and specifications must be provided.
-- The document should include an acknowledgment of ethical, professional, and standards considerations, explaining the specific constraints imposed.
-- The solution must include a refined estimate of the resources needed, including: costs, allocation of responsibilities for each subsystem, and a Gantt chart.
-
-
-## Introduction - John
+## Introduction
 ***
 
 Induction heating remains one of the most effective methods for transferring energy into conductive materials by applying time-varying magnetic fields to create eddy current. Performance, repeatability, and efficiency are all fundamentally determined by the level of control over the physical process of induction heating. The controller allows for the delivery of power, measures and adjusts temperature, and ensures operational safety. Even a well-designed induction coil cannot consistently provide precise heating performance without an efficient controller.
 
-This project addresses the challenge of by designing and prototyping a custom induction heater controller capable of heating both the internal and surface-level regions of circular metallic elements such as bar stock and standard black pipe. Unlike commercial cooktop controllers, which operate in open-loop configurations, this system will implement closed-loop control to verify temperature rise against electrical power input, gather experimental data, and allow flexible user-defined operating modes.
+This project addresses the challenge by designing and prototyping a custom induction heater controller capable of heating both the internal and surface-level regions of circular metallic elements, such as bar stock and standard black pipe. Unlike commercial cooktop controllers, which operate in open-loop configurations, this system will implement closed-loop control to verify temperature rise against electrical power input, gather experimental data, and allow flexible user-defined operating modes.
 
 The fully formulated problem is essentially to design a controller that can sense and control temperature, safely and effectively manage power delivery, and provide real-time feedback for experimental validation of induction heating performance. To meet customer requirements and IEEE safety standards, the system shall strike a balance between safety, measurement accuracy, and adaptability.
 
 This conceptual design expands upon the original project proposal by breaking down the system into functional subsystems, defining their specifications, and identifying hardware, software, and safety requirements that collectively achieve these goals. The following sections restate the detailed problem statement, present the system architecture, and outline the printed circuit board (PCB) subsystem that integrates the control and power electronics required to operate the induction heater safely and effectively.
 
 
-## Restating the Fully Formulated Problem - John
+## Restating the Fully Formulated Problem
 ***
 
 The objective of this project is to design and prototype a custom induction heating controller that can safely heat  metallic materials such as bar stock and/or regular black pipe in a repeatable fashion. This system will apply closed-loop feedback controls that uses temperature sensors to monitor and control heat production in real time, differing from typical commercial induction cooktops that depend on open-loop controls and lack temperature sensors.
@@ -53,31 +26,27 @@ The controller will act as a proof-of-concept platform that illustrates the conn
 
 ### Shall Statements and Constraint Origins
 
-| **ID** | **System Requirement ("Shall" Statement)**                                                                                                        | **Origin of Constraint**                                                                       |
+| **ID** | **System Requirements**                                                                                                        | **Origin of Constraint**                                                                       |
 | :----: | :------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------- |
-|   1    | This controller **shall** run from a standard 120 VAC source.                                                                                     | Customer specification; NEC Article 665 [4]                                                    |
-|   2    | This controller **shall** provide at least ten user-selectable power settings, allowing for adjustable heating intensity.                         | Customer specification (Lochinvar requirement)                                                 |
-|   3    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective                                               |
-|   4    | This controller **shall** have a closed-loop feedback system that changes power delivery based on temperature measurements.                       | Design enhancement identified from comparative analysis; accuracy and safety concern           |
-|   5    | This controller **shall** measure and display electrical input power and corresponding temperature rise.                                          | Customer specification; data acquisition requirement                                           |
-|   6    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment)                         |
-|   7    | This controller **shall** have overtemperature, overcurrent, and ground-fault protection to avoid hardware failure.                               | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating)            |
-|   8    | This controller **shall** use an LCD screen to show temperature readings, power usage, and operational data.                                      | Customer usability requirement; ethical and safety design concern                              |
-|   9    | This controller **shall** be housed in an insulated, non-conductive housing.                                                                      | NEC 665, Part II; ethical responsibility for user safety                                       |
-|   10   | This controller **shall** record and store temperature and power data.                                                                            | Research and educational requirement; customer specification                                   |
-|   11   | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation.                                                   | Component protection limit; derived from OMEO unit analysis; IEEE and thermal safety standards |
-|   12   | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics)                                       |
+|   1    | This controller **shall** provide at least ten user-selectable power settings, allowing for adjustable heating intensity.                         | Customer specification (Lochinvar requirement)                                                 |
+|   2    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective                                               |
+|   3    | This controller **shall** have a closed-loop feedback system that changes power delivery based on temperature measurements.                       | Design enhancement identified from comparative analysis; accuracy and safety concern           |
+|   4    | This controller **shall** measure and display electrical input power and corresponding temperature rise.                                          | Customer specification; data acquisition requirement                                           |
+|   5    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment)                         |
+|   6    | This controller **shall** have overtemperature, overcurrent, and ground-fault protection to avoid hardware failure.                               | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating)            |
+|   7    | This controller **shall** use an LCD screen to show temperature readings, power usage, and operational data.                                      | Customer usability requirement; ethical and safety design concern                              |
+|   8    | This controller **shall** be housed in an insulated, non-conductive housing.                                                                      | NEC 665, Part II; ethical responsibility for user safety                                       |
+|   9   | This controller **shall** record and store temperature and power data.                                                                            | Research and educational requirement; customer specification                                   |
+|   10   | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation.                                                   | Component protection limit; derived from OMEO unit analysis; IEEE and thermal safety standards |
+|   11   | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics)                                       |
 
 
 
 
-## Comparative Analysis of Potential Solutions - Cole
+## Comparative Analysis of Potential Solutions
 ***
 
-In this section, various potential solutions are hypothesized, design considerations are discussed, and factors influencing the selection of a solution are outlined. The chosen solution is then identified with justifications for its selection.
-
-
-open loop vs. closed loop [Cole]
+### Open loop vs. Closed loop
 
 Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker [1]. This induction cooker is designed to be used with smooth, flat bottom base cookware. The cooker utilizes an open loop control system operating based on user selected power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. A sensor would need to be budgetted for whether the team utilzes open or closed loop control becasue of this. Closed loop control requires more time to design the system to properly integrate the sensor(s) into feedback loops, but it would allow for more accurate and reliable temperature control.
 
@@ -96,7 +65,7 @@ The surface temperature is kept below 280°F while the PCB is kept under 105°F 
 
 
 
-pancake coil vs. wrapped coil for bar end heating [Cole]
+### Pancake Coil Vs. Wrapped Coil for Bar End Heating
 
 The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock due to wide range of heating behaviors pancake coils may produce [22]. More efficient coil configurations for induction heating are achieved by wrapping around the length of the circular bar stock [22]. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
 
@@ -113,10 +82,10 @@ Microcontroller Options:
 Hardware control is not desirable because the parts can have long lead times and the project does not have high voltage components that would necessitate the need for relays or similar hardware.
 
 
-POWER SYSTEM SOLUTIONS:  [Austin]
+### Power System Overview:
 
 
-1. A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the AC line, which delivers a higher average DC output voltage and smoother waveform with reduced ripple. In design, key considerations include voltage and current ratings of the diodes, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications, justifying its use despite the slightly higher component count. (ADD REFERENCES)
+1. A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the AC line, which delivers a higher average DC output voltage and smoother waveform with reduced ripple. In design, key considerations include voltage and current ratings of the diodes, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications, justifying its use despite the slightly higher component count. **(ADD REFERENCES)**
 
 2. Adequate voltage filtering in the power board of an induction heater is essential to suppress DC-link ripple, reduce switching noise, and prevent voltage overshoot that can stress semiconductor devices. The most common solution is bulk capacitive filtering, where large electrolytic or film capacitors are placed across the DC bus to provide a low impedance path for high-frequency components. This configuration smooths the DC voltage and reduces electromagnetic interference (EMI) by bypassing switching transients to ground [6]. Low-ESR and low-ESL capacitors are preferred for this purpose, as they handle high ripple currents effectively. The main advantages of capacitive filtering include its simplicity, compactness, and low cost. However, disadvantages include high inrush current during startup, aging under thermal stress, and limited attenuation of low-frequency ripple components [7].
 
@@ -141,51 +110,44 @@ Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater p
 
 
 
-## High-Level Solution - Cole
+## High-Level Solution
 ***
 
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
-[Power]
+**Power**
 This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. The controller must be able to convert the 120 VAC to 150 DC, then step that voltage down to 5 V to ensure a safe operating voltage for the microcontroller that will operate as the brain for our control system. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered since power is the time derivative of energy. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the bar stock.  
 
 
-[HeatControl]
+**HeatControl**
 This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. This controller shall interface with an induction coil wrapped around the circular bar stock to ensure magnetic isolation is achieved to prevent stray or uneven heating. The controller will utlize a closed loop feedback control system to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, the controller will recognize that input and adjust the power / current delivered to the induction coil. The controller will interface with temperature sensors to verify that the circular bar stock is being heated correctly. The controller will utilize feedback loops to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating of the circular bar stock.
 
-[SafetyControl]
+**SafetyControl**
 This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks to the controller and the user. The controller shall continuously monitor signals such as temperature and current to ensure the system is operating within safe limits and turn the device off whenvever the system is not. The controller shall have additional user protections to ensure that the controller cannot operate when the user desires it to be off and produce error codes to tell the user why the system is not letting them do something that could be potentially dangerous.
 
-[Software]
-This controller shall utilize a microcontroller to be able to receive and interpret signals from the thermocouples and from user interfaces. The microcontroller will serve as the brain for the control system. The microcontroller will be the connection point between the data transmitted from the sensors and user inputs, and it will be programmed by the team to control the PWM signals determining the amount of current delivered to the induction coil which determines the amount of heating produced on the circular bar stock. 
+**Software**
+This controller shall utilize a microcontroller to be able to receive and interpret signals from the thermocouples and from user interfaces. The microcontroller will serve as the brain for the control system. The microcontroller will be the connection point between the data transmitted from the sensors and user inputs, and it will be programmed by the team to control the PWM signals determining the amount of current delivered to the induction coil which determines the amount of heating produced on the circular bar stock.
 
-[PCB]
+**PCB**
 This controller shall provide a user interface by utilizing a PCB. The PCB will be connected to the microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will display the total temperature rise of the metal and the total electrical power consumed by the controller. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
 
-### Hardware Block Diagram - John & Everyone
+### Hardware Block Diagram
 ***
-
-Block diagrams are an excellent way to provide an overarching understanding of a system and the relationships among its individual components. Generally, block diagrams draw from visual modeling languages like the Universal Modeling Language (UML). Each block represents a subsystem, and each connection indicates a relationship between the connected blocks. Typically, the relationship in a system diagram denotes an input-output interaction.
-
-In the block diagram, each subsystem should be depicted by a single block. For each block, there should be a brief explanation of its functional expectations and associated constraints. Similarly, each connection should have a concise description of the relationship it represents, including the nature of the connection (such as power, analog signal, serial communication, or wireless communication) and any relevant constraints.
-
-The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
+A Hardware Block Diagram showing an overview of our project and its subsystems is shown below in Figure .
 
 ![alt text](<Block Diagram Project.drawio (1).png>)
 
-### Operational Flow Chart - Dow & Everyone
+### Operational Flow Chart
 ***
-
-Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
 ![alt text](<control_system_flow_chart.drawio (2).png>)
 
 ## Atomic Subsystem Specifications
 ***
 
-### Power System - Austin
+### Power System
 
-The power system is responsible for providing adequate power to all loads across the Induction Heater Controller. All the power distribution will be across a PCB. In addition to power supply, this system will ensure the power signals transferred across the power system and other systems receive smooth and stable signals without major noise or surges. 
+The power system is responsible for providing adequate power to all loads across the Induction Heater Controller. All the power distribution will be across a PCB. In addition to power supply, this system will ensure the power signals transferred across the power system and other systems receive smooth and stable signals without major noise or surges.
 
 1. The Power System shall encompass safe and proper Ports between all subsections of the project.
 2. The Power shall be able to take in a rectified DC bus and properly convert to each loads specified voltage need.
@@ -196,18 +158,17 @@ The power system is responsible for providing adequate power to all loads across
 ##### Interfaces with Other Subsystems
 The Power System subsystem acts as the catalyst. This subsystem provides power to all other systems to allow them to perform their operations. It interfaces with all other project subsystems.
 
--control system
+- **Control System**
 The control system will have a voltage signal sent to it from the IGBT voltage-monitoring circuit on the PCB.
 The control system will have a voltage signal sent to it from the IGBT current-monitoring circuit on the PCB.
 The control system will have a voltage signal sent to it from the Pulse detection circuit on the PCB.
 The control system will have a voltage signal sent to it from the IGBT Temp circuit on the PCB.
 
 
--microcontroller
+- **Microcontroller**
 The microcontroller(within the Control System) will send a digital PWM high or low signal to an IC that converts the PWM signals to Power signals to control the gates of the IGBT's located on the PCB in the Power System. Also, the Power System is supplying 5V DC power signal to the microcontroller.
 
--Embedded system
-
+- **Embedded system**
 The Power System will route power throughout the PCB in such a way that tap-points for 18 VDC and 5 VDC are available for whatever needs arise. This signal is in the form of a power signal.
 
 
@@ -228,12 +189,9 @@ For color Orange, the voltage level is to be 5 VDC.
 For color Blue, the voltage level is to be 18VDC at input.
 The rectifier will take AC and convert it to choppy pulsing DC.
 
+### Control System
 
-
-
-### Control System - Cole and Aaron
-
-- #### Heat Generation - Cole
+- #### Heat Generation
 This subsystem is responsible for ensuring the induction heater is able to produce accurate temperature outputs based on user-specified power inputs. This subsystem ensures that customer specifications are met accurately and reliably utilizing closed loop feedback.
 
 1. The heat generation subsystem shall measure the initial temperature of the bar stock using a thermocouple and store this temperature using a microcontroller.
@@ -243,18 +201,18 @@ This subsystem is responsible for ensuring the induction heater is able to produ
 5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
 6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintainance temperature for induction heating [21].
 
-The heat generation subsystem primarily focuses on ensuring the output temperature is reached and providing critical information specified by the customer such as total power consumed and total temperature rise of the metal. This subsystem serves as the basis for correcting any errors in the output to best meet customer specifications. 
+The heat generation subsystem primarily focuses on ensuring the output temperature is reached and providing critical information specified by the customer such as total power consumed and total temperature rise of the metal. This subsystem serves as the basis for correcting any errors in the output to best meet customer specifications.
 
 ##### Inputs and Outputs
 
 - **Inputs:**
   - Analog voltage signal from microcontroller specifying what power level / temperature is desired
-  
+
 
 - **Outputs:**
   - PWM signal from microcontroller to tell the power subsystem to increase the duty cycle to increase power delivered or decrease duty cycle to decrease power delivered to increase / decrease temperature of part respectively  
-  - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is 
-  - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is 
+  - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is
+  - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is
 
 #### Operation Flow
 Shown below is a detailed flow chart of the Heat Generation Subsystem:
@@ -262,8 +220,7 @@ Shown below is a detailed flow chart of the Heat Generation Subsystem:
 
 ![alt text](<HeatGenerationSubsystem.drawio.png>)
 
-- #### Safety and Protection Controls - Aaron
-
+- #### Safety and Protection Controls
 This subsystem is responsible for ensuring the induction heater operates within safe limits, protecting both the user from harm and the device from damage. It will function in the background, continuously monitoring signals such as temperature and current to ensure the system is operating within these safe limits, and if not, shuts down accordingly. It directly enforces the constraints set in ethical, professional, and standards considerations.
 
 
@@ -305,14 +262,14 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
 #### Operation Flow
 Shown below is a detailed flow chart of the Safety and Protections Subsystem:
 
-![alt text](<Safety Flowchart.drawio (1).png>)
+![alt text](<Safety Flowchart.drawio (2).png>)
 
-### Embedded System - Dow and John
+### Embedded System
 
-- #### Software Subsystem - Dow
-This software shall interpret the output of sensors, toggle the output of pins on a microcontroller, calculate the how much power to send to the induction coil, and transcribe inputs from the user to set the desired values. The software will understand the sensors via a few methods. If the sensor outputs on or off, no parsing is required. Some sensors output a voltage range which also does not usually need much more processing than scaling the voltage.  Others output a digital waveform which is on or off or specific amounts of time representing a binary value similar to a morris code of sorts. This digital waveform can be interpreted using timers and interrupts on the board. There is also digital protocols for getting information from sensors which use APIs to process what it send to the microcontroller. Once the microcontroller interprets the sensor it must convert it to some output; for instance, power or amperage. The microcontroller stall read the keypad through scanning each row and column. The keypad will change the mode of the lcd and set the deserted value depending on the buttons pressed. The sensors and desired value will be combined via a starting value which will calculate a power out to start with then using the temperature sensor value the power output will be adjusted to get a closer value to the desired value.
+- #### Software Subsystem
+This software shall interpret the output of sensors, toggle the output of pins on a microcontroller, calculate the how much power to send to the induction coil, and transcribe inputs from the user to set the desired values. The software will understand the sensors via a few methods. If the sensor outputs on or off, no parsing is required. Some sensors output a voltage range which also does not usually need much more processing than scaling the voltage.  Others output a digital waveform which is on or off for specific amounts of time representing a binary value similar to a morris code of sorts. This digital waveform can be interpreted using timers and interrupts on the board. There is also digital protocols for getting information from sensors which use APIs to process what it send to the microcontroller. Once the microcontroller interprets the sensor it must convert it to some output; for instance, power or amperage. The microcontroller stall read the keypad through scanning each row and column. The keypad will change the mode of the lcd and set the deserted value depending on the buttons pressed. The sensors and desired value will be combined via a starting value which will calculate a power out to start with then using the temperature sensor value the power output will be adjusted to get a closer value to the desired value.
 
-- #### PCB Subsystem - John
+- #### PCB Subsystem
 
 The induction heater controller is physically and electrically supported by the Printed Circuit Board (PCB) Subsystem. It brings together power electronics, sensors, a microcontroller, and a user interface component into a single unit. The PCB ensures proper routing of signals, grounding, and isolation between high- and low-voltage regions, while maintaining mechanical integrity and electromagnetic compatibility.
 
@@ -343,9 +300,9 @@ The PCB will be connected to a microcotroller that will communicate to the user 
 
 1. **Initialization:** When the PCB is powered on, it will boot up the microcontroller, performing self-checks, and confirm functionality.  
 2. **Standby Mode:** The system will wait for user input from a keypad or other user interface.  
-3. **Active Heating:** Upon user activation, the PWM gate will signal the inverter circuit. 
+3. **Active Heating:** Upon user activation, the PWM gate will signal the inverter circuit.
 4. **Feedback Monitoring:** Temperature, voltage, and current data will be continuously feed to the microcontroller through sensors.  
-5. **Control Adjustment:** The microcontroller will prevent heating and maintain the desired power level by adjusting the PWM duty cycle in real time. 
+5. **Control Adjustment:** The microcontroller will prevent heating and maintain the desired power level by adjusting the PWM duty cycle in real time.
 6. **Fault Handling:** The PCB will maintain safety through a shutdown signal and will display a fault message if overtemperature or overcurrent occasion happens.  
 7. **Data Logging:** The system will store temperature, voltage, and current data for post-test analysis.  
 
@@ -357,14 +314,14 @@ Throughout the operation, there will be analog feedback from temperature, voltag
 
 #### Subsystem “Shall” Statements
 
-1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. 
+1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them.
 2. This PCB **shall** support MOSFET/IGBT switching frequencies between 20 kHz and 40 kHz with minimal electromagnetic interference.  
 3. This PCB **shall** provide temperature regulation adequate enough to keep board temperatures below 105°C.  
 4. This PCB **shall** include fault detection and shutdown circuitry to prevent component failure.  
 5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.  
 
 
-## Ethical, Professional, and Standards Considerations - Aaron
+## Ethical, Professional, and Standards Considerations
 ***
 
 In the project proposal, each team must evaluate the broader impacts of the project on culture, society, the environment, public health, public safety, and the economy. Additionally, teams must consider relevant standards organizations that will inform the design process. A comprehensive discussion should be included on how these considerations have influenced the design. This includes detailing constraints, specifications, and practices implemented as a result, and how these address the identified considerations.
@@ -373,12 +330,7 @@ In the project proposal, each team must evaluate the broader impacts of the proj
 ## Resources
 ***
 
-You have already estimated the resources needed to complete the solution. Now, let's refine those estimates.
-
-### Budget - Aaron
-
-Develop a budget proposal with justifications for expenses associated with each subsystem. Note that the total of this budget proposal can also serve as a specification for each subsystem. After creating the budgets for individual subsystems, merge them to create a comprehensive budget for the entire solution.
-
+### Budget
 
 The budget of the project will need to not only meet the expenses required for any components required for the induction controller but also consider unforeseen expenses.
 
@@ -426,8 +378,31 @@ We will estimate a budget of $40 for the microcontroller.
 | Housing               | $65            | N/A  |
 | Heatsink              | $35            | N/A  |
 | Encasing Budget Total | $100           |
+| Components      | Estimated Cost | Link                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Microcontroller       | $40            | See Above    |
+| PCB Design      | $50            | N/A       |
+| LCD Display/Keypad | $10  | N/A
+|Microcontroller Budget Total | $100 |
 
-### Division of Labor - Aaron
+#### Encasing/Workpiece Budget
+| Components      | Estimated Cost | Link                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Housing       | $65            | N/A       |
+| Heatsink      | $35            | N/A       |
+| 1in x 6ft Iron Piping | $20            | [Link](https://www.homedepot.com/p/STZ-1-in-x-6-ft-Black-Steel-Sch-40-Cut-Pipe-PDB-P1X72/316939789?source=shoppingads&locale=en-US&srsltid=AfmBOop3FSQzS-H3pE595Qtrp1V-svMthRHS9okUbeQpmTK88EaYwic0S8g)      |
+|Encasing/Workpiece Budget Total | $100 |
+
+#### Total Project Budget
+| Components      | Estimated Cost | Link                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Controls Systems Budget       | $92            | N/A       |
+| Power Systems Budget          | $~~            | N/A       |
+| Embedded Systems Budget       | $100           | N/A       |
+| Encasing/Workpiece Budget               | $100           | N/A       |
+| Project Budget Total          | $~~ |
+
+### Division of Labor
 
 First, a thorough analysis of the skills currently available within the team was conducted, and then these skills were compared to the specific requirements of each subsystem. Based on this analysis, a team member has been appointed to take the specifications for each subsystem and generate a corresponding detailed design.
 
@@ -438,29 +413,29 @@ The responsibilities for designing each subsystem are allocated as follows:
       - Austin is assigned the task of creating the schematics for the AC-DC rectifier, DC-link filtering, the high-frequency inverter, and all power distribution rails (5 VDC, 18 VDC). He will also design the analog monitoring circuits for voltage, current, and temperature, and will select all critical power components needed to complete the circuit.
 
 * <u>**Controls Subsystem**</u>
-    * <u>**Heat Generation Control:**</u> Assigned to **Cole**, leveraging his background in Mechatronics and Controls.
+    * <u>**Heat Generation Control:**</u> Assigned to **Cole**, based on his background in Mechatronics and Controls.
+
       - Cole is responsible for designing the closed-loop control system of our induction heater. This involves selecting the appropriate thermocouples for accurate workpiece measurement and defining the control logic that uses temperature errors to change the power system's PWM signal.
     * <u>**Safety and Protections Control:**</u> Assigned to **Aaron**, utilizing his focus in Control Systems and skills in Safety Analysis.
       - Aaron will design the safety and protection control system. This includes the logic for detecting all fault conditions (overcurrent, IGBT overtemperature) and designing the interrupts that place the system into a non-operational fault state.
 
 * <u>**Embedded Subsystem**</u>
     * <u>**Software:**</u> Assigned to **Dow**, due to his knowledge of microcontrollers and software design concepts.
-      - Dow is assigned with programming the microcontroller to operate with the control systems in place. His tasks include writing drivers for reading sensor data, managing user input from the keypad, and controlling the LCD display.
+      - Dow is tasked with programming the microcontroller to operate with the control systems in place. This includes writing drivers for reading sensor data, managing user input from the keypad, and controlling the LCD display.
 
 
-    * <u>**PCB:**</u> Assigned to **John**, based on his experience in PCB design, debugging, and testing. 
+    * <u>**PCB:**</u> Assigned to **John**, based on his experience in PCB design, debugging, and testing.
       - John will be creating the physical design of all electrical components used in the project.
 
 
-### Timeline - Aaron
+### Timeline
 
-Revise the detailed timeline (Gantt chart) you created in the project proposal. Ensure that the timeline is optimized for detailed design. Address critical unknowns early and determine if a prototype needs to be constructed before the final build to validate a subsystem. Additionally, if subsystem $A$ imposes constraints on subsystem $B$, generally, subsystem $A$ should be designed first.
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-6.png)
 
-
-## References - Everyone
+## References
 ***
-
-All sources utilized in the conceptual design that are not considered common knowledge must be properly cited. Multiple references should be included.
 
 [1] “Amazon.com: OMEO Portable Induction Cooktop Hot Plate Countertop Burner 1800 Watts Induction Burner with LCD Sensor Touch, LED Display, 10 Temperature Levels, Child Safety Lock, Auto Shutoff Function: Home & Kitchen,” Amazon.com, 2025. https://www.amazon.com/OMEO-Portable-Induction-Cooktop-Function/dp/B0CQMHM9G6?th=1 (accessed Oct. 04, 2025).
 
