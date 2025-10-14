@@ -202,7 +202,39 @@ For all subsystems, formulate detailed "shall" statements. Ensure these statemen
 
 ### Power System - Austin
 
-I'll finish this up Tuesday, 10/14/2025.
+The power system is responsible for providing adequate power to all loads across the Induction Heater Controller. All the power distribution will be across a PCB. In addition to power supply, this system will ensure the power signals transferred across the power system and other systems receive smooth and stable signals without major noise or surges. 
+
+1. The Power System shall encompass safe and proper Ports between all subsections of the project.
+2. The Power shall be able to take in a rectified DC bus and properly convert to each loads specified voltage need.
+3. The Power shall be placed in a design such that all I/O ports are properly mapped and subsection Ports are clear and efficient.
+4. The Power System shall ensure the power is properly filtered to ensure stable voltage levels.
+
+
+##### Interfaces with Other Subsystems
+The Power System subsystem acts as the catalyst. This subsystem provides power to all other systems to allow them to perform their operations. It interfaces with all other project subsystems.
+
+-control system
+The control system will have a voltage signal sent to it from the IGBT voltage-monitoring circuit on the PCB.
+The control system will have a voltage signal sent to it from the IGBT current-monitoring circuit on the PCB.
+The control system will have a voltage signal sent to it from the Pulse detection circuit on the PCB.
+The control system will have a voltage signal sent to it from the IGBT Temp circuit on the PCB.
+
+
+-microcontroller
+The microcontroller(within the Control System) will send a digital PWM high or low signal to an IC that converts the PWM signals to Power signals to control the gates of the IGBT's located on the PCB in the Power System. Also, the Power System is supplying 5V DC power signal to the microcontroller.
+
+-Embedded system
+
+The Power System will route power throughout the PCB in such a way that tap-points for 18 VDC and 5 VDC are available for whatever needs arise. This signal is in the form of a power signal.
+
+
+
+
+
+![alt text](<Power Tree - Capstone.drawio.png>)
+
+
+
 
 ### Control System - Cole and Aaron
 
