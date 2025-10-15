@@ -90,7 +90,7 @@ Hardware control is not desirable because the parts can have long lead times and
 ### Power System Overview:
 
 
-1. A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the AC line, which delivers a higher average DC output voltage and smoother waveform with reduced ripple. In design, key considerations include voltage and current ratings of the diodes, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications, justifying its use despite the slightly higher component count. **(ADD REFERENCES)**
+1. A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the AC line, which delivers a higher average DC output voltage and smoother waveform with reduced ripple. Compared to half-wave designs, the full-bridge configuration uses both halves of the AC waveform, resulting in more continuous conduction and a higher transformer utilization factor (TUF), which contributes to improved power efficiency and output quality [24]. Additionally, the bridge rectifier produces a smaller ripple for a given load and requires less filtering, enhancing overall DC smoothness [23]. In design, key considerations include voltage and current ratings of the diodes, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications, justifying its use despite the slightly higher component count [25].
 
 2. Adequate voltage filtering in the power board of an induction heater is essential to suppress DC-link ripple, reduce switching noise, and prevent voltage overshoot that can stress semiconductor devices. The most common solution is bulk capacitive filtering, where large electrolytic or film capacitors are placed across the DC bus to provide a low impedance path for high-frequency components. This configuration smooths the DC voltage and reduces electromagnetic interference (EMI) by bypassing switching transients to ground [6]. Low-ESR and low-ESL capacitors are preferred for this purpose, as they handle high ripple currents effectively. The main advantages of capacitive filtering include its simplicity, compactness, and low cost. However, disadvantages include high inrush current during startup, aging under thermal stress, and limited attenuation of low-frequency ripple components [7].
 
@@ -329,8 +329,38 @@ Throughout the operation, there will be analog feedback from temperature, voltag
 ## Ethical, Professional, and Standards Considerations
 ***
 
-In the project proposal, each team must evaluate the broader impacts of the project on culture, society, the environment, public health, public safety, and the economy. Additionally, teams must consider relevant standards organizations that will inform the design process. A comprehensive discussion should be included on how these considerations have influenced the design. This includes detailing constraints, specifications, and practices implemented as a result, and how these address the identified considerations.
+The design and prototyping of an induction heater controller has a crucial need for ethical engineering practices, professional responsibilities, and adherence to industry standards. These considerations are important to ensure the system's safety, reliability, and societal impact.
 
+#### Public Health and Safety
+The main priority when it comes to ethics and professional responsibility is the users safety. The use of regulatory standards is crucial to prevent harm and damage to the system.
+
+**Electrical Safety**: The design will adhere to NEC Article 427 [5] and NEC Article 665 [4], which govern fixed electric heating equipment and induction heating equipment, respectively.
+
+Key considerations from these two codes include:
+
+ - Ensuring the "OFF" switch physically disconnects all ungrounded conductors, preventing automatic energization [5].
+
+ - Limiting ground fault current to prevent more than 50 volts to ground on accessible parts [4].
+
+ - Implementing a dead-front construction for the control panel to protect users from live circuits [4].
+
+**Thermal Safety**: The controller will incorporate multiple safety features to prevent overheating of both the workpiece and the device itself.
+
+ - Monitoring the IGBT heatsink temperature and triggering a fault state shutdown if it exceeds 105°C (221°F) [2].
+
+ - Shutting down if the heating surface temperature exceeds 280°F (138°C)[2].
+
+ - Preventing the workpiece from exceeding 1200°F (649°C) based on an IEEE recommended maximum maintenance temperature for induction heating [21].
+
+**User Notification**: An important ethical consideration for induction cooktops is the lack of visible heating. The controller will address this by providing clear user feedback through an LCD screen and status LEDs, indicating power on, heating activity, and error codes if applicable. This ensures users are aware of the system's current state, preventing accidental burns or misuse.
+
+**Enclosure Design**: The system will be housed in an insulated, non-conductive encasing to protect users from the high-frequency circuits inside, in accordance with NEC 665, Part II [8].
+
+**Improved Efficiency**: Induction heating is inherently more energy-efficient than traditional resistive heating methods, as it directly transfers energy to the material. The controller's ability to precisely control power delivery and heating profiles will further optimize efficiency, reducing energy waste and operating costs
+
+**Ethical Engineering Practices:** The project explicitly commits to adhering to ethical engineering practices, including the IEEE Code of Ethics. This includes transparent reporting of costs, ensuring the system operates within intended temperatures, and preventing excessive power draw.
+
+To summarize, the induction heater controller's design process is built off of a foundation of ethical, professional, and standards-based considerations. These aspects are integrated into every layer of the design, from the functional requirements and safety protocols to the selection of components and user interface, ensuring a responsible and high-performing solution.
 
 ## Resources
 ***
@@ -361,7 +391,7 @@ The Controls System budget is based on the need for sensors measuring temperatur
 | Power System Budget Total | *Total Price*                      |
 
 #### Embedded Systems Budget
-Based on our specifcations, we are split between multiple Microcontrollers that range from $14.85-76.09. These are not the only ones being considered.
+Based on our specifcations, we are split between multiple Microcontrollers that range from $9.00-76.09. These are not the only ones being considered.
 Microcontroller Options:
  - [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) DAC and ADC for [$15.56](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585)
  - [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-L476RG/) DAC and ADC for [$14.85](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711)
@@ -406,6 +436,23 @@ We will estimate a budget of $40 for the microcontroller.
 | Embedded Systems Budget   | $100           | N/A  |
 | Encasing/Workpiece Budget | $100           | N/A  |
 | Project Budget Total      | $~~            |
+
+#### Encasing/Workpiece Budget
+| Components      | Estimated Cost | Link                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Housing       | $65            | N/A       |
+| Heatsink      | $35            | N/A       |
+| 1in x 6ft Iron Piping | $20            | [Link](https://www.homedepot.com/p/STZ-1-in-x-6-ft-Black-Steel-Sch-40-Cut-Pipe-PDB-P1X72/316939789?source=shoppingads&locale=en-US&srsltid=AfmBOop3FSQzS-H3pE595Qtrp1V-svMthRHS9okUbeQpmTK88EaYwic0S8g)      |
+|Encasing/Workpiece Budget Total | $120 |
+
+#### Total Project Budget
+| Components      | Estimated Cost | Link                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Controls Systems Budget       | $92            | N/A       |
+| Power Systems Budget          | $~~            | N/A       |
+| Embedded Systems Budget       | $100           | N/A       |
+| Encasing/Workpiece Budget               | $120           | N/A       |
+| Project Budget Total          | $~~ |
 
 ### Division of Labor
 
@@ -485,6 +532,12 @@ The responsibilities for designing each subsystem are allocated as follows:
 [21] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
 
 [22]B. Daly, “Solenoid Coil Designs & Calculations for Efficient Induction Heating,” Ambrell.com, May 20, 2019. https://www.ambrell.com/blog/solenoid-coil-designs-calculations-for-efficient-induction-heating (accessed Oct. 14, 2025).
+
+[23] Electronics-Tutorials. “Full Wave Rectifier & Bridge Rectifier Theory.” https://www.electronics-tutorials.ws/diode/diode_6.html
+
+[24] Visintini, R. “Rectifiers.” CERN Accelerator School, 2007. https://cds.cern.ch/record/987551/files/p133.pdf
+
+[25] ScienceDirect. “Bridge Rectifier — an Overview.” https://www.sciencedirect.com/topics/engineering/bridge-rectifier
 ‌
 
 ## Statement of Contributions - Everyone
