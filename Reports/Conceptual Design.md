@@ -420,13 +420,14 @@ We will estimate a budget of $40 for the microcontroller.
 | LCD Display/Keypad           | $10            | N/A                                                                                      |
 | Microcontroller Budget Total | $100           |
 
+
 #### Encasing/Workpiece Budget
 | Components                      | Estimated Cost | Link                                                                                                                                                                                                    |
 | ------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Housing                         | $65            | N/A                                                                                                                                                                                                     |
 | Heatsink                        | $35            | N/A                                                                                                                                                                                                     |
 | 1in x 6ft Iron Piping           | $20            | [Link](https://www.homedepot.com/p/STZ-1-in-x-6-ft-Black-Steel-Sch-40-Cut-Pipe-PDB-P1X72/316939789?source=shoppingads&locale=en-US&srsltid=AfmBOop3FSQzS-H3pE595Qtrp1V-svMthRHS9okUbeQpmTK88EaYwic0S8g) |
-| Encasing/Workpiece Budget Total | $100           |
+| Encasing/Workpiece Budget Total | $120           |
 
 #### Total Project Budget
 | Components                | Estimated Cost | Link |
@@ -434,25 +435,8 @@ We will estimate a budget of $40 for the microcontroller.
 | Controls Systems Budget   | $92            | N/A  |
 | Power Systems Budget      | $~~            | N/A  |
 | Embedded Systems Budget   | $100           | N/A  |
-| Encasing/Workpiece Budget | $100           | N/A  |
+| Encasing/Workpiece Budget | $120           | N/A  |
 | Project Budget Total      | $~~            |
-
-#### Encasing/Workpiece Budget
-| Components      | Estimated Cost | Link                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Housing       | $65            | N/A       |
-| Heatsink      | $35            | N/A       |
-| 1in x 6ft Iron Piping | $20            | [Link](https://www.homedepot.com/p/STZ-1-in-x-6-ft-Black-Steel-Sch-40-Cut-Pipe-PDB-P1X72/316939789?source=shoppingads&locale=en-US&srsltid=AfmBOop3FSQzS-H3pE595Qtrp1V-svMthRHS9okUbeQpmTK88EaYwic0S8g)      |
-|Encasing/Workpiece Budget Total | $120 |
-
-#### Total Project Budget
-| Components      | Estimated Cost | Link                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Controls Systems Budget       | $92            | N/A       |
-| Power Systems Budget          | $~~            | N/A       |
-| Embedded Systems Budget       | $100           | N/A       |
-| Encasing/Workpiece Budget               | $120           | N/A       |
-| Project Budget Total          | $~~ |
 
 ### Division of Labor
 
@@ -556,3 +540,23 @@ Atomic Subsystem Specifications - Heat Generation Control - [Cole]
 Atomic Subsystem Specifications - Safety and Protections Control - [Aaron]
 High-Level Solution - Software - [Dow]
 clear
+
+```
+
+#### Encasing/Workpiece Budget
+| Components                      | Estimated Cost | Link                                                                                                                                                                                                    |
+| ------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Housing                         | $65            | N/A                                                                                                                                                                                                     |
+| Heatsink                        | $35            | N/A                                                                                                                                                                                                     |
+| 1in x 6ft Iron Piping           | $20            | [Link](https://www.homedepot.com/p/STZ-1-in-x-6-ft-Black-Steel-Sch-40-Cut-Pipe-PDB-P1X72/316939789?source=shoppingads&locale=en-US&srsltid=AfmBOop3FSQzS-H3pE595Qtrp1V-svMthRHS9okUbeQpmTK88EaYwic0S8g) |
+| Encasing/Workpiece Budget Total | $100           |
+
+#### Total Project Budget
+| Components                | Estimated Cost | Link |
+| ------------------------- | -------------- | ---- |
+| Controls Systems Budget   | $92            | N/A  |
+| Power Systems Budget      | $~~            | N/A  |
+| Embedded Systems Budget   | $100           | N/A  |
+| Encasing/Workpiece Budget | $100           | N/A  |
+| Project Budget Total      | $~~            |
+```just in case I broken the buget table
