@@ -183,11 +183,17 @@ Please view the Power Tree below to see how the power will be distributed to acr
 ![alt text](<Power Tree - Capstone.drawio (2).png>)
 
 
-For the color Red, the voltage level is to be a pulsating DC bus mimicking AC nature.
-For the color green, the voltage level is to be the same as the AC source, and the output is an 18 VDC source.
+For the color Red, the voltage level is to be a DC HV bus.
+For the color green, the voltage level is to be the HV DC bus upon input, but through this section, the DC goes to High-frequency AC and then is stepped down to low AC before recitification to DC once more.
 For color Orange, the voltage level is to be 5 VDC.
 For color Blue, the voltage level is to be 18VDC at input.
-The rectifier will take AC and convert it to choppy pulsing DC.
+The rectifier will take the AC and rectify it to choppy DC before filtering.
+
+- **Overview of Power System Functionality**
+
+To start, the Power system recieves AC power from the wall. Next, the rectification process begins as AC power from a wall is not useful in our application. Our main circuit follows the rectification path and then through some smoothing capacitors to provide smooth DC across the induction coil. For the design, there is a coil, CT(Current Transformer), and IGBT's in series together. The IGBT's simulate AC at high frequency across the induction coil.
+
+The other circuit branch takes in the HV DC and delivers it to the Off-line SMPS ( switched-mode power supply) which then in turn uses the internal transistor to switch the DC to AC high frequency. It is then fed to an AC step-down transformer to 18 VAC. On the secondary side, the AC is rectified to DC and smoothed once again to receive 18 VDC that is electrically-isolated from the main circuit supply. The 18 VDC then is also branched and fed to a DC-DC converter or regulator that reduces the voltage to 5 volts. ALl equipment can be tapped from these points to receive power to operate.
 
 ### Control System
 
@@ -378,12 +384,21 @@ The Controls System budget is based on the need for sensors measuring temperatur
 
 | Components                | Estimated Cost                     | Link   |
 | ------------------------- | ---------------------------------- | ------ |
-| Litz Wire                 | $50 ( Some Provided by Lochinvar ) | N/A    |
-| *Insert component Here*   | *Price*                            | *Link* |
-| *Insert component Here*   | *Price*                            | *Link* |
-| *Insert component Here*   | *Price*                            | *Link* |
-| *Insert component Here*   | *Price*                            | *Link* |
-| Power System Budget Total | *Total Price*                      |
+| Litz Wire                 | $50 ( Some Provided by Lochinvar ) | [Link] |
+| Current Transformer       | $10                                | [Link](https://www.mouser.com/c/power/transformers/current-transformers/)|
+| Capacitors                | $10                                | [Link](https://www.mouser.com/c/?q=Capacitors)|
+| Inductors                 | $8                                 | [Link](https://www.mouser.com/c/?q=inductors)   |
+| Diodes                    | $4                                 | [Link](https://www.mouser.com/c/?q=diodes%2020%20A)|
+| Zener Diodes              | $2                                 | [Link](https://www.mouser.com/c/semiconductors/discrete-semiconductors/diodes-rectifiers/zener-diodes/?orgKeyword=zener%20diode)|
+| PWM Gate Driver IC        | $5                                 | [Link](https://www.mouser.com/c/?q=PWM%20Gate%20Driver%20IC)|
+| Cooldown Fan              |  $5                                | N/A   |
+| VDC regulators            |  $20                               | [Link](https://www.mouser.com/c/?q=DC%20regulators%2018%20V%20-%205V)|
+| AC HF transformer         |  $10                               | N/A |
+| IBGT Transistors          |  $12                               | [Link](https://www.mouser.com/c/?q=IGBT%20transistors)|
+| SMPS control IC           |  $3                                | [Link](https://www.mouser.com/c/?q=Offline%20SMPS%20control%20IC)|
+| Resistors (Power/Signal)  |  $5                                | [Link](https://www.mouser.com/c/passive-components/resistors/?orgKeyword=resistors)|
+| PCB connectors            |  $10                               |  N/A  |
+| Power System Budget Total |  $154     - tentative to change    |  N/A  |              
 
 #### Embedded Systems Budget
 Based on our specifcations, we are split between multiple Microcontrollers that range from $14.85-76.09. These are not the only ones being considered.
@@ -415,10 +430,10 @@ We will estimate a budget of $40 for the microcontroller.
 | Components      | Estimated Cost | Link                                              |
 | --------------- | -------------- | ---------------------------------------------------------------------------------------- |
 | Controls Systems Budget       | $92            | N/A       |
-| Power Systems Budget          | $~~            | N/A       |
+| Power Systems Budget          | $154           | N/A       |
 | Embedded Systems Budget       | $100           | N/A       |
 | Encasing/Workpiece Budget               | $120           | N/A       |
-| Project Budget Total          | $~~ |
+| Project Budget Total          | $466 |
 
 ### Division of Labor
 
