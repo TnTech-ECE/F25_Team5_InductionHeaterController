@@ -70,7 +70,7 @@ The surface temperature is kept below 280°F while the PCB is kept under 105°F 
 The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock due to wide range of heating behaviors pancake coils may produce [22]. More efficient coil configurations for induction heating are achieved by wrapping around the length of the circular bar stock [22]. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
 
 
-Microcontroller and PCB stuff which one [Dow] and [John]
+### Microcontroller and PCB stuff which one [Dow] and [John]
 Microcontroller Options:
 
 | Stat            | [ESP32-C61](https://www.espressif.com/en/products/devkits) for [$9.00](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C61-DEVKITC-1-N8R2/26763163?s=N4IgTCBcDaIKIGUAKBmMBaAwgNgIzoBEBTANwGkBLAF03VxAF0BfIA) | [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) for [$15.56](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585) | [ST-Nucleo-L476RG](https://os.mbed.com/platforms/ST-Nucleo-L476RG/) for [$14.85](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711) | [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA) | [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA) |
@@ -109,7 +109,8 @@ By contrast, Bipolar Junction Transistors (BJTs), though once popular, are now l
 
 Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater power board due to their superior performance in medium-to-high power applications, where both high voltage and current handling are required. They provide a strong balance between conduction efficiency and switching losses, offering reliable operation at moderate frequencies typical of induction heating systems. Additionally, IGBTs exhibit robust thermal characteristics, high ruggedness under transient conditions, and a favorable cost-to-performance ratio compared to MOSFETs or BJTs. These characteristics make them the optimal choice for achieving efficient energy transfer, stable operation, and long-term durability in induction heating environments.
 
-
+## Water Heating System
+There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire being even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil.For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced.  
 
 
 
@@ -387,23 +388,23 @@ The Controls System budget is based on the need for sensors measuring temperatur
 
 #### Power Systems Budget
 
-| Components                | Estimated Cost                     | Link   |
-| ------------------------- | ---------------------------------- | ------ |
-| Litz Wire                 | $50 ( Some Provided by Lochinvar ) | [Link] |
-| Current Transformer       | $10                                | [Link](https://www.mouser.com/c/power/transformers/current-transformers/)|
-| Capacitors                | $10                                | [Link](https://www.mouser.com/c/?q=Capacitors)|
-| Inductors                 | $8                                 | [Link](https://www.mouser.com/c/?q=inductors)   |
-| Diodes                    | $4                                 | [Link](https://www.mouser.com/c/?q=diodes%2020%20A)|
-| Zener Diodes              | $2                                 | [Link](https://www.mouser.com/c/semiconductors/discrete-semiconductors/diodes-rectifiers/zener-diodes/?orgKeyword=zener%20diode)|
-| PWM Gate Driver IC        | $5                                 | [Link](https://www.mouser.com/c/?q=PWM%20Gate%20Driver%20IC)|
-| Cooldown Fan              |  $5                                | N/A   |
-| VDC regulators            |  $20                               | [Link](https://www.mouser.com/c/?q=DC%20regulators%2018%20V%20-%205V)|
-| AC HF transformer         |  $10                               | N/A |
-| IBGT Transistors          |  $12                               | [Link](https://www.mouser.com/c/?q=IGBT%20transistors)|
-| SMPS control IC           |  $3                                | [Link](https://www.mouser.com/c/?q=Offline%20SMPS%20control%20IC)|
-| Resistors (Power/Signal)  |  $5                                | [Link](https://www.mouser.com/c/passive-components/resistors/?orgKeyword=resistors)|
-| PCB connectors            |  $10                               |  N/A  |
-| Power System Budget Total |  $154     - tentative to change    |  N/A  |              
+| Components                | Estimated Cost                     | Link                                                                                                                             |
+| ------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Litz Wire                 | $50 ( Some Provided by Lochinvar ) | [Link]                                                                                                                           |
+| Current Transformer       | $10                                | [Link](https://www.mouser.com/c/power/transformers/current-transformers/)                                                        |
+| Capacitors                | $10                                | [Link](https://www.mouser.com/c/?q=Capacitors)                                                                                   |
+| Inductors                 | $8                                 | [Link](https://www.mouser.com/c/?q=inductors)                                                                                    |
+| Diodes                    | $4                                 | [Link](https://www.mouser.com/c/?q=diodes%2020%20A)                                                                              |
+| Zener Diodes              | $2                                 | [Link](https://www.mouser.com/c/semiconductors/discrete-semiconductors/diodes-rectifiers/zener-diodes/?orgKeyword=zener%20diode) |
+| PWM Gate Driver IC        | $5                                 | [Link](https://www.mouser.com/c/?q=PWM%20Gate%20Driver%20IC)                                                                     |
+| Cooldown Fan              | $5                                 | N/A                                                                                                                              |
+| VDC regulators            | $20                                | [Link](https://www.mouser.com/c/?q=DC%20regulators%2018%20V%20-%205V)                                                            |
+| AC HF transformer         | $10                                | N/A                                                                                                                              |
+| IBGT Transistors          | $12                                | [Link](https://www.mouser.com/c/?q=IGBT%20transistors)                                                                           |
+| SMPS control IC           | $3                                 | [Link](https://www.mouser.com/c/?q=Offline%20SMPS%20control%20IC)                                                                |
+| Resistors (Power/Signal)  | $5                                 | [Link](https://www.mouser.com/c/passive-components/resistors/?orgKeyword=resistors)                                              |
+| PCB connectors            | $10                                | N/A                                                                                                                              |
+| Power System Budget Total | $154     - tentative to change     | N/A                                                                                                                              |
 
 #### Embedded Systems Budget
 Based on our specifcations, we are split between multiple Microcontrollers that range from $9.00-76.09. These are not the only ones being considered.
@@ -445,13 +446,13 @@ We will estimate a budget of $40 for the microcontroller.
 | Encasing/Workpiece Budget Total | $120           |
 
 #### Total Project Budget
-| Components      | Estimated Cost | Link                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Controls Systems Budget       | $92            | N/A       |
-| Power Systems Budget          | $154           | N/A       |
-| Embedded Systems Budget       | $100           | N/A       |
-| Encasing/Workpiece Budget     | $120           | N/A       |
-| Project Budget Total          | $466 |
+| Components                | Estimated Cost | Link |
+| ------------------------- | -------------- | ---- |
+| Controls Systems Budget   | $92            | N/A  |
+| Power Systems Budget      | $154           | N/A  |
+| Embedded Systems Budget   | $100           | N/A  |
+| Encasing/Workpiece Budget | $120           | N/A  |
+| Project Budget Total      | $466           |
 
 ### Division of Labor
 
