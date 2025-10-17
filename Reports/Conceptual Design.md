@@ -108,9 +108,10 @@ Metal–Oxide–Semiconductor Field-Effect Transistors (MOSFETs) offer faster sw
 By contrast, Bipolar Junction Transistors (BJTs), though once popular, are now less favored for modern induction heating systems due to their slow switching and complex base drive requirements. BJTs require significant base current drive, reducing system efficiency and complicating circuit design [18]. They also exhibit longer storage times during saturation and are more prone to thermal instability and current hogging when used in parallel configurations [19]. Nonetheless, BJTs offer ruggedness and low saturation voltage under certain conditions, making them suitable for low-cost, lower-frequency systems where simplicity and robustness are prioritized [20]. Overall, IGBTs provide the best compromise for high-power applications, MOSFETs excel in high-frequency designs, and BJTs remain viable only for basic or legacy systems with limited frequency demands.
 
 Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater power board due to their superior performance in medium-to-high power applications, where both high voltage and current handling are required. They provide a strong balance between conduction efficiency and switching losses, offering reliable operation at moderate frequencies typical of induction heating systems. Additionally, IGBTs exhibit robust thermal characteristics, high ruggedness under transient conditions, and a favorable cost-to-performance ratio compared to MOSFETs or BJTs. These characteristics make them the optimal choice for achieving efficient energy transfer, stable operation, and long-term durability in induction heating environments.
-
+## Electronic Housing System 
+The housing needs to splash resistant so the options are a typical electrical Box or a custom housing. The electrical Box would be simpler to implement.
 ## Water Heating System
-There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire being even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil.For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced.  
+There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands [NEC 210.19b note No. 2]. 
 
 
 
@@ -136,6 +137,12 @@ This controller shall utilize a microcontroller to be able to receive and interp
 
 **PCB**
 This controller shall provide a user interface by utilizing a PCB. The PCB will be connected to the microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will display the total temperature rise of the metal and the total electrical power consumed by the controller. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
+
+**Electronic Housing**
+This housing shall be water resistant so if a leak happens the appliance voltage and current does not short. The housing shall contain all all the electronics except the coil and pipe so that the water is separated.
+
+**Water Heating**
+The water shall be heated while flowing without a reservoir. Coil shall wrap around the pipe and be connected to the power board. The Pipe shall have a Steel A rating greater than 400 or be iron so that the pipe is ferromagnetic. The Pipe shall connect to standard housing water pipes and the connectors shall be temperature resistant and water tight. The Pipe's flow rate stall be controlled with a manfully operated value.
 
 ### Hardware Block Diagram
 ***
@@ -305,7 +312,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 
 #### Expected User Interaction
 
-The PCB will be connected to a microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will supply live data of temperature, voltage, and current to the user. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
+The PCB will be connected to a microcontroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will supply live data of temperature, voltage, and current to the user. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microcontroller, fault, and heating activity condition.  
 
 
 #### Operational Flow
@@ -330,8 +337,38 @@ Throughout the operation, there will be analog feedback from temperature, voltag
 2. This PCB **shall** support MOSFET/IGBT switching frequencies between 20 kHz and 40 kHz with minimal electromagnetic interference.  
 3. This PCB **shall** provide temperature regulation adequate enough to keep board temperatures below 105°C.  
 4. This PCB **shall** include fault detection and shutdown circuitry to prevent component failure.  
-5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.  
+5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability. 
+6. This Microcontroller **shall** not exceed 100°C during operation.
+7. This Microcontroller **shall** control the switching frequency of the power board.
+8. This Microcontroller **shall** output PWM and toggle its pins.
+9. This Microcontroller **shall** interpret sensors.
+10. This Microcontroller **shall** have Analog to Digital converting capabilities.
+11. This Microcontroller **shall** stall interpret user interface.
+12. This Microcontroller **shall** stall interface with an LCD. 
+ 
+### Electronic Housing System
 
+#### Functional Overview
+The Housing shall protect the sensitive electronics from the elements. The Housing will have water resistant ports for the power board and sensors so that the water can be safely heated at the high power. The shall have water resistant ports for the LCD and user interface to pass through.
+
+#### Subsystem “Shall” Statements
+1. This Housing **shall** be water resistant to prevent damage and harm if a leak occurs
+2. This Housing **shall** have water resistance port for the LCD and user interface to be on the outside of the housing.
+3. This Housing **shall** be large enough to fit the power board, microcontroller and input and board sensors.
+4. This Housing **shall** have water resistant ports for the coil to be outside the housing.
+
+### Water Heating System
+
+#### Functional Overview
+The Coil will receive power from the power board to heat the pipe which will heat the water. The pipe will be insulated so less heat is wasted and more heat ends up in the water. The insulation will reduce the amount of power that will need to be sent since less heat is lost. The Pipe will be equipped with sensors which will have at least flow and temperature sensors. 
+
+#### Subsystem “Shall” Statements
+1. This Coil **shall** be thick enough to not over heat from power to heat moving water
+2. This Pipe **shall** be ferromagnetic to be heated by the coil.
+3. This Connectors **shall** work with standard water pipe.
+4. This Coil **shall** connect to the power board and receive a current at a high frequency.
+5. This Pipe and Coil **shall** be insulated so that heat is not wasted.
+6. This Pipe **shall** be able to be compatible with different sensors for controlling properties of the water
 
 ## Ethical, Professional, and Standards Considerations
 ***
