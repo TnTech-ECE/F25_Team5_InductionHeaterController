@@ -29,17 +29,15 @@ The controller will act as a proof-of-concept platform that illustrates the conn
 
 | **ID** | **System Requirements**                                                                                                                           | **Origin of Constraint**                                                                       |
 | :----: | :------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------- |
-|   1    | This controller **shall** provide at least ten user-selectable power settings, allowing for adjustable heating intensity.                         | Customer specification (Lochinvar requirement)                                                 |
+|   1    | This controller **shall** provide multiple power settings, allowing for adjustable heating levels.                         | Customer specification (Lochinvar requirement)                                                 |
 |   2    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective                                               |
-|   3    | This controller **shall** have a closed-loop feedback system that changes power delivery based on temperature measurements.                       | Design enhancement identified from comparative analysis; accuracy and safety concern           |
-|   4    | This controller **shall** measure and display electrical input power and corresponding temperature rise.                                          | Customer specification; data acquisition requirement                                           |
-|   5    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment)                         |
-|   6    | This controller **shall** have overtemperature, overcurrent, and ground-fault protection to avoid hardware failure.                               | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating)            |
-|   7    | This controller **shall** use an LCD screen to show temperature readings, power usage, and operational data.                                      | Customer usability requirement; ethical and safety design concern                              |
-|   8    | This controller **shall** be housed in an insulated, non-conductive housing.                                                                      | NEC 665, Part II; ethical responsibility for user safety                                       |
-|   9    | This controller **shall** record and store temperature and power data.                                                                            | Research and educational requirement; customer specification                                   |
-|   10   | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation.                                                   | Component protection limit; derived from OMEO unit analysis; IEEE and thermal safety standards |
-|   11   | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics)                                       |
+|   3    | This controller **shall** measure and display electrical input power and corresponding temperature rise.                                          | Customer specification; data acquisition requirement                                           |
+|   4    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment)                         |
+|   5    | This controller **shall** have over heating and overcurrent faulty protection to avoid hardware failure.                               | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating)            |
+|   6    | This controller **shall**  have a LCD screen to show temperature, power, and current flow data.                                      | Customer usability requirement; ethical and safety design concern                              |
+|   7    | This controller **shall** be housed in an insulated, non-conductive housing.                                                                      | NEC 665, Part II; ethical responsibility for user safety                                       |
+|   8   | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation.                                                   | Component protection limit; derived from OMEO unit analysis; IEEE and thermal safety standards |
+|   9   | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics)                                       |
 
 
 
@@ -291,7 +289,7 @@ This software shall interpret the output of sensors, toggle the output of pins o
 
 - #### PCB Subsystem
 
-The induction heater controller is physically and electrically supported by the Printed Circuit Board (PCB) Subsystem. It brings together power electronics, sensors, a microcontroller, and a user interface component into a single unit. The PCB ensures proper routing of signals, grounding, and isolation between high- and low-voltage regions, while maintaining mechanical integrity and electromagnetic compatibility.
+The induction heater controller is physically and electrically supported by the Printed Circuit Board (PCB) Subsystem. It unites power electronics, sensors, embedded systems, and user interface components all together into a single component. The PCB has to gurantee correct routing of signals, comunication of components, grounding of wires, and isolation between voltage regions, otherwise failure is inbound. The PCB’s design directly impacts how accurately the controller can function and do what's is sole purpose is.
 
 #### Functional Overview
 
@@ -309,23 +307,9 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
   - Digital data to the LCD display (SPI or I²C communication)  
   - Safety disable signals to cut power during fault conditions  
 
-
-
 #### Expected User Interaction
 
-The PCB will be connected to a microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will supply live data of temperature, power, and current flow to the user. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.   
-
-
-#### Operational Flow
-
-1. **Initialization:** When the PCB is powered on, it will boot up the microcontroller, performing self-checks, and confirm functionality.  
-2. **Standby Mode:** The system will wait for user input from a keypad or other user interface.  
-3. **Active Heating:** Upon user activation, the PWM gate will signal the inverter circuit.
-4. **Feedback Monitoring:** Temperature, voltage, and current data will be continuously feed to the microcontroller through sensors.  
-5. **Control Adjustment:** The microcontroller will prevent heating and maintain the desired power level by adjusting the PWM duty cycle in real time.
-6. **Fault Handling:** The PCB will maintain safety through a shutdown signal and will display a fault message if overtemperature or overcurrent occasion happens.  
-7. **Data Logging:** The system will store temperature, voltage, and current data for post-test analysis.  
-
+ The PCB will connect to a microcontroller; from there the microcontroller will communicate with the user through an LCD screen with a keypad interface for user input.  The keypad will be the main source of communication for the user to the microcontroller.  The keypad will allow the user to start and stop the heating process. The LCD screen will prompt the user different modes of functionality, specifically selecting the power level for the induction heater.  Once a power level is selected, Live data will be supplied to the user through the LCD screen; this includes Temperature, power, and current flow values.  There will also be LEDs on the power PCB, prompting to the user that the Power PCB is getting power, the microcontroller is on, the heating process status, as well as a fault LED that blinks for any error occurred.   
 
 #### Subsystem Operation
 
@@ -333,18 +317,16 @@ The power PCB will convert AC input power into DC through the rectification proc
 
 #### Subsystem “Shall” Statements
 
-1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them.
-2. This PCB **shall** support MOSFET/IGBT switching frequencies between 20 kHz and 40 kHz with minimal electromagnetic interference.  
-3. This PCB **shall** provide temperature regulation adequate enough to keep board temperatures below 105°C.  
-4. This PCB **shall** include fault detection and shutdown circuitry to prevent component failure.  
-5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.
-6. This Microcontroller **shall** not exceed 100°C during operation.
-7. This Microcontroller **shall** control the switching frequency of the power board.
-8. This Microcontroller **shall** output PWM and toggle its pins.
-9. This Microcontroller **shall** interpret sensors.
-10. This Microcontroller **shall** have Analog to Digital converting capabilities.
-11. This Microcontroller **shall** stall interpret user interface.
-12. This Microcontroller **shall** stall interface with an LCD.
+1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them.  
+2. This PCB **shall** include fault detection and shutdown circuitry to prevent hardware failure.  
+3. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.
+4. This Microcontroller **shall** not exceed 100°C during operation.
+5. This Microcontroller **shall** control the switching frequency of the power board.
+6. This Microcontroller **shall** output PWM and toggle its pins.
+7. This Microcontroller **shall** interpret sensors.
+8.  This Microcontroller **shall** have Analog to Digital converting capabilities.
+9.  This Microcontroller **shall** stall interpret user interface.
+10. This Microcontroller **shall** stall interface with an LCD.
 
 ### Electronic Housing System
 
