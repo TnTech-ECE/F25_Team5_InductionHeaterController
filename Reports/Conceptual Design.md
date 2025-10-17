@@ -8,7 +8,8 @@ This project addresses the challenge by designing and prototyping a custom induc
 
 The fully formulated problem is essentially to design a controller that can sense and control temperature, safely and effectively manage power delivery, and provide real-time feedback for experimental validation of induction heating performance. To meet customer requirements and IEEE safety standards, the system shall strike a balance between safety, measurement accuracy, and adaptability.
 
-This conceptual design expands upon the original project proposal by breaking down the system into functional subsystems, defining their specifications, and identifying hardware, software, and safety requirements that collectively achieve these goals. The following sections restate the detailed problem statement, present the system architecture, and outline the printed circuit board (PCB) subsystem that integrates the control and power electronics required to operate the induction heater safely and effectively.
+This conceptual design document will flesh out the original project proposal by classifying each system into subsystems, by explaining and going into detail about their specifications, the safety requirements, and what’s the achievable goal. The following sections include reformulating the problem, comparative analysis of potential solutions, specifications of the subsystems, and considerations of both ethical and professional designs for the project.
+
 
 
 ## Restating the Fully Formulated Problem
@@ -108,10 +109,10 @@ Metal–Oxide–Semiconductor Field-Effect Transistors (MOSFETs) offer faster sw
 By contrast, Bipolar Junction Transistors (BJTs), though once popular, are now less favored for modern induction heating systems due to their slow switching and complex base drive requirements. BJTs require significant base current drive, reducing system efficiency and complicating circuit design [18]. They also exhibit longer storage times during saturation and are more prone to thermal instability and current hogging when used in parallel configurations [19]. Nonetheless, BJTs offer ruggedness and low saturation voltage under certain conditions, making them suitable for low-cost, lower-frequency systems where simplicity and robustness are prioritized [20]. Overall, IGBTs provide the best compromise for high-power applications, MOSFETs excel in high-frequency designs, and BJTs remain viable only for basic or legacy systems with limited frequency demands.
 
 Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater power board due to their superior performance in medium-to-high power applications, where both high voltage and current handling are required. They provide a strong balance between conduction efficiency and switching losses, offering reliable operation at moderate frequencies typical of induction heating systems. Additionally, IGBTs exhibit robust thermal characteristics, high ruggedness under transient conditions, and a favorable cost-to-performance ratio compared to MOSFETs or BJTs. These characteristics make them the optimal choice for achieving efficient energy transfer, stable operation, and long-term durability in induction heating environments.
-## Electronic Housing System 
+## Electronic Housing System
 The housing needs to splash resistant so the options are a typical electrical Box or a custom housing. The electrical Box would be simpler to implement.
 ## Water Heating System
-There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands [NEC 210.19b note No. 2]. 
+There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands [NEC 210.19b note No. 2].
 
 
 
@@ -312,7 +313,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 
 #### Expected User Interaction
 
-The PCB will be connected to a microcontroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will supply live data of temperature, voltage, and current to the user. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microcontroller, fault, and heating activity condition.  
+The PCB will be connected to a microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will supply live data of temperature, power, and current flow to the user. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.   
 
 
 #### Operational Flow
@@ -325,11 +326,10 @@ The PCB will be connected to a microcontroller that will communicate to the user
 6. **Fault Handling:** The PCB will maintain safety through a shutdown signal and will display a fault message if overtemperature or overcurrent occasion happens.  
 7. **Data Logging:** The system will store temperature, voltage, and current data for post-test analysis.  
 
+
 #### Subsystem Operation
 
-The power PCB will convert AC input power into DC through the rectification process; it will then distribute its power to the inverter circuit. The inverter circuit drives the induction coil under the control of PWM signals generated by the microcontroller. Gate driver circuits on the PCB amplify these control signals to switch the power transistors efficiently at the required frequency and duty cycle.
-
-Throughout the operation, there will be analog feedback from temperature, voltage, and current sensors that will be continuously monitored and fed to the microcontroller’s ADC channels. The feedback data is used to continuously correct power output through a closed-loop balancing of power output, ensuring system stability. Thermal protection circuits located near high-power components automatically assert a shutdown signal if safe operating limits are exceeded. The microcontroller will communicate status information to the LCD screen, log operational data, and wait for further commands from the user once any fault has occurred and cleared.
+The power PCB will convert AC input power into DC through the rectification process; it will then distribute its power to the inverter circuit when powered on. The PCB will wait in standby mode, waiting for user input from the keypad. when the user has decided to activate the heater, the PWM gat will send signals to the inverter circuit. The microcontroller will do adjustments to the PWM duty cycle to prevent overheating and maintain the desired power level. with that said, the temperature, power, and current flow data will be monitored and fed to the microcontroller through ADC, then shown through the LCD screen. If in the occasion of any faults occur, the microcontroller will send a singal to the PCB to shutdown, afterwards a faulty message will pop up of which error occured (overheating, overcurrent, open circuit, etc).
 
 #### Subsystem “Shall” Statements
 
@@ -337,15 +337,15 @@ Throughout the operation, there will be analog feedback from temperature, voltag
 2. This PCB **shall** support MOSFET/IGBT switching frequencies between 20 kHz and 40 kHz with minimal electromagnetic interference.  
 3. This PCB **shall** provide temperature regulation adequate enough to keep board temperatures below 105°C.  
 4. This PCB **shall** include fault detection and shutdown circuitry to prevent component failure.  
-5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability. 
+5. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.
 6. This Microcontroller **shall** not exceed 100°C during operation.
 7. This Microcontroller **shall** control the switching frequency of the power board.
 8. This Microcontroller **shall** output PWM and toggle its pins.
 9. This Microcontroller **shall** interpret sensors.
 10. This Microcontroller **shall** have Analog to Digital converting capabilities.
 11. This Microcontroller **shall** stall interpret user interface.
-12. This Microcontroller **shall** stall interface with an LCD. 
- 
+12. This Microcontroller **shall** stall interface with an LCD.
+
 ### Electronic Housing System
 
 #### Functional Overview
@@ -360,7 +360,7 @@ The Housing shall protect the sensitive electronics from the elements. The Housi
 ### Water Heating System
 
 #### Functional Overview
-The Coil will receive power from the power board to heat the pipe which will heat the water. The pipe will be insulated so less heat is wasted and more heat ends up in the water. The insulation will reduce the amount of power that will need to be sent since less heat is lost. The Pipe will be equipped with sensors which will have at least flow and temperature sensors. 
+The Coil will receive power from the power board to heat the pipe which will heat the water. The pipe will be insulated so less heat is wasted and more heat ends up in the water. The insulation will reduce the amount of power that will need to be sent since less heat is lost. The Pipe will be equipped with sensors which will have at least flow and temperature sensors.
 
 #### Subsystem “Shall” Statements
 1. This Coil **shall** be thick enough to not over heat from power to heat moving water
