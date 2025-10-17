@@ -27,17 +27,17 @@ The controller will act as a proof-of-concept platform that illustrates the conn
 
 ### Shall Statements and Constraint Origins
 
-| **ID** | **System Requirements**                                                                                                                           | **Origin of Constraint**                                                                       |
-| :----: | :------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------- |
-|   1    | This controller **shall** provide multiple power settings, allowing for adjustable heating levels.                         | Customer specification (Lochinvar requirement)                                                 |
-|   2    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective                                               |
-|   3    | This controller **shall** measure and display electrical input power and corresponding temperature rise.                                          | Customer specification; data acquisition requirement                                           |
-|   4    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment)                         |
-|   5    | This controller **shall** have over heating and overcurrent faulty protection to avoid hardware failure.                               | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating)            |
-|   6    | This controller **shall**  have a LCD screen to show temperature, power, and current flow data.                                      | Customer usability requirement; ethical and safety design concern                              |
-|   7    | This controller **shall** be housed in an insulated, non-conductive housing.                                                                      | NEC 665, Part II; ethical responsibility for user safety                                       |
-|   8   | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation.                                                   | Component protection limit; derived from OMEO unit analysis; IEEE and thermal safety standards |
-|   9   | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics)                                       |
+| **ID** | **System Requirements** | **Origin of Constraint (Reference)** |
+| :----: | :---------------------- | :---------------------------------- |
+| 1 | This controller **shall** provide multiple power settings, allowing for adjustable heating levels. | Customer specification (Lochinvar requirement) |
+| 2 | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective; supported by induction heating models [26], [27] |
+| 3 | This controller **shall** measure and display electrical input power and corresponding temperature rise. | Customer specification; data acquisition requirement [1], [2] |
+| 4 | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected. | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment) [5] |
+| 5 | This controller **shall** have overheating and overcurrent fault protection to avoid hardware failure. | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating) [21] |
+| 6 | This controller **shall** have an LCD screen to show temperature, power, and current flow data. | Customer usability requirement; supported by OMEO cooktop interface [1], [2], [3] |
+| 7 | This controller **shall** be housed in an insulated, non-conductive enclosure. | NEC 665, Part II; ethical responsibility for user safety [4] |
+| 8 | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation. | Component protection limit; derived from OMEO SK-IH18G23T analysis [2] |
+| 9 | This controller **shall** adhere to ethical engineering practices. | Ethical and professional standards (IEEE Code of Ethics) [21], [28] |
 
 
 
@@ -317,16 +317,16 @@ The power PCB will convert AC input power into DC through the rectification proc
 
 #### Subsystem “Shall” Statements
 
-1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them.  
-2. This PCB **shall** include fault detection and shutdown circuitry to prevent hardware failure.  
-3. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability.
-4. This Microcontroller **shall** not exceed 100°C during operation.
-5. This Microcontroller **shall** control the switching frequency of the power board.
-6. This Microcontroller **shall** output PWM and toggle its pins.
-7. This Microcontroller **shall** interpret sensors.
-8.  This Microcontroller **shall** have Analog to Digital converting capabilities.
-9.  This Microcontroller **shall** stall interpret user interface.
-10. This Microcontroller **shall** stall interface with an LCD.
+1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. [4], [21]  
+2. This PCB **shall** include fault detection and shutdown circuitry to prevent hardware failure. [21]  
+3. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability. [4], [12], [29], [30]
+4. This Microcontroller **shall** not exceed 100°C during operation.  [7]  
+5. This Microcontroller **shall** control the switching frequency of the power board. [13], [14], [15], [17]  
+6. This Microcontroller **shall** output PWM and toggle its pins. [14], [15], [17]  
+7. This Microcontroller **shall** interpret sensors.  [26]  
+8. This Microcontroller **shall** have Analog-to-Digital converting capabilities.  [26]  
+9. This Microcontroller **shall** interpret user interface inputs. 
+10. This Microcontroller **shall** interface with an LCD. [31]
 
 ### Electronic Housing System
 
@@ -557,15 +557,24 @@ The responsibilities for designing each subsystem are allocated as follows:
 [24] Visintini, R. “Rectifiers.” CERN Accelerator School, 2007. https://cds.cern.ch/record/987551/files/p133.pdf
 
 [25] ScienceDirect. “Bridge Rectifier — an Overview.” https://www.sciencedirect.com/topics/engineering/bridge-rectifier
-‌
 
+
+[26] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025.
+[27] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015.
+[28] S. Salkowski, “Hot Topic: Dispelling the Myths About Induction Stoves.” Acadia Center, 2025.
+‌
+[29] IPC Association Connecting Electronics Industries, "IPC-2221B: Generic Standard on Printed Board Design," IPC, Bannockburn, IL, 2012.
+[30] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
+
+[31] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
 ## Statement of Contributions - Everyone
 ***
 
 Each team member is required to make a meaningful contribution to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
 
 
-
+Introduction - [John]
+Restating the Fully Formulated Problem - [John]
 Comparative Analysis of Existing Solutions - Power System  - [Austin]
 Comparative Analysis of Existing Solutions - Control System  - [Cole]
 Started Operational Flow Chart - [Dow]
@@ -573,6 +582,7 @@ Atomic Subsystem Specifications - Software - [Dow]
 Atomic Subsystem Specifications - Power System - [Austin]
 Atomic Subsystem Specifications - Heat Generation Control - [Cole]
 Atomic Subsystem Specifications - Safety and Protections Control - [Aaron]
+Atomic Subsystem Specifications - PCB System - [John]
 High-Level Solution - Software - [Dow]
 clear
 
