@@ -423,7 +423,7 @@ The Controls System budget is based on the need for sensors measuring temperatur
 | SMPS control IC           | $3                                 | [Link](https://www.mouser.com/c/?q=Offline%20SMPS%20control%20IC)                                                                |
 | Resistors (Power/Signal)  | $5                                 | [Link](https://www.mouser.com/c/passive-components/resistors/?orgKeyword=resistors)                                              |
 | PCB connectors            | $10                                | N/A                                                                                                                              |
-| Power System Budget Total | $154     | N/A                                                                                                                              |
+| Power System Budget Total | $154                               | N/A                                                                                                                              |
 
 #### Embedded Systems Budget
 Based on our specifcations, we are split between multiple Microcontrollers that range from $9.00-76.09. These are not the only ones being considered.
@@ -444,11 +444,11 @@ We will estimate a budget of $40 for the microcontroller.
 
 
 #### Encasing/Workpiece Budget
-| Components                      | Estimated Cost | Link                                                                                                                                                                                                    |
-| ------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Housing                         | $65            | N/A                                                                                                                                                                                                     |
-| Heatsink                        | $35            | N/A                                                                                                                                                                                                     |
-| Ferromagnetic Piping           | $50            | N/A |
+| Components                      | Estimated Cost | Link |
+| ------------------------------- | -------------- | ---- |
+| Housing                         | $65            | N/A  |
+| Heatsink                        | $35            | N/A  |
+| Ferromagnetic Piping            | $50            | N/A  |
 | Encasing/Workpiece Budget Total | $150           |
 
 #### Total Project Budget
@@ -565,11 +565,14 @@ Introduction - [John]
 Restating the Fully Formulated Problem - [John]
 Comparative Analysis of Existing Solutions - Power System  - [Austin]
 Comparative Analysis of Existing Solutions - Control System  - [Cole]
+Comparative Analysis of Existing Solutions - Mirocontrollers - [Dow]
 Started Operational Flow Chart - [Dow]
-Atomic Subsystem Specifications - Software - [Dow]
 Atomic Subsystem Specifications - Power System - [Austin]
 Atomic Subsystem Specifications - Heat Generation Control - [Cole]
-Atomic Subsystem Specifications - Safety and Protections Control - [Aaron]
+Atomic Subsystem Specifications - Software - [Dow]
 Atomic Subsystem Specifications - PCB System - [John]
+Atomic Subsystem Specifications - Electrical Housing  - [Dow]
+Atomic Subsystem Specifications - Water Heating System - [Dow]
+Atomic Subsystem Specifications - Safety and Protections Control - [Aaron]
 High-Level Solution - Software - [Dow]
 Resources: Budget, Timeline, Division of Labor - [Aaron]
