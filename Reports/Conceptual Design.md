@@ -69,7 +69,7 @@ The surface temperature is kept below 280°F while the PCB is kept under 105°F 
 The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock due to wide range of heating behaviors pancake coils may produce [22]. More efficient coil configurations for induction heating are achieved by wrapping around the length of the circular bar stock [22]. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
 
 
-### Microcontroller and PCB stuff which one [Dow] and [John]
+### Microcontroller and PCB
 Microcontroller Options:
 
 | Stat            | [ESP32-C61](https://www.espressif.com/en/products/devkits) for [$9.00](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C61-DEVKITC-1-N8R2/26763163?s=N4IgTCBcDaIKIGUAKBmMBaAwgNgIzoBEBTANwGkBLAF03VxAF0BfIA) | [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) for [$15.56](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585) | [ST-Nucleo-L476RG](https://os.mbed.com/platforms/ST-Nucleo-L476RG/) for [$14.85](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711) | [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA) | [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA) |
@@ -107,9 +107,9 @@ Metal–Oxide–Semiconductor Field-Effect Transistors (MOSFETs) offer faster sw
 By contrast, Bipolar Junction Transistors (BJTs), though once popular, are now less favored for modern induction heating systems due to their slow switching and complex base drive requirements. BJTs require significant base current drive, reducing system efficiency and complicating circuit design [18]. They also exhibit longer storage times during saturation and are more prone to thermal instability and current hogging when used in parallel configurations [19]. Nonetheless, BJTs offer ruggedness and low saturation voltage under certain conditions, making them suitable for low-cost, lower-frequency systems where simplicity and robustness are prioritized [20]. Overall, IGBTs provide the best compromise for high-power applications, MOSFETs excel in high-frequency designs, and BJTs remain viable only for basic or legacy systems with limited frequency demands.
 
 Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater power board due to their superior performance in medium-to-high power applications, where both high voltage and current handling are required. They provide a strong balance between conduction efficiency and switching losses, offering reliable operation at moderate frequencies typical of induction heating systems. Additionally, IGBTs exhibit robust thermal characteristics, high ruggedness under transient conditions, and a favorable cost-to-performance ratio compared to MOSFETs or BJTs. These characteristics make them the optimal choice for achieving efficient energy transfer, stable operation, and long-term durability in induction heating environments.
-## Electronic Housing System
-The housing needs to splash resistant so the options are a typical electrical Box or a custom housing. The electrical Box would be simpler to implement.
-## Water Heating System
+### Electronic Housing System
+The housing needs to be splash resistant so the options are a typical electrical Box or a custom housing. The electrical Box would be simpler to implement.
+### Water Heating System
 There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands [NEC 210.19b note No. 2].
 
 
@@ -232,7 +232,7 @@ The heat generation subsystem primarily focuses on ensuring the output temperatu
   - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is
   - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is
 
-#### Operation Flow
+##### Operation Flow
 Shown below is a detailed flow chart of the Heat Generation Subsystem:
 
 
@@ -372,11 +372,11 @@ Key considerations from these two codes include:
 
 **Thermal Safety**: The controller will incorporate multiple safety features to prevent overheating of both the workpiece and the device itself.
 
- - Monitoring the IGBT heatsink temperature and triggering a fault state shutdown if it exceeds 105°C (221°F) [2].
+ - Monitoring the IGBT heatsink temperature and triggering a fault state shutdown if it exceeds 105°C (221°F).
 
- - Shutting down if the heating surface temperature exceeds 280°F (138°C)[2].
+ - Shutting down if the heating surface temperature exceeds 280°F (138°C).
 
- - Preventing the workpiece from exceeding 1200°F (649°C) based on an IEEE recommended maximum maintenance temperature for induction heating [21].
+ - Preventing the workpiece from exceeding 1200°F (649°C) based on an IEEE recommended maximum maintenance temperature for induction heating.
 
 **User Notification**: An important ethical consideration for induction cooktops is the lack of visible heating. The controller will address this by providing clear user feedback through an LCD screen and status LEDs, indicating power on, heating activity, and error codes if applicable. This ensures users are aware of the system's current state, preventing accidental burns or misuse.
 
@@ -441,19 +441,6 @@ We will estimate a budget of $40 for the microcontroller.
 | PCB Design            | $50            | N/A       |
 | LCD Display/Keypad    | $10            | N/A       |
 | Encasing Budget Total | $100           |
-
-#### Encasing Budget
-| Components                   | Estimated Cost | Link                                                                                     |
-| ---------------------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Housing                      | $65            | N/A                                                                                      |
-| Heatsink                     | $35            | N/A                                                                                      |
-| Encasing Budget Total        | $100           |
-| Components                   | Estimated Cost | Link                                                                                     |
-| ---------------              | -------------- | ---------------------------------------------------------------------------------------- |
-| Microcontroller              | $40            | See Above                                                                                |
-| PCB Design                   | $50            | N/A                                                                                      |
-| LCD Display/Keypad           | $10            | N/A                                                                                      |
-| Microcontroller Budget Total | $100           |
 
 
 #### Encasing/Workpiece Budget
