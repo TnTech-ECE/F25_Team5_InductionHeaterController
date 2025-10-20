@@ -380,7 +380,7 @@ Key considerations from these two codes include:
 
 **User Notification**: An important ethical consideration for induction cooktops is the lack of visible heating. The controller will address this by providing clear user feedback through an LCD screen and status LEDs, indicating power on, heating activity, and error codes if applicable. This ensures users are aware of the system's current state, preventing accidental burns or misuse.
 
-**Enclosure Design**: The system will be housed in an insulated, non-conductive encasing to protect users from the high-frequency circuits inside, in accordance with NEC 665, Part II [8].
+**Enclosure Design**: The system will be housed in an insulated, non-conductive encasing to protect users from the high-frequency circuits inside, in accordance with NEC 665, Part II[4].
 
 **Improved Efficiency**: Induction heating is inherently more energy-efficient than traditional resistive heating methods, as it directly transfers energy to the material. The controller's ability to precisely control power delivery and heating profiles will further optimize efficiency, reducing energy waste and operating costs
 
@@ -423,7 +423,7 @@ The Controls System budget is based on the need for sensors measuring temperatur
 | SMPS control IC           | $3                                 | [Link](https://www.mouser.com/c/?q=Offline%20SMPS%20control%20IC)                                                                |
 | Resistors (Power/Signal)  | $5                                 | [Link](https://www.mouser.com/c/passive-components/resistors/?orgKeyword=resistors)                                              |
 | PCB connectors            | $10                                | N/A                                                                                                                              |
-| Power System Budget Total | $154     - tentative to change     | N/A                                                                                                                              |
+| Power System Budget Total | $154     | N/A                                                                                                                              |
 
 #### Embedded Systems Budget
 Based on our specifcations, we are split between multiple Microcontrollers that range from $9.00-76.09. These are not the only ones being considered.
@@ -572,24 +572,4 @@ Atomic Subsystem Specifications - Heat Generation Control - [Cole]
 Atomic Subsystem Specifications - Safety and Protections Control - [Aaron]
 Atomic Subsystem Specifications - PCB System - [John]
 High-Level Solution - Software - [Dow]
-clear
-
-```
-
-#### Encasing/Workpiece Budget
-| Components                      | Estimated Cost | Link                                                                                                                                                                                                    |
-| ------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Housing                         | $65            | N/A                                                                                                                                                                                                     |
-| Heatsink                        | $35            | N/A                                                                                                                                                                                                     |
-| 1in x 6ft Iron Piping           | $20            | [Link](https://www.homedepot.com/p/STZ-1-in-x-6-ft-Black-Steel-Sch-40-Cut-Pipe-PDB-P1X72/316939789?source=shoppingads&locale=en-US&srsltid=AfmBOop3FSQzS-H3pE595Qtrp1V-svMthRHS9okUbeQpmTK88EaYwic0S8g) |
-| Encasing/Workpiece Budget Total | $100           |
-
-#### Total Project Budget
-| Components                | Estimated Cost | Link |
-| ------------------------- | -------------- | ---- |
-| Controls Systems Budget   | $92            | N/A  |
-| Power Systems Budget      | $~~            | N/A  |
-| Embedded Systems Budget   | $100           | N/A  |
-| Encasing/Workpiece Budget | $100           | N/A  |
-| Project Budget Total      | $~~            |
-```just in case I broken the buget table
+Resources: Budget, Timeline, Division of Labor - [Aaron]
