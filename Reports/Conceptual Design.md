@@ -449,7 +449,8 @@ We will estimate a budget of $40 for the microcontroller.
 | Housing                         | $65            | N/A  |
 | Heatsink                        | $35            | N/A  |
 | Ferromagnetic Piping            | $50            | N/A  |
-| Encasing/Workpiece Budget Total | $150           |
+| Ferrite For Field Concentration | $100           | N/A  |
+| Encasing/Workpiece Budget Total | $250           |
 
 #### Total Project Budget
 | Components                | Estimated Cost | Link |
@@ -457,8 +458,8 @@ We will estimate a budget of $40 for the microcontroller.
 | Controls Systems Budget   | $92            | N/A  |
 | Power Systems Budget      | $154           | N/A  |
 | Embedded Systems Budget   | $100           | N/A  |
-| Encasing/Workpiece Budget | $120           | N/A  |
-| Project Budget Total      | $496           |
+| Encasing/Workpiece Budget | $250           | N/A  |
+| Project Budget Total      | $596           |
 
 ### Division of Labor
 
