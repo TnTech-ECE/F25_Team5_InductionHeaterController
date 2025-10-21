@@ -17,6 +17,7 @@ npm i
  2. Run:
 ```bash
 npm run shift -- "relative path from editing_tools or static path"
-``` 
+```
+ 3. Your shifted references file will be in out/ within the same folder as this file is in with the same name has the file you told it to fix.
 #### Notes
 only does one reference at a time atm will throw an error.
