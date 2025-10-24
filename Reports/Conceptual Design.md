@@ -63,12 +63,6 @@ OMEO PCB without  Heatsink:
 The surface temperature is kept below 280°F while the PCB is kept under 105°F [2]. Ideally, the cooker should remain relatively cool while the part is being heated. If the cooker's surface temperature or the IGBT's temperature rises too high, the controller produces an error code and stops heating [2]. The cooker's heat sink absorbs much of the heat, but if the heat sink fails the controller's components will fail due to overheating and may fail violently at risk of causing harm to operators. The team's solution will include similar safety controls to protect the user and the controller itself.
 
 
-
-### Pancake Coil Vs. Wrapped Coil for Bar End Heating
-
-The project shall be able to induce surface eddy currents and produce internal heating. The OMEO SK-IH18G23T induction cooker achieves this by utilizing is a pancake coil configuration that rest flat against the part being heated. This configuration would be sufficient but not very efficient in order to heat circular bar stock due to wide range of heating behaviors pancake coils may produce [25]. More efficient coil configurations for induction heating are achieved by wrapping around the length of the circular bar stock [25]. Wrapping around the length of the bar stock ensures magnetic isolation is obtained to a reasonable level and produces much more efficient heating. The team shall produce a simple wrap around coil utilizing copper that shall interface directly with the controller.
-
-
 ### Microcontroller and PCB
 Microcontroller Options:
 
@@ -107,8 +101,19 @@ Metal–Oxide–Semiconductor Field-Effect Transistors (MOSFETs) offer faster sw
 By contrast, Bipolar Junction Transistors (BJTs), though once popular, are now less favored for modern induction heating systems due to their slow switching and complex base drive requirements. BJTs require significant base current drive, reducing system efficiency and complicating circuit design [18]. They also exhibit longer storage times during saturation and are more prone to thermal instability and current hogging when used in parallel configurations [19]. Nonetheless, BJTs offer ruggedness and low saturation voltage under certain conditions, making them suitable for low-cost, lower-frequency systems where simplicity and robustness are prioritized [20]. Overall, IGBTs provide the best compromise for high-power applications, MOSFETs excel in high-frequency designs, and BJTs remain viable only for basic or legacy systems with limited frequency demands.
 
 Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater power board due to their superior performance in medium-to-high power applications, where both high voltage and current handling are required. They provide a strong balance between conduction efficiency and switching losses, offering reliable operation at moderate frequencies typical of induction heating systems. Additionally, IGBTs exhibit robust thermal characteristics, high ruggedness under transient conditions, and a favorable cost-to-performance ratio compared to MOSFETs or BJTs. These characteristics make them the optimal choice for achieving efficient energy transfer, stable operation, and long-term durability in induction heating environments.
+
+
 ### Electronic Housing System
 The housing needs to be splash resistant so the options are a typical electrical Box or a custom housing. The electrical Box would be simpler to implement.
+
+
+### Coil Configuration
+
+Lochinvar specified that the controller shall heat the pipe using an induction coil wrapped around the pipe. 
+
+![alt text](image-7.png)
+
+
 ### Water Heating System
 There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands. The values are found from 3% voltage drop with the resistance equation with skin effect at high frequencies. Which the NEC states that branch circuits shouldn't have more than 3% voltage drop [21]. Also, ferrite might need to be around the  coil to direct the field toward the pipe to improve the efficiency of the induction. [22]
 
