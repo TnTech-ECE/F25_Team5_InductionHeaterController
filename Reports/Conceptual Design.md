@@ -115,7 +115,7 @@ Lochinvar specified that the controller shall heat the pipe using an induction c
 
 This is a simple but effective configuration that evenly induces current on the pipe. It is a low cost implementation requiring only a malleable conductor that can easily be reshaped into coils with a diameter slightly greater than the diameter of the pipe. A common solution is to use copper as that malleable conductor, as seen in the flat pancake coil configuration utilized in the OMEO induction cooktop. 
 
-[Need to take photo of coil]
+![alt text](IMG_6816.jpeg)
 
 
 ### Water Heating System
