@@ -45,7 +45,7 @@ The controller will act as a proof-of-concept platform that illustrates the conn
 ## Comparative Analysis of Potential Solutions
 ***
 
-### Open loop vs. Closed loop
+### Control System 
 
 Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker [1]. This induction cooker is designed to be used with smooth, flat bottom base cookware. The cooker utilizes an open loop control system operating based on user selected power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [2]. Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. A sensor would need to be budgetted for whether the team utilzes open or closed loop control becasue of this. Closed loop control requires more time to design the system to properly integrate the sensor(s) into feedback loops, but it would allow for more accurate and reliable temperature control.
 
@@ -117,9 +117,7 @@ There are two options primary method for transferring heat from a induced materi
 
 
 ## High-Level Solution
-***
 
-This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
 **Power**
 This controller shall operate at a constant voltage to maintain compatibility with standard 120 VAC wall outlets. The controller must be able to convert the 120 VAC to 150 DC, then step that voltage down to 5 V to ensure a safe operating voltage for the microcontroller that will operate as the brain for our control system. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered since power is the time derivative of energy. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the bar stock.  
