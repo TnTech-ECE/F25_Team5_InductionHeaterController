@@ -330,10 +330,10 @@ The power PCB will convert AC input power into DC through the rectification proc
 4. This Microcontroller **shall** not exceed 100°C during operation.  [7]  
 5. This Microcontroller **shall** control the switching frequency of the power board. [13], [14], [15], [17]  
 6. This Microcontroller **shall** output PWM and toggle its pins. [14], [15], [17]  
-7. This Microcontroller **shall** interpret sensors.   [29]  
-8. This Microcontroller **shall** have Analog-to-Digital converting capabilities.   [29]  
+7. This Microcontroller **shall** interpret sensors.   [33]  
+8. This Microcontroller **shall** have Analog-to-Digital converting capabilities.   [33]
 9. This Microcontroller **shall** interpret user interface inputs. 
-10. This Microcontroller **shall** interface with an LCD. [33]
+10. This Microcontroller **shall** interface with an LCD. [33#]
 
 ### Electronic Housing System
 
@@ -568,14 +568,15 @@ The responsibilities for designing each subsystem are allocated as follows:
 [29] ScienceDirect. “Bridge Rectifier — an Overview.” https://www.sciencedirect.com/topics/engineering/bridge-rectifier
 
 
-[29] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025.
+[30#] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025.
+
 [30] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015.
 [31] S. Salkowski, “Hot Topic: Dispelling the Myths About Induction Stoves.” Acadia Center, 2025.
 ‌
 [32] IPC Association Connecting Electronics Industries, "IPC-2221B: Generic Standard on Printed Board Design," IPC, Bannockburn, IL, 2012.
 [33] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
 
-[33] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
+[33#] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
 ## Statement of Contributions
 ***
 
