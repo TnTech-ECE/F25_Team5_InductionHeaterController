@@ -20,4 +20,5 @@ npm run shift -- "relative path from editing_tools or static path"
 ```
  3. Your shifted references file will be in out/ within the same folder as this file is in with the same name has the file you told it to fix.
 #### Notes
-only does one reference at a time atm will throw an error.
+~only does one reference at a time atm will throw an error.~
+with multiple references make sure you use [number#] in the file above \#\# references and do not have duplicate references. ie [29] and a different [29] or [29#] and a different [29#]. The order is how the numbers are replaced by. So, having [100#] does not really matter it will become the number which it is ordered at.
