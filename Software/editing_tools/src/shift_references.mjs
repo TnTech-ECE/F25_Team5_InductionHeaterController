@@ -7,29 +7,50 @@ function isFile(filePath) {
 	} catch { }
 	return false;
 }
-const [exe, filePathText] = process.argv;
+const [exe, jsFile, filePathText] = process.argv;
 //"../../Reports/Conceptual Design.md"
 const filePath = path.resolve(filePathText);
 if (!isFile(filePath)) throw new Error("Path entered doesn't exist");
 const outFileFolder = path.resolve("./out/");
 let file = fs.readFileSync(filePath, "utf-8");
+/**
+ * @type {number[]}
+ */
+const referencesToShiftFrom = [...(file.matchAll(/\[(\d+)#\]/g) ?? [])].map(match => Number(match[1])).reduce((s, c) => {
+	if (s.includes(c)) return s;
+	s.push(c);
+	return s;
+}, []).sort((a, b) => a - b);
+console.warn(filePathText, filePath, referencesToShiftFrom);
+if (!referencesToShiftFrom || !referencesToShiftFrom.length) throw new Error("No reference to shift found");
+//if (referenceToShiftFromArray.length > 1) throw new Error("Multiple references to shift found");
 
-const referenceToShiftFromArray = [...(file.matchAll(/\[(\d+)#\]/g) ?? [])].map(match => Number(match[1]));
+const minReferenceToShiftFrom = Math.min(...referencesToShiftFrom);
 
-if (!referenceToShiftFromArray || !referenceToShiftFromArray.length) throw new Error("No reference to shift found");
-if (referenceToShiftFromArray.length > 1) throw new Error("Multiple references to shift found");
-
-const referenceToShiftFrom = referenceToShiftFromArray[0];
 const { base } = path.parse(filePath) ?? {};
 
 const outPath = path.join(outFileFolder, base);
 // console.warn(base, outFileFolder, outPath);
+/**
+ * @type {number[]}
+ */
+const referencesToShift = [...(file.matchAll(/\[(\d+)\]/g) ?? [])].map(match => Number(match[1])).filter(d => d >= minReferenceToShiftFrom).reduce((s, c) => {
+	if (s.includes(c)) return s;
+	s.push(c);
+	return s;
+}, []).sort((a, b) => b - a);
 
-const referencesToShift = [...(file.matchAll(/\[(\d+)\]/g) ?? [])].map(match => Number(match[1])).filter(d => d >= referenceToShiftFrom);
-console.warn(referenceToShiftFrom, referencesToShift);
-for (let i = referencesToShift.length - 1; i >= 0; i--) {
-	const referenceToShift = referencesToShift[i];
-	file = file.replaceAll(`[${referenceToShift}]`, `[${referenceToShift + 1}]`);
-}
-file = file.replaceAll(`[${referenceToShiftFrom}#]`, `[${referenceToShiftFrom}]`);
+let maxReference = Math.max(...referencesToShift);
+maxReference = Math.max(maxReference, ...referencesToShiftFrom);
+
+console.warn({ minReferenceToShiftFrom, maxReference, referencesToShiftFrom, referencesToShift });
+let count = referencesToShiftFrom.length;
+referencesToShift.forEach(referenceToShift => {
+	console.warn(referenceToShift);
+	file = file.replaceAll(`[${referenceToShift}]`, `[${referenceToShift + count}]`);
+});
+
+referencesToShiftFrom.forEach(reference => {
+	file = file.replaceAll(`[${reference}#]`, `[${reference}]`);
+});
 fs.writeFileSync(outPath, file);

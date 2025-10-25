@@ -30,14 +30,14 @@ The controller will act as a proof-of-concept platform that illustrates the conn
 | **ID** | **System Requirements**                                                                                                                           | **Origin of Constraint (Reference)**                                                                |
 | :----: | :------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------- |
 |   1    | This controller **shall** provide multiple power settings, allowing for adjustable heating levels.                                                | Customer specification (Lochinvar requirement)                                                      |
-|   2    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective; supported by induction heating models  [29], [30] |
+|   2    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective; supported by induction heating models  [34], [35] |
 |   3    | This controller **shall** measure and display electrical input power and corresponding temperature rise.                                          | Customer specification; data acquisition requirement [1], [2]                                       |
-|   4    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment) [5]                          |
-|   5    | This controller **shall** have overheating and overcurrent fault protection to avoid hardware failure.                                            | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating) [24]            |
-|   6    | This controller **shall** have an LCD screen to show temperature, power, and current flow data.                                                   | Customer usability requirement; supported by OMEO cooktop interface [1], [2], [3]                   |
-|   7    | This controller **shall** be housed in an insulated, non-conductive enclosure.                                                                    | NEC 665, Part II; ethical responsibility for user safety [4]                                        |
+|   4    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment) [10]                          |
+|   5    | This controller **shall** have overheating and overcurrent fault protection to avoid hardware failure.                                            | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating) [29]            |
+|   6    | This controller **shall** have an LCD screen to show temperature, power, and current flow data.                                                   | Customer usability requirement; supported by OMEO cooktop interface [1], [2], [8]                   |
+|   7    | This controller **shall** be housed in an insulated, non-conductive enclosure.                                                                    | NEC 665, Part II; ethical responsibility for user safety [9]                                        |
 |   8    | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation.                                                   | Component protection limit; derived from OMEO SK-IH18G23T analysis [2]                              |
-|   9    | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics) [24], [31]                                 |
+|   9    | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics) [29], [36]                                 |
 
 
 
@@ -66,7 +66,7 @@ The surface temperature is kept below 280°F while the PCB is kept under 105°F 
 ### Microcontroller and PCB
 Microcontroller Options:
 
-| Stat            | [ESP32-C61](https://www.espressif.com/en/products/devkits) for [$9.00](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C61-DEVKITC-1-N8R2/26763163?s=N4IgTCBcDaIKIGUAKBmMBaAwgNgIzoBEBTANwGkBLAF03VxAF0BfIA) [3#] | [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) for [$15.56](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585) [4#] | [ST-Nucleo-L476RG](https://os.mbed.com/platforms/ST-Nucleo-L476RG/) for [$14.85](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711)  [5#] | [DISCO-L4S5I](https://os.mbed.com/platforms/B-L4S5I-IOT01A/) [$55.26](https://www.digikey.com/en/products/detail/stmicroelectronics/B-L4S5I-IOT01A/12395902) [6#] | [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA) [7#] |
+| Stat            | [ESP32-C61](https://www.espressif.com/en/products/devkits) for [$9.00](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C61-DEVKITC-1-N8R2/26763163?s=N4IgTCBcDaIKIGUAKBmMBaAwgNgIzoBEBTANwGkBLAF03VxAF0BfIA) [3] | [ST-Nucleo-G474RE](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) for [$15.56](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585) [4] | [ST-Nucleo-L476RG](https://os.mbed.com/platforms/ST-Nucleo-L476RG/) for [$14.85](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711)  [5] | [DISCO-L4S5I](https://os.mbed.com/platforms/B-L4S5I-IOT01A/) [$55.26](https://www.digikey.com/en/products/detail/stmicroelectronics/B-L4S5I-IOT01A/12395902) [6] | [STM32F413H-DISCO](https://os.mbed.com/platforms/ST-Discovery-F413H/) for [$76.09](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F413H-DISCO/6709885?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDaIALAJwDsIAugL6OEBMZIAygCoCyAzKwBiFMPwASMACIBJTgGEA8g0ZA) [7] |
 | :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------: | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | ADCs            | 1                                                                                                                                                                                                                                    | 5                                                                                                                                                                           | 3                                                                                                                                                                           |                                                                                                                                                                 1 |                                                                                                                                                                                                                                                                              1 |
 | ADC Sample Rate | 2 Msps                                                                                                                                                                                                                               | 4 Msps                                                                                                                                                                      | 5 Msps                                                                                                                                                                      |                                                                                                                                                            5 Msps |                                                                                                                                                                                                                                                                       2.4 MSPS |
@@ -83,22 +83,22 @@ Hardware control is not desirable because the parts can have long lead times and
 ### Power System Overview:
 
 
-1. A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the AC line. This delivers a higher average DC output voltage and smoother waveform with reduced ripple. Compared to half-wave designs, the full-bridge configuration uses both halves of the AC waveform, resulting in more continuous conduction and a higher transformer utilization factor (TUF), which contributes to improved power efficiency and output quality [26]. Additionally, the bridge rectifier produces a smaller ripple for a given load and requires less filtering, enhancing overall DC smoothness [28]. In design, key considerations include voltage and current ratings of the diodes, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications, justifying its use despite the slightly higher component count [29].
+1. A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the AC line. This delivers a higher average DC output voltage and smoother waveform with reduced ripple. Compared to half-wave designs, the full-bridge configuration uses both halves of the AC waveform, resulting in more continuous conduction and a higher transformer utilization factor (TUF), which contributes to improved power efficiency and output quality [31]. Additionally, the bridge rectifier produces a smaller ripple for a given load and requires less filtering, enhancing overall DC smoothness [33]. In design, key considerations include voltage and current ratings of the diodes, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications, justifying its use despite the slightly higher component count [34].
 
-2. Adequate voltage filtering in the power board of an induction heater is essential to suppress DC-link ripple, reduce switching noise, and prevent voltage overshoot that can stress semiconductor devices. The most common solution is bulk capacitive filtering, where large electrolytic or film capacitors are placed across the DC bus to provide a low impedance path for high-frequency components. This configuration smooths the DC voltage and reduces electromagnetic interference (EMI) by bypassing switching transients to ground [6]. Low-ESR and low-ESL capacitors are preferred for this purpose, as they handle high ripple currents effectively. The main advantages of capacitive filtering include its simplicity, compactness, and low cost. However, disadvantages include high in-rush current during startup, aging under thermal stress, and limited attenuation of low-frequency ripple components [7].
+2. Adequate voltage filtering in the power board of an induction heater is essential to suppress DC-link ripple, reduce switching noise, and prevent voltage overshoot that can stress semiconductor devices. The most common solution is bulk capacitive filtering, where large electrolytic or film capacitors are placed across the DC bus to provide a low impedance path for high-frequency components. This configuration smooths the DC voltage and reduces electromagnetic interference (EMI) by bypassing switching transients to ground [11]. Low-ESR and low-ESL capacitors are preferred for this purpose, as they handle high ripple currents effectively. The main advantages of capacitive filtering include its simplicity, compactness, and low cost. However, disadvantages include high in-rush current during startup, aging under thermal stress, and limited attenuation of low-frequency ripple components [12].
 
-An alternative or complementary approach is inductive filtering, where a series choke or inductor is inserted between the rectifier and DC-link capacitor. Inductors resist rapid current changes, reducing the propagation of voltage spikes and attenuating higher-order harmonics [8]. When combined with capacitors, this technique offers enhanced voltage stability and suppression of switching-induced noise. However, inductive elements introduce conduction and magnetic core losses, add voltage drop under load, and require large cores to avoid saturation at high current levels [9]. Standalone inductive filters are seldom sufficient for high-frequency switching noise suppression and are usually integrated with capacitive stages for optimal performance.
+An alternative or complementary approach is inductive filtering, where a series choke or inductor is inserted between the rectifier and DC-link capacitor. Inductors resist rapid current changes, reducing the propagation of voltage spikes and attenuating higher-order harmonics [13]. When combined with capacitors, this technique offers enhanced voltage stability and suppression of switching-induced noise. However, inductive elements introduce conduction and magnetic core losses, add voltage drop under load, and require large cores to avoid saturation at high current levels [14]. Standalone inductive filters are seldom sufficient for high-frequency switching noise suppression and are usually integrated with capacitive stages for optimal performance.
 
-A more advanced option LC low-pass filter, which combines the strengths of capacitors and inductors to achieve wideband ripple suppression and improved voltage regulation. The first capacitor attenuates high-frequency components, the series inductor blocks intermediate harmonics, and the output capacitor smooths the remaining ripple [10]. Properly designed LC or π-filters can meet EMI compliance standards while maintaining stable DC-link voltage [11]. However, this approach introduces added complexity, cost, and physical size. Unintended resonance between the inductive and capacitive elements can also occur, necessitating damping or snubber circuits to maintain system stability. Effective layout and component selection are therefore critical to ensuring reliable voltage filtering performance in high-power induction heating applications [12].
+A more advanced option LC low-pass filter, which combines the strengths of capacitors and inductors to achieve wideband ripple suppression and improved voltage regulation. The first capacitor attenuates high-frequency components, the series inductor blocks intermediate harmonics, and the output capacitor smooths the remaining ripple [15]. Properly designed LC or π-filters can meet EMI compliance standards while maintaining stable DC-link voltage [16]. However, this approach introduces added complexity, cost, and physical size. Unintended resonance between the inductive and capacitive elements can also occur, necessitating damping or snubber circuits to maintain system stability. Effective layout and component selection are therefore critical to ensuring reliable voltage filtering performance in high-power induction heating applications [17].
 
-Incorporating all three filtering strategies—capacitive, inductive, and LC filtering at different locations on an induction heater power board provides comprehensive voltage conditioning across a wide frequency spectrum. Bulk capacitors placed near the rectifier output stabilize the DC-link by absorbing large low-frequency voltage ripples from rectification, ensuring a smooth supply for subsequent power conversion stages. Series inductors or chokes positioned between switching devices and the load suppress high-frequency transients and limit di/dt, reducing electromagnetic interference (EMI) propagation through the power traces. Finally, LC filters located closer to sensitive control or measurement circuits offer targeted attenuation of both medium and high-frequency harmonics, protecting signal integrity and minimizing voltage ripple at precision nodes. The combination of these methods ensures not only improved voltage stability and system efficiency but also compliance with EMI standards and enhanced longevity of semiconductor and capacitor components through reduced electrical stress [13].
+Incorporating all three filtering strategies—capacitive, inductive, and LC filtering at different locations on an induction heater power board provides comprehensive voltage conditioning across a wide frequency spectrum. Bulk capacitors placed near the rectifier output stabilize the DC-link by absorbing large low-frequency voltage ripples from rectification, ensuring a smooth supply for subsequent power conversion stages. Series inductors or chokes positioned between switching devices and the load suppress high-frequency transients and limit di/dt, reducing electromagnetic interference (EMI) propagation through the power traces. Finally, LC filters located closer to sensitive control or measurement circuits offer targeted attenuation of both medium and high-frequency harmonics, protecting signal integrity and minimizing voltage ripple at precision nodes. The combination of these methods ensures not only improved voltage stability and system efficiency but also compliance with EMI standards and enhanced longevity of semiconductor and capacitor components through reduced electrical stress [18].
 
 
-3. The selection of switching devices is critical for efficient and reliable operation of an induction heater power board, as transistor characteristics directly influence switching losses, thermal behavior, and control complexity. Insulated Gate Bipolar Transistors (IGBTs) are widely used in medium-to-high power induction heating applications due to their ability to handle high voltage and current levels efficiently. Their low conduction losses at elevated currents and relatively stable thermal performance make them well-suited for moderate switching frequencies, typically in the tens of kilohertz range [13]. IGBTs also exhibit favorable cost-to-performance ratios and ruggedness under demanding load conditions. However, their slower switching speed and characteristic “tail current” during turn-off introduce switching losses, particularly in high-frequency operations. Additionally, IGBTs often require external freewheeling diodes and more complex drive circuitry compared to MOSFETs [14],[15].
+3. The selection of switching devices is critical for efficient and reliable operation of an induction heater power board, as transistor characteristics directly influence switching losses, thermal behavior, and control complexity. Insulated Gate Bipolar Transistors (IGBTs) are widely used in medium-to-high power induction heating applications due to their ability to handle high voltage and current levels efficiently. Their low conduction losses at elevated currents and relatively stable thermal performance make them well-suited for moderate switching frequencies, typically in the tens of kilohertz range [18]. IGBTs also exhibit favorable cost-to-performance ratios and ruggedness under demanding load conditions. However, their slower switching speed and characteristic “tail current” during turn-off introduce switching losses, particularly in high-frequency operations. Additionally, IGBTs often require external freewheeling diodes and more complex drive circuitry compared to MOSFETs [19],[20].
 
-Metal–Oxide–Semiconductor Field-Effect Transistors (MOSFETs) offer faster switching and higher input impedance, making them ideal for high-frequency induction heater designs where rapid gate control and low switching losses are essential [16]. Their voltage-driven operation simplifies gate driving, and their low on-resistance (Rds(on)) contributes to high efficiency in lower-voltage applications. MOSFETs, however, suffer from increased conduction losses at high voltages due to their rising Rds(on) and are more sensitive to overvoltage stress, thermal variation, and gate overdrive. This necessitates careful protection and thermal management [17]. While silicon MOSFETs dominate in lower voltage ranges, wide-bandgap devices such as silicon carbide (SiC) or gallium nitride (GaN) transistors extend the switching frequency range and improve efficiency, albeit at higher cost [16].
+Metal–Oxide–Semiconductor Field-Effect Transistors (MOSFETs) offer faster switching and higher input impedance, making them ideal for high-frequency induction heater designs where rapid gate control and low switching losses are essential [21]. Their voltage-driven operation simplifies gate driving, and their low on-resistance (Rds(on)) contributes to high efficiency in lower-voltage applications. MOSFETs, however, suffer from increased conduction losses at high voltages due to their rising Rds(on) and are more sensitive to overvoltage stress, thermal variation, and gate overdrive. This necessitates careful protection and thermal management [22]. While silicon MOSFETs dominate in lower voltage ranges, wide-bandgap devices such as silicon carbide (SiC) or gallium nitride (GaN) transistors extend the switching frequency range and improve efficiency, albeit at higher cost [21].
 
-By contrast, Bipolar Junction Transistors (BJTs), though once popular, are now less favored for modern induction heating systems due to their slow switching and complex base drive requirements. BJTs require significant base current drive, reducing system efficiency and complicating circuit design [18]. They also exhibit longer storage times during saturation and are more prone to thermal instability and current hogging when used in parallel configurations [19]. Nonetheless, BJTs offer ruggedness and low saturation voltage under certain conditions, making them suitable for low-cost, lower-frequency systems where simplicity and robustness are prioritized [20]. Overall, IGBTs provide the best compromise for high-power applications, MOSFETs excel in high-frequency designs, and BJTs remain viable only for basic or legacy systems with limited frequency demands.
+By contrast, Bipolar Junction Transistors (BJTs), though once popular, are now less favored for modern induction heating systems due to their slow switching and complex base drive requirements. BJTs require significant base current drive, reducing system efficiency and complicating circuit design [23]. They also exhibit longer storage times during saturation and are more prone to thermal instability and current hogging when used in parallel configurations [24]. Nonetheless, BJTs offer ruggedness and low saturation voltage under certain conditions, making them suitable for low-cost, lower-frequency systems where simplicity and robustness are prioritized [25]. Overall, IGBTs provide the best compromise for high-power applications, MOSFETs excel in high-frequency designs, and BJTs remain viable only for basic or legacy systems with limited frequency demands.
 
 Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater power board due to their superior performance in medium-to-high power applications, where both high voltage and current handling are required. They provide a strong balance between conduction efficiency and switching losses, offering reliable operation at moderate frequencies typical of induction heating systems. Additionally, IGBTs exhibit robust thermal characteristics, high ruggedness under transient conditions, and a favorable cost-to-performance ratio compared to MOSFETs or BJTs. These characteristics make them the optimal choice for achieving efficient energy transfer, stable operation, and long-term durability in induction heating environments.
 
@@ -119,7 +119,7 @@ This is a simple but effective configuration that evenly induces current on the 
 
 
 ### Water Heating System
-There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands. The values are found from 3% voltage drop with the resistance equation with skin effect at high frequencies. Which the NEC states that branch circuits shouldn't have more than 3% voltage drop [21]. Also, ferrite might need to be around the  coil to direct the field toward the pipe to improve the efficiency of the induction. [22]
+There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands. The values are found from 3% voltage drop with the resistance equation with skin effect at high frequencies. Which the NEC states that branch circuits shouldn't have more than 3% voltage drop [26]. Also, ferrite might need to be around the  coil to direct the field toward the pipe to improve the efficiency of the induction. [27]
 
 
 
@@ -224,7 +224,7 @@ This subsystem is responsible for ensuring the induction heater is able to produ
 3. The heat generation subsystem shall increase the power delivered to the induction coil if the thermocouple senses temperatures below the desired temperature output based on user specified power input.
 4. The heat generation subsystem shall reduce the power delivered to the induction coil if the thermocouple senses temperatures exceeding the desired temperature output based on user specified power input.
 5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
-6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintainance temperature for induction heating [24].
+6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintainance temperature for induction heating [29].
 
 The heat generation subsystem primarily focuses on ensuring the output temperature is reached and providing critical information specified by the customer such as total power consumed and total temperature rise of the metal. This subsystem serves as the basis for correcting any errors in the output to best meet customer specifications.
 
@@ -254,8 +254,8 @@ This subsystem is responsible for ensuring the induction heater operates within 
 3. The safety subsystem shall trigger a system shutdown if the heating surface temperature exceeds 280°F (138°C) when no workpiece is present [2].
 4. The safety subsystem shall continuously monitor the total AC current drawn by the device.
 5. The safety subsystem shall trigger a system shutdown if the current draw exceeds the rated amperage of a standard 15A circuit for more than 500 milliseconds.
-6. The safety subsystem shall limit ground fault current such that no more than 50 volts appears on any accessible metal part, per NEC Article 665 [4].
-7. The "Off" switch shall physically open all ungrounded conductors, ensuring no power can be supplied to the heating coil, per NEC Article 427 [5].
+6. The safety subsystem shall limit ground fault current such that no more than 50 volts appears on any accessible metal part, per NEC Article 665 [9].
+7. The "Off" switch shall physically open all ungrounded conductors, ensuring no power can be supplied to the heating coil, per NEC Article 427 [10].
 8. The safety subsystem shall prevent the induction coil from energizing if a compatible workpiece (circular bar stock, pipe) is not detected.
 9. Upon detecting any fault condition, the safety subsystem shall provide a specific error code to the user display that identifies the cause of the fault.
 10. Once a fault state is triggered, the safety subsystem shall remain in a safe, non-operational mode until the user performs a manual power cycle.
@@ -324,16 +324,16 @@ The power PCB will convert AC input power into DC through the rectification proc
 
 #### Subsystem “Shall” Statements
 
-1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. [4], [24]  
-2. This PCB **shall** include fault detection and shutdown circuitry to prevent hardware failure. [24]  
-3. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability. [4], [12], [32], [33]
-4. This Microcontroller **shall** not exceed 100°C during operation.  [7]  
-5. This Microcontroller **shall** control the switching frequency of the power board. [13], [14], [15], [17]  
-6. This Microcontroller **shall** output PWM and toggle its pins. [14], [15], [17]  
-7. This Microcontroller **shall** interpret sensors.   [29]  
-8. This Microcontroller **shall** have Analog-to-Digital converting capabilities.   [29]  
+1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. [9], [29]  
+2. This PCB **shall** include fault detection and shutdown circuitry to prevent hardware failure. [29]  
+3. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability. [9], [17], [37], [38]
+4. This Microcontroller **shall** not exceed 100°C during operation.  [12]  
+5. This Microcontroller **shall** control the switching frequency of the power board. [18], [19], [20], [22]  
+6. This Microcontroller **shall** output PWM and toggle its pins. [19], [20], [22]  
+7. This Microcontroller **shall** interpret sensors.   [34]  
+8. This Microcontroller **shall** have Analog-to-Digital converting capabilities.   [34]  
 9. This Microcontroller **shall** interpret user interface inputs. 
-10. This Microcontroller **shall** interface with an LCD. [33]
+10. This Microcontroller **shall** interface with an LCD. [38]
 
 ### Electronic Housing System
 
@@ -367,15 +367,15 @@ The design and prototyping of an induction heater controller has a crucial need 
 #### Public Health and Safety
 The main priority when it comes to ethics and professional responsibility is the users safety. The use of regulatory standards is crucial to prevent harm and damage to the system.
 
-**Electrical Safety**: The design will adhere to NEC Article 427 [5] and NEC Article 665 [4], which govern fixed electric heating equipment and induction heating equipment, respectively.
+**Electrical Safety**: The design will adhere to NEC Article 427 [10] and NEC Article 665 [9], which govern fixed electric heating equipment and induction heating equipment, respectively.
 
 Key considerations from these two codes include:
 
- - Ensuring the "OFF" switch physically disconnects all ungrounded conductors, preventing automatic energization [5].
+ - Ensuring the "OFF" switch physically disconnects all ungrounded conductors, preventing automatic energization [10].
 
- - Limiting ground fault current to prevent more than 50 volts to ground on accessible parts [4].
+ - Limiting ground fault current to prevent more than 50 volts to ground on accessible parts [9].
 
- - Implementing a dead-front construction for the control panel to protect users from live circuits [4].
+ - Implementing a dead-front construction for the control panel to protect users from live circuits [9].
 
 **Thermal Safety**: The controller will incorporate multiple safety features to prevent overheating of both the workpiece and the device itself.
 
@@ -387,7 +387,7 @@ Key considerations from these two codes include:
 
 **User Notification**: An important ethical consideration for induction cooktops is the lack of visible heating. The controller will address this by providing clear user feedback through an LCD screen and status LEDs, indicating power on, heating activity, and error codes if applicable. This ensures users are aware of the system's current state, preventing accidental burns or misuse.
 
-**Enclosure Design**: The system will be housed in an insulated, non-conductive encasing to protect users from the high-frequency circuits inside, in accordance with NEC 665, Part II[4].
+**Enclosure Design**: The system will be housed in an insulated, non-conductive encasing to protect users from the high-frequency circuits inside, in accordance with NEC 665, Part II[9].
 
 **Improved Efficiency**: Induction heating is inherently more energy-efficient than traditional resistive heating methods, as it directly transfers energy to the material. The controller's ability to precisely control power delivery and heating profiles will further optimize efficiency, reducing energy waste and operating costs
 
@@ -507,75 +507,75 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 [2] “INDUCTION COOKER User Manual Model: SK-IH18G23T.”
 
-[3#] ESP32-C61 ESP-dev-kits documentation release master Espressif systems, https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c61/esp-dev-kits-en-master-esp32c61.pdf (accessed Oct. 25, 2025). 
+[3] ESP32-C61 ESP-dev-kits documentation release master Espressif systems, https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c61/esp-dev-kits-en-master-esp32c61.pdf (accessed Oct. 25, 2025). 
 
-[4#] STM32G4 nucleo-64 boards (MB1367) - user manual, https://www.st.com/resource/en/user_manual/dm00556337-stm32g4-nucleo-64-boards-mb1367-stmicroelectronics.pdf (accessed Oct. 25, 2025). 
+[4] STM32G4 nucleo-64 boards (MB1367) - user manual, https://www.st.com/resource/en/user_manual/dm00556337-stm32g4-nucleo-64-boards-mb1367-stmicroelectronics.pdf (accessed Oct. 25, 2025). 
 
-[5#] STM32 NUCLEO-L476xx, https://www.st.com/resource/en/datasheet/stm32l476je.pdf (accessed Oct. 25, 2025).
+[5] STM32 NUCLEO-L476xx, https://www.st.com/resource/en/datasheet/stm32l476je.pdf (accessed Oct. 25, 2025).
 
-[6#] Discovery kit with STM32F413ZH MCU, https://www.st.com/content/ccc/resource/technical/document/data_brief/group1/42/31/99/b3/da/7d/4f/54/DM00451091/files/DM00451091.pdf/jcr:content/translations/en.DM00451091.pdf (accessed Oct. 25, 2025). 
+[6] Discovery kit with STM32F413ZH MCU, https://www.st.com/content/ccc/resource/technical/document/data_brief/group1/42/31/99/b3/da/7d/4f/54/DM00451091/files/DM00451091.pdf/jcr:content/translations/en.DM00451091.pdf (accessed Oct. 25, 2025). 
 
-[7#] Discovery kit for IoT node, multi-channel communication with STM32L4+ Series, https://www.st.com/resource/en/data_brief/dm00697666.pdf (accessed Oct. 25, 2025). 
+[7] Discovery kit for IoT node, multi-channel communication with STM32L4+ Series, https://www.st.com/resource/en/data_brief/dm00697666.pdf (accessed Oct. 25, 2025). 
 
-[3] J. Lasobras, R. Alonso, C. Carretero, E. Carretero, and E. Imaz, “Infrared Sensor-Based Temperature Control for Domestic Induction Cooktops,” Sensors, vol. 14, no. 3, pp. 5278–5295, Mar. 2014, doi: https://doi.org/10.3390/s140305278.
+[8] J. Lasobras, R. Alonso, C. Carretero, E. Carretero, and E. Imaz, “Infrared Sensor-Based Temperature Control for Domestic Induction Cooktops,” Sensors, vol. 14, no. 3, pp. 5278–5295, Mar. 2014, doi: https://doi.org/10.3390/s140305278.
 
-[4] opitts2k, “Article 665,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-665/ (accessed Sep. 29, 2025).
+[9] opitts2k, “Article 665,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-665/ (accessed Sep. 29, 2025).
 
-[5] opitts2k, “Article 427,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-427/ (accessed Sep. 25, 2025).
-
-[6] Coil Technology Corporation. “Input and Output Filter Design for Power Conversion Equipment.” PowerCTC, 2023, https://www.powerctc.com/en/node/5523
-
-[7] Enisz, K., G. Kohlrusz, D. Fodor, and L. Kovacs. “Degradation Analysis of DC-Link Aluminium Electrolytic Capacitors Operating in PWM Power Converters.” Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020, https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters
-
-[8] Coil Technology Corporation. “Input and Output Filter Design for Power Conversion Equipment.” PowerCTC, 2023, https://www.powerctc.com/en/node/5523
-
-[9] MadPCB. “Low-Pass Filter Overview and Applications.” MadPCB, 2021, https://madpcb.com/glossary/low-pass-filter
-
-[10] “Low-Pass Filters in Power Electronics.” All About Circuits, 2020, https://www.allaboutcircuits.com/textbook/alternating-current/chpt-8/low-pass-filters
+[10] opitts2k, “Article 427,” The NEC Wiki, 2021. https://thenecwiki.com/2021/02/article-427/ (accessed Sep. 25, 2025).
 
 [11] Coil Technology Corporation. “Input and Output Filter Design for Power Conversion Equipment.” PowerCTC, 2023, https://www.powerctc.com/en/node/5523
 
-[12] Interference Technology. “EMI Filter Design Guide.” 2016, https://www.interferencetechnology.com/wp-content/uploads/2016/10/2016_IT_EMC_Filters_Guide.pdf
+[12] Enisz, K., G. Kohlrusz, D. Fodor, and L. Kovacs. “Degradation Analysis of DC-Link Aluminium Electrolytic Capacitors Operating in PWM Power Converters.” Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020, https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters
+
+[13] Coil Technology Corporation. “Input and Output Filter Design for Power Conversion Equipment.” PowerCTC, 2023, https://www.powerctc.com/en/node/5523
+
+[14] MadPCB. “Low-Pass Filter Overview and Applications.” MadPCB, 2021, https://madpcb.com/glossary/low-pass-filter
+
+[15] “Low-Pass Filters in Power Electronics.” All About Circuits, 2020, https://www.allaboutcircuits.com/textbook/alternating-current/chpt-8/low-pass-filters
+
+[16] Coil Technology Corporation. “Input and Output Filter Design for Power Conversion Equipment.” PowerCTC, 2023, https://www.powerctc.com/en/node/5523
+
+[17] Interference Technology. “EMI Filter Design Guide.” 2016, https://www.interferencetechnology.com/wp-content/uploads/2016/10/2016_IT_EMC_Filters_Guide.pdf
 ‌
-[13] “IGBTs for Induction Heaters.” Power Electronics News, 2023, https://www.powerelectronicsnews.com/igbts-for-induction-heaters/
+[18] “IGBTs for Induction Heaters.” Power Electronics News, 2023, https://www.powerelectronicsnews.com/igbts-for-induction-heaters/
 
-[14] Arrow Electronics. What's the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices. Arrow Whitepaper, 2023. PDF, https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf
+[19] Arrow Electronics. What's the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices. Arrow Whitepaper, 2023. PDF, https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf
 
-[15] “MOSFET vs. IGBT: Key Differences.” AllPCB, 2022, https://www.allpcb.com/allelectrohub/mosfet-vs-igbt-key-differences
+[20] “MOSFET vs. IGBT: Key Differences.” AllPCB, 2022, https://www.allpcb.com/allelectrohub/mosfet-vs-igbt-key-differences
 
-[16] “Difference Between IGBT and MOSFET Performance.” Chip-Chip Blog, 2022, https://blog.chip-chip.com/difference-between-igbt-and-mosfet-performance/
+[21] “Difference Between IGBT and MOSFET Performance.” Chip-Chip Blog, 2022, https://blog.chip-chip.com/difference-between-igbt-and-mosfet-performance/
 
-[17] “IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications.” JSW XDH, 2021, https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html
+[22] “IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications.” JSW XDH, 2021, https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html
 
-[18] “Bipolar Junction Transistors (BJT) Working and Applications.” Hackatronic, 2021, https://hackatronic.com/bipolar-junction-transistors-bjt-working-and-applications/amp/
+[23] “Bipolar Junction Transistors (BJT) Working and Applications.” Hackatronic, 2021, https://hackatronic.com/bipolar-junction-transistors-bjt-working-and-applications/amp/
 
-[19] “Bipolar Junction Transistor (BJT): Construction and Applications.” Sathyabama Institute of Science and Technology, 2020, https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SEE1305.pdf
+[24] “Bipolar Junction Transistor (BJT): Construction and Applications.” Sathyabama Institute of Science and Technology, 2020, https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SEE1305.pdf
 
-[20] “Bipolar Junction Transistor (BJT).” GeeksforGeeks, 2023, https://www.geeksforgeeks.org/bipolar-junction-transistor/
+[25] “Bipolar Junction Transistor (BJT).” GeeksforGeeks, 2023, https://www.geeksforgeeks.org/bipolar-junction-transistor/
 
-[21]  "NEC 2017 210.19b note No. 2"
+[26]  "NEC 2017 210.19b note No. 2"
 
-[22] P. Cui, W. Zhu, H. Li, S. Hu, B. Hu, F. Yang, C. Hang, and M. Li, “Ultra-efficient localized induction heating by dual-ferrite synchronous magnetic field focusing,” Applied Energy, vol. 348, p. 121535, 2023, (doi:10.1016/j.apenergy.2023.121535)[https://www.sciencedirect.com/science/article/abs/pii/S0306261923008991].
+[27] P. Cui, W. Zhu, H. Li, S. Hu, B. Hu, F. Yang, C. Hang, and M. Li, “Ultra-efficient localized induction heating by dual-ferrite synchronous magnetic field focusing,” Applied Energy, vol. 348, p. 121535, 2023, (doi:10.1016/j.apenergy.2023.121535)[https://www.sciencedirect.com/science/article/abs/pii/S0306261923008991].
 
-[24] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
+[29] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
 
-[25] Electronics-Tutorials. “Full Wave Rectifier & Bridge Rectifier Theory.” https://www.electronics-tutorials.ws/diode/diode_6.html
+[30] Electronics-Tutorials. “Full Wave Rectifier & Bridge Rectifier Theory.” https://www.electronics-tutorials.ws/diode/diode_6.html
 
-[26]B. Daly, “Solenoid Coil Designs & Calculations for Efficient Induction Heating,” Ambrell.com, May 20, 2019. https://www.ambrell.com/blog/solenoid-coil-designs-calculations-for-efficient-induction-heating (accessed Oct. 14, 2025).
+[31]B. Daly, “Solenoid Coil Designs & Calculations for Efficient Induction Heating,” Ambrell.com, May 20, 2019. https://www.ambrell.com/blog/solenoid-coil-designs-calculations-for-efficient-induction-heating (accessed Oct. 14, 2025).
 
-[28] Visintini, R. “Rectifiers.” CERN Accelerator School, 2007. https://cds.cern.ch/record/987551/files/p133.pdf
+[33] Visintini, R. “Rectifiers.” CERN Accelerator School, 2007. https://cds.cern.ch/record/987551/files/p133.pdf
 
-[29] ScienceDirect. “Bridge Rectifier — an Overview.” https://www.sciencedirect.com/topics/engineering/bridge-rectifier
+[34] ScienceDirect. “Bridge Rectifier — an Overview.” https://www.sciencedirect.com/topics/engineering/bridge-rectifier
 
 
-[29] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025.
-[30] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015.
-[31] S. Salkowski, “Hot Topic: Dispelling the Myths About Induction Stoves.” Acadia Center, 2025.
+[34] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025.
+[35] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015.
+[36] S. Salkowski, “Hot Topic: Dispelling the Myths About Induction Stoves.” Acadia Center, 2025.
 ‌
-[32] IPC Association Connecting Electronics Industries, "IPC-2221B: Generic Standard on Printed Board Design," IPC, Bannockburn, IL, 2012.
-[33] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
+[37] IPC Association Connecting Electronics Industries, "IPC-2221B: Generic Standard on Printed Board Design," IPC, Bannockburn, IL, 2012.
+[38] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
 
-[33] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
+[38] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
 ## Statement of Contributions
 ***
 
