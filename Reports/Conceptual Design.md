@@ -58,6 +58,7 @@ OMEO PCB with Heatsink:
 OMEO PCB without  Heatsink:
 ![alt text](<Induction PCB without Heatsink.jpeg>)
 
+
 The system we will be implementing can be best understood using a control block diagram: 
 
 ![alt text](<Control_Block_Diagram.drawio (1).png>)
@@ -68,6 +69,9 @@ For our system:
  - G(s) = dynamics of the induction heater controller
  - H(s) = dynamics of the thermocouple sensor
  - Gc(s) = compensator to be implemented to ensure specifications are met
+ - summing junction = singals to and from microcontroller
+
+For this system, the critical component to be implemented will be the compensator and the summing junction to ensure that the temperature output is accurate to the user's input and remains at a safe level. This can be accomplished using hardware, software, or a mix of both. Deciding which to use primarily depends on balancing the need for speed and reliability using hardware like physical relays [39] versus using software to increase reprogrammability and reduce lead times by reducing number of parts ordered. Typically industrial settings implement their control using digital software for this reason to be able to improve performance of a system without having to order multiple resistor and capacitor components for a hardware solution, while power substations will use physical relays to handle higher voltage requirements and prevent fatal errors. 
 
 Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. A sensor would need to be budgetted for whether the team utilzes open or closed loop control becasue of this. Closed loop control requires more time to design the system to properly integrate the sensor(s) into feedback loops, but it would allow for more accurate and reliable temperature control.
 
@@ -594,6 +598,10 @@ The responsibilities for designing each subsystem are allocated as follows:
 [37] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
 
 [38] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
+
+[39]LearnMetering, “Understanding Relays and Control/Monitoring Equipment in Substations - Learn Metering,” Learn Metering, Jun. 17, 2024. https://learnmetering.com/substation-relays-control-monitoring-equipment/ (accessed Oct. 26, 2025).
+‌
+
 ## Statement of Contributions
 ***
 
