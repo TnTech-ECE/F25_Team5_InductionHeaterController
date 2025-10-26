@@ -73,6 +73,21 @@ For our system:
 
 For this system, the critical component to be implemented will be the compensator and the summing junction to ensure that the temperature output is accurate to the user's input and remains at a safe level. This can be accomplished using hardware, software, or a mix of both. Deciding which to use primarily depends on balancing the need for speed and reliability using hardware like physical relays [39] versus using software to increase reprogrammability and reduce lead times by reducing number of parts ordered. Typically industrial settings implement their control using digital software for this reason to be able to improve performance of a system without having to order multiple resistor and capacitor components for a hardware solution, while power substations will use physical relays to handle higher voltage requirements and prevent fatal errors. 
 
+#### Heat Generation Controls 
+Heat Generation Controls will be the controls implemented to meet customer specificatons. 
+
+These controls will require: 
+- ability to increase and decrease temperature of pipe 
+
+
+#### Safety Controls 
+Safety Controls will be the controls implemented to meet safety and ethical standards. 
+
+These controls will require: 
+- reliable shut off mechanisms in event of faults or overheating 
+
+
+
 Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. A sensor would need to be budgetted for whether the team utilzes open or closed loop control becasue of this. Closed loop control requires more time to design the system to properly integrate the sensor(s) into feedback loops, but it would allow for more accurate and reliable temperature control.
 
 Safety controls will be essential to prevent overheating of components.
