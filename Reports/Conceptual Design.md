@@ -608,6 +608,20 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 [25] “Bipolar Junction Transistor (BJT).” GeeksforGeeks, 2023, https://www.geeksforgeeks.org/bipolar-junction-transistor/
 
+[26#] Omega Engineering. “NEMA Electrical Enclosures – Materials, Types & Applications.” Omega Engineering, 2024. https://www.omegaengineering.cn/subsection_eng/nema-electrical-enclosures-all.html
+
+[27#] Hammond Manufacturing. “Top Tips When Specifying Industrial Enclosures.” Hammond Manufacturing Whitepaper, 2023. https://www.hammfg.com/files/downloads/whitepapers/selection-whitepaper.pdf
+
+[28#] Polycase. “Polycarbonate Enclosures & Boxes for Electronics.” Polycase, 2024. https://www.polycase.com/polycarbonate-enclosures
+
+[29#] Bud Industries. “EMI/RFI Shielding Options for Plastic Enclosures.” The Volt Post, 2023. https://thevoltpost.com/hammond-enclosure-materials-metallic-non-metallic/
+
+[30#] Designing Electronics. “Weighing the Pros and Cons of Common Enclosure Materials.” Designing-Electronics.com, 2023. https://www.designing-electronics.com/weighing-the-pros-and-cons-of-common-enclosure-materials/
+
+[31#] Polycase. “Polycarbonate Enclosures: Features, Benefits and Common Applications.” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/polycarbonate-enclosures-features-benefits-and-common-applications.html
+
+[32#] Polycase. “How Strong Is Polycarbonate for Enclosures?” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/how-strong-is-polycarbonate.html
+
 [26]  "NEC 2017 210.19b note No. 2"
 
 [27] P. Cui, W. Zhu, H. Li, S. Hu, B. Hu, F. Yang, C. Hang, and M. Li, “Ultra-efficient localized induction heating by dual-ferrite synchronous magnetic field focusing,” Applied Energy, vol. 348, p. 121535, 2023, (doi:10.1016/j.apenergy.2023.121535)[https://www.sciencedirect.com/science/article/abs/pii/S0306261923008991].
@@ -637,19 +651,7 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 
 
-[26#] Omega Engineering. “NEMA Electrical Enclosures – Materials, Types & Applications.” Omega Engineering, 2024. https://www.omegaengineering.cn/subsection_eng/nema-electrical-enclosures-all.html
 
-[27#] Hammond Manufacturing. “Top Tips When Specifying Industrial Enclosures.” Hammond Manufacturing Whitepaper, 2023. https://www.hammfg.com/files/downloads/whitepapers/selection-whitepaper.pdf
-
-[28#] Polycase. “Polycarbonate Enclosures & Boxes for Electronics.” Polycase, 2024. https://www.polycase.com/polycarbonate-enclosures
-
-[29#] Bud Industries. “EMI/RFI Shielding Options for Plastic Enclosures.” The Volt Post, 2023. https://thevoltpost.com/hammond-enclosure-materials-metallic-non-metallic/
-
-[30#] Designing Electronics. “Weighing the Pros and Cons of Common Enclosure Materials.” Designing-Electronics.com, 2023. https://www.designing-electronics.com/weighing-the-pros-and-cons-of-common-enclosure-materials/
-
-[31#] Polycase. “Polycarbonate Enclosures: Features, Benefits and Common Applications.” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/polycarbonate-enclosures-features-benefits-and-common-applications.html
-
-[32#] Polycase. “How Strong Is Polycarbonate for Enclosures?” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/how-strong-is-polycarbonate.html
 ‌
 
 ## Statement of Contributions
