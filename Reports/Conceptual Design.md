@@ -85,8 +85,10 @@ These controls will require:
 - reprogrammability to ensure controller meets specifications despite noise of system dynamics 
 
 This can be attained using: 
-- digital PID Control implemented using a microcontroller 
-- hardware PID Control control implemented using resistors and capacitors 
+- ##### Software PID Control implemented using a microcontroller 
+PID control is compensation solution that is the most comprehensive of compensators available. PID by definition is a Proportional, Integral, and Derivative control that allows for the reduction of error, noise, and chattering of signals respectively. This is achieved primarily by adjusting the values of and ratios of constants Kp, Ki, and Kd associated with each PID parameter. These constants can be calculated using control theory if the system specifications are known and the transfer functions of the plant and sensor are known. These can be determined experimentally, but the constants are usually set in a more ad hoc manner to save time. In both cases the PID control is usually fine tuned by adjusting the constants as needed to get the best response. PID can be implemented using software or hardware, but it is typically done using software. 
+- ##### Hardware PID Control implemented using resistors and capacitors 
+
 
 
 #### Safety Controls 
@@ -98,8 +100,10 @@ These controls will require:
 - ensurance that controller is unable to produce heating on the pipe when the controller is in the designated "off" mode 
 
 This can be attained using: 
-- hardware relays 
-- software microcontroller code 
+- ##### Hardware Relays: 
+these provide a physical disconnect based on an electrical signal 
+- ##### Software Microcontroller Code: 
+this code prevents other parts of the code from running by using software checks (e.g. if statements)
 
 
 ### Microcontroller and PCB
