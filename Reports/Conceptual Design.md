@@ -90,8 +90,10 @@ PID control is compensation solution that is the most comprehensive of compensat
 
 Using a microcontroller has the additional benefit that the microcontroller will be able to send and recieve signals to / from the system. A microcontroller would be able to receive information from the sensor's actual temperature and user's desired temperature and send information to that the system needs to adjust to match actual temp to desired temp. Implementing this control in a microcontroller reduces the need for additional components requiring additional connections to communicate with each other. 
 
-- ##### 
+There are less comprehensive compensators available such as phase lead and phase lag, and PID can be reduced to P and so on as needed to reduce costs if needed. However, by implementing this control using software in a microcontroller the team should not incur any additional cost by implementing PID. 
 
+- ##### Finite State Machine implemented using a microcontroller 
+A finite state machine operates by choosing an integer value to act as a "state" and then having parameters to act on that state. For this system, the state variable would correspond to states such as "system off" and "actual temp greater than desired temp." This solution  
 
 
 #### Safety Controls 
