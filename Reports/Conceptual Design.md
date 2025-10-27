@@ -86,14 +86,11 @@ These controls will require:
 
 This can be attained using: 
 - ##### PID Control implemented using a microcontroller 
-PID control is compensation solution that is the most comprehensive of compensators available. PID by definition is a Proportional, Integral, and Derivative control that allows for the reduction of error, noise, and chattering of signals respectively. This is achieved primarily by adjusting the values of and ratios of constants Kp, Ki, and Kd associated with each PID parameter. These constants can be calculated using control theory if the system specifications are known and the transfer functions of the plant and sensor are known. These can be determined experimentally, but the constants are usually set in a more ad hoc manner to save time. In both cases the PID control is usually fine tuned by adjusting the constants as needed to get the best response. PID can be implemented using software or hardware, but it is typically done using software. Software allows for reprogrammability, and can be implemented easily using a microcontroller. Hardware PID involves longer lead times to recieve multiple parts and would be difficult to fine tune without even longer lead times. For this system, the proportional control will be critical to remove the error signal between the user desired temperature and the actual temperature of the pipe. The other parameters will not be as critical, but they will still be useful to ensure customer specifications are met. 
+PID control [47] is compensation solution that is the most comprehensive of compensators available. PID by definition is a Proportional, Integral, and Derivative control that allows for the reduction of error, noise, and chattering of signals respectively. This is achieved primarily by adjusting the values of and ratios of constants Kp, Ki, and Kd associated with each PID parameter. These constants can be calculated using control theory if the system specifications are known and the transfer functions of the plant and sensor are known. These can be determined experimentally, but the constants are usually set in a more ad hoc manner to save time. In both cases the PID control is usually fine tuned by adjusting the constants as needed to get the best response. PID can be implemented using software or hardware, but it is typically done using software. Software allows for reprogrammability, and can be implemented easily using a microcontroller. Hardware PID involves longer lead times to recieve multiple parts and would be difficult to fine tune without even longer lead times. For this system, the proportional control will be critical to remove the error signal between the user desired temperature and the actual temperature of the pipe. The other parameters will not be as critical, but they will still be useful to ensure customer specifications are met. 
 
 Using a microcontroller has the additional benefit that the microcontroller will be able to send and recieve signals to / from the system. A microcontroller would be able to receive information from the sensor's actual temperature and user's desired temperature and send information to that the system needs to adjust to match actual temp to desired temp. Implementing this control in a microcontroller reduces the need for additional components requiring additional connections to communicate with each other. 
 
 There are less comprehensive compensators available such as phase lead and phase lag, and PID can be reduced to P and so on as needed to reduce costs if needed. However, by implementing this control using software in a microcontroller the team should not incur any additional cost by implementing PID. 
-
-- ##### Finite State Machine implemented using a microcontroller 
-A finite state machine operates by choosing an integer value to act as a "state" and then having parameters to act on that state. For this system, the state variable would correspond to states such as "system off" and "actual temp greater than desired temp." This solution  
 
 
 #### Safety Controls 
@@ -651,10 +648,9 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 [46]LearnMetering, “Understanding Relays and Control/Monitoring Equipment in Substations - Learn Metering,” Learn Metering, Jun. 17, 2024. https://learnmetering.com/substation-relays-control-monitoring-equipment/ (accessed Oct. 26, 2025).
 
-
-
-
+[47]E. Chen, “Controls and Signals Maslab IAP 2011.” Accessed: Oct. 27, 2025. [Online]. Available: https://web.mit.edu/6.186/2011/Lectures/controls/ControlsandSignals.pdf
 ‌
+
 
 ## Statement of Contributions
 ***
