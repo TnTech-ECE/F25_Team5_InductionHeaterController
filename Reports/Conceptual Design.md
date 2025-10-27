@@ -104,8 +104,8 @@ These controls will require:
 This can be attained using: 
 - ##### Hardware Relays: 
 these provide a physical disconnect based on an electrical signal 
-- ##### Software Microcontroller Code: 
-this code prevents other parts of the code from running by using software checks (e.g. if statements)
+- ##### Software Safety Implemented using a Microcontroller: 
+This solution uses code to prevent the system from operating dangerously by using software checks (e.g. if statements). The solution would efficiently utilize the microcontroller already being utilized to send and recieve information from the system, and would benefit by operating parallel to the heat generation controls implemented to the microcontroller. This would streamline the control process overall and allow the software safety control to directly control the heat generation control. 
 
 
 ### Microcontroller and PCB
@@ -660,6 +660,7 @@ Restating the Fully Formulated Problem - [John]
 Comparative Analysis of Existing Solutions - Power System  - [Austin]
 Comparative Analysis of Existing Solutions - Electrical Housing - [Austin]
 Comparative Analysis of Existing Solutions - Control System  - [Cole]
+Comparative Analysis of Existing Solutions - Coil Configuration  - [Cole]
 Comparative Analysis of Existing Solutions - Mirocontrollers - [Dow]
 Started Operational Flow Chart - [Dow]
 Atomic Subsystem Specifications - Power System - [Austin]
