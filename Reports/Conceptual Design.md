@@ -146,10 +146,6 @@ By contrast, Bipolar Junction Transistors (BJTs), though once popular, are now l
 Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater power board due to their superior performance in medium-to-high power applications, where both high voltage and current handling are required. They provide a strong balance between conduction efficiency and switching losses, offering reliable operation at moderate frequencies typical of induction heating systems. Additionally, IGBTs exhibit robust thermal characteristics, high ruggedness under transient conditions, and a favorable cost-to-performance ratio compared to MOSFETs or BJTs. These characteristics make them the optimal choice for achieving efficient energy transfer, stable operation, and long-term durability in induction heating environments.
 
 
-### Electronic Housing System
-The housing needs to be splash resistant so the options are a typical electrical Box or a custom housing. The electrical Box would be simpler to implement.
-
-
 ### Coil Configuration
 
 Lochinvar specified that the controller shall heat the pipe using an induction coil wrapped around the pipe. 
@@ -159,6 +155,12 @@ Lochinvar specified that the controller shall heat the pipe using an induction c
 This is a simple but effective configuration that evenly induces current on the pipe. It is a low cost implementation requiring only a malleable conductor that can easily be reshaped into coils with a diameter slightly greater than the diameter of the pipe. A common solution is to use copper as that malleable conductor, as seen in the flat pancake coil configuration utilized in the OMEO induction cooktop. 
 
 ![alt text](IMG_6816.jpeg)
+
+The primary issue that arises using this configuration is that the user should not be exposed to the conductor, otherwise they risk an electric shock or, for induction heating, a burning hazard. The team will need to implement protections to ensure that the user is not exposed to these risks. Possible solutions include insulating the wire or enclosing the wire using a case that presents no shock / burn hazard to users. For our system, using a case will be a better solution to prevent both hazards. 
+
+
+### Electronic Housing System
+The housing needs to be splash resistant so the options are a typical electrical Box or a custom housing. The electrical Box would be simpler to implement.
 
 
 ### Water Heating System
