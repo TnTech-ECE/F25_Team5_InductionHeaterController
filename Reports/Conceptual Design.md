@@ -31,14 +31,14 @@ The controller will act as a proof-of-concept platform that illustrates the conn
 | **ID** | **System Requirements**                                                                                                                           | **Origin of Constraint (Reference)**                                                                |
 | :----: | :------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------- |
 |   1    | This controller **shall** provide multiple power settings, allowing for adjustable heating levels.                                                | Customer specification (Lochinvar requirement)                                                      |
-|   2    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective; supported by induction heating models  [32], [34] |
+|   2    | This controller **shall** cause internal heating and surface eddy currents in cylindrical metallic samples (bar stock and/or regular black pipe). | Functional design requirement; project objective; supported by induction heating models  [39], [41] |
 |   3    | This controller **shall** measure and display electrical input power and corresponding temperature rise.                                          | Customer specification; data acquisition requirement [1], [2]                                       |
 |   4    | This controller **shall** prevent energization when in the OFF state by making sure all ungrounded conductors are disconnected.                   | Safety requirement; NEC Article 427 (Fixed Electric Heating Equipment) [10]                         |
-|   5    | This controller **shall** have overheating and overcurrent fault protection to avoid hardware failure.                                            | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating) [28]            |
+|   5    | This controller **shall** have overheating and overcurrent fault protection to avoid hardware failure.                                            | Standards compliance; IEEE 844-2000 (Impedance, Induction, and Skin-Effect Heating) [35]            |
 |   6    | This controller **shall** have an LCD screen to show temperature, power, and current flow data.                                                   | Customer usability requirement; supported by OMEO cooktop interface [1], [2], [8]                   |
 |   7    | This controller **shall** be housed in an insulated, non-conductive enclosure.                                                                    | NEC 665, Part II; ethical responsibility for user safety [9]                                        |
 |   8    | This controller **shall** not exceed a maximum enclosure temperature of 105°C during operation.                                                   | Component protection limit; derived from OMEO SK-IH18G23T analysis [2]                              |
-|   9    | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics) [28], [35]                                 |
+|   9    | This controller **shall** adhere to ethical engineering practices.                                                                                | Ethical and professional standards (IEEE Code of Ethics) [35], [42]                                 |
 
 
 
@@ -73,7 +73,7 @@ For our system:
 
 The team's system will require a thermocouple sensor to meet customer specifications and ensure that a the induction heater controller produces a temperature rise on the metal. The team shall implement a closed loop control system to ensure that customer specifications are met in an accurate and consistent manner. Open loop control is better for cost efficiency primarily by eliminating the cost of a sensor measuring the part heated, but measuring the part heated is a requirement for this project. 
 
-For this system, the critical component to be implemented will be the compensator and the summing junction to ensure that the temperature output is accurate to the user's input and remains at a safe level. This can be accomplished using hardware, software, or a mix of both. Deciding which to use primarily depends on balancing the need for speed and reliability using hardware like physical relays [39] versus using software to increase reprogrammability and reduce lead times by reducing number of parts ordered. Typically industrial settings implement their control using digital software for this reason to be able to improve performance of a system without having to order multiple resistor and capacitor components for a hardware solution, while power substations will use physical relays to handle higher voltage requirements and prevent fatal errors. 
+For this system, the critical component to be implemented will be the compensator and the summing junction to ensure that the temperature output is accurate to the user's input and remains at a safe level. This can be accomplished using hardware, software, or a mix of both. Deciding which to use primarily depends on balancing the need for speed and reliability using hardware like physical relays [46] versus using software to increase reprogrammability and reduce lead times by reducing number of parts ordered. Typically industrial settings implement their control using digital software for this reason to be able to improve performance of a system without having to order multiple resistor and capacitor components for a hardware solution, while power substations will use physical relays to handle higher voltage requirements and prevent fatal errors. 
 
 #### Heat Generation Controls 
 Heat Generation Controls will be the controls implemented to meet customer specificatons. 
@@ -133,7 +133,7 @@ The ESP32-C61 is the option which will most likely be used since its the cheapes
 ### Power System Overview:
 
 
-1. A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the AC line. This delivers a higher average DC output voltage and smoother waveform with reduced ripple. Compared to half-wave designs, the full-bridge configuration uses both halves of the AC waveform, resulting in more continuous conduction and a higher transformer utilization factor (TUF), which contributes to improved power efficiency and output quality [30]. Additionally, the bridge rectifier produces a smaller ripple for a given load and requires less filtering, enhancing overall DC smoothness [31]. In design, key considerations include voltage and current ratings of the diodes, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications. This justifies its use despite the slightly higher component count [32].
+1. A full-bridge rectifier shall be chosen over a half-bridge rectifier because it provides better efficiency and utilization of the AC line. This delivers a higher average DC output voltage and smoother waveform with reduced ripple. Compared to half-wave designs, the full-bridge configuration uses both halves of the AC waveform, resulting in more continuous conduction and a higher transformer utilization factor (TUF), which contributes to improved power efficiency and output quality [37]. Additionally, the bridge rectifier produces a smaller ripple for a given load and requires less filtering, enhancing overall DC smoothness [38]. In design, key considerations include voltage and current ratings of the diodes, power efficiency, and cost versus performance trade-offs. Factors such as load requirements, available supply voltage, and desired output smoothness influence the decision. The full-bridge configuration is selected because it ensures maximum power transfer, improved DC output quality, and better performance for high-power applications. This justifies its use despite the slightly higher component count [39].
 
 2. Adequate voltage filtering in the power board of an induction heater is essential to suppress DC-link ripple, reduce switching noise, and prevent voltage overshoot that can stress semiconductor devices. The most common solution is bulk capacitive filtering, where large electrolytic or film capacitors are placed across the DC bus to provide a low impedance path for high-frequency components. This configuration smooths the DC voltage and reduces electromagnetic interference (EMI) by bypassing switching transients to ground [11]. Low-ESR and low-ESL capacitors are preferred for this purpose, as they handle high ripple currents effectively. The main advantages of capacitive filtering include its simplicity, compactness, and low cost. However, disadvantages include high in-rush current during startup, aging under thermal stress, and limited attenuation of low-frequency ripple components [12].
 
@@ -167,15 +167,15 @@ The primary issue that arises using this configuration is that the user should n
 
 
 ### Electronic Housing System
-Existing solutions for electrical housings used in induction heater controller systems vary based on power level, environmental exposure, and heat management requirements. The most common types include metal enclosures (such as aluminum or steel), plastic housings (such as polycarbonate or ABS), and hybrid designs combining both materials. Metal enclosures are often preferred for high-power induction heating systems because of their excellent electromagnetic shielding and heat dissipation properties, which protect sensitive circuitry and power devices such as IGBTs and rectifiers from interference and thermal stress [26#]. However, metal housings are typically heavier, more expensive, and prone to corrosion if not properly treated. They may also require grounding and insulation measures to ensure user safety in high-voltage systems [27#].
+Existing solutions for electrical housings used in induction heater controller systems vary based on power level, environmental exposure, and heat management requirements. The most common types include metal enclosures (such as aluminum or steel), plastic housings (such as polycarbonate or ABS), and hybrid designs combining both materials. Metal enclosures are often preferred for high-power induction heating systems because of their excellent electromagnetic shielding and heat dissipation properties, which protect sensitive circuitry and power devices such as IGBTs and rectifiers from interference and thermal stress [26]. However, metal housings are typically heavier, more expensive, and prone to corrosion if not properly treated. They may also require grounding and insulation measures to ensure user safety in high-voltage systems [27].
 
-Plastic housings, by contrast, offer several advantages for compact or medium-power induction heater controllers. Materials like polycarbonate or ABS are lightweight, corrosion-resistant, and electrically insulating, reducing the need for additional safety grounding [28#]. While plastics naturally lack EMI shielding and strong heat conduction, these limitations can be mitigated through conductive coatings, internal grounding strips, or external heat sinks [29#]. Hybrid housings that combine a metal base with a plastic top are also used when both thermal and safety considerations must be met. These materials comply with international safety standards such as IEC 60529 (IP ratings) for ingress protection and UL 94 for flammability, making them suitable for industrial and laboratory environments [30#].
+Plastic housings, by contrast, offer several advantages for compact or medium-power induction heater controllers. Materials like polycarbonate or ABS are lightweight, corrosion-resistant, and electrically insulating, reducing the need for additional safety grounding [28]. While plastics naturally lack EMI shielding and strong heat conduction, these limitations can be mitigated through conductive coatings, internal grounding strips, or external heat sinks [29]. Hybrid housings that combine a metal base with a plastic top are also used when both thermal and safety considerations must be met. These materials comply with international safety standards such as IEC 60529 (IP ratings) for ingress protection and UL 94 for flammability, making them suitable for industrial and laboratory environments [30].
 
-For this project, a plastic housing—specifically polycarbonate—is chosen due to its balance of strength, insulation, and practicality. Polycarbonate provides excellent impact resistance, chemical durability, and electrical insulation, making it ideal for enclosing induction heater control electronics in both laboratory and semi-industrial environments [31#]. It also offers greater design flexibility for custom layouts, openings, and mounting options while reducing total system weight and manufacturing cost. Additionally, polycarbonate’s resistance to moisture and its non-conductive nature enhance operator safety. This makes a plastic housing the most suitable choice for a reliable, cost-effective, and easily serviceable induction heater controller enclosure [32#].
+For this project, a plastic housing—specifically polycarbonate—is chosen due to its balance of strength, insulation, and practicality. Polycarbonate provides excellent impact resistance, chemical durability, and electrical insulation, making it ideal for enclosing induction heater control electronics in both laboratory and semi-industrial environments [31]. It also offers greater design flexibility for custom layouts, openings, and mounting options while reducing total system weight and manufacturing cost. Additionally, polycarbonate’s resistance to moisture and its non-conductive nature enhance operator safety. This makes a plastic housing the most suitable choice for a reliable, cost-effective, and easily serviceable induction heater controller enclosure [32].
 
 
 ### Water Heating System
-There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands. The values are found from 3% voltage drop with the resistance equation with skin effect at high frequencies. Which the NEC states that branch circuits shouldn't have more than 3% voltage drop [26]. Also, ferrite might need to be around the  coil to direct the field toward the pipe to improve the efficiency of the induction. [27]
+There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands. The values are found from 3% voltage drop with the resistance equation with skin effect at high frequencies. Which the NEC states that branch circuits shouldn't have more than 3% voltage drop [33]. Also, ferrite might need to be around the  coil to direct the field toward the pipe to improve the efficiency of the induction. [34]
 
 
 
@@ -279,7 +279,7 @@ This subsystem is responsible for ensuring the induction heater is able to produ
 3. The heat generation subsystem shall increase the power delivered to the induction coil if the thermocouple senses temperatures below the desired temperature output based on user specified power input.
 4. The heat generation subsystem shall reduce the power delivered to the induction coil if the thermocouple senses temperatures exceeding the desired temperature output based on user specified power input.
 5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
-6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintainance temperature for induction heating [28].
+6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintainance temperature for induction heating [35].
 
 The heat generation subsystem primarily focuses on ensuring the output temperature is reached and providing critical information specified by the customer such as total power consumed and total temperature rise of the metal. This subsystem serves as the basis for correcting any errors in the output to best meet customer specifications.
 
@@ -379,16 +379,16 @@ The power PCB will convert AC input power into DC through the rectification proc
 
 #### Subsystem “Shall” Statements
 
-1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. [9], [28]  
-2. This PCB **shall** include fault detection and shutdown circuitry to prevent hardware failure. [28]  
-3. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability. [9], [17], [36], [37]
+1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. [9], [35]  
+2. This PCB **shall** include fault detection and shutdown circuitry to prevent hardware failure. [35]  
+3. This PCB **shall** maintain appropriate trace width, clearance distances, and protective coatings to ensure reliability. [9], [17], [43], [44]
 4. This Microcontroller **shall** not exceed 100°C during operation.  [12]  
 5. This Microcontroller **shall** control the switching frequency of the power board. [18], [19], [20], [22]  
 6. This Microcontroller **shall** output PWM and toggle its pins. [19], [20], [22]  
-7. This Microcontroller **shall** interpret sensors.   [37]  
-8. This Microcontroller **shall** have Analog-to-Digital converting capabilities.   [37]
+7. This Microcontroller **shall** interpret sensors.   [44]  
+8. This Microcontroller **shall** have Analog-to-Digital converting capabilities.   [44]
 9. This Microcontroller **shall** interpret user interface inputs. 
-10. This Microcontroller **shall** interface with an LCD. [38]
+10. This Microcontroller **shall** interface with an LCD. [45]
 
 ### Electronic Housing System
 
@@ -608,46 +608,46 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 [25] “Bipolar Junction Transistor (BJT).” GeeksforGeeks, 2023, https://www.geeksforgeeks.org/bipolar-junction-transistor/
 
-[26#] Omega Engineering. “NEMA Electrical Enclosures – Materials, Types & Applications.” Omega Engineering, 2024. https://www.omegaengineering.cn/subsection_eng/nema-electrical-enclosures-all.html
+[26] Omega Engineering. “NEMA Electrical Enclosures – Materials, Types & Applications.” Omega Engineering, 2024. https://www.omegaengineering.cn/subsection_eng/nema-electrical-enclosures-all.html
 
-[27#] Hammond Manufacturing. “Top Tips When Specifying Industrial Enclosures.” Hammond Manufacturing Whitepaper, 2023. https://www.hammfg.com/files/downloads/whitepapers/selection-whitepaper.pdf
+[27] Hammond Manufacturing. “Top Tips When Specifying Industrial Enclosures.” Hammond Manufacturing Whitepaper, 2023. https://www.hammfg.com/files/downloads/whitepapers/selection-whitepaper.pdf
 
-[28#] Polycase. “Polycarbonate Enclosures & Boxes for Electronics.” Polycase, 2024. https://www.polycase.com/polycarbonate-enclosures
+[28] Polycase. “Polycarbonate Enclosures & Boxes for Electronics.” Polycase, 2024. https://www.polycase.com/polycarbonate-enclosures
 
-[29#] Bud Industries. “EMI/RFI Shielding Options for Plastic Enclosures.” The Volt Post, 2023. https://thevoltpost.com/hammond-enclosure-materials-metallic-non-metallic/
+[29] Bud Industries. “EMI/RFI Shielding Options for Plastic Enclosures.” The Volt Post, 2023. https://thevoltpost.com/hammond-enclosure-materials-metallic-non-metallic/
 
-[30#] Designing Electronics. “Weighing the Pros and Cons of Common Enclosure Materials.” Designing-Electronics.com, 2023. https://www.designing-electronics.com/weighing-the-pros-and-cons-of-common-enclosure-materials/
+[30] Designing Electronics. “Weighing the Pros and Cons of Common Enclosure Materials.” Designing-Electronics.com, 2023. https://www.designing-electronics.com/weighing-the-pros-and-cons-of-common-enclosure-materials/
 
-[31#] Polycase. “Polycarbonate Enclosures: Features, Benefits and Common Applications.” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/polycarbonate-enclosures-features-benefits-and-common-applications.html
+[31] Polycase. “Polycarbonate Enclosures: Features, Benefits and Common Applications.” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/polycarbonate-enclosures-features-benefits-and-common-applications.html
 
-[32#] Polycase. “How Strong Is Polycarbonate for Enclosures?” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/how-strong-is-polycarbonate.html
+[32] Polycase. “How Strong Is Polycarbonate for Enclosures?” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/how-strong-is-polycarbonate.html
 
-[26]  "NEC 2017 210.19b note No. 2"
+[33]  "NEC 2017 210.19b note No. 2"
 
-[27] P. Cui, W. Zhu, H. Li, S. Hu, B. Hu, F. Yang, C. Hang, and M. Li, “Ultra-efficient localized induction heating by dual-ferrite synchronous magnetic field focusing,” Applied Energy, vol. 348, p. 121535, 2023, (doi:10.1016/j.apenergy.2023.121535)[https://www.sciencedirect.com/science/article/abs/pii/S0306261923008991].
+[34] P. Cui, W. Zhu, H. Li, S. Hu, B. Hu, F. Yang, C. Hang, and M. Li, “Ultra-efficient localized induction heating by dual-ferrite synchronous magnetic field focusing,” Applied Energy, vol. 348, p. 121535, 2023, (doi:10.1016/j.apenergy.2023.121535)[https://www.sciencedirect.com/science/article/abs/pii/S0306261923008991].
 
-[28] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
+[35] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
 
-[29] Electronics-Tutorials. “Full Wave Rectifier & Bridge Rectifier Theory.” https://www.electronics-tutorials.ws/diode/diode_6.html
+[36] Electronics-Tutorials. “Full Wave Rectifier & Bridge Rectifier Theory.” https://www.electronics-tutorials.ws/diode/diode_6.html
 
-[30]B. Daly, “Solenoid Coil Designs & Calculations for Efficient Induction Heating,” Ambrell.com, May 20, 2019. https://www.ambrell.com/blog/solenoid-coil-designs-calculations-for-efficient-induction-heating (accessed Oct. 14, 2025).
+[37]B. Daly, “Solenoid Coil Designs & Calculations for Efficient Induction Heating,” Ambrell.com, May 20, 2019. https://www.ambrell.com/blog/solenoid-coil-designs-calculations-for-efficient-induction-heating (accessed Oct. 14, 2025).
 
-[31] Visintini, R. “Rectifiers.” CERN Accelerator School, 2007. https://cds.cern.ch/record/987551/files/p133.pdf
+[38] Visintini, R. “Rectifiers.” CERN Accelerator School, 2007. https://cds.cern.ch/record/987551/files/p133.pdf
 
-[32] ScienceDirect. “Bridge Rectifier — an Overview.” https://www.sciencedirect.com/topics/engineering/bridge-rectifier
+[39] ScienceDirect. “Bridge Rectifier — an Overview.” https://www.sciencedirect.com/topics/engineering/bridge-rectifier
 
 
-[33] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025.
+[40] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025.
 
-[34] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015.
-[35] S. Salkowski, “Hot Topic: Dispelling the Myths About Induction Stoves.” Acadia Center, 2025.
+[41] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015.
+[42] S. Salkowski, “Hot Topic: Dispelling the Myths About Induction Stoves.” Acadia Center, 2025.
 ‌
-[36] IPC Association Connecting Electronics Industries, "IPC-2221B: Generic Standard on Printed Board Design," IPC, Bannockburn, IL, 2012.
-[37] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
+[43] IPC Association Connecting Electronics Industries, "IPC-2221B: Generic Standard on Printed Board Design," IPC, Bannockburn, IL, 2012.
+[44] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
 
-[38] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
+[45] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
 
-[39]LearnMetering, “Understanding Relays and Control/Monitoring Equipment in Substations - Learn Metering,” Learn Metering, Jun. 17, 2024. https://learnmetering.com/substation-relays-control-monitoring-equipment/ (accessed Oct. 26, 2025).
+[46]LearnMetering, “Understanding Relays and Control/Monitoring Equipment in Substations - Learn Metering,” Learn Metering, Jun. 17, 2024. https://learnmetering.com/substation-relays-control-monitoring-equipment/ (accessed Oct. 26, 2025).
 
 
 
