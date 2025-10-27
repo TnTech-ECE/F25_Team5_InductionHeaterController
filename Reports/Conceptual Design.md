@@ -156,7 +156,7 @@ This is a simple but effective configuration that evenly induces current on the 
 
 ![alt text](IMG_6816.jpeg)
 
-The primary issue that arises using this configuration is that the user should not be exposed to the conductor, otherwise they risk an electric shock or, for induction heating, a burning hazard. The team will need to implement protections to ensure that the user is not exposed to these risks. Possible solutions include insulating the wire or enclosing the wire using a case that presents no shock / burn hazard to users. For our system, using a case will be a better solution to prevent both hazards. 
+The primary issue that arises using this configuration is that the user should not be exposed to the conductor, otherwise they risk an electric shock or, for induction heating, a burning hazard. The team will need to implement protections to ensure that the user is not exposed to these risks. Possible solutions include insulating the wire or enclosing the wire using a case that presents no shock / burn hazard to users. For this system, using a case will be a better solution to prevent both hazards, while insulating the wire would only prevent shock hazards. 
 
 
 ### Electronic Housing System
