@@ -66,10 +66,12 @@ The system we will be implementing can be best understood using a control block 
 For our system: 
  - R(s) = user desired power
  - Y(s) = temperature of the pipe
- - G(s) = dynamics of the induction heater controller
+ - G(s) = dynamics of the induction heating 
  - H(s) = dynamics of the thermocouple sensor
- - Gc(s) = compensator to be implemented to ensure specifications are met
+ - Gc(s) = compensation to be implemented to ensure specifications are met
  - summing junction = singals to and from microcontroller
+
+The team's system will require a thermocouple sensor to meet customer specifications and ensure that a the induction heater controller produces a temperature rise on the metal. The team shall implement a closed loop control system to ensure that customer specifications are met in an accurate and consistent manner. Open loop control is better for cost efficiency primarily by eliminating the cost of a sensor measuring the part heated, but measuring the part heated is a requirement for this project. 
 
 For this system, the critical component to be implemented will be the compensator and the summing junction to ensure that the temperature output is accurate to the user's input and remains at a safe level. This can be accomplished using hardware, software, or a mix of both. Deciding which to use primarily depends on balancing the need for speed and reliability using hardware like physical relays [39] versus using software to increase reprogrammability and reduce lead times by reducing number of parts ordered. Typically industrial settings implement their control using digital software for this reason to be able to improve performance of a system without having to order multiple resistor and capacitor components for a hardware solution, while power substations will use physical relays to handle higher voltage requirements and prevent fatal errors. 
 
@@ -90,12 +92,6 @@ These controls will require:
 - reliable shut off mechanisms in event of faults or overheating to ensure safety maintained
 - production of error codes to inform user of system issues: e.g. overheating cause controller to prevent heating and produce error code to inform user prevention of heating is intentional
 - ensurance that controller is unable to produce heating on the pipe when the controller is in the designated "off" mode 
-
-
-
-Preprogrammed open loop control provides a cost effective and user intuitive solution, but the relation between temperature and power would need to be tested using a temperature sensor to meet this project's specifications. A sensor would need to be budgetted for whether the team utilzes open or closed loop control becasue of this. Closed loop control requires more time to design the system to properly integrate the sensor(s) into feedback loops, but it would allow for more accurate and reliable temperature control.
-
-Safety controls will be essential to prevent overheating of components.
 
 
 ### Microcontroller and PCB
