@@ -78,13 +78,18 @@ Heat Generation Controls will be the controls implemented to meet customer speci
 
 These controls will require: 
 - ability to increase and decrease temperature of pipe 
+- ability to determine user's desired temp from the user inputted power level
+- temperature sensor to ensure actual temp approximates desired temp
+- reprogrammability to ensure controller meets specifications despite noise of system dynamics 
 
 
 #### Safety Controls 
 Safety Controls will be the controls implemented to meet safety and ethical standards. 
 
 These controls will require: 
-- reliable shut off mechanisms in event of faults or overheating 
+- reliable shut off mechanisms in event of faults or overheating to ensure safety maintained
+- production of error codes to inform user of system issues: e.g. overheating cause controller to prevent heating and produce error code to inform user prevention of heating is intentional
+- ensurance that controller is unable to produce heating on the pipe when the controller is in the designated "off" mode 
 
 
 
