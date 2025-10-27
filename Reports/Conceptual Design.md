@@ -59,7 +59,7 @@ OMEO PCB without  Heatsink:
 ![alt text](<Induction PCB without Heatsink.jpeg>)
 
 
-The system we will be implementing can be best understood using a control block diagram: 
+The system the team will be implementing can be best understood using a control block diagram: 
 
 ![alt text](<Control_Block_Diagram.drawio (1).png>)
 
