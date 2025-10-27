@@ -122,8 +122,6 @@ Microcontroller Options:
 
 The ESP32-C61 is the option which will most likely be used since its the cheapest and seems have a lot of capability provided more capability is not needed. The middle tier boards, ST-Nucleo-G474RE and ST-Nucleo-L476RG have more ADC channels than the ESP32 which may come in handy if we need more sensors. The G4 seems to be the more capable option of the 2 for being able to have more sensors. The higher tier boards have similar abilities as the middle tier boards but they have Wifi which may be helpful for more commercialized controllers. Furthermore, the Disco F4 has an built in LCD on the and the DISCO L4 has an Magnetometer. Most likely to keep cost down unless Wi-Fi and a lot of ADC and PWM output are needed, an external LCD and possibly an external Magnetometer will be used since integrating them into the board drives up cost.
 
-Hardware control is not desirable because the parts can have long lead times and the project does not have high voltage components that would necessitate the need for relays or similar hardware.
-
 
 ### Power System Overview:
 
