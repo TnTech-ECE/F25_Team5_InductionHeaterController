@@ -273,13 +273,13 @@ The other circuit branch takes in the HV DC and delivers it to the Off-line SMPS
 
 - #### Heat Generation
 This subsystem is responsible for ensuring the induction heater is able to produce accurate temperature outputs based on user-specified power inputs. This subsystem ensures that customer specifications are met accurately and reliably utilizing closed loop feedback.
-
+<!--  -->
 1. The heat generation subsystem shall measure the initial temperature of the bar stock using a thermocouple and store this temperature using a microcontroller.
 2.  The heat generation subsystem shall ensure magnetic isolation is obtained by checking for over- and under- heating throughout the length of the bar stock using thermocouple(s).
 3. The heat generation subsystem shall increase the power delivered to the induction coil if the thermocouple senses temperatures below the desired temperature output based on user specified power input.
 4. The heat generation subsystem shall reduce the power delivered to the induction coil if the thermocouple senses temperatures exceeding the desired temperature output based on user specified power input.
 5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
-6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintainance temperature for induction heating [35].
+6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintenance temperature for induction heating [35].
 
 The heat generation subsystem primarily focuses on ensuring the output temperature is reached and providing critical information specified by the customer such as total power consumed and total temperature rise of the metal. This subsystem serves as the basis for correcting any errors in the output to best meet customer specifications.
 
@@ -419,7 +419,7 @@ The water heating system is responsible for heating moving water in a pipe by us
 The Coil will receive power from the power board to heat the pipe which will heat the water. The pipe will be insulated so less heat is wasted and more heat ends up in the water. The insulation will reduce the amount of power that will need to be sent since less heat is lost. The Pipe will be equipped with sensors which will have at least flow and temperature sensors.
 
 #### Subsystem Operation
-The water flow rate sensor will control if the system should be on. The pipe should be filled with water to ensure that as much water as possible is being heated. A value will be placed at the end of the pipe to regelate the flow rate. Or, the value could be at the beginning if the pipe is oriented upwards to some degree so the water pushes on its self to fill the pipe. The coil which have to endure high frequency current will have high frequency current be sent into it at some power level depending on the desired temperature. An input water temperature sensor will also determine that power level since to get the desired water temperature will take more power if the input has a lower temperature. Once the current is running through the coil, eddy currents will be induced in the ferromagnetic pipe causing it to heat up. The coil induction field could be focused and directed with Ferrite to improve power transfer efficiency. Once the pipe heats up, the water also heats up. The output temperature sensor will recorded and update the system accordingly depending on how close it is to the desired water temperature.
+The water flow rate sensor will control if the system should be on. The pipe should be filled with water to ensure that as much water as possible is being heated. A value will be placed at the end of the pipe to regulate the flow rate. Alternatively, the value could be at the beginning if the pipe is oriented upwards to some degree, allowing the water to push itself to fill the pipe. The coil which have to endure high frequency current will have high frequency current be sent into it at some power level, depending on the desired temperature. An input water temperature sensor will also determine the power level, as achieving the desired water temperature requires more power when the input temperature is lower. Once the current is running through the coil, eddy currents will be induced in the ferromagnetic pipe, causing it to heat up. The coil induction field could be focused and directed with Ferrite to improve power transfer efficiency. Once the pipe heats up, the water also heats up. The output temperature sensor will record and update the system accordingly, depending on how close it is to the desired water temperature.
 
 #### Inputs and Outputs
 - **Inputs:**
@@ -592,6 +592,7 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 [3] ESP32-C61 ESP-dev-kits documentation release master Espressif systems, https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c61/esp-dev-kits-en-master-esp32c61.pdf (accessed Oct. 25, 2025). 
 
+
 [4] STM32G4 nucleo-64 boards (MB1367) - user manual, https://www.st.com/resource/en/user_manual/dm00556337-stm32g4-nucleo-64-boards-mb1367-stmicroelectronics.pdf (accessed Oct. 25, 2025). 
 
 [5] STM32 NUCLEO-L476xx, https://www.st.com/resource/en/datasheet/stm32l476je.pdf (accessed Oct. 25, 2025).
@@ -668,16 +669,18 @@ The responsibilities for designing each subsystem are allocated as follows:
 [40] “Thermal Analysis of Electromagnetic Induction Heating for Cylinder-Shaped Objects.” Electrophoresis, 2025.
 
 [41] Jankowski, T. A., et al. “Approximate Analytical Solution for Induction Heating of Solid Cylinders.” Applied Mathematical Modelling, 2015.
+
 [42] S. Salkowski, “Hot Topic: Dispelling the Myths About Induction Stoves.” Acadia Center, 2025.
 ‌
 [43] IPC Association Connecting Electronics Industries, "IPC-2221B: Generic Standard on Printed Board Design," IPC, Bannockburn, IL, 2012.
+
 [44] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
 
 [45] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
 
-[46]LearnMetering, “Understanding Relays and Control/Monitoring Equipment in Substations - Learn Metering,” Learn Metering, Jun. 17, 2024. https://learnmetering.com/substation-relays-control-monitoring-equipment/ (accessed Oct. 26, 2025).
+[46] LearnMetering, “Understanding Relays and Control/Monitoring Equipment in Substations - Learn Metering,” Learn Metering, Jun. 17, 2024. https://learnmetering.com/substation-relays-control-monitoring-equipment/ (accessed Oct. 26, 2025).
 
-[47]E. Chen, “Controls and Signals Maslab IAP 2011.” Accessed: Oct. 27, 2025. [Online]. Available: https://web.mit.edu/6.186/2011/Lectures/controls/ControlsandSignals.pdf
+[47] E. Chen, “Controls and Signals Maslab IAP 2011.” Accessed: Oct. 27, 2025. [Online]. Available: https://web.mit.edu/6.186/2011/Lectures/controls/ControlsandSignals.pdf
 ‌
 
 
