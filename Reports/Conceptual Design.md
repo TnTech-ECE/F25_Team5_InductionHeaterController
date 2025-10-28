@@ -174,11 +174,12 @@ For this project, a plastic housing—specifically polycarbonate—is chosen due
 
 
 ### Water Heating System
-There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands. The values are found from 3% voltage drop with the resistance equation with skin effect at high frequencies. Which the NEC states that branch circuits shouldn't have more than 3% voltage drop [33]. Also, ferrite might need to be around the  coil to direct the field toward the pipe to improve the efficiency of the induction. [34]
 
+There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands. The values are found from 3% voltage drop with the resistance equation with skin effect at high frequencies. Which the NEC states that branch circuits shouldn't have more than 3% voltage drop [33]. 
 
+Also, ferrite might need to be around the  coil to direct the field toward the pipe to improve the efficiency of the induction [34]. 
 
-
+The connections for the value and the pipe the pipe and the water input can be done a few different ways. One Option is using a compression fitting which more or less uses friction to create a seal. Compression can use bare metal to metal or rubber o-rings. Another way is soldering which take a lower meting point metal like tin or lead and joins the two metals together with the solder bridge of sorts. Then there is threading which is as simple has it should you just screw the pipes together provided they have threads to do so. Teflon Tape is recommended to complete the seal. Compression is probably the easiest way but depending on the water pressure compression might not work. Threading is an option but requiring a tool to tap the threads. Soldering may also have pressure issue but tends to be somewhat stronger than compression.
 
 ## High-Level Solution
 
@@ -338,6 +339,17 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
  - **Output Signal**: Error Codes
   **Data**: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
 
+##### - Water Heating System
+
+ - **Input Signal**: Analog Voltage 
+  **Data**:  A voltage signal proportional to the water flow Rate.
+
+ - **Input Signal**: Analog Voltage 
+  **Data**:  A voltage signal proportional to the pipe output water Temperature
+
+ - **Input Signal**: Analog Voltage 
+  **Data**:  A voltage signal proportional to the pipe input water Temperature
+
 #### Operation Flow
 Shown below is a detailed flow chart of the Safety and Protections Subsystem:
 
@@ -401,17 +413,34 @@ The Housing shall protect the sensitive electronics from the elements. The Housi
 4. This Housing **shall** have water resistant ports for the coil to be outside the housing.
 
 ### Water Heating System
+The water heating system is responsible for heating moving water in a pipe by using a powered induction coil to induce eddy currents via a generated field which causes a pipe to heat up which therefore heats the water.
 
 #### Functional Overview
 The Coil will receive power from the power board to heat the pipe which will heat the water. The pipe will be insulated so less heat is wasted and more heat ends up in the water. The insulation will reduce the amount of power that will need to be sent since less heat is lost. The Pipe will be equipped with sensors which will have at least flow and temperature sensors.
 
+#### Subsystem Operation
+The water flow rate sensor will control if the system should be on. The pipe should be filled with water to ensure that as much water as possible is being heated. A value will be placed at the end of the pipe to regelate the flow rate. Or, the value could be at the beginning if the pipe is oriented upwards to some degree so the water pushes on its self to fill the pipe. The coil which have to endure high frequency current will have high frequency current be sent into it at some power level depending on the desired temperature. An input water temperature sensor will also determine that power level since to get the desired water temperature will take more power if the input has a lower temperature. Once the current is running through the coil, eddy currents will be induced in the ferromagnetic pipe causing it to heat up. The coil induction field could be focused and directed with Ferrite to improve power transfer efficiency. Once the pipe heats up, the water also heats up. The output temperature sensor will recorded and update the system accordingly depending on how close it is to the desired water temperature.
+
+#### Inputs and Outputs
+- **Inputs:**
+  - High Frequency Current to the Coil
+  - Water Flow sensor
+  - Input Temperature Sensor
+
+- **Outputs:**
+  - Rapid Heating to the Pipe form induced eddy currents
+  - Heating of the moving water
+  - Hot Water from the pipe
+  - Output Temperature sensor
+
 #### Subsystem “Shall” Statements
 1. This Coil **shall** be thick enough to not over heat from the required power to heat moving water
-2. This Pipe **shall** be ferromagnetic to be heated by the coil.
-3. This Connectors **shall** work with standard water pipe.
-4. This Coil **shall** connect to the power board and receive a current at a high frequency.
+2. This Coil **shall** connect to the power board and receive a current at a high frequency.
+3. This Connectors **shall** fit with standard water pipe.
+4. This Pipe **shall** be ferromagnetic to be heated by the coil.
 5. This Pipe and Coil **shall** be insulated so that heat is not wasted.
-6. This Pipe **shall** be able to be compatible with different sensors for controlling properties of the water
+6. This Pipe **shall** be able to be compatible with different sensors for controlling properties of the water.
+7. This Pipe **shall** be filled with flowing water to maximize heating.
 
 ## Ethical, Professional, and Standards Considerations
 ***
