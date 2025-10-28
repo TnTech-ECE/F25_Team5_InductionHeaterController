@@ -103,9 +103,9 @@ These controls will require:
 
 This can be attained using: 
 - ##### Hardware Relays: 
-these provide a physical disconnect based on an electrical signal 
+  - these provide a physical disconnect based on an electrical signal. 
 - ##### Software Safety Implemented using a Microcontroller: 
-This solution uses code to prevent the system from operating dangerously by using software checks (e.g. if statements). The solution would efficiently utilize the microcontroller already being utilized to send and recieve information from the system, and would benefit by operating parallel to the heat generation controls implemented to the microcontroller. This would streamline the control process overall and allow the software safety control to directly control the heat generation control. 
+  - This solution uses code to prevent the system from operating dangerously by using software checks (e.g. if statements). The solution would efficiently utilize the microcontroller already being utilized to send and recieve information from the system, and would benefit by operating parallel to the heat generation controls implemented to the microcontroller. This would streamline the control process overall and allow the software safety control to directly control the heat generation control. 
 
 
 ### Microcontroller and PCB
@@ -550,6 +550,8 @@ We will estimate a budget of $40 for the microcontroller.
 | Embedded Systems Budget   | $100           | N/A  |
 | Encasing/Workpiece Budget | $250           | N/A  |
 | Project Budget Total      | $596           |
+
+For our conceptual design, the total estimated budget totals to $596. The highest budget item is the specified materials for our heater encasing as well as the workpiece. This is due to the specialized materials needed for our application of induction heating.
 
 ### Division of Labor
 
