@@ -257,7 +257,7 @@ Please view the Power Tree below to see how the power will be distributed to acr
 ![alt text](<Power Tree - Capstone.drawio (2).png>)
 
 
-For the color Red, the voltage level is to be a DC HV bus.
+For the color Red, the voltage level is to be a DC HV bus. (Please note that the IGBT voltage is labeled as high DC voltage due to it monitoring this part of the circuit)
 For the color green, the voltage level is to be the HV DC bus upon input, but through this section, the DC goes to High-frequency AC and then is stepped down to low AC before recitification to DC once more.
 For color Orange, the voltage level is to be 5 VDC.
 For color Blue, the voltage level is to be 18VDC at input.
