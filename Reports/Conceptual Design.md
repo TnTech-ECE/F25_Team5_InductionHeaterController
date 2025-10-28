@@ -102,7 +102,7 @@ These controls will require:
 - ensurance that controller is unable to produce heating on the pipe when the controller is in the designated "off" mode 
 
 This can be attained using: 
-- ##### Hardware Relays: 
+- ##### Hardware: 
 
 A hardware solution can be made to lock out any signals sent to the coil to prevent heating. This would be a realiable solution to ensure the controller is unable to heat the pipe when it is not supposed to. In the event of an overload or other safety event, an overload latch can be used to prevent damage to the IGBT's. The goal of this latch is to clamp the system's duty cycle control and stop oscillation from occuring. Implementing this, however, would require additional hardware to properly interface this circuit with our power and controls circuit. Despite this, a hardware implementation is needed in order to respond quickly to protect the system.
 
