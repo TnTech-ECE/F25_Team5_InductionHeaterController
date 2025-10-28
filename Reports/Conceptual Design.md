@@ -103,9 +103,9 @@ These controls will require:
 
 This can be attained using: 
 - ##### Hardware Relays: 
-these provide a physical disconnect based on an electrical signal 
+Relays provide a physical hardware solution to lock out any signals sent to the coil to prevent heating. This would be a realiable solution to ensure the controller is unable to heat the pipe when it is not supposed to. However, this solution would require additional hardware to properly interface the relay with the microcontroller such as a circuit breaker to cause the relay to send a tripping signal. This would add additional lead and build times. However, hardware solutions will be invaluable for faster response and can protect the system at a much faster rate. Hardware safety would not be based on clock cycles, and would be able to provide improved safety for critical subsystems. 
 - ##### Software Safety Implemented using a Microcontroller: 
-This solution uses code to prevent the system from operating dangerously by using software checks (e.g. if statements). The solution would efficiently utilize the microcontroller already being utilized to send and recieve information from the system, and would benefit by operating parallel to the heat generation controls implemented to the microcontroller. This would streamline the control process overall and allow the software safety control to directly control the heat generation control. 
+This solution uses code to prevent the system from operating dangerously by using software checks (e.g. if statements). Primarily this would lock out signals being sent to the IGBTs. This solution would efficiently utilize the microcontroller already being utilized to send and recieve information from the system, and would benefit by operating parallel to the heat generation controls implemented to the microcontroller. This would streamline the control process overall and allow the software safety control to directly control the heat generation control. However, the downside of this solution is that the safety control will be based on the clock of the microcontroller and how fast that is. This would become an issue if the system fails faster than the clock. 
 
 
 ### Microcontroller and PCB
@@ -185,7 +185,7 @@ The connections for the value and the pipe the pipe and the water input can be d
 
 
 **Power**
-This controller shall operate at a constant voltage to maintain compatibility with a 240 VAC connection. The controller must be able to convert the 240 VAC to a DC bus that is roughly 340 VDC, then step that voltage down to 5 V to ensure a safe operating voltage for the microcontroller that will operate as the brain for our control system. Also, there will be additional power routing of 18 VDC tapped from the DC bus to run auxillary circuits to power the integrated circuits and various components such as a fan. These IC's will perform different tasks such as gate driving, DC regulation, and more. The rectification section of the design will effectively convert our AC voltage to DC with minimal losses and risk. The filtering design of the power board will ensure that the power signals delivered to the different sections of the board are smooth and low interference. The main DC bus delivers voltage across the main section of the board that deals with the induction heating. This DC bus shall provide an acceptable waveform to the transistors that will create the pulsating signals that the induction coil will receive. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered to the coils by changing the on/off time of the transistor gates. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the water in the pipe.  
+This controller shall operate at a constant voltage to maintain compatibility with a 240 VAC connection. The controller must be able to convert the 240 VAC to a DC bus that is roughly 340 VDC, then step that voltage down to 5 V to ensure a safe operating voltage for the microcontroller that will operate as the brain for our control system. Also, there will be additional power routing of 18 VDC tapped from the DC bus to run auxillary circuits to power the integrated circuits and various components such as a fan. These IC's will perform different tasks such as gate driving, DC regulation, and more. The rectification section of the design will effectively convert our AC voltage to DC with minimal losses and risk. The filtering design of the power board will ensure that the power signals delivered to the different sections of the board are smooth and low interference. The filtering will be done with combinations of capacitors and inductors. The main DC bus delivers voltage across the main section of the board that deals with the induction heating. This DC bus shall provide an acceptable waveform to the transistors that will create the pulsating signals that the induction coil will receive. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered to the coils by changing the on/off time of the transistor gates. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the water in the pipe.  
 
 
 **HeatControl**
@@ -257,7 +257,7 @@ Please view the Power Tree below to see how the power will be distributed to acr
 ![alt text](<Power Tree - Capstone.drawio (2).png>)
 
 
-For the color Red, the voltage level is to be a DC HV bus.
+For the color Red, the voltage level is to be a DC HV bus. (Please note that the IGBT voltage is labeled as high DC voltage due to it monitoring this part of the circuit)
 For the color green, the voltage level is to be the HV DC bus upon input, but through this section, the DC goes to High-frequency AC and then is stepped down to low AC before recitification to DC once more.
 For color Orange, the voltage level is to be 5 VDC.
 For color Blue, the voltage level is to be 18VDC at input.
@@ -371,7 +371,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 #### Inputs and Outputs
 
 - **Inputs:**
-  - 120 VAC main power (via shielded connector)  
+  - 240 VAC main power (via shielded connector)  
   - Sensor feedback (thermocouple signal, current, and voltage sense lines)  
   - User input commands from the HMI (LCD buttons or keypad)  
 
@@ -550,6 +550,8 @@ We will estimate a budget of $40 for the microcontroller.
 | Embedded Systems Budget   | $100           | N/A  |
 | Encasing/Workpiece Budget | $250           | N/A  |
 | Project Budget Total      | $596           |
+
+For our conceptual design, the total estimated budget totals to $596. The highest budget item is the specified materials for our heater encasing as well as the workpiece. This is due to the specialized materials needed for our application of induction heating.
 
 ### Division of Labor
 
