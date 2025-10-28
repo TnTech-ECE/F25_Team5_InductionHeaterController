@@ -371,7 +371,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 #### Inputs and Outputs
 
 - **Inputs:**
-  - 120 VAC main power (via shielded connector)  
+  - 240 VAC main power (via shielded connector)  
   - Sensor feedback (thermocouple signal, current, and voltage sense lines)  
   - User input commands from the HMI (LCD buttons or keypad)  
 
