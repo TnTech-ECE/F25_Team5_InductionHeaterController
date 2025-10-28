@@ -40,19 +40,34 @@ const outPath = path.join(outFileFolder, base);
 const referencesToShift = [...(referencesFile.matchAll(/\[(\d+)#?\]/g) ?? [])].map(match => [Number(match[1]), match[0]]);
 
 referencesToShift.reverse();
-let maxReference = referencesToShift.length;
 
+const testReferencesToShiftObject = {};
+/**
+ * @type {string[]}
+ */
+const throws = [];
+referencesToShift.forEach(([referenceToShift, referenceString], i) => {
+	if (testReferencesToShiftObject[referenceString] !== undefined) {
+		throws.push(`duplicate reference ${referenceString} at reference position: ${referencesToShift.length - i} and ${referencesToShift.length - testReferencesToShiftObject[referenceString]}`);
+		return;
+	}
+	testReferencesToShiftObject[referenceString] = i;
+});
+if (throws.length) {
+	throw new Error(throws.join('\n'));
+}
 referencesToShift.forEach(([referenceToShift, referenceString], i) => {
 	// console.warn({ isNewRef: referenceString.includes('#'), count, referenceString, newVal: maxReference - i });
 	if (referenceString.includes('#')) return;
-	file = file.replaceAll(`[${referenceToShift}]`, `[${maxReference - i}]`);
+	file = file.replaceAll(`[${referenceToShift}]`, `[${referencesToShift.length - i}]`);
 });
 
+console.warn({ referencesToShift });
 referencesToShift.forEach(([referenceToShift, referenceString], i) => {
 
 	if (!referenceString.includes('#')) return;
-	// console.warn({ isNewRef: referenceString.includes('#'), count, referenceString, newVal: maxReference - i });
+	console.warn({ isNewRef: referenceString.includes('#'), i, referenceString, newVal: referencesToShift.length - i });
 
-	file = file.replaceAll(`[${referenceToShift}#]`, `[${maxReference - i}]`);
+	file = file.replaceAll(`[${referenceToShift}#]`, `[${referencesToShift.length - i}]`);
 });
 fs.writeFileSync(outPath, file);
