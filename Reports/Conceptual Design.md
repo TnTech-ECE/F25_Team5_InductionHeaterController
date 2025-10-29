@@ -92,7 +92,7 @@ Using a microcontroller has the additional benefit that the microcontroller will
 
 There are less comprehensive compensators available such as phase lead and phase lag, and PID can be reduced to P and so on as needed to reduce costs if needed. However, by implementing this control using software in a microcontroller the team should not incur any additional cost by implementing PID. 
 
-
+### Safety and Protections
 #### Safety Controls 
 Safety Controls will be the controls implemented to meet safety and ethical standards. 
 
@@ -109,6 +109,23 @@ A hardware solution can be made to lock out any signals sent to the coil to prev
 - ##### Software Safety Implemented using a Microcontroller: 
 This solution uses code to prevent the system from operating dangerously by using software checks (e.g. if statements). Primarily this would lock out signals being sent to the IGBTs. This solution would efficiently utilize the microcontroller already being utilized to send and recieve information from the system, and would benefit by operating parallel to the heat generation controls implemented to the microcontroller. This would streamline the control process overall and allow the software safety control to directly control the heat generation control. However, the downside of this solution is that the safety control will be based on the clock of the microcontroller and how fast that is. This would become an issue if the system fails faster than the clock. 
 
+#### Electronics Housing
+Existing solutions for electrical housings used in induction heater controller systems vary based on power level, environmental exposure, and heat management requirements. The most common types include metal enclosures (such as aluminum or steel), plastic housings (such as polycarbonate or ABS), and hybrid designs combining both materials. Metal enclosures are often preferred for high-power induction heating systems because of their excellent electromagnetic shielding and heat dissipation properties, which protect sensitive circuitry and power devices such as IGBTs and rectifiers from interference and thermal stress [34]. However, metal housings are typically heavier, more expensive, and prone to corrosion if not properly treated. They may also require grounding and insulation measures to ensure user safety in high-voltage systems [35].
+
+Plastic housings, by contrast, offer several advantages for compact or medium-power induction heater controllers. Materials like polycarbonate or ABS are lightweight, corrosion-resistant, and electrically insulating, reducing the need for additional safety grounding [36]. While plastics naturally lack EMI shielding and strong heat conduction, these limitations can be mitigated through conductive coatings, internal grounding strips, or external heat sinks [37]. Hybrid housings that combine a metal base with a plastic top are also used when both thermal and safety considerations must be met. These materials comply with international safety standards such as IEC 60529 (IP ratings) for ingress protection and UL 94 for flammability, making them suitable for industrial and laboratory environments [38].
+
+For this project, a plastic housing—specifically polycarbonate—is chosen due to its balance of strength, insulation, and practicality. Polycarbonate provides excellent impact resistance, chemical durability, and electrical insulation, making it ideal for enclosing induction heater control electronics in both laboratory and semi-industrial environments [39]. It also offers greater design flexibility for custom layouts, openings, and mounting options while reducing total system weight and manufacturing cost. Additionally, polycarbonate’s resistance to moisture and its non-conductive nature enhance operator safety. This makes a plastic housing the most suitable choice for a reliable, cost-effective, and easily serviceable induction heater controller enclosure [40].
+
+
+#### Water Heating Protection
+
+The design of the water heating interface is critical for overall system safety, as it manages the boundary between the water being heated and the high-voltage induction electronics.
+
+**Thermal and Physical Isolation:** There are two primary methods for heating the water. The first, placing the induction element inside the water, is inherently safer from a user-touch perspective but requires expensive, high-temperature insulating pipes. The second method, heating the exterior of the metallic pipe, is more economical but introduces a key protection challenge: the hot pipe and live coil must be completely isolated from the user. This isolation will be a primary function of the electronic housing and coil insulation.
+
+**Electrical Safety and Component Sizing:** The coil itself presents a significant safety consideration. To heat a 0.5 GPM flow rate requires approximately 5 kW of power. With an input voltage of 240V, that would be drawing 20A. To handle this current at high frequencies without overheating and creating a fire hazard, component selection is critical. Due to the skin effect, a solid 8 AWG copper wire would be required. Using Litz wire at a gauge of 14 AWG can mitigate this effect, allowing for a smaller, more flexible wire while still safely handling the current. This choice directly impacts thermal management and component-level safety, ensuring the wire operates within its rated temperature and complies with NEC voltage drop standards [41].
+
+**Leak Prevention:** The physical connections between the system and the piping are a primary failure point. A leak could cause a faliure in the event it occurs near the electronics used for induction. The connections for the value and the pipe the pipe and the water input can be done a few different ways. One option is using a compression fitting which more or less uses friction to create a seal. Compression can use bare metal to metal or rubber o-rings. Another way is soldering which take a lower meting point metal like tin or lead and joins the two metals together with the solder bridge of sorts. Then there is threading which is as simple has it should you just screw the pipes together provided they have threads to do so. Teflon Tape is recommended to complete the seal. Compression is probably the easiest way but depending on the water pressure compression might not work. Threading is an option but requiring a tool to tap the threads. Soldering may also have pressure issue but tends to be somewhat stronger than compression. Whichever method chosen, the connection needs to ensure a water-tight seal that can withstand our estimated water pressure and temperature without failure.
 
 ### Microcontroller and PCB
 Microcontroller Options:
@@ -167,45 +184,31 @@ This is a simple but effective configuration that evenly induces current on the 
 The primary issue that arises using this configuration is that the user should not be exposed to the conductor, otherwise they risk an electric shock or, for induction heating, a burning hazard. The team will need to implement protections to ensure that the user is not exposed to these risks. Possible solutions include insulating the wire or enclosing the wire using a case that presents no shock / burn hazard to users. For this system, using a case will be a better solution to prevent both hazards, while insulating the wire would only prevent shock hazards. 
 
 
-### Electronic Housing System
-Existing solutions for electrical housings used in induction heater controller systems vary based on power level, environmental exposure, and heat management requirements. The most common types include metal enclosures (such as aluminum or steel), plastic housings (such as polycarbonate or ABS), and hybrid designs combining both materials. Metal enclosures are often preferred for high-power induction heating systems because of their excellent electromagnetic shielding and heat dissipation properties, which protect sensitive circuitry and power devices such as IGBTs and rectifiers from interference and thermal stress [34]. However, metal housings are typically heavier, more expensive, and prone to corrosion if not properly treated. They may also require grounding and insulation measures to ensure user safety in high-voltage systems [35].
 
-Plastic housings, by contrast, offer several advantages for compact or medium-power induction heater controllers. Materials like polycarbonate or ABS are lightweight, corrosion-resistant, and electrically insulating, reducing the need for additional safety grounding [36]. While plastics naturally lack EMI shielding and strong heat conduction, these limitations can be mitigated through conductive coatings, internal grounding strips, or external heat sinks [37]. Hybrid housings that combine a metal base with a plastic top are also used when both thermal and safety considerations must be met. These materials comply with international safety standards such as IEC 60529 (IP ratings) for ingress protection and UL 94 for flammability, making them suitable for industrial and laboratory environments [38].
-
-For this project, a plastic housing—specifically polycarbonate—is chosen due to its balance of strength, insulation, and practicality. Polycarbonate provides excellent impact resistance, chemical durability, and electrical insulation, making it ideal for enclosing induction heater control electronics in both laboratory and semi-industrial environments [39]. It also offers greater design flexibility for custom layouts, openings, and mounting options while reducing total system weight and manufacturing cost. Additionally, polycarbonate’s resistance to moisture and its non-conductive nature enhance operator safety. This makes a plastic housing the most suitable choice for a reliable, cost-effective, and easily serviceable induction heater controller enclosure [40].
-
-
-### Water Heating System
-
-There are two options primary method for transferring heat from a induced material to water. The induced material can either be in the water or the container of the water. The first option would make the pipe safer to touch and the heating more efficient. However, for the induced material to be in the water it requires a high temperature insulating pipe material which is very expansive and adds complexity since the coil's field has to go through water and an insulator. Option two is a lot more economical. The copper coil wire can use solid, stranded or litz wire. Litz wire has even smaller stands than stranded wire. The Coil will have to be a fairly very thick gauge since to heat a small flow rate of 0.5 gallons per minute to household hot water temperatures requires about 5 kW of power. At 240 V and 5kW thats 20 A. The standard is 3% At 20Khz we need 8 AWG solid copper wire for a 7 feet coil. For Litz the wire seems to be about 14 AWG. Stranded would be in between since the skin effect wouldn't be as pronounced. Stranded and Litz wire can be smaller solid wire as solid wire has the skin effect where the current flows on the skin or edge of the conductor but braided types of wire the effect is either less or not their depending on the number of strands. The values are found from 3% voltage drop with the resistance equation with skin effect at high frequencies. Which the NEC states that branch circuits shouldn't have more than 3% voltage drop [41]. 
-
-Also, ferrite might need to be around the  coil to direct the field toward the pipe to improve the efficiency of the induction [42]. 
-
-The connections for the value and the pipe the pipe and the water input can be done a few different ways. One Option is using a compression fitting which more or less uses friction to create a seal. Compression can use bare metal to metal or rubber o-rings. Another way is soldering which take a lower meting point metal like tin or lead and joins the two metals together with the solder bridge of sorts. Then there is threading which is as simple has it should you just screw the pipes together provided they have threads to do so. Teflon Tape is recommended to complete the seal. Compression is probably the easiest way but depending on the water pressure compression might not work. Threading is an option but requiring a tool to tap the threads. Soldering may also have pressure issue but tends to be somewhat stronger than compression.
 
 ## High-Level Solution
 
 
 **Power**
-This controller shall operate at a constant voltage to maintain compatibility with a 240 VAC connection. The controller must be able to convert the 240 VAC to a DC bus that is roughly 340 VDC, then step that voltage down to 5 V to ensure a safe operating voltage for the microcontroller that will operate as the brain for our control system. Also, there will be additional power routing of 18 VDC tapped from the DC bus to run auxillary circuits to power the integrated circuits and various components such as a fan. These IC's will perform different tasks such as gate driving, DC regulation, and more. The rectification section of the design will effectively convert our AC voltage to DC with minimal losses and risk. The filtering design of the power board will ensure that the power signals delivered to the different sections of the board are smooth and low interference. The filtering will be done with combinations of capacitors and inductors. The main DC bus delivers voltage across the main section of the board that deals with the induction heating. This DC bus shall provide an acceptable waveform to the transistors that will create the pulsating signals that the induction coil will receive. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered to the coils by changing the on/off time of the transistor gates. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the water in the pipe.  
+This subsystem shall operate at a constant voltage to maintain compatibility with a 240 VAC connection. The subsystem must be able to convert the 240 VAC to a DC bus that is roughly 340 VDC, then step that voltage down to 5 V to ensure a safe operating voltage for the microcontroller that will operate as the brain for our control system. Also, there will be additional power routing of 18 VDC tapped from the DC bus to run auxillary circuits to power the integrated circuits and various components such as a fan. These IC's will perform different tasks such as gate driving, DC regulation, and more. The rectification section of the design will effectively convert our AC voltage to DC with minimal losses and risk. The filtering design of the power board will ensure that the power signals delivered to the different sections of the board are smooth and low interference. The filtering will be done with combinations of capacitors and inductors. The main DC bus delivers voltage across the main section of the board that deals with the induction heating. This DC bus shall provide an acceptable waveform to the transistors that will create the pulsating signals that the induction coil will receive. The controller shall be able to adjust the PWM switching speed to change the amount of current delivered to the coils by changing the on/off time of the transistor gates. This will allow the controller to change adjust the eddy currrents produced which is proportional to the temperature rise of the water in the pipe.  
 
 
 **HeatControl**
-This controller shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. This controller shall interface with an induction coil wrapped around the circular bar stock to ensure magnetic isolation is achieved to prevent stray or uneven heating. The controller will utlize a closed loop feedback control system to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, the controller will recognize that input and adjust the power / current delivered to the induction coil. The controller will interface with temperature sensors to verify that the circular bar stock is being heated correctly. The controller will utilize feedback loops to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating of the circular bar stock.
+This subsystem shall be able to induce surface eddy currents and be able to produce internal heating on a circular bar stock. This controller shall interface with an induction coil wrapped around the circular bar stock to ensure magnetic isolation is achieved to prevent stray or uneven heating. The controller will utlize a closed loop feedback control system to ensure that the circular bar stock is heated accurately and in a consistent, repeatable manner. When the user selects a desired power level, the controller will recognize that input and adjust the power / current delivered to the induction coil. The controller will interface with temperature sensors to verify that the circular bar stock is being heated correctly. The controller will utilize feedback loops to make adjustments to the power / current delivered to the induction coil as needed to prevent over- or under-heating of the circular bar stock.
 
-**SafetyControl**
-This controller shall implement safety controls to prevent overheating of the controller to minimize operating risks to the controller and the user. The controller shall continuously monitor signals such as temperature and current to ensure the system is operating within safe limits and turn the device off whenvever the system is not. The controller shall have additional user protections to ensure that the controller cannot operate when the user desires it to be off and produce error codes to tell the user why the system is not letting them do something that could be potentially dangerous.
+**Safety and Protection**
+
+This subsystem shall implement safety controls to prevent overheating of the controller to minimize operating risks to the system and the user. The subsystem shall continuously monitor signals such as temperature and current to ensure the system is operating within safe limits and turn the device off whenvever the system is not. The subystem shall have additional user protections to ensure that the subsystem cannot operate when the user desires it to be off and produce error codes to tell the user why the system is not letting them do something that could be potentially dangerous.
+
+Along with this, the electronic housing shall be water resistant so if a leak happens the appliance voltage and current does not short. The housing shall contain all the electronics except the coil and pipe so that the water is separated. This housing shall be protective against electrical shocks and other mishaps.
+
+Finally, the water shall be heated while flowing without a reservoir. The coil shall wrap around the pipe and be connected to the power board. The Pipe shall be ferromagnetic (Steel A rating > 400 or iron) and connect to standard housing water pipes using temperature-resistant, water-tight connectors. The Pipe's flow rate shall be controlled with a manually operated valve.
 
 **Software**
-This controller shall utilize a microcontroller to be able to receive and interpret signals from the thermocouples and from user interfaces. The microcontroller will serve as the brain for the control system. The microcontroller will be the connection point between the data transmitted from the sensors and user inputs, and it will be programmed by the team to control the PWM signals determining the amount of current delivered to the induction coil which determines the amount of heating produced on the circular bar stock.
+This subsystem shall utilize a microcontroller to be able to receive and interpret signals from the thermocouples and from user interfaces. The microcontroller will serve as the brain for the control system. The microcontroller will be the connection point between the data transmitted from the sensors and user inputs, and it will be programmed by the team to control the PWM signals determining the amount of current delivered to the induction coil which determines the amount of heating produced on the circular bar stock.
 
 **PCB**
-This controller shall provide a user interface by utilizing a PCB. The PCB will be connected to the microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will display the total temperature rise of the metal and the total electrical power consumed by the controller. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
-
-**Electronic Housing**
-This housing shall be water resistant so if a leak happens the appliance voltage and current does not short. The housing shall contain all all the electronics except the coil and pipe so that the water is separated. This housing shall be protective against electrical shocks and other mishaps. The light-weight and human-friendly assembly shall prove to be valuable.
-**Water Heating**
-The water shall be heated while flowing without a reservoir. Coil shall wrap around the pipe and be connected to the power board. The Pipe shall have a Steel A rating greater than 400 or be iron so that the pipe is ferromagnetic. The Pipe shall connect to standard housing water pipes and the connectors shall be temperature resistant and water tight. The Pipe's flow rate stall be controlled with a manfully operated value.
+This subsystem shall provide a user interface by utilizing a PCB. The PCB will be connected to the microcotroller that will communicate to the user through a LCD screen and a keypad interface. The LCD screen will display the total temperature rise of the metal and the total electrical power consumed by the controller. The keypad thats connected to the microcontroller will be the main form of control for the user, allow them to select the temperature for the heater, start or stop the heating process, and reset the system if a fault condition occurs. Status LEDs on the PCB will indicate power on is on for the PCB and microntroller, fault, and heating activity condition.  
 
 ### Hardware Block Diagram
 ***
@@ -235,11 +238,12 @@ The power system is responsible for providing adequate power to all loads across
 The Power System subsystem acts as the catalyst. This subsystem provides power to all other systems to allow them to perform their operations. It interfaces with all other project subsystems.
 
 - **Control System**
-The control system will have a voltage signal sent to it from the IGBT voltage-monitoring circuit on the PCB.
-The control system will have a voltage signal sent to it from the IGBT current-monitoring circuit on the PCB.
 The control system will have a voltage signal sent to it from the Pulse detection circuit on the PCB.
 The control system will have a voltage signal sent to it from the IGBT Temp circuit on the PCB.
 
+- **Safety and Protection**
+The Safety and Protection system will have a voltage signal sent to it from the IGBT voltage-monitoring circuit on the PCB.
+The Safety and Protection system will have a voltage signal sent to it from the IGBT current-monitoring circuit on the PCB.
 
 - **Microcontroller**
 The microcontroller(within the Control System) will send a digital PWM high or low signal to an IC that converts the PWM signals to Power signals to control the gates of the IGBT's located on the PCB in the Power System. Also, the Power System is supplying 5V DC power signal to the microcontroller.
@@ -289,12 +293,11 @@ The heat generation subsystem primarily focuses on ensuring the output temperatu
 
 - **Inputs:**
   - Analog voltage signal from microcontroller specifying what power level / temperature is desired
-
-
-- **Outputs:**
-  - PWM signal from microcontroller to tell the power subsystem to increase the duty cycle to increase power delivered or decrease duty cycle to decrease power delivered to increase / decrease temperature of part respectively  
   - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is
   - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is
+
+- **Outputs:**
+  - PWM signal from microcontroller to tell the power subsystem to increase the duty cycle to increase power delivered or decrease duty cycle to decrease power delivered to increase / decrease temperature of part respectively.
 
 ##### Operation Flow
 Shown below is a detailed flow chart of the Heat Generation Subsystem:
@@ -302,10 +305,10 @@ Shown below is a detailed flow chart of the Heat Generation Subsystem:
 
 ![alt text](<HeatGenerationSubsystem.drawio.png>)
 
-- #### Safety and Protection Controls
-This subsystem is responsible for ensuring the induction heater operates within safe limits, protecting both the user from harm and the device from damage. It will function in the background, continuously monitoring signals such as temperature and current to ensure the system is operating within these safe limits, and if not, shuts down accordingly. It directly enforces the constraints set in ethical, professional, and standards considerations.
+### Safety and Protections System
+This system is responsible for ensuring the induction heater operates within safe limits, protecting both the user from harm and the device from damage. It will function in the background, continuously monitoring signals such as temperature and current to ensure the system is operating within these safe limits, and if not, shuts down accordingly. It directly enforces the constraints set in ethical, professional, and standards considerations.
 
-
+#### Safety Controls
 1. The safety subsystem shall continuously monitor the temperature of the power switching transistors' (IGBT) heatsink using a dedicated thermocouple.
 2. The safety subsystem shall shut down the induction heating if the IGBT heatsink temperature exceeds 105°F (40.5°C) [3].
 3. The safety subsystem shall trigger a system shutdown if the heating surface temperature exceeds 280°F (138°C) when no workpiece is present [3].
@@ -336,11 +339,6 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
  - **Output Signal**: Digital Interrupt
   **Data**: A signal sent to the Heat Generation software module to command it to stop PWM signal generation in the event of a fault.
 
-##### - Embedded System (Software & PCB)
-
- - **Output Signal**: Error Codes
-  **Data**: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
-
 ##### - Water Heating System
 
  - **Input Signal**: Analog Voltage 
@@ -352,10 +350,55 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
  - **Input Signal**: Analog Voltage 
   **Data**:  A voltage signal proportional to the pipe input water Temperature
 
-#### Operation Flow
-Shown below is a detailed flow chart of the Safety and Protections Subsystem:
+##### - Embedded System (Software & PCB)
+
+ - **Output Signal**: Error Codes
+  **Data**: Error codes and status flags will be sent to the embedded subsystem to be displayed on the LCD screen.
+
+##### Operation Flow
+Shown below is a detailed flow chart of the Safety and Protections Controls Subsystem:
 
 ![alt text](<Safety Flowchart.drawio (2).png>)
+
+#### Electronic Housing Safety Sub-System
+
+##### Functional Overview
+The Housing shall protect the sensitive electronics from the elements. The Housing will have water resistant ports for the power board and sensors so that the water can be safely heated at the high power. The shall have water resistant ports for the LCD and user interface to pass through.
+
+1. This Housing **shall** be water resistant to prevent damage and harm if a leak occurs
+2. This Housing **shall** have water resistance port for the LCD and user interface to be on the outside of the housing.
+3. This Housing **shall** be large enough to fit the power board, microcontroller and input and board sensors.
+4. This Housing **shall** have water resistant ports for the coil to be outside the housing.
+
+#### Water Heating Safety Sub-System
+The water heating system is responsible for heating moving water in a pipe by using a powered induction coil to induce eddy currents via a generated field which causes a pipe to heat up which therefore heats the water.
+
+##### Functional Overview
+The Coil will receive power from the power board to heat the pipe which will heat the water. The pipe will be insulated so less heat is wasted and more heat ends up in the water. The insulation will reduce the amount of power that will need to be sent since less heat is lost. The Pipe will be equipped with sensors which will have at least flow and temperature sensors.
+
+##### Subsystem Operation
+The water flow rate sensor will control if the system should be on. The pipe should be filled with water to ensure that as much water as possible is being heated. A value will be placed at the end of the pipe to regulate the flow rate. Alternatively, the value could be at the beginning if the pipe is oriented upwards to some degree, allowing the water to push itself to fill the pipe. The coil which have to endure high frequency current will have high frequency current be sent into it at some power level, depending on the desired temperature. An input water temperature sensor will also determine the power level, as achieving the desired water temperature requires more power when the input temperature is lower. Once the current is running through the coil, eddy currents will be induced in the ferromagnetic pipe, causing it to heat up. The coil induction field could be focused and directed with Ferrite to improve power transfer efficiency. Once the pipe heats up, the water also heats up. The output temperature sensor will record and update the system accordingly, depending on how close it is to the desired water temperature.
+
+1. This Coil **shall** be thick enough to not over heat from the required power to heat moving water
+2. This Coil **shall** connect to the power board and receive a current at a high frequency.
+3. This Connectors **shall** fit with standard water pipe.
+4. This Pipe **shall** be ferromagnetic to be heated by the coil.
+5. This Pipe and Coil **shall** be insulated so that heat is not wasted.
+6. This Pipe **shall** be able to be compatible with different sensors for controlling properties of the water.
+7. This Pipe **shall** be filled with flowing water to maximize heating.
+
+##### Inputs and Outputs
+- **Inputs:**
+  - High Frequency Current to the Coil
+  - Water Flow sensor
+  - Input Temperature Sensor
+
+- **Outputs:**
+  - Rapid Heating to the Pipe form induced eddy currents
+  - Heating of the moving water
+  - Hot Water from the pipe
+  - Output Temperature sensor
+
 
 ### Embedded System
 
@@ -402,47 +445,6 @@ The power PCB will convert AC input power into DC through the rectification proc
 8. This Microcontroller **shall** have Analog-to-Digital converting capabilities.   [46]
 9. This Microcontroller **shall** interpret user interface inputs. 
 10. This Microcontroller **shall** interface with an LCD. [47]
-
-### Electronic Housing System
-
-#### Functional Overview
-The Housing shall protect the sensitive electronics from the elements. The Housing will have water resistant ports for the power board and sensors so that the water can be safely heated at the high power. The shall have water resistant ports for the LCD and user interface to pass through.
-
-#### Subsystem “Shall” Statements
-1. This Housing **shall** be water resistant to prevent damage and harm if a leak occurs
-2. This Housing **shall** have water resistance port for the LCD and user interface to be on the outside of the housing.
-3. This Housing **shall** be large enough to fit the power board, microcontroller and input and board sensors.
-4. This Housing **shall** have water resistant ports for the coil to be outside the housing.
-
-### Water Heating System
-The water heating system is responsible for heating moving water in a pipe by using a powered induction coil to induce eddy currents via a generated field which causes a pipe to heat up which therefore heats the water.
-
-#### Functional Overview
-The Coil will receive power from the power board to heat the pipe which will heat the water. The pipe will be insulated so less heat is wasted and more heat ends up in the water. The insulation will reduce the amount of power that will need to be sent since less heat is lost. The Pipe will be equipped with sensors which will have at least flow and temperature sensors.
-
-#### Subsystem Operation
-The water flow rate sensor will control if the system should be on. The pipe should be filled with water to ensure that as much water as possible is being heated. A value will be placed at the end of the pipe to regulate the flow rate. Alternatively, the value could be at the beginning if the pipe is oriented upwards to some degree, allowing the water to push itself to fill the pipe. The coil which have to endure high frequency current will have high frequency current be sent into it at some power level, depending on the desired temperature. An input water temperature sensor will also determine the power level, as achieving the desired water temperature requires more power when the input temperature is lower. Once the current is running through the coil, eddy currents will be induced in the ferromagnetic pipe, causing it to heat up. The coil induction field could be focused and directed with Ferrite to improve power transfer efficiency. Once the pipe heats up, the water also heats up. The output temperature sensor will record and update the system accordingly, depending on how close it is to the desired water temperature.
-
-#### Inputs and Outputs
-- **Inputs:**
-  - High Frequency Current to the Coil
-  - Water Flow sensor
-  - Input Temperature Sensor
-
-- **Outputs:**
-  - Rapid Heating to the Pipe form induced eddy currents
-  - Heating of the moving water
-  - Hot Water from the pipe
-  - Output Temperature sensor
-
-#### Subsystem “Shall” Statements
-1. This Coil **shall** be thick enough to not over heat from the required power to heat moving water
-2. This Coil **shall** connect to the power board and receive a current at a high frequency.
-3. This Connectors **shall** fit with standard water pipe.
-4. This Pipe **shall** be ferromagnetic to be heated by the coil.
-5. This Pipe and Coil **shall** be insulated so that heat is not wasted.
-6. This Pipe **shall** be able to be compatible with different sensors for controlling properties of the water.
-7. This Pipe **shall** be filled with flowing water to maximize heating.
 
 ## Ethical, Professional, and Standards Considerations
 ***
@@ -571,6 +573,10 @@ The responsibilities for designing each subsystem are allocated as follows:
       - Cole is responsible for designing the closed-loop control system of our induction heater. This involves selecting the appropriate thermocouples for accurate workpiece measurement and defining the control logic that uses temperature errors to change the power system's PWM signal.
     * <u>**Safety and Protections Control:**</u> Assigned to **Aaron**, based on his focus in Control Systems and skills in Safety Analysis.
       - Aaron will design the safety and protection control system. This includes the logic for detecting all fault conditions (overcurrent, IGBT overtemperature) and designing the interrupts that place the system into a non-operational fault state.
+
+* <u>**Safety and Protections System**</u>
+  * Assigned to: **Aaron**, based on his focus in Control Systems and skills in Safety Analysis.
+      - Aaron will design the safety and protection control system. This includes the logic for detecting all fault conditions (overcurrent, IGBT overtemperature) and designing the interrupts that place the system into a non-operational fault state. Along with this, he will design the eletronics housing to ensure components are electrically safe and meet NEC standards. Finally, Aaron will ensure the piping used will be resistant to leaks as well as safe for users to stand near.
 
 * <u>**Embedded Subsystem**</u>
     * <u>**Software:**</u> Assigned to **Dow**, due to his knowledge of microcontrollers and software design concepts.
