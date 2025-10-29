@@ -713,5 +713,3 @@ High-Level Solution - Software - [Dow]
 Resources: Budget, Timeline, Division of Labor - [Aaron]
 
 
-https://www.st.com/resource/en/datasheet/stm32g474cb.pdf
-https://www.st.com/resource/en/datasheet/stm32l476je.pdf
