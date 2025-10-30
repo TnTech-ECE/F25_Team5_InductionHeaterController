@@ -110,11 +110,11 @@ A hardware solution can be made to lock out any signals sent to the coil to prev
 This solution uses code to prevent the system from operating dangerously by using software checks (e.g. if statements). Primarily this would lock out signals being sent to the IGBTs. This solution would efficiently utilize the microcontroller already being utilized to send and recieve information from the system, and would benefit by operating parallel to the heat generation controls implemented to the microcontroller. This would streamline the control process overall and allow the software safety control to directly control the heat generation control. However, the downside of this solution is that the safety control will be based on the clock of the microcontroller and how fast that is. This would become an issue if the system fails faster than the clock. 
 
 #### Electronics Housing
-Existing solutions for electrical housings used in induction heater controller systems vary based on power level, environmental exposure, and heat management requirements. The most common types include metal enclosures (such as aluminum or steel), plastic housings (such as polycarbonate or ABS), and hybrid designs combining both materials. Metal enclosures are often preferred for high-power induction heating systems because of their excellent electromagnetic shielding and heat dissipation properties, which protect sensitive circuitry and power devices such as IGBTs and rectifiers from interference and thermal stress [34]. However, metal housings are typically heavier, more expensive, and prone to corrosion if not properly treated. They may also require grounding and insulation measures to ensure user safety in high-voltage systems [35].
+Existing solutions for electrical housings used in induction heater controller systems vary based on power level, environmental exposure, and heat management requirements. The most common types include metal enclosures (such as aluminum or steel), plastic housings (such as polycarbonate or ABS), and hybrid designs combining both materials. Metal enclosures are often preferred for high-power induction heating systems because of their excellent electromagnetic shielding and heat dissipation properties, which protect sensitive circuitry and power devices such as IGBTs and rectifiers from interference and thermal stress [34#]. However, metal housings are typically heavier, more expensive, and prone to corrosion if not properly treated. They may also require grounding and insulation measures to ensure user safety in high-voltage systems [35#].
 
-Plastic housings, by contrast, offer several advantages for compact or medium-power induction heater controllers. Materials like polycarbonate or ABS are lightweight, corrosion-resistant, and electrically insulating, reducing the need for additional safety grounding [36]. While plastics naturally lack EMI shielding and strong heat conduction, these limitations can be mitigated through conductive coatings, internal grounding strips, or external heat sinks [37]. Hybrid housings that combine a metal base with a plastic top are also used when both thermal and safety considerations must be met. These materials comply with international safety standards such as IEC 60529 (IP ratings) for ingress protection and UL 94 for flammability, making them suitable for industrial and laboratory environments [38].
+Plastic housings, by contrast, offer several advantages for compact or medium-power induction heater controllers. Materials like polycarbonate or ABS are lightweight, corrosion-resistant, and electrically insulating, reducing the need for additional safety grounding [36#]. While plastics naturally lack EMI shielding and strong heat conduction, these limitations can be mitigated through conductive coatings, internal grounding strips, or external heat sinks [37#]. Hybrid housings that combine a metal base with a plastic top are also used when both thermal and safety considerations must be met. These materials comply with international safety standards such as IEC 60529 (IP ratings) for ingress protection and UL 94 for flammability, making them suitable for industrial and laboratory environments [38#].
 
-For this project, a plastic housing—specifically polycarbonate—is chosen due to its balance of strength, insulation, and practicality. Polycarbonate provides excellent impact resistance, chemical durability, and electrical insulation, making it ideal for enclosing induction heater control electronics in both laboratory and semi-industrial environments [39]. It also offers greater design flexibility for custom layouts, openings, and mounting options while reducing total system weight and manufacturing cost. Additionally, polycarbonate’s resistance to moisture and its non-conductive nature enhance operator safety. This makes a plastic housing the most suitable choice for a reliable, cost-effective, and easily serviceable induction heater controller enclosure [40].
+For this project, a plastic housing—specifically polycarbonate—is chosen due to its balance of strength, insulation, and practicality. Polycarbonate provides excellent impact resistance, chemical durability, and electrical insulation, making it ideal for enclosing induction heater control electronics in both laboratory and semi-industrial environments [39#]. It also offers greater design flexibility for custom layouts, openings, and mounting options while reducing total system weight and manufacturing cost. Additionally, polycarbonate’s resistance to moisture and its non-conductive nature enhance operator safety. This makes a plastic housing the most suitable choice for a reliable, cost-effective, and easily serviceable induction heater controller enclosure [40#].
 
 
 #### Water Heating Protection
@@ -123,7 +123,7 @@ The design of the water heating interface is critical for overall system safety,
 
 **Thermal and Physical Isolation:** There are two primary methods for heating the water. The first, placing the induction element inside the water, is inherently safer from a user-touch perspective but requires expensive, high-temperature insulating pipes. The second method, heating the exterior of the metallic pipe, is more economical but introduces a key protection challenge: the hot pipe and live coil must be completely isolated from the user. This isolation will be a primary function of the electronic housing and coil insulation.
 
-**Electrical Safety and Component Sizing:** The coil itself presents a significant safety consideration. To heat a 0.5 GPM flow rate requires approximately 5 kW of power. With an input voltage of 240V, that would be drawing 20A. To handle this current at high frequencies without overheating and creating a fire hazard, component selection is critical. Due to the skin effect, a solid 8 AWG copper wire would be required. Using Litz wire at a gauge of 14 AWG can mitigate this effect, allowing for a smaller, more flexible wire while still safely handling the current. This choice directly impacts thermal management and component-level safety, ensuring the wire operates within its rated temperature and complies with NEC voltage drop standards [41].
+**Electrical Safety and Component Sizing:** The coil itself presents a significant safety consideration. To heat a 0.5 GPM flow rate requires approximately 5 kW of power. With an input voltage of 240V, that would be drawing 20A. To handle this current at high frequencies without overheating and creating a fire hazard, component selection is critical. Due to the skin effect, a solid 8 AWG copper wire would be required. Using Litz wire at a gauge of 14 AWG can mitigate this effect, allowing for a smaller, more flexible wire while still safely handling the current. This choice directly impacts thermal management and component-level safety, ensuring the wire operates within its rated temperature and complies with NEC voltage drop standards [41#].
 
 **Leak Prevention:** The physical connections between the system and the piping are a primary failure point. A leak could cause a faliure in the event it occurs near the electronics used for induction. The connections for the value and the pipe the pipe and the water input can be done a few different ways. One option is using a compression fitting which more or less uses friction to create a seal. Compression can use bare metal to metal or rubber o-rings. Another way is soldering which take a lower meting point metal like tin or lead and joins the two metals together with the solder bridge of sorts. Then there is threading which is as simple has it should you just screw the pipes together provided they have threads to do so. Teflon Tape is recommended to complete the seal. Compression is probably the easiest way but depending on the water pressure compression might not work. Threading is an option but requiring a tool to tap the threads. Soldering may also have pressure issue but tends to be somewhat stronger than compression. Whichever method chosen, the connection needs to ensure a water-tight seal that can withstand our estimated water pressure and temperature without failure.
 
@@ -616,6 +616,22 @@ The responsibilities for designing each subsystem are allocated as follows:
 [9] LearnMetering, “Understanding Relays and Control/Monitoring Equipment in Substations - Learn Metering,” Learn Metering, Jun. 17, 2024. https://learnmetering.com/substation-relays-control-monitoring-equipment/ (accessed Oct. 26, 2025).
 
 [10]E. Chen, “Controls and Signals Maslab IAP 2011.” Accessed: Oct. 27, 2025. [Online]. Available: https://web.mit.edu/6.186/2011/Lectures/controls/ControlsandSignals.pdf
+
+[34#] Omega Engineering. “NEMA Electrical Enclosures – Materials, Types & Applications.” Omega Engineering, 2024. https://www.omegaengineering.cn/subsection_eng/nema-electrical-enclosures-all.html
+
+[35#] Hammond Manufacturing. “Top Tips When Specifying Industrial Enclosures.” Hammond Manufacturing Whitepaper, 2023. https://www.hammfg.com/files/downloads/whitepapers/selection-whitepaper.pdf
+
+[36#] Polycase. “Polycarbonate Enclosures & Boxes for Electronics.” Polycase, 2024. https://www.polycase.com/polycarbonate-enclosures
+
+[37#] Bud Industries. “EMI/RFI Shielding Options for Plastic Enclosures.” The Volt Post, 2023. https://thevoltpost.com/hammond-enclosure-materials-metallic-non-metallic/
+
+[38#] Designing Electronics. “Weighing the Pros and Cons of Common Enclosure Materials.” Designing-Electronics.com, 2023. https://www.designing-electronics.com/weighing-the-pros-and-cons-of-common-enclosure-materials/
+
+[39#] Polycase. “Polycarbonate Enclosures: Features, Benefits and Common Applications.” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/polycarbonate-enclosures-features-benefits-and-common-applications.html
+
+[40#] Polycase. “How Strong Is Polycarbonate for Enclosures?” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/how-strong-is-polycarbonate.html
+
+[41#]  "NEC 2017 210.19b note No. 2"
 ‌
 [11] ESP32-C61 ESP-dev-kits documentation release master Espressif systems, https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c61/esp-dev-kits-en-master-esp32c61.pdf (accessed Oct. 25, 2025). 
 
@@ -664,21 +680,6 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 [33] “Bipolar Junction Transistor (BJT).” GeeksforGeeks, 2023, https://www.geeksforgeeks.org/bipolar-junction-transistor/
 
-[34] Omega Engineering. “NEMA Electrical Enclosures – Materials, Types & Applications.” Omega Engineering, 2024. https://www.omegaengineering.cn/subsection_eng/nema-electrical-enclosures-all.html
-
-[35] Hammond Manufacturing. “Top Tips When Specifying Industrial Enclosures.” Hammond Manufacturing Whitepaper, 2023. https://www.hammfg.com/files/downloads/whitepapers/selection-whitepaper.pdf
-
-[36] Polycase. “Polycarbonate Enclosures & Boxes for Electronics.” Polycase, 2024. https://www.polycase.com/polycarbonate-enclosures
-
-[37] Bud Industries. “EMI/RFI Shielding Options for Plastic Enclosures.” The Volt Post, 2023. https://thevoltpost.com/hammond-enclosure-materials-metallic-non-metallic/
-
-[38] Designing Electronics. “Weighing the Pros and Cons of Common Enclosure Materials.” Designing-Electronics.com, 2023. https://www.designing-electronics.com/weighing-the-pros-and-cons-of-common-enclosure-materials/
-
-[39] Polycase. “Polycarbonate Enclosures: Features, Benefits and Common Applications.” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/polycarbonate-enclosures-features-benefits-and-common-applications.html
-
-[40] Polycase. “How Strong Is Polycarbonate for Enclosures?” Polycase TechTalk, 2024. https://www.polycase.com/techtalk/plastic-electronic-enclosures/how-strong-is-polycarbonate.html
-
-[41]  "NEC 2017 210.19b note No. 2"
 
 [42] P. Cui, W. Zhu, H. Li, S. Hu, B. Hu, F. Yang, C. Hang, and M. Li, “Ultra-efficient localized induction heating by dual-ferrite synchronous magnetic field focusing,” Applied Energy, vol. 348, p. 121535, 2023, (doi:10.1016/j.apenergy.2023.121535)[https://www.sciencedirect.com/science/article/abs/pii/S0306261923008991].
 
