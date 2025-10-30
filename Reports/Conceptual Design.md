@@ -407,7 +407,7 @@ This software shall interpret the output of sensors, toggle the output of pins o
 
 - #### PCB Subsystem
 
-The induction heater controller is physically and electrically supported by the Printed Circuit Board (PCB) Subsystem. It unites power electronics, sensors, embedded systems, and user interface components all together into a single component. The PCB has to guarantee correct routing of signals, communication of components, grounding of wires, and isolation between voltage regions, otherwise failure is inbound. The PCB’s design directly impacts how accurately the controller can function and do what's is sole purpose is.
+The induction heater controller is physically and electrically supported by the Printed Circuit Board (PCB) Subsystem. It unites power electronics, sensors, embedded systems, and user interface components all together into a single component. The PCB has to guarantee correct routing of signals, communication of components, grounding of wires, and isolation between voltage regions, otherwise failure is inbound. The PCB's design directly impacts how accurately the controller can function and do what's is sole purpose is.
 
 #### Functional Overview
 
@@ -422,7 +422,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 
 - **Outputs:**
   - PWM gate control signals to the power switching devices (MOSFETs/IGBTs)  
-  - Digital data to the LCD display (SPI or I²C communication)  
+  - Digital data to the LCD display (SPI or I2C communication)  
   - Safety disable signals to cut power during fault conditions  
 
 #### Expected User Interaction
@@ -433,7 +433,7 @@ The main purpose of the PCB is to allocate high and low power circuitry in a sin
 
 The power PCB will convert AC input power into DC through the rectification process; it will then distribute its power to the inverter circuit when powered on. The PCB will wait in standby mode, waiting for user input from the keypad. when the user has decided to activate the heater, the PWM gat will send signals to the inverter circuit. The microcontroller will do adjustments to the PWM duty cycle to prevent overheating and maintain the desired power level. with that said, the temperature, power, and current flow data will be monitored and fed to the microcontroller through ADC, then shown through the LCD screen. If in the occasion of any faults occur, the microcontroller will send a signal to the PCB to shutdown, afterwards a faulty message will pop up of which error occurred (overheating, overcurrent, open circuit, etc).
 
-#### Subsystem “Shall” Statements
+#### Subsystem "Shall" Statements
 
 1. This PCB **shall** incorporate both high- and low-voltage circuits while maintaining isolation between them. [7], [5]  
 2. This PCB **shall** include fault detection and shutdown circuitry to prevent hardware failure. [5]  
