@@ -36,7 +36,7 @@ NEC Article 427 [2] covers Fixed Electric Heating Equipment for Pipelines and Ve
 NEC Article 665 [3] covers Induction and Dielectric Heating Equipment. Part I has guidelines "the current flow from the output circuit to ground under operating and ground-fault conditions shall be limited to a value that does not cause 50 volts or more to ground to appear on any accessible part of the heating equipment and its load." Part II states the control panel should be dead front construction, that is: no live circuits at risk of shocking people. 
 
 
-ANSI/IEEE 844-200 [4] applies directly to induction heating for pipelines and vessels. It states that the electric shock hazard for induction heating is minimal, but the high temperatures and induced current flow are design considerations [13]. There are a couple other IEEE standards related to heating such as ANSI/IEEE 515-2011 with standards for industrial electrical trace heating applications and ANSI/NECA 202-2013 with standards for installing and maintaining industrial heat tracing systems [11]. 
+ANSI/IEEE 844-200 [4] applies directly to induction heating for pipelines and vessels. It states that the electric shock hazard for induction heating is minimal, but the high temperatures and induced current flow are design considerations [4]. There are a couple other IEEE standards related to heating such as ANSI/IEEE 515-2011 with standards for industrial electrical trace heating applications and ANSI/NECA 202-2013 with standards for installing and maintaining industrial heat tracing systems [2]. 
 
 
 ## Overview of Proposed Solution
@@ -44,7 +44,7 @@ ANSI/IEEE 844-200 [4] applies directly to induction heating for pipelines and ve
 This subsystem is primarily concerned with ensuring the customer Specifications 3 and 5 are met by using thermocouples to ensure the heating was successful 
 
 1. The heat generation subsystem shall measure the initial temperature of the bar stock using a thermocouple and store this temperature using a microcontroller.
-2.  The heat generation subsystem shall ensure magnetic isolation is obtained by checking for over- and under- heating throughout the length of the bar stock using thermocouple(s).
+2.  The heat generation subsystem shall check for over- and under- heating throughout the length of the bar stock using thermocouple(s).
 3. The heat generation subsystem shall increase the power delivered to the induction coil if the thermocouple senses temperatures below the desired temperature output based on user specified power input.
 4. The heat generation subsystem shall reduce the power delivered to the induction coil if the thermocouple senses temperatures exceeding the desired temperature output based on user specified power input.
 5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
