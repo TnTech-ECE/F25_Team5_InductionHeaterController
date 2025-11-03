@@ -30,6 +30,18 @@ The document should include:
 
 This segment should elucidate the role of the subsystem within the entire system, detailing its intended function, aligned with the conceptual design.
 
+The system the team will be implementing can be best understood using a control block diagram: 
+
+![alt text](<Control_Block_Diagram.drawio (1).png>)
+
+For our system: 
+ - R(s) = user desired power
+ - Y(s) = temperature of the pipe
+ - G(s) = dynamics of the induction heating 
+ - H(s) = dynamics of the thermocouple sensor
+ - Gc(s) = compensation to be implemented to ensure specifications are met
+ - summing junction = signals to and from microcontroller
+
 ### Control System 
 
 Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker [2]. This induction cooker is designed to be used with smooth, flat bottom base cookware. The cooker utilizes an open loop control system operating based on user selected power and time settings. This cooker has no feedback to know the actual temperature of the part heated, but it is able to predict the temperature from the power selected by the user. The cooker is preprogrammed to 10 temperatures of 120°F to 460°F correlating to 180 Watts to 1800 Watts [3]. The OMEO SK-IH18G23T, though the heating itself is open loop, contains sensors providing feedback to protect the cooker. Notably it contains a thermocouple to measure the surface temperature of the induction cooker and an IGBT sensor placed underneath the heatsink to ensure the PCB was not getting too hot. The surface temperature is kept below 280°F while the PCB is kept under 105°F [3]. Ideally, the cooker should remain relatively cool while the part is being heated. If the cooker's surface temperature or the IGBT's temperature rises too high, the controller produces an error code and stops heating [3]. The cooker's heat sink absorbs much of the heat, but if the heat sink fails the controller's components will fail due to overheating and may fail violently at risk of causing harm to operators.
@@ -43,17 +55,7 @@ OMEO PCB without  Heatsink:
 ![alt text](<Induction PCB without Heatsink.jpeg>)
 
 
-The system the team will be implementing can be best understood using a control block diagram: 
 
-![alt text](<Control_Block_Diagram.drawio (1).png>)
-
-For our system: 
- - R(s) = user desired power
- - Y(s) = temperature of the pipe
- - G(s) = dynamics of the induction heating 
- - H(s) = dynamics of the thermocouple sensor
- - Gc(s) = compensation to be implemented to ensure specifications are met
- - summing junction = signals to and from microcontroller
 
 The team's system will require a thermocouple sensor to meet customer specifications and ensure that a the induction heater controller produces a temperature rise on the metal. The team shall implement a closed loop control system to ensure that customer specifications are met in an accurate and consistent manner. Open loop control is better for cost efficiency primarily by eliminating the cost of a sensor measuring the part heated, but measuring the part heated is a requirement for this project. 
 
@@ -75,6 +77,34 @@ PID control [10]is compensation solution that is the most comprehensive of compe
 Using a microcontroller has the additional benefit that the microcontroller will be able to send and receive signals to / from the system. A microcontroller would be able to receive information from the sensor's actual temperature and user's desired temperature and send information to that the system needs to adjust to match actual temp to desired temp. Implementing this control in a microcontroller reduces the need for additional components requiring additional connections to communicate with each other. 
 
 There are less comprehensive compensators available such as phase lead and phase lag, and PID can be reduced to P and so on as needed to reduce costs if needed. However, by implementing this control using software in a microcontroller the team should not incur any additional cost by implementing PID. 
+
+- #### Heat Generation
+This subsystem is responsible for ensuring the induction heater is able to produce accurate temperature outputs based on user-specified power inputs. This subsystem ensures that customer specifications are met accurately and reliably utilizing closed loop feedback.
+<!--  -->
+1. The heat generation subsystem shall measure the initial temperature of the bar stock using a thermocouple and store this temperature using a microcontroller.
+2.  The heat generation subsystem shall ensure magnetic isolation is obtained by checking for over- and under- heating throughout the length of the bar stock using thermocouple(s).
+3. The heat generation subsystem shall increase the power delivered to the induction coil if the thermocouple senses temperatures below the desired temperature output based on user specified power input.
+4. The heat generation subsystem shall reduce the power delivered to the induction coil if the thermocouple senses temperatures exceeding the desired temperature output based on user specified power input.
+5. The heat generation subsystem shall accurately measure the final temperature of the bar stock using thermocouple and store this temperature using a microcontroller.
+6. The heat generation subsystem shall not heat the circular bar stock to a temperature exceeding 1200°F (649°C) as per IEEE recommended max maintenance temperature for induction heating [5].
+
+The heat generation subsystem primarily focuses on ensuring the output temperature is reached and providing critical information specified by the customer such as total power consumed and total temperature rise of the metal. This subsystem serves as the basis for correcting any errors in the output to best meet customer specifications.
+
+##### Inputs and Outputs
+
+- **Inputs:**
+  - Analog voltage signal from microcontroller specifying what power level / temperature is desired
+  - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is
+  - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is
+
+- **Outputs:**
+  - PWM signal from microcontroller to tell the power subsystem to increase the duty cycle to increase power delivered or decrease duty cycle to decrease power delivered to increase / decrease temperature of part respectively.
+
+##### Operation Flow
+Shown below is a detailed flow chart of the Heat Generation Subsystem:
+
+
+![alt text](<HeatGenerationSubsystem.drawio.png>)
 
 
 ## Specifications and Constraints
