@@ -41,7 +41,7 @@ ANSI/IEEE 844-200 [4] applies directly to induction heating for pipelines and ve
 
 ## Overview of Proposed Solution
 
-This subsystem is primarily concerned with ensuring the customer Specifications 3 and 5 are met by using thermocouples to ensure the heating was successful 
+This subsystem is primarily concerned with meeting the customer Specifications 3 and 5, and interfacing with the power subsystem to meet Specifications 1,2, and 4. 
 
 1. The heat generation subsystem shall measure the initial temperature of the bar stock using a thermocouple and store this temperature using a microcontroller.
 2.  The heat generation subsystem shall check for over- and under- heating throughout the length of the bar stock using thermocouple(s).
@@ -125,3 +125,10 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 [4] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
 
 [5] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
+
+[5] Phil's Lab, "PID Controller Implementation in Software," https://youtu.be/zOByx3Izf5U?si=dD22pElXplkJUA5t (accessed Nov. 04, 2025).
+‌
+[6] DigiKey, "How to Tune a PID Controller for an Inverted Pendulum," https://youtu.be/hRnofMxEf3Q?si=JwhMR7xFTRcJ91Fh (accessed Nov. 04, 2025).
+‌
+[7] MATLAB, "What Is System Identification?," https://youtu.be/Z1QS6FsxrJI?si=gIbGyuVUAKYjSpp5 (accessed Nov. 04, 2025).
+‌
