@@ -56,22 +56,21 @@ PID control [1] is compensation solution that is the most comprehensive of compe
 These constants can be calculated using control theory if the system specifications are known and the transfer functions of the plant and sensor are known. For most applications, including this one, the dynamics of the system and the dynamics of the sensor are not easily determined. However, these dynamics can be approximated using experimental data and knowledge of the behavior of the systems [5]. It is not always necessary to know the exact physics of these systems since the controller / compensator can be tuned as needed to ensure the best response is attained. This can be attained using Zigler-Nichols Tuning Rules, trial and error, or similar ad hoc approaches [8]. 
 
 Temperature systems have plant dynamics that can be approximated as a first order order system: 
-![alt text](image-10.png)
-![alt text](image-8.png)
-![alt text](image-9.png)
+![alt text](timedomain.png)
+![alt text](firstordertrasnfer.png)
+![alt text](yss_stuff.png)
 
 where: 
+
   yss = steady state output 
   A = analog input 
 
 This model should give an approximation of the the system dynamics, but it would be necessary to experimentally collect data in order to find values of K and tau which cannot be accomplished until the coil and pipe hardware are implemented. Thus this model will serve primarily as an approximation of the expected dynamics to make the PID constants a bit easier to predict. 
 
 
-PID can be implemented using software or hardware, but it is typically done using software for modern applications [5]. This subsystem will implement the PID control using C code. 
+PID can be implemented using software or hardware, but it is typically done using software for modern applications [5]. The chosen microcontroller of the Software Subsystem is a Nucleo-STM32L476RG, so this subsystem will implement the PID control using C code to ensure compatibility. 
 
-Using a microcontroller has the additional benefit that the microcontroller will be able to send and receive signals to / from the system. A microcontroller would be able to receive information from the sensor's actual temperature and user's desired temperature and send information to that the system needs to adjust to match actual temp to desired temp. Implementing this control in a microcontroller reduces the need for additional components requiring additional connections to communicate with each other. 
-
-There are less comprehensive compensators available such as phase lead and phase lag, and PID can be reduced to P and so on as needed to reduce costs if needed. However, by implementing this control using software in a microcontroller the team should not incur any additional cost by implementing PID. 
+The Nucleo-STM32L476RG will be used to receive information from the thermocouple sensors using ADC channels. The Nucleo has a resolution of about 1 millivolt (mV) which may become problematic due to  
 
 
 ## Interface with Other Subsystems
