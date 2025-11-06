@@ -70,7 +70,9 @@ This model should give an approximation of the the system dynamics, but it would
 
 PID can be implemented using software or hardware, but it is typically done using software for modern applications [5]. The chosen microcontroller of the Software Subsystem is a Nucleo-STM32L476RG, so this subsystem will implement the PID control using C code to ensure compatibility. 
 
-The Nucleo-STM32L476RG will be used to receive information from the thermocouple sensors using ADC channels. The Nucleo has a resolution of about 1 millivolt (mV) which may become problematic due to  
+The Nucleo-STM32L476RG will be used to receive information from the thermocouple sensors using ADC channels. 
+
+SENSORS STUFF Nucleo have low mV reading stuff but thermocouple send signal that is in mV or lower.
 
 
 ## Interface with Other Subsystems
@@ -112,6 +114,8 @@ Shown below is a detailed flow chart of the Heat Generation Subsystem:
 ## BOM
 
 Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
+
+https://www.amazon.com/dp/B0C5C2NGSV 
 
 ## Analysis
 
