@@ -1,0 +1,14 @@
+../Core/Src/main.c:55:13:getTimer3Instance	1
+../Core/Src/main.c:59:6:HAL_GPIO_EXTI_Callback	3
+../Core/Src/main.c:72:6:HAL_TIM_IC_CaptureCallback	2
+../Core/Src/main.c:87:6:HAL_TIM_PeriodElapsedCallback	3
+../Core/Src/main.c:124:5:main	1
+../Core/Src/main.c:173:6:SystemClock_Config	4
+../Core/Src/main.c:222:13:MX_I2C1_Init	4
+../Core/Src/main.c:269:13:MX_SPI2_Init	2
+../Core/Src/main.c:308:13:MX_SPI3_Init	2
+../Core/Src/main.c:347:13:MX_TIM1_Init	4
+../Core/Src/main.c:393:13:MX_TIM2_Init	4
+../Core/Src/main.c:437:13:MX_TIM3_Init	3
+../Core/Src/main.c:485:13:MX_GPIO_Init	1
+../Core/Src/main.c:590:6:Error_Handler	1
