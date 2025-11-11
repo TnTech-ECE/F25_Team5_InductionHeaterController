@@ -30,6 +30,7 @@ The document should include:
 
 This segment should elucidate the role of the subsystem within the entire system, detailing its intended function, aligned with the conceptual design.
 
+The overall functionality of the Power Subsystem stems from the idea that every other subsystem cannot function without it. The goal of this system is to an provide adequate, sustainable, and reliable source of power to every other subsystem of this design. Still, there are challenges that can arise. Every electronic system is different. Which means no matter what you do, there will be some sort of difference. In an electrical systems case, voltage and current levels will differ based on load impedance/resistance, as well as other things. This power system design will provide DC Power Rails for all of the different needs of the different systems, regardless of the difference between the systems.
 
 ## Specifications and Constraints
 
@@ -40,6 +41,20 @@ The team should set specifications for each subsystem. These specifications may 
 Every subsystem must incorporate at least one constraint stemming from standards, ethics, or socio-economic factors.
 
 
+**format this:
+
+***Specifications
+1. The Power System shall encompass safe and proper Ports between all subsections of the project.
+2. The Power shall be able to take in a rectified DC bus and properly convert to each loads specified voltage need.
+3. The Power shall be placed in a design such that all I/O ports are properly mapped and subsection Ports are clear and efficient.
+4. The Power System shall ensure the power is properly filtered to ensure stable voltage levels.
+
+***Constraints 
+1. EMI compliance
+2. 240 VAC US standard AC main supply -- And why we chose this
+3. Ensuring compliance with Lochinvar’s customer specifications and relevant NEC and IEEE safety standards. 
+
+
 ## Overview of Proposed Solution
 
 Describe the solution and how it will fulfill the specifications and constraints of this subsystem.
@@ -48,6 +63,18 @@ Describe the solution and how it will fulfill the specifications and constraints
 ## Interface with Other Subsystems
 
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
+
+The Power subsystem will interface with the Safety P&C and Microcontroller subsystems.
+
+##### Microcontroller system interfacing
+
+The Microcontroller will transmit a PWM high and low  input signal through PCB tracing to the  2 IR2184 Gate Driver IC's IN Pins. From there, the Power systems' circuits will effectively amplify and use the signal provided to drive the gates of the H-bridge configuration on the DC main portion of the power board. 
+
+See the Buildable Schematic section for more info on how the signal logic is configured to eventually drive the IGBT gates. 
+
+###### Safety P&C system interfacing
+
+The Safety and P&C system will recieve control signals which will then be used to apply control logic to the system for proper safety shutdown sequences when issues arise with voltage and current instability.
 
 
 ## 3D Model of Custom Mechanical Components
@@ -65,11 +92,6 @@ The schematic should be relevant to the design and provide ample details necessa
 ## Printed Circuit Board Layout
 
 Include a manufacturable printed circuit board layout.
-
-
-## Flowchart
-
-For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail.
 
 
 ## BOM
