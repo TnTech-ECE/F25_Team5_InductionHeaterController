@@ -98,11 +98,6 @@ Integrate a buildable electrical schematic directly into the document. If the di
 The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned.
 
 
-## Printed Circuit Board Layout
-
-Include a manufacturable printed circuit board layout.
-
-
 ## Flowchart
 
 
