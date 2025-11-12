@@ -11,8 +11,20 @@
 #include "lcd.h"
 #include "max6675.h"
 #include "main.h"
+#include "delay.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
+max6675_tc *thermoSPI2;
+max6675_tc *thermoSPI3;
+int tick = 1;
+void threeTenthSeconds(void)
+{
+	float tempSPI2 = tc_readTemp(thermoSPI2);
+	float tempSPI3 = tc_readTemp(thermoSPI3);
+	DisplayNumber((int)tempSPI2, 0, 0, 0, 3);
+	DisplayNumber((int)tempSPI3, 1, 0, 0, 3);
+	DisplayNumber(tick++, 0, 15, 1, 10);
+}
 void run()
 {
 	char clearSector[17];
@@ -28,26 +40,23 @@ void run()
 	//	// Initialize LCD once
 	lcd_init();
 	HAL_Delay(20); // Wait after init
-	max6675_tc *thermoSPI2 = tc_init(&hspi2, spi_cn2_GPIO_Port, spi_cn2_Pin);
-	max6675_tc *thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
+	thermoSPI2 = tc_init(&hspi2, spi_cn2_GPIO_Port, spi_cn2_Pin);
+	thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
 
 	//
 	//	// Clear display and home cursor
 	//	HAL_Delay(2);		// Clear needs > 1.5ms
-	int tick = 1;
 	// LCD_WriteCommand(0xF, 1);
 	Write_String_Sector_LCD(0, "Tempature");
 	Write_String_Sector_LCD(4, "Sensors");
 	HAL_Delay(2000);
 	Clear_Display();
+	//runInterval(threeTenthSeconds, 300);
 	while (1)
 	{
-		float tempSPI2 = tc_readTemp(thermoSPI2);
-		float tempSPI3 = tc_readTemp(thermoSPI3);
-		DisplayNumber((int)tempSPI2, 0, 0, 0, 3);
-		DisplayNumber((int)tempSPI3, 1, 0, 0, 3);
-		DisplayNumber(tick++, 0, 15, 1, 12);
+		threeTenthSeconds();
 		HAL_Delay(300);
+
 		// if (charCurrent > charStartEnd)
 		// {
 		// 	charCurrent = charStart;
@@ -55,6 +64,5 @@ void run()
 		// if (cacheLCD.string[31] == charCurrent)
 		// 	charCurrent++;
 		// LCD_WriteData(charCurrent);
-		// HAL_Delay(1);
 	}
 }

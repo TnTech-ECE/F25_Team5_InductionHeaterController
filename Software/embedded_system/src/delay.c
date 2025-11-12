@@ -1,71 +1,60 @@
 #include "delay.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include "stm32l4xx_hal.h"
+#include "stm32l476xx.h"
+int queueRun(OnTimeCallback callback, uint32_t delay, UntilCheckCallback UntilCheckCallback);
 void removeRunFromList(int runId, int index);
 int runListLength = 0;
 int currentRunId = 0;
 #define MAX_RUN_LIST 16
 struct Run RunList[MAX_RUN_LIST];
-
+uint32_t getDelayScale()
+{
+	// 80 MHz core -> derive how many TIM2 updates make 1ms
+	uint32_t psc = (uint32_t)TIM2->PSC + 1U;
+	uint32_t arr = (uint32_t)TIM2->ARR + 1U;
+	return 80000000UL / (1000UL * psc * arr);
+}
 bool timeoutCallback()
 {
 	return true;
 }
+uint32_t time = 0;
 void Delay_TIM_2_Callback()
 {
-	for (int i = 0; i < runListLength; i++)
+	if (++time < getDelayScale())
+		return;
+	time = 0;
+	for (int i = 0; i < runListLength;)
 	{
-		struct Run run = RunList[i];
-		if (--run._delayLeft <= 0)
+		struct Run *run = &RunList[i];
+		if (--run->_delayLeft <= 0)
 		{
-			run._delayLeft = run.delay;
-			if (run.callback != NULL)
-				run.callback();
-			if (run.UntilCheckCallback != NULL && run.UntilCheckCallback())
+			run->_delayLeft = run->delay;
+			if (run->callback != NULL)
+				run->callback();
+			if (run->UntilCheckCallback != NULL && run->UntilCheckCallback())
 			{
-				removeRunFromList(run.id, i);
+				removeRunFromList(run->id, i);
+				continue;
 			}
 		}
+		++i;
 	}
 }
 int runInterval(OnTimeCallback callback, uint32_t delay)
 {
-	struct Run run;
-	run.callback = &callback;
-	run.delay = delay;
-	run._delayLeft = delay;
-	run.id = currentRunId++;
-	run.UntilCheckCallback = NULL;
-	if (runListLength >= MAX_RUN_LIST)
-		return -1;
-	RunList[runListLength] = run;
-	++runListLength;
+	return queueRun(callback, delay, NULL);
 }
 int runTimeout(OnTimeCallback callback, uint32_t delay)
 {
-	struct Run run;
-	run.callback = &callback;
-	run.delay = delay;
-	run._delayLeft = delay;
-	run.id = currentRunId++;
-	run.UntilCheckCallback = &timeoutCallback;
-	if (runListLength >= MAX_RUN_LIST)
-		return -1;
-	RunList[runListLength] = run;
-	++runListLength;
+	return queueRun(callback, delay, timeoutCallback);
 }
 int runIntervalUntil(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, uint32_t delay)
 {
-	struct Run run;
-	run.callback = &callback;
-	run.delay = delay;
-	run._delayLeft = delay;
-	run.id = currentRunId++;
-	run.UntilCheckCallback = &UntilCheckCallback;
-	if (runListLength >= MAX_RUN_LIST)
-		return -1;
-	RunList[runListLength] = run;
-	++runListLength;
+	return queueRun(callback, delay, UntilCheckCallback);
 }
 struct Run getNullRun()
 {
@@ -80,36 +69,56 @@ struct Run getNullRun()
 bool clearRun(int runId)
 {
 	int index = -1;
-	int runIdFound = -1;
 	for (int i = 0; i < runListLength; i++)
 	{
-		struct Run run = RunList[i];
 
-		if (run.id == runId)
+		if (RunList[i].id == runId)
 		{
 			index = i;
-			runIdFound = runId;
 			break;
 		}
 	}
-	if (runIdFound == -1)
+	if (index == -1)
 		return false;
-	removeRunFromList(runIdFound, index);
+	removeRunFromList(runId, index);
 }
 void removeRunFromList(int runIdFound, int index)
 {
 	if (runIdFound == -1)
 		return;
-	if (index == -1)
+	if (index < 0 || index >= runListLength)
 		return;
 	if (RunList[index].id != runIdFound)
 		return;
-	for (int i = index; i < runListLength; i++)
+	__disable_irq();
+	for (int i = index + 1; i < runListLength; i++)
 	{
-		struct Run run = RunList[i];
-
-		RunList[i - 1] = run;
+		RunList[i - 1] = RunList[i];
 	}
 	runListLength--;
 	RunList[runListLength] = getNullRun();
+	__enable_irq();
+}
+
+int queueRun(OnTimeCallback callback, uint32_t delay, UntilCheckCallback UntilCheckCallback)
+{
+	struct Run run;
+	run.callback = callback;
+	run.delay = delay;
+	run._delayLeft = delay;
+	if (currentRunId >= INT32_MAX)
+	{
+		currentRunId = 0;
+	}
+	run.id = currentRunId++;
+	run.UntilCheckCallback = UntilCheckCallback;
+	__disable_irq();
+	if (runListLength >= MAX_RUN_LIST)
+	{
+		__enable_irq();
+		return -1;
+	}
+	RunList[runListLength++] = run;
+	__enable_irq();
+	return run.id;
 }

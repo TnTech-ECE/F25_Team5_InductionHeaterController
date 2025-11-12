@@ -31,7 +31,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/run.h \
  C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/lcd.h \
- C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/rotary_encoder.h
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/rotary_encoder.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/delay.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -66,3 +67,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/run.h:
 C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/lcd.h:
 C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/rotary_encoder.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/src/delay.h:

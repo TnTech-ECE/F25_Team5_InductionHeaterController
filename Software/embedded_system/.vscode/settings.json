@@ -10,6 +10,8 @@
 		"rotary_encoder.h": "c",
 		"stm32l476xx.h": "c",
 		"max6675.h": "c",
-		"stm32l4xx.h": "c"
+		"stm32l4xx.h": "c",
+		"delay.h": "c",
+		"lcd.h": "c"
 	}
 }

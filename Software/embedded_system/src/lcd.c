@@ -13,6 +13,7 @@
 #include "lcd.h"
 #include "stdio.h"
 #include "math.h"
+#include "delay.h"
 struct LCDCache cacheLCD;
 int strlen(char *str)
 {
@@ -34,7 +35,7 @@ enum CurrentTaskIndex
 	LatchResetLower = 5,
 	Wait = 6
 };
-const int scaleDelay = 5;
+
 // uint8_t CommandsQueued[200];
 // int commandsQueuedLength = 0;
 // uint8_t DataQueued[200];
@@ -62,23 +63,10 @@ uint16_t QueueNextIndex(uint16_t i)
 volatile enum CurrentTaskIndex currentTaskIndex = Upper;
 volatile int wait = 0;
 volatile uint16_t forcedByte = UINT16_MAX;
-void unsubscribeQueueManager()
-{
-	if (!NVIC_GetEnableIRQ(TIM2_IRQn))
-		return;
-	HAL_NVIC_DisableIRQ(TIM2_IRQn);
-}
-void subscribeQueueManager()
-{
-	if (NVIC_GetEnableIRQ(TIM2_IRQn))
-		return;
-	HAL_NVIC_EnableIRQ(TIM2_IRQn);
-}
 void LCD_TIM_2_Callback()
 {
 	if (queue_empty())
 	{
-		unsubscribeQueueManager();
 		return;
 	}
 	if (queue_full())
@@ -93,7 +81,7 @@ void LCD_TIM_2_Callback()
 	uint16_t currentByte = (forcedByte != UINT16_MAX) ? forcedByte : BytesQueued[bytesQueuedStart];
 	if (task == Upper)
 	{
-		wait = (int)((currentByte >> 9) & 0x7F) * scaleDelay;
+		wait = (int)((currentByte >> 9) & 0x7F) * getDelayScale();
 		if (!wait)
 			wait = 1;
 	}
@@ -272,19 +260,17 @@ static inline int queue_full_or_emptying(void)
 
 uint8_t queueByte(uint8_t byte, uint8_t DataNotCommand, uint8_t delay)
 {
-	HAL_NVIC_DisableIRQ(TIM2_IRQn); //__disable_irq();
+	__disable_irq();
 	if (queue_full_or_emptying())
 	{
-		//__enable_irq();
-		HAL_NVIC_EnableIRQ(TIM2_IRQn);
+		__enable_irq();
 		return 0;
 	}
 	if (!delay)
 		delay = 1;
 	BytesQueued[bytesQueuedEnd] = byte | (DataNotCommand << 8) | (delay << 9);
 	bytesQueuedEnd = QueueNextIndex(bytesQueuedEnd);
-	//__enable_irq();
-	HAL_NVIC_EnableIRQ(TIM2_IRQn);
+	__enable_irq();
 	return 1;
 }
 uint8_t LCD_WriteData(uint8_t data)
@@ -360,7 +346,7 @@ void Clear_Cache()
 }
 void CacheCursor(uint8_t code)
 {
-	if (!((code <= 0x80 || code >= 0x8F) && (code <= 0xC0 || code >= 0xCF)))
+	if (!((code >= 0x80 && code <= 0x8F) || (code >= 0xC0 && code <= 0xCF)))
 		return;
 	uint8_t line = ((code >> 4) & 0xF) == 0xC ? 1 : 0;
 	uint8_t position = (code & 0xF);
@@ -423,14 +409,15 @@ void Write_String_Sector_LCD(uint8_t sector, char *string)
 
 void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
 {
-
+	__disable_irq();
 	int logOf = digits - 1;
 	if ((line != -1) && (position != -1))
-		Set_CursorPosition(line, from ? position - logOf - ((num < 0) ? 1 : 0) : position);
+		Set_CursorPosition(line, from ? position - logOf : position);
 	if (num < 0)
 	{
 		LCD_WriteData('-');
 		--logOf;
+		num = -num;
 	}
 
 	for (int i = logOf; i >= 0; i--)
@@ -439,4 +426,5 @@ void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t
 		uint8_t digit = place % 10;
 		LCD_WriteData(digit + '0');
 	}
+	__enable_irq();
 }

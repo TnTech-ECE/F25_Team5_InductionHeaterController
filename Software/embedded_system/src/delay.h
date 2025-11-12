@@ -15,12 +15,12 @@ void Delay_TIM_2_Callback();
 
 typedef void OnTimeCallback(void);
 typedef bool UntilCheckCallback(void);
-
+uint32_t getDelayScale();
 struct Run
 {
 	int id;
 	uint32_t delay;
-	uint32_t _delayLeft;
+	long _delayLeft;
 	OnTimeCallback *callback;
 	UntilCheckCallback *UntilCheckCallback;
 };
