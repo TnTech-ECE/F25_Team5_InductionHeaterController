@@ -3,13 +3,7 @@
 
 ## Function of the Subsystem 
 
-
-This subsystem is responsible for ensuring the induction heater is able to produce accurate temperature outputs based on user-specified power inputs. This subsystem ensures that customer specifications are met accurately and reliably utilizing closed loop feedback.
-
-
-The heat generation subsystem primarily focuses on ensuring the output temperature is reached and providing critical information specified by the customer such as total power consumed and total temperature rise of the metal. This subsystem serves as the basis for correcting any errors in the output to best meet customer specifications.
-
-
+The Heat Generation Subsystem is the part of the project that contols the induction heating. This subsystem ensures that customer specifications are met accurately and reliably by utilizing closed loop feedback to compare the actual temperature of the pipe to the reference temperature inferred from user-specified power inputs. This subsystem provides information critical to meeting customer specifcations such as the total temperature rise of the metal. The Heat Generation Subsystem primarily consists of the thermocouples used to measure the temperature of the pipe and the PID control logic implemented using software to reduce error and ensure consistent results. 
 
 ## Specifications and Constraints
 
@@ -39,7 +33,7 @@ ANSI/IEEE 844-200 [2] applies directly to induction heating for pipelines and ve
 ## Overview of Proposed Solution
 
 
-The system the team will be implementing can be best understood using a control block diagram: 
+The subsystem can be best understood using a control block diagram: 
 
 ![alt text](<Control_Block_Diagram.drawio (1).png>)
 
@@ -79,7 +73,7 @@ Due to the low voltage output of thermocouples, it is necessary to compensate fo
 
 The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [11].  
 
-Thermocouple amplifiers are available for reduced prices if they can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. For pipe heating applications, self-adhesive patch and pipe clamp thermocouples would be ideal to ensure that the thermocouple makes solid connection with the pipe. 
+Simple thermocouple amplifiers are available for cheaper prices if they can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. For pipe heating applications, self-adhesive patch or pipe clamp thermocouples would be ideal to ensure that the thermocouple makes solid connection with the pipe. 
 
 
 ## Interface with Other Subsystems
