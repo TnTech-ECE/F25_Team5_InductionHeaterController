@@ -109,7 +109,7 @@ Include a manufacturable printed circuit board layout.
 Shown below is a detailed flow chart of the Heat Generation Subsystem:
 
 
-![alt text](HeatGenerationSubsystem_11_12_25.drawio.png)
+![alt text](HeatGenerationSubsystem_11_12_25_2.drawio.png)
 
 
 ## BOM
