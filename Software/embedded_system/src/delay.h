@@ -18,6 +18,7 @@ typedef bool UntilCheckCallback(void);
 
 struct Run
 {
+	int id;
 	uint32_t delay;
 	uint32_t _delayLeft;
 	OnTimeCallback *callback;
@@ -27,7 +28,8 @@ struct Run
  * @param callback
  * @param delay in milliseconds
  */
-uint8_t runInterval(OnTimeCallback callback, uint32_t delay);
-uint8_t runTimeout(OnTimeCallback callback, uint32_t delay);
-uint8_t runIntervalUntil(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, uint32_t delay);
+int runInterval(OnTimeCallback callback, uint32_t delay);
+int runTimeout(OnTimeCallback callback, uint32_t delay);
+int runIntervalUntil(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, uint32_t delay);
+bool clearRun(int runId);
 #endif /* DELAY_H_ */

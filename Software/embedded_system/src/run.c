@@ -12,7 +12,7 @@
 #include "max6675.h"
 #include "main.h"
 #include "stm32l4xx_hal.h"
-
+#include "stm32l476xx.h"
 void run()
 {
 	char clearSector[17];
