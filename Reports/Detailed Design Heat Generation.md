@@ -21,7 +21,7 @@ The deliverables given to us by Lochinvar:
 4. This controller shall measure total electrical power consumed.  
 5. This controller shall measure the total temperature rise of the metal.
 
-This subsystem is primarily concerned with meeting the customer Specifications 3 and 5, and interfacing with the power subsystem to meet Specifications 1, 2, and 4. 
+This subsystem is primarily concerned with meeting the customer Specifications 3 and 5, and interfacing with the other subsystems to meet Specifications 1, 2, and 4. 
 
 1. The heat generation subsystem shall measure the initial temperature of the bar stock using a thermocouple and store this temperature using a microcontroller.
 2.  The heat generation subsystem shall check for over- and under- heating throughout the length of the bar stock using thermocouple(s).
@@ -70,9 +70,14 @@ This model should give an approximation of the the system dynamics, but it would
 
 PID can be implemented using software or hardware, but it is typically done using software for modern applications [5]. The chosen microcontroller of the Software Subsystem is a Nucleo-STM32L476RG, so this subsystem will implement the PID control using C code to ensure compatibility. 
 
-The Nucleo-STM32L476RG will be used to receive information from the thermocouple sensors using ADC channels. 
+An additional part of this subsystem is the implementation of thermocouple sensors. A PID controller operates by trying to reduce the error of output by as much as possible, and thus requires feedback sensors to be able to do that. Thermocouples are used as these sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6].
 
-SENSORS STUFF Nucleo have low mV reading stuff but thermocouple send signal that is in mV or lower.
+Thermocouple Voltage [6]: 
+![alt text](Thermocouple_TI_Image.png)
+
+Due to the low voltage output of thermocouples, it is necessary to compensate for this using amplification [9]. 
+
+The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [11].  
 
 
 ## Interface with Other Subsystems
@@ -117,6 +122,8 @@ Provide a comprehensive list of all necessary components along with their prices
 
 https://www.amazon.com/dp/B0C5C2NGSV 
 
+https://www.adafruit.com/product/1778
+
 ## Analysis
 
 Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
@@ -138,4 +145,10 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 ‌[7]“What Is A Thermocouple And How Does It Work? [Full Guide],” peaksensors.com, Jun. 30, 2023. https://peaksensors.com/blog/thermocouple/what-is-a-thermocouple-and-how-does-it-work/
 ‌
 [8] J. Bennett, “9.3: PID Tuning via Classical Methods,” Engineering LibreTexts, May 19, 2020. https://eng.libretexts.org/Bookshelves/Industrial_and_Systems_Engineering/Chemical_Process_Dynamics_and_Controls_(Woolf)/09%3A_Proportional-Integral-Derivative_(PID)_Control/9.03%3A_PID_Tuning_via_Classical_Methods
+‌
+[9] D. Szmulewicz, “Implementing a Thermocouple Interface With ADC12_A Application Report Implementing a Thermocouple Interface With ADC12_A,” 2011. Accessed: Nov. 12, 2025. [Online]. Available: https://www.ti.com/lit/an/slaa501/slaa501.pdf?ts=1762893695464
+
+[10] ST, “STM32L476RG Datasheet,” 2019. Available: https://www.st.com/resource/en/datasheet/stm32l476rg.pdf
+‌
+‌[11] Adafruit Industries, “Analog Output K-Type Thermocouple Amplifier - AD8495 Breakout,” Adafruit.com, 2020. https://www.adafruit.com/product/1778
 ‌
