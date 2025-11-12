@@ -111,14 +111,19 @@ Shown below is a detailed flow chart of the Heat Generation Subsystem:
 
 ![alt text](HeatGenerationSubsystem_11_12_25_2.drawio.png)
 
+where: 
+- red ellipses are start / end points
+- blue rectangles / squares are actions
+- yellow diamonds are questions
 
 ## BOM
 
-Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
+| Component | Manufactuer | Part Number | Distrubutor | Distributor Part Number | Quantity | Price | Purchasing Website URL |
+| --------- | ----------- | ----------- | ----------- | ----------------------- | -------- | ----- | ---------------------- |
+| Thermocouple |  |  |  |  |  |  |  |
+| Thermocouple Amplifier | Adafruit | 1778  | Digikey | 1528-1778-ND | 2 | $11.95 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/1778/5638304) |
+| Total Cost | $ |  |  |  |  |  |  |
 
-https://www.amazon.com/dp/B0C5C2NGSV 
-
-https://www.adafruit.com/product/1778
 
 ## Analysis
 
