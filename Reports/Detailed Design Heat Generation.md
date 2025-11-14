@@ -69,13 +69,16 @@ An additional part of this subsystem is the implementation of thermocouple senso
 Thermocouple Voltage [6]: 
 ![alt text](Thermocouple_TI_Image.png)
 
-Due to the low voltage output of thermocouples, it is necessary to compensate for this using amplification [9]. 
+The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [11]. Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [9]. Cold junction compensation is often included with dedicated thermocouple amplifiers [12]. 
 
-The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [11]. The Nucleo will need to be able to store the current temperature values of the sensors as integers to meet customer specificatons of measuring total temperature rise of the metal. 
+For example, Adafruit produces an AD8495 K-Type Thermocouple Amplifier [12] that solves both the issue of amplification and cold junction amplification: 
+![alt text](adafruit_amplifier_block_diagram.png)
 
-Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [9]. This is typically done using a thermistor to find the absolute temperature of the cold junctioins, and this can be added to to the measured thermocouple temperature to obtain the absolute thermocouple temperature. Both the thermistor and the thermocouple require an ADC channel each from the Nucleo. 
+The Adafruit AD8495 K-Type Thermocouple Amplifier is a cheaper option available since it can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. Thus, this amplifier will be a good low cost solution to quickly and efficiently measure the temperature of the workpiece using a K-type thermocouple.
 
-Simple thermocouple amplifiers are available for cheaper prices if they can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. For pipe heating applications, self-adhesive patch or pipe clamp thermocouples would be ideal to ensure that the thermocouple makes solid connection with the pipe. 
+There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. For pipe heating applications, self-adhesive patch or pipe clamp thermocouples would be ideal to ensure that the thermocouple makes solid connection with the pipe. 
+
+The Nucleo will need to be able to store the current temperature values of the sensors as integers to meet customer specificatons of measuring total temperature rise of the metal. 
 
 
 ## Interface with Other Subsystems
@@ -150,3 +153,4 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 ‌
 ‌[11] Adafruit Industries, “Analog Output K-Type Thermocouple Amplifier - AD8495 Breakout,” Adafruit.com, 2020. https://www.adafruit.com/product/1778
 ‌
+[12] Adafruit Industries, “AD8495 Datasheet” 2011. Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf
