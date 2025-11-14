@@ -78,7 +78,9 @@ The Adafruit AD8495 K-Type Thermocouple Amplifier is a cheaper option available 
 
 There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. For pipe heating applications, self-adhesive patch or pipe clamp thermocouples would be ideal to ensure that the thermocouple makes solid connection with the pipe. 
 
-The Nucleo will need to be able to store the current temperature values of the sensors as integers to meet customer specificatons of measuring total temperature rise of the metal. 
+The implementation of the thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
+
+The user desired temperature shall be determined from the user desired power input setting. This shall be accomplished through testing and comparing the 
 
 
 ## Interface with Other Subsystems
