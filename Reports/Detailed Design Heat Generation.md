@@ -140,8 +140,8 @@ Shown below is a detailed flow chart of the Heat Generation Subsystem:
 ![alt text](HeatGenerationSubsystem_11_12_25_2.drawio.png)
 
 where: 
-- red ellipses are start / end points
-- blue rectangles / squares are actions
+- red ellipses are start and end points
+- blue rectangles and squares are actions
 - yellow diamonds are questions
 
 ## BOM
