@@ -1,2 +1,2 @@
-../src/run.c:20:6:threeTenthSeconds	24	static
-../src/run.c:28:6:run	32	static
+../src/run.c:23:6:threeTenthSeconds	32	static
+../src/run.c:32:6:run	32	static

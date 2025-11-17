@@ -36,6 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+  extern SPI_HandleTypeDef hspi1;
   extern SPI_HandleTypeDef hspi2;
   extern SPI_HandleTypeDef hspi3;
 /* USER CODE END ET */
@@ -71,14 +72,18 @@ void Error_Handler(void);
 #define EN_GPIO_Port GPIOA
 #define D4_Pin GPIO_PIN_4
 #define D4_GPIO_Port GPIOA
-#define LD2_Pin GPIO_PIN_5
-#define LD2_GPIO_Port GPIOA
+#define SPI1_SCK_Pin GPIO_PIN_5
+#define SPI1_SCK_GPIO_Port GPIOA
+#define SPI1_MISO_Pin GPIO_PIN_6
+#define SPI1_MISO_GPIO_Port GPIOA
+#define SPI1_MOSI_Pin GPIO_PIN_7
+#define SPI1_MOSI_GPIO_Port GPIOA
 #define D5_Pin GPIO_PIN_0
 #define D5_GPIO_Port GPIOB
 #define spi_cn2_Pin GPIO_PIN_15
 #define spi_cn2_GPIO_Port GPIOB
-#define dial_btn_Pin GPIO_PIN_9
-#define dial_btn_GPIO_Port GPIOA
+#define dial_btn_Pin GPIO_PIN_8
+#define dial_btn_GPIO_Port GPIOC
 #define dial_btn_EXTI_IRQn EXTI9_5_IRQn
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
@@ -86,9 +91,11 @@ void Error_Handler(void);
 #define TCK_GPIO_Port GPIOA
 #define spi_cn3_Pin GPIO_PIN_2
 #define spi_cn3_GPIO_Port GPIOD
+#define SD_CS_Pin GPIO_PIN_6
+#define SD_CS_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-
+#define HSPI_SDCARD &hspi1
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

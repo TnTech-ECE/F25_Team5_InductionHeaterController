@@ -12,6 +12,13 @@
 		"max6675.h": "c",
 		"stm32l4xx.h": "c",
 		"delay.h": "c",
-		"lcd.h": "c"
+		"lcd.h": "c",
+		"diskio.h": "c",
+		"ff_gen_drv.h": "c",
+		"integer.h": "c",
+		"user_diskio.h": "c",
+		"ff.h": "c",
+		"save.h": "c",
+		"stdbool.h": "c"
 	}
 }

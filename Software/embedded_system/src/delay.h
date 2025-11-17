@@ -5,17 +5,17 @@
  *  Created on: Nov 11, 2025
  *      Author: mrpat
  */
+#include <stdint.h>
+#include <stdbool.h>
 
 #ifndef DELAY_H_
 #define DELAY_H_
-#include <stdint.h>
-#include <stdbool.h>
 
 void Delay_TIM_2_Callback();
 
 typedef void OnTimeCallback(void);
 typedef bool UntilCheckCallback(void);
-uint32_t getDelayScale();
+uint64_t getDelayScale();
 struct Run
 {
 	int id;

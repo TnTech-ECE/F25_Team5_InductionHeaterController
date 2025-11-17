@@ -9,6 +9,6 @@
 #define RUN_H_
 
 void run();
-
-
+extern struct ControllerData controllerData;
+#define CONTROLLER_DATA_PATH "controller_data.save"
 #endif /* RUN_C_ */

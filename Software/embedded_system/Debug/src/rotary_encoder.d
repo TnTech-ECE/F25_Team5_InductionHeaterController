@@ -1,4 +1,4 @@
-src/rotary_encoder.o: ../src/rotary_encoder.c ../src/lcd.h \
+src/rotary_encoder.o: ../src/rotary_encoder.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -29,8 +29,18 @@ src/rotary_encoder.o: ../src/rotary_encoder.c ../src/lcd.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
- ../src/delay.h ../Core/Inc/main.h
-../src/lcd.h:
+ ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h ../src/lcd.h \
+ ../src/delay.h ../Core/Inc/main.h ../src/save.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/integer.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/FATFS/Target/ffconf.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/FATFS/Target/user_diskio.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/diskio.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/integer.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/diskio.h \
+ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff.h \
+ ../src/run.h
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h:
@@ -61,5 +71,18 @@ src/rotary_encoder.o: ../src/rotary_encoder.c ../src/lcd.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h:
+../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h:
+../src/lcd.h:
 ../src/delay.h:
 ../Core/Inc/main.h:
+../src/save.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/integer.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/FATFS/Target/ffconf.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/FATFS/Target/user_diskio.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/diskio.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/integer.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/diskio.h:
+C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff.h:
+../src/run.h:

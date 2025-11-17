@@ -1,4 +1,4 @@
-src/delay.o: ../src/delay.c ../src/delay.h \
+src/delay.o: ../src/delay.c ../src/delay.h ../src/lcd.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -31,6 +31,7 @@ src/delay.o: ../src/delay.c ../src/delay.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h
 ../src/delay.h:
+../src/lcd.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h:

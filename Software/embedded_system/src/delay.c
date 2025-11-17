@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "lcd.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
 int queueRun(OnTimeCallback callback, uint32_t delay, UntilCheckCallback UntilCheckCallback);
@@ -10,11 +11,11 @@ int runListLength = 0;
 int currentRunId = 0;
 #define MAX_RUN_LIST 16
 struct Run RunList[MAX_RUN_LIST];
-uint32_t getDelayScale()
+uint64_t getDelayScale()
 {
 	// 80 MHz core -> derive how many TIM2 updates make 1ms
-	uint32_t psc = (uint32_t)TIM2->PSC + 1U;
-	uint32_t arr = (uint32_t)TIM2->ARR + 1U;
+	uint64_t psc = (uint64_t)TIM2->PSC + 1U;
+	uint64_t arr = (uint64_t)TIM2->ARR + 1U;
 	return 80000000UL / (1000UL * psc * arr);
 }
 bool timeoutCallback()
@@ -26,6 +27,7 @@ void Delay_TIM_2_Callback()
 {
 	if (++time < getDelayScale())
 		return;
+	// LCD_WriteData('a');
 	time = 0;
 	for (int i = 0; i < runListLength;)
 	{
@@ -81,6 +83,7 @@ bool clearRun(int runId)
 	if (index == -1)
 		return false;
 	removeRunFromList(runId, index);
+	return true;
 }
 void removeRunFromList(int runIdFound, int index)
 {

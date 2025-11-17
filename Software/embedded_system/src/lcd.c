@@ -6,6 +6,7 @@
  */
 
 #include "main.h"
+#include "stdio.h"
 #include "stdlib.h"
 #include "stdint.h"
 #include "stm32l4xx_hal.h"
@@ -14,8 +15,18 @@
 #include "stdio.h"
 #include "math.h"
 #include "delay.h"
+int _write(int file, char *ptr, int len)
+{
+	if ((ITM->TCR & ITM_TCR_ITMENA_Msk) == 0 || (ITM->TER & 1U) == 0)
+		return len;
+	for (int i = 0; i < len; i++)
+	{
+		ITM_SendChar(*ptr++);
+	}
+	return len;
+}
 struct LCDCache cacheLCD;
-int strlen(char *str)
+int LenStr(char *str)
 {
 	int i = 0;
 	while (*str++)
@@ -50,7 +61,7 @@ void CacheChar(uint8_t code);
 
 void Clear_Cache();
 void CacheCursor(uint8_t code);
-#define BytesQueuedSize 256
+#define BytesQueuedSize 1024
 volatile uint16_t BytesQueued[BytesQueuedSize];
 volatile int bytesQueuedStart = 0;
 volatile int bytesQueuedEnd = 0;
@@ -260,6 +271,7 @@ static inline int queue_full_or_emptying(void)
 
 uint8_t queueByte(uint8_t byte, uint8_t DataNotCommand, uint8_t delay)
 {
+	printf("byteQueteLength: %d", queue_length());
 	__disable_irq();
 	if (queue_full_or_emptying())
 	{
@@ -275,28 +287,40 @@ uint8_t queueByte(uint8_t byte, uint8_t DataNotCommand, uint8_t delay)
 }
 uint8_t LCD_WriteData(uint8_t data)
 {
+	__disable_irq();
 	return queueByte(data, 1, 0);
+	__enable_irq();
 }
 uint8_t LCD_WriteCommand(uint8_t data, uint8_t delay)
 {
+	__disable_irq();
 	return queueByte(data, 0, delay);
+	__enable_irq();
 }
 
 uint8_t Write_String_LCD(char *str)
 {
-
-	if (queue_full_or_emptying() || strlen(str) >= queue_left())
+	__disable_irq();
+	if (queue_full_or_emptying() || LenStr(str) >= queue_left())
+	{
+		__enable_irq();
 		return 0;
+	}
 	while (*str)
 	{
 		uint8_t queueAvailable = LCD_WriteData(*str++);
 		if (!queueAvailable)
+		{
+			__enable_irq();
 			return queueAvailable;
+		}
 	}
+	__enable_irq();
 	return 1;
 }
 void lcd_init(void)
 {
+	__disable_irq();
 	// 4 bit initialisation
 	// HAL_Delay(50); // wait for >40ms
 	LCD_WriteCommand(0x3, 5);
@@ -318,13 +342,16 @@ void lcd_init(void)
 	LCD_WriteCommand(0x06, 1); // Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)
 							   // HAL_Delay(1);
 	LCD_WriteCommand(0x0C, 1); // Display on/off control --> D = 1, C and B =0. (Cursor and blink, last two bits)
+	__enable_irq();
 }
 
 #define min(a, b) ((a) < (b) ? (a) : (b))
 
 void Shift_Cursor_LCD(uint8_t value)
 {
+	__disable_irq();
 	LCD_WriteCommand(0x10 | (value << 2), 1);
+	__enable_irq();
 }
 
 void CacheChar(uint8_t code)
@@ -355,7 +382,9 @@ void CacheCursor(uint8_t code)
 }
 void Clear_Display()
 {
+	__disable_irq();
 	LCD_WriteCommand(0x01, 2);
+	__enable_irq();
 }
 
 char *Get_String_LCD(int8_t from, int8_t to)
@@ -381,30 +410,36 @@ char *Get_String_LCD(int8_t from, int8_t to)
 }
 void Set_LCD(char *string)
 {
+	__disable_irq();
 	Clear_Display();
 	Write_String_LCD(string);
+	__enable_irq();
 }
 uint8_t CursorPositionToCode(uint8_t line, uint8_t position)
 {
-
+	__disable_irq();
 	uint8_t location = line ? 0xC0 : 0x80;
 	location |= position;
+	__enable_irq();
 	return location;
 }
 void Set_CursorPosition(uint8_t line, uint8_t position)
 {
-
+	__disable_irq();
 	uint8_t location = CursorPositionToCode(line, position);
 	LCD_WriteCommand(location, 0);
+	__enable_irq();
 }
 
 void Write_String_Sector_LCD(uint8_t sector, char *string)
 {
+	__disable_irq();
 	// uint8_t lastPosition = cacheLCD.position;
 	// uint8_t lastLine = cacheLCD.line;
 	Set_CursorPosition(sector / 4, (sector % 4) * 4);
 	Write_String_LCD(string);
 	// Set_CursorPosition(lastLine, lastPosition);
+	__enable_irq();
 }
 
 void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
@@ -425,6 +460,34 @@ void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t
 		uint8_t place = (int)num / (int)pow(10, i);
 		uint8_t digit = place % 10;
 		LCD_WriteData(digit + '0');
+	}
+	__enable_irq();
+}
+
+void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
+{
+	__disable_irq();
+	int maxDigits = digits - 1;
+	int logOf = (int)log10(num);
+
+	if (logOf > maxDigits)
+		logOf = maxDigits;
+	if ((line != -1) && (position != -1))
+		Set_CursorPosition(line, from ? position - maxDigits : position);
+	if (num < 0)
+	{
+		LCD_WriteData('-');
+		--logOf;
+		num = -num;
+	}
+	int decimalplaces = -(logOf - maxDigits - 1);
+	for (int i = logOf; i >= decimalplaces; i--)
+	{
+		uint8_t place = (int)num / (int)pow(10, i);
+		uint8_t digit = place % 10;
+		LCD_WriteData(digit + '0');
+		if (i >= decimalplaces && i == 0)
+			LCD_WriteData('.');
 	}
 	__enable_irq();
 }
