@@ -49,7 +49,12 @@ PID control [1] is compensation solution that is the most comprehensive of compe
 
 These constants can be calculated using control theory if the system specifications are known and the transfer functions of the plant and sensor are known. For most applications, including this one, the dynamics of the system and the dynamics of the sensor are not easily determined. However, these dynamics can be approximated using experimental data and knowledge of the behavior of the systems [5]. It is not always necessary to know the exact physics of these systems since the controller / compensator can be tuned as needed to ensure the best response is attained. This can be attained using Zigler-Nichols Tuning Rules, trial and error, or similar ad hoc approaches [8]. 
 
-Temperature systems have plant dynamics that can be approximated as a first order order system: 
+Temperature systems have plant dynamics that can be approximated as a first order order system due to the dynamics of their operation. 
+
+Typical response of a temperature system [16]: 
+![alt text](temperature_graph.png)
+
+First order approximation [17]: 
 ![alt text](timedomain.png)
 ![alt text](firstordertrasnfer.png)
 ![alt text](yss_stuff.png)
@@ -85,9 +90,11 @@ There are many different K-type thermocouples available with price mostly depend
 Recall, the induction coil will be wrapped around the pipe: 
 ![alt text](image-7.png)
 
-Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. This can be accomplished by buying mineral insulated thermocouples, or by buying shielded thermocouple extension wire. 
+The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. This can be accomplished on the wire by buying mineral insulated thermocouples, or by buying shielded thermocouple extension wire. Mineral insulated thermocouples have EMI shielding by nature. For example, the Omega KMQSS-062U-12 has a 0.062" diameter 304 Stainless Steel (SS) sheath [14] that provides decent EMI shielding, mechanical strength, and corrosion resistance [15] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water. 
 
-The implementation of the thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
+Thermocouples are available in grounded, ungrounded, and exposed junctions configurations. Grounded and exposed junctions have typically have faster temperature resonses, but they are more susceptible to noise due to the electrical contact [8]. Ungrounded junctions have slower temperature responses, but ungrounded junctions isolate the sensor from noise [16]. Isolation from noise is desirable due to the EMI of the coil; therefore, the thermocouple shall be ungrounded. The Omega KMQSS-062U-12 is ungrounded [14]. The sheath diameter can be decreased to increase response time [16], but it also reduces durability so the KMQSS-062U-12's 0.062" diameter sheath should be a good compromise as it is half the size of Omega's next largest diameter 0.125" diameter sheaths but within a few thousandths of the other sizes offered [14]. The KMQSS-062U-12's standard 12" is preferred to ensure the thermcouple can measure the length of the pipe as needed without picking up too much noise from the coil since the pipe measured is expected to be at least 1-2 feet or greater. 
+
+The implementation of the Omega KMQSS-062U-12 thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
 
 The user desired temperature shall be determined from the user desired power input setting. This shall be accomplished through testing and comparing the 
 
@@ -164,17 +171,22 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 
 [6] J. Wu, “A Basic Guide to Thermocouple Measurements.” Accessed: Nov. 06, 2025. [Online]. Available: https://www.ti.com/lit/an/sbaa274a/sbaa274a.pdf?ts=1762432799418&ref_url=https%253A%252F%252Fwww.google.com%252F
 ‌
-‌[7]“What Is A Thermocouple And How Does It Work? [Full Guide],” peaksensors.com, Jun. 30, 2023. https://peaksensors.com/blog/thermocouple/what-is-a-thermocouple-and-how-does-it-work/
-‌
 [8] J. Bennett, “9.3: PID Tuning via Classical Methods,” Engineering LibreTexts, May 19, 2020. https://eng.libretexts.org/Bookshelves/Industrial_and_Systems_Engineering/Chemical_Process_Dynamics_and_Controls_(Woolf)/09%3A_Proportional-Integral-Derivative_(PID)_Control/9.03%3A_PID_Tuning_via_Classical_Methods
 ‌
 [9] D. Szmulewicz, “Implementing a Thermocouple Interface With ADC12_A Application Report Implementing a Thermocouple Interface With ADC12_A,” 2011. Accessed: Nov. 12, 2025. [Online]. Available: https://www.ti.com/lit/an/slaa501/slaa501.pdf?ts=1762893695464
 
-[10] ST, “STM32L476RG Datasheet,” 2019. Available: https://www.st.com/resource/en/datasheet/stm32l476rg.pdf
+[10] “STM32L476RG Datasheet,” ST, 2019. Available: https://www.st.com/resource/en/datasheet/stm32l476rg.pdf
 ‌
-‌[11] Adafruit Industries, “Analog Output K-Type Thermocouple Amplifier - AD8495 Breakout,” Adafruit.com, 2020. https://www.adafruit.com/product/1778
+‌[11] “Analog Output K-Type Thermocouple Amplifier - AD8495 Breakout,” Adafruit.com, 2020. https://www.adafruit.com/product/1778
 ‌
-[12] Adafruit Industries, “AD8495 Datasheet” 2011. Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf
+[12] “AD8495 Datasheet,” Adafruit Industries, 2011. Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf
 
 [13] “What is a PID Controller? | DigiKey,” www.youtube.com. https://www.youtube.com/watch?v=tFVAaUcOm4I (accessed Nov. 02, 2023).
 ‌
+[14] “Omega KMQSS-062U-12 Datasheet,” Omega, Accessed: Nov. 17, 2025. [Online]. Available: https://assets.omega.com/pdf/test-and-measurement-equipment/temperature/sensors/thermocouple-probes/JMQSS.pdf
+‌
+[15] “What is the Best Material for EMI Shielding? 10 Top Recommendations for 2025,” www.emcnoordin.com, May 20, 2025. https://www.emcnoordin.com/what-is-the-best-material-for-emi-shielding10-top-recommendations-for-2025/ (accessed Nov. 17, 2025).
+‌
+[16] D. Dlugos, “Grounded vs. Ungrounded Thermocouple Junctions: Why Select One over the Other?,” Ashcroft.com, Sep. 26, 2024. https://blog.ashcroft.com/grounded-vs-ungrounded-thermocouple-junctions (accessed Nov. 17, 2025).
+‌
+[17] Alouani, Ali. ECE 3260_DAQ_Notes P.12.
