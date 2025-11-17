@@ -61,8 +61,12 @@ where:
 
 This model should give an approximation of the the system dynamics, but it would be necessary to experimentally collect data in order to find values of K and tau which cannot be accomplished until the coil and pipe hardware are implemented. Thus this model will serve primarily as an approximation of the expected dynamics to make the PID constants a bit easier to predict. 
 
-
 PID can be implemented using software or hardware, but it is typically done using software for modern applications [5]. The chosen microcontroller of the Software Subsystem is a Nucleo-STM32L476RG, so this subsystem will implement the PID control using C code to ensure compatibility. 
+
+Typical PID control implemented using C code is of the following form according to Digikey [13]: 
+![alt text](Digikey_PID.png)
+
+Where the constants are adjusted using control theory or ad hoc methods, the interval is the sampling rate of the microcontroller, and the output for this system is the PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. 
 
 An additional part of this subsystem is the implementation of thermocouple sensors. A PID controller operates by trying to reduce the error of output by as much as possible, and thus requires feedback sensors to be able to do that. Thermocouples are used as these sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6].
 
@@ -76,7 +80,12 @@ For example, Adafruit produces an AD8495 K-Type Thermocouple Amplifier [12] that
 
 The Adafruit AD8495 K-Type Thermocouple Amplifier is a cheaper option available since it can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. Thus, this amplifier will be a good low cost solution to quickly and efficiently measure the temperature of the workpiece using a K-type thermocouple.
 
-There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. For pipe heating applications, self-adhesive patch or pipe clamp thermocouples would be ideal to ensure that the thermocouple makes solid connection with the pipe. 
+There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. The critical requirement for the thermocouple chosen for this application is electromagnetic interference (EMI) shielding. This is because of the chosen coil geometry. 
+
+Recall, the induction coil will be wrapped around the pipe: 
+![alt text](image-7.png)
+
+Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. This can be accomplished by buying mineral insulated thermocouples, or by buying shielded thermocouple extension wire. 
 
 The implementation of the thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
 
@@ -87,6 +96,14 @@ The user desired temperature shall be determined from the user desired power inp
 
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
 
+This subsystem primarily consists of the thermocouple sensors, any necessary components to make the thermocouples work, and the PID controller code to control the system. 
+
+#### 1. Power Subsystem 
+The AD8495 thermocouple amplifier is the primary component of this subsystem requiring power. According to the datasheet the AD8495 works best when supplied with 5 V [12]
+
+#### 2. Software Subsystem 
+
+
 ##### Inputs and Outputs
 
 - **Inputs:**
@@ -96,6 +113,8 @@ Provide detailed information about the inputs, outputs, and data transferred to 
 
 - **Outputs:**
   - PWM signal from microcontroller to tell the power subsystem to increase the duty cycle to increase power delivered or decrease duty cycle to decrease power delivered to increase / decrease temperature of part respectively.
+
+
 
 
 ## Buildable Schematic 
@@ -122,7 +141,7 @@ where:
 
 | Component | Manufactuer | Part Number | Distrubutor | Distributor Part Number | Quantity | Price | Purchasing Website URL |
 | --------- | ----------- | ----------- | ----------- | ----------------------- | -------- | ----- | ---------------------- |
-| Thermocouple |  |  |  |  |  |  |  |
+| Pipe Temp Thermocouple | Omega | KMQSS-062U-12 | Digikey | 5880-KMQSS-062U-12-ND | 1 | $70.82 | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840) |
 | Thermocouple Amplifier | Adafruit | 1778  | Digikey | 1528-1778-ND | 2 | $11.95 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/1778/5638304) |
 | Total Cost | $ |  |  |  |  |  |  |
 
@@ -156,3 +175,6 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 ‌[11] Adafruit Industries, “Analog Output K-Type Thermocouple Amplifier - AD8495 Breakout,” Adafruit.com, 2020. https://www.adafruit.com/product/1778
 ‌
 [12] Adafruit Industries, “AD8495 Datasheet” 2011. Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf
+
+[13] “What is a PID Controller? | DigiKey,” www.youtube.com. https://www.youtube.com/watch?v=tFVAaUcOm4I (accessed Nov. 02, 2023).
+‌
