@@ -106,22 +106,15 @@ Provide detailed information about the inputs, outputs, and data transferred to 
 This subsystem primarily consists of the thermocouple sensors, any necessary components to make the thermocouples work, and the PID controller code to control the system. 
 
 #### 1. Power Subsystem 
-The AD8495 thermocouple amplifier is the primary component of this subsystem requiring power. According to the datasheet the AD8495 works best when supplied with 5 V [12]
+- **Inputs:**
+The AD8495 thermocouple amplifier is the primary component of this subsystem requiring power. According to the datasheet the AD8495 works best when supplied with 5 V [12]. It should be noted that the KMQSS-062U-12 thermocouple does not require any power input, only the amplifier. 
+- **Outputs:**
+The Nucleo shall send a PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. 
 
 #### 2. Software Subsystem 
-
-
-##### Inputs and Outputs
-
 - **Inputs:**
-  - Analog voltage signal from microcontroller specifying what power level / temperature is desired
-  - Analog voltage signal from feedback thermocouple sensors specifying what actual temperature is
-  - Analog voltage signal from feedback wattmeter sensors specifying what actual power consumed is
-
+User desired power input to the microcontroller
 - **Outputs:**
-  - PWM signal from microcontroller to tell the power subsystem to increase the duty cycle to increase power delivered or decrease duty cycle to decrease power delivered to increase / decrease temperature of part respectively.
-
-
 
 
 ## Buildable Schematic 
