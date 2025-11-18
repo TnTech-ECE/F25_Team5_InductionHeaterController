@@ -127,11 +127,17 @@ The schematic should be relevant to the design and provide ample details necessa
 
 ## Flowchart
 
+Shown below is a detailed flow chart of the Heat Generation Subsystem's Hardware Components: 
 
-Shown below is a detailed flow chart of the Heat Generation Subsystem:
+
+![alt text](Heat_Generation_Schematic.drawio.png)
+
+
+Shown below is a detailed flow chart of the Heat Generation Subsystem's Software Components: 
 
 
 ![alt text](HeatGenerationSubsystem_11_12_25_2.drawio.png)
+
 
 where: 
 - red ellipses are start and end points
