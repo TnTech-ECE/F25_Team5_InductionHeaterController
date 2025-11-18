@@ -67,7 +67,12 @@ Recall, the induction coil will be wrapped around the pipe:
 
 ![alt text](image-7.png)
 
-The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. The Omega KMQSS-062U-12 thermocouple has a 0.062" diameter 304 Stainless Steel (SS) sheath [14] that provides decent EMI shielding, mechanical strength, and corrosion resistance [15] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water. 
+The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. The Omega KMQSS-062U-12 thermocouple has a 0.062" diameter 304 Stainless Steel (SS) sheath [14] that provides decent EMI shielding, mechanical strength, and corrosion resistance [15] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water: 
+
+
+![alt text](Omega_thermocouple_picture.png)
+
+
 
 The implementation of the Omega KMQSS-062U-12 thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
 
@@ -136,7 +141,7 @@ Typical response of a temperature system [16]:
 
 First order approximation [17]: 
 ![alt text](timedomain.png)
-![alt text](firstordertrasnfer.png)
+![alt text](firstordertransfer.png)
 ![alt text](yss_stuff.png)
 
 where: 
