@@ -47,43 +47,19 @@ For our system:
 
 PID control [1] is compensation solution that is the most comprehensive of compensators available. PID by definition is a Proportional, Integral, and Derivative control that allows for the reduction of error, noise, and chattering of signals respectively. This is achieved primarily by adjusting the values of and ratios of constants Kp, Ki, and Kd associated with each PID parameter. 
 
-These constants can be calculated using control theory if the system specifications are known and the transfer functions of the plant and sensor are known. For most applications, including this one, the dynamics of the system and the dynamics of the sensor are not easily determined. However, these dynamics can be approximated using experimental data and knowledge of the behavior of the systems [5]. It is not always necessary to know the exact physics of these systems since the controller / compensator can be tuned as needed to ensure the best response is attained. This can be attained using Zigler-Nichols Tuning Rules, trial and error, or similar ad hoc approaches [8]. 
-
-Temperature systems have plant dynamics that can be approximated as a first order order system due to the dynamics of their operation. 
-
-Typical response of a temperature system [16]: 
-![alt text](temperature_graph.png)
-
-First order approximation [17]: 
-![alt text](timedomain.png)
-![alt text](firstordertrasnfer.png)
-![alt text](yss_stuff.png)
-
-where: 
-
-  yss = steady state output 
-  A = analog input 
-
-This model should give an approximation of the the system dynamics, but it would be necessary to experimentally collect data in order to find values of K and tau which cannot be accomplished until the coil and pipe hardware are implemented. Thus this model will serve primarily as an approximation of the expected dynamics to make the PID constants a bit easier to predict. 
+These constants can be calculated using control theory if the system specifications are known and the transfer functions of the plant and sensor are known. For most applications, including this one, the dynamics of the system and the dynamics of the sensor are not easily determined. However, these dynamics can be approximated using experimental data and knowledge of the behavior of the systems [5]. It is not always necessary to know the exact physics of these systems since the controller / compensator can be tuned as needed to ensure the best response is attained. This can be attained using Zigler-Nichols Tuning Rules, trial and error, or similar ad hoc approaches [8].  
 
 PID can be implemented using software or hardware, but it is typically done using software for modern applications [5]. The chosen microcontroller of the Software Subsystem is a Nucleo-STM32L476RG, so this subsystem will implement the PID control using C code to ensure compatibility. 
-
-Typical PID control implemented using C code is of the following form according to Digikey [13]: 
-![alt text](Digikey_PID.png)
-
-Where the constants are adjusted using control theory or ad hoc methods, the interval is the sampling rate of the microcontroller, and the output for this system is the PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. 
 
 An additional part of this subsystem is the implementation of thermocouple sensors. A PID controller operates by trying to reduce the error of output by as much as possible, and thus requires feedback sensors to be able to do that. Thermocouples are used as these sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6].
 
 Thermocouple Voltage [6]: 
 ![alt text](Thermocouple_TI_Image.png)
 
-The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [11]. Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [9]. Cold junction compensation is often included with dedicated thermocouple amplifiers [12]. 
+When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. 
 
-For example, Adafruit produces an AD8495 K-Type Thermocouple Amplifier [12] that solves both the issue of amplification and cold junction amplification: 
+Adafruit produces an AD8495 K-Type Thermocouple Amplifier [12] that solves both the issue of amplification and cold junction amplification: 
 ![alt text](adafruit_amplifier_block_diagram.png)
-
-The Adafruit AD8495 K-Type Thermocouple Amplifier is a cheaper option available since it can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. Thus, this amplifier will be a good low cost solution to quickly and efficiently measure the temperature of the workpiece using a K-type thermocouple.
 
 There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. The critical requirement for the thermocouple chosen for this application is electromagnetic interference (EMI) shielding. This is because of the chosen coil geometry. 
 
@@ -91,15 +67,11 @@ Recall, the induction coil will be wrapped around the pipe:
 
 ![alt text](image-7.png)
 
-The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. This can be accomplished on the wire by buying mineral insulated thermocouples, or by buying shielded thermocouple extension wire. Mineral insulated thermocouples have EMI shielding by nature. For example, the Omega KMQSS-062U-12 has a 0.062" diameter 304 Stainless Steel (SS) sheath [14] that provides decent EMI shielding, mechanical strength, and corrosion resistance [15] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water. 
-
-Thermocouples are available in grounded, ungrounded, and exposed junctions configurations. Grounded and exposed junctions have typically have faster temperature resonses, but they are more susceptible to noise due to the electrical contact [8]. Ungrounded junctions have slower temperature responses, but ungrounded junctions isolate the sensor from noise [16]. Isolation from noise is desirable due to the EMI of the coil; therefore, the thermocouple shall be ungrounded. The Omega KMQSS-062U-12 is ungrounded [14]. The sheath diameter can be decreased to increase response time [16], but it also reduces durability so the KMQSS-062U-12's 0.062" diameter sheath should be a good compromise as it is half the size of Omega's next largest diameter 0.125" diameter sheaths but within a few thousandths of the other sizes offered [14]. The KMQSS-062U-12's standard 12" is preferred to ensure the thermcouple can measure the length of the pipe as needed without picking up too much noise from the coil since the pipe measured is expected to be at least 1-2 feet or greater. 
+The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. The Omega KMQSS-062U-12 thermocouple has a 0.062" diameter 304 Stainless Steel (SS) sheath [14] that provides decent EMI shielding, mechanical strength, and corrosion resistance [15] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water. 
 
 The implementation of the Omega KMQSS-062U-12 thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
 
 The user desired temperature shall be determined from the user desired power input setting and common practices. Typical hot water temperatures for residential use vary between 120 °F and 160 °F [18], so the pipe should be heated to around those temperatures. However, the heating of the water would be slower than the heating of the pipe, so the pipe temperature may be increased if faster water heating is desired. For this application, temperature values between 120 °F and 160 °F provide a good baseline for desired temps. 
-
-Once the coil and pipe are prototyped it will be necessary to experimentally derive the temperature output of the system in response to the power input. These values will help model the system using the first order approximation tools mentioned earlier, and allow the team to predict the temperature induced on the pipe in response to specific power inputs. This will allow the team to create a table of predictable temperature responses based on user specified power inputs, with the PID controller ensuring consistency and reliability. 
 
 
 ## Interface with Other Subsystems
@@ -157,8 +129,6 @@ where:
 
 ## Analysis
 
-Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
-
 Temperature systems have plant dynamics that can be approximated as a first order order system due to the dynamics of their operation. 
 
 Typical response of a temperature system [16]: 
@@ -174,9 +144,9 @@ where:
   yss = steady state output 
   A = analog input 
 
-This model should give an approximation of the the system dynamics, but it would be necessary to experimentally collect data in order to find values of K and tau which cannot be accomplished until the coil and pipe hardware are implemented. Thus this model will serve primarily as an approximation of the expected dynamics to make the PID constants a bit easier to predict. 
+This model should give an approximation of the the system dynamics, but it would be necessary to experimentally collect data in order to find values of K and tau which cannot be accomplished until the coil and pipe hardware are implemented. Thus this model will serve primarily as an approximation of the expected dynamics to make the PID constants a bit easier to predict.  
 
-PID can be implemented using software or hardware, but it is typically done using software for modern applications [5]. The chosen microcontroller of the Software Subsystem is a Nucleo-STM32L476RG, so this subsystem will implement the PID control using C code to ensure compatibility. 
+PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. 
 
 Typical PID control implemented using C code is of the following form according to Digikey [13]: 
 ![alt text](Digikey_PID.png)
@@ -190,26 +160,20 @@ Thermocouple Voltage [6]:
 
 The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [11]. Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [9]. Cold junction compensation is often included with dedicated thermocouple amplifiers [12]. 
 
-For example, Adafruit produces an AD8495 K-Type Thermocouple Amplifier [12] that solves both the issue of amplification and cold junction amplification: 
+Adafruit produces an AD8495 K-Type Thermocouple Amplifier [12] that solves both issues of amplification and cold junction amplification: 
 ![alt text](adafruit_amplifier_block_diagram.png)
 
 The Adafruit AD8495 K-Type Thermocouple Amplifier is a cheaper option available since it can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. Thus, this amplifier will be a good low cost solution to quickly and efficiently measure the temperature of the workpiece using a K-type thermocouple.
 
-There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. The critical requirement for the thermocouple chosen for this application is electromagnetic interference (EMI) shielding. This is because of the chosen coil geometry. 
+The critical requirement for the thermocouple chosen for this application is the reduction of noise in the sensor in order to maintaining accurate readings. Thus determining the proper thermocouple focused on this as the critical factor and focusing on other features later to isolate the exact model to implement. 
 
-Recall, the induction coil will be wrapped around the pipe: 
+The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. This can be accomplished on the wire by buying mineral insulated thermocouples, or by buying shielded thermocouple extension wire. Mineral insulated thermocouples have EMI shielding by nature. The Omega KMQSS-062U-12 has a 304 Stainless Steel (SS) sheath [14] that provides decent EMI shielding and physical protections [15] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water. 
 
-![alt text](image-7.png)
+Thermocouples are available in grounded, ungrounded, and exposed junctions configurations. Grounded and exposed junctions have typically have faster temperature resonses, but they are more susceptible to noise due to the electrical contact [8]. Ungrounded junctions have slower temperature responses, but ungrounded junctions isolate the sensor from noise [16]. Isolation from noise is desirable due to the EMI of the coil; therefore, the thermocouple shall be ungrounded. The Omega KMQSS-062U-12 is ungrounded [14]. 
 
-The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. This can be accomplished on the wire by buying mineral insulated thermocouples, or by buying shielded thermocouple extension wire. Mineral insulated thermocouples have EMI shielding by nature. For example, the Omega KMQSS-062U-12 has a 0.062" diameter 304 Stainless Steel (SS) sheath [14] that provides decent EMI shielding, mechanical strength, and corrosion resistance [15] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water. 
+The sheath diameter can be decreased to increase response time [16], but it also reduces durability so the KMQSS-062U-12's 0.062" diameter sheath should be a good compromise as it is half the size of Omega's next largest diameter 0.125" diameter sheaths but within a few thousandths of the other sizes offered [14]. The KMQSS-062U-12's standard 12" is preferred to ensure the thermcouple can measure the length of the pipe as needed without picking up too much noise from the coil since the pipe measured is expected to be at least 1-2 feet or greater. 
 
-Thermocouples are available in grounded, ungrounded, and exposed junctions configurations. Grounded and exposed junctions have typically have faster temperature resonses, but they are more susceptible to noise due to the electrical contact [8]. Ungrounded junctions have slower temperature responses, but ungrounded junctions isolate the sensor from noise [16]. Isolation from noise is desirable due to the EMI of the coil; therefore, the thermocouple shall be ungrounded. The Omega KMQSS-062U-12 is ungrounded [14]. The sheath diameter can be decreased to increase response time [16], but it also reduces durability so the KMQSS-062U-12's 0.062" diameter sheath should be a good compromise as it is half the size of Omega's next largest diameter 0.125" diameter sheaths but within a few thousandths of the other sizes offered [14]. The KMQSS-062U-12's standard 12" is preferred to ensure the thermcouple can measure the length of the pipe as needed without picking up too much noise from the coil since the pipe measured is expected to be at least 1-2 feet or greater. 
-
-The implementation of the Omega KMQSS-062U-12 thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
-
-The user desired temperature shall be determined from the user desired power input setting and common practices. Typical hot water temperatures for residential use vary between 120 °F and 160 °F [18], so the pipe should be heated to around those temperatures. However, the heating of the water would be slower than the heating of the pipe, so the pipe temperature may be increased if faster water heating is desired. For this application, temperature values between 120 °F and 160 °F provide a good baseline for desired temps. 
-
-Once the coil and pipe are prototyped it will be necessary to experimentally derive the temperature output of the system in response to the power input. These values will help model the system using the first order approximation tools mentioned earlier, and allow the team to predict the temperature induced on the pipe in response to specific power inputs. This will allow the team to create a table of predictable temperature responses based on user specified power inputs, with the PID controller ensuring consistency and reliability. 
+The Nucleo will need to be able to store the temperature measurements from the Omega KMQSS-062U-12 thermocouple as amplified by the AD8495 thermocouple amplifier in order to measure the total temperature rise of the metal. This will be accomplished by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature, which will be around 120 °F and 160 °F [18]. 
 
 ## References
 
