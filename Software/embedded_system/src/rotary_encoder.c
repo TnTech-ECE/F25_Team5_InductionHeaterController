@@ -7,38 +7,43 @@
 #include "main.h"
 #include "save.h"
 #include "run.h"
+int sign(int x)
+{
+	if (x > 0)
+		return 1;
+	else if (x < 0)
+		return -1;
+	else
+		return 0;
+}
+
 static uint32_t last = 0;
-static uint32_t timeoutLast = 0;
+static uint32_t timeoutLast = UINT32_MAX;
 bool onRotateTimeout = false;
-#define ON_ROTATE_TIMEOUT_DELAY 1000
+#define ON_ROTATE_TIMEOUT_DELAY 100
 void runRotateTimeout(bool force);
 void onRotateTimeoutCallback(void)
 {
 
 	if (TIM3->CNT != timeoutLast)
 	{
-		long delta = ((long)TIM3->CNT-(long)timeoutLast);
-		if (delta <= -((long)TIM3->ARR + 1))
-		{
-			delta += ((long)TIM3->ARR + 1);
-		}
-		else if (delta >= ((long)TIM3->ARR + 1))
-		{
-			delta -= ((long)TIM3->ARR + 1);
-		}
+		long delta = ((long)TIM3->CNT - (long)timeoutLast);
+		long deltaABS = abs((long)TIM3->CNT - (long)timeoutLast);
+		int direction = sign(delta);
+		delta = direction * fmin(deltaABS, TIM3->ARR - deltaABS);
 		DisplayNumber(delta, 1, 7, 0, 4);
-		saveControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
-
+		bool result = saveControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
+		WriteStringAt(result ? "true " : "false", 0, 6);
 		runRotateTimeout(true);
 		onRotateTimeout = true;
 		timeoutLast = TIM3->CNT;
 		controllerData.desiredTemperature += (float)(delta) / 10.0f;
 	}
-	else {
+	else
+	{
 		onRotateTimeout = false;
 		DisplayNumber(0, 1, 7, 0, 4);
 	}
-
 }
 void runRotateTimeout(bool force)
 {

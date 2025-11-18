@@ -5,14 +5,24 @@
 
 // chat gpt wrote this
 static FATFS s_fs;
-
+static bool linked = false;
 static bool mounted = false;
+static char SDPath[4] = "0:";
+
 bool mountSD(void)
 {
-
+	if (!linked)
+	{
+		if (FATFS_LinkDriver(&USER_Driver, SDPath) != 0)
+		{
+			return false;
+		}
+		linked = true;
+	}
 	if (mounted)
 		return true;
-	if (f_mount(&s_fs, "", 1) == FR_OK)
+
+	if (f_mount(&s_fs, SDPath, 1) == FR_OK)
 	{
 		mounted = true;
 		return true;
@@ -77,9 +87,11 @@ bool unmountSD()
 {
 	if (!mounted)
 		return true;
-	if (f_mount(NULL, "", 0) == FR_OK)
+	if (f_mount(NULL, SDPath, 0) == FR_OK)
 	{
 		mounted = false;
+		FATFS_UnLinkDriver(SDPath);
+		linked = false;
 		return true;
 	}
 	return false;

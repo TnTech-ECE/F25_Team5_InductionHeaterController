@@ -24,8 +24,9 @@
 ../src/lcd.c:383:6:Clear_Display	1
 ../src/lcd.c:390:7:Get_String_LCD	10
 ../src/lcd.c:411:6:Set_LCD	1
-../src/lcd.c:418:9:CursorPositionToCode	2
-../src/lcd.c:426:6:Set_CursorPosition	1
-../src/lcd.c:434:6:Write_String_Sector_LCD	1
-../src/lcd.c:445:6:DisplayNumber	6
-../src/lcd.c:467:6:DisplayDecimal	9
+../src/lcd.c:419:6:WriteStringAt	1
+../src/lcd.c:426:9:CursorPositionToCode	2
+../src/lcd.c:434:6:Set_CursorPosition	1
+../src/lcd.c:442:6:Write_String_Sector_LCD	1
+../src/lcd.c:453:6:DisplayNumber	6
+../src/lcd.c:475:6:DisplayDecimal	9

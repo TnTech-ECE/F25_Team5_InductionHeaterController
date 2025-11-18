@@ -415,6 +415,14 @@ void Set_LCD(char *string)
 	Write_String_LCD(string);
 	__enable_irq();
 }
+
+void WriteStringAt(char *string, uint8_t line, uint8_t position)
+{
+	__disable_irq();
+	Set_CursorPosition(line, position);
+	Write_String_LCD(string);
+	__enable_irq();
+}
 uint8_t CursorPositionToCode(uint8_t line, uint8_t position)
 {
 	__disable_irq();
@@ -480,13 +488,15 @@ void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint
 		--logOf;
 		num = -num;
 	}
-	int decimalplaces = -(logOf - maxDigits - 1);
+	int decimalplaces = fmin(-(maxDigits - logOf - 1), 0);
+
+	int j = 0;
 	for (int i = logOf; i >= decimalplaces; i--)
 	{
-		uint8_t place = (int)num / (int)pow(10, i);
-		uint8_t digit = place % 10;
+		int place = (int)(num / pow(10, i));
+		int digit = place % 10;
 		LCD_WriteData(digit + '0');
-		if (i >= decimalplaces && i == 0)
+		if (j++ < maxDigits && i == 0)
 			LCD_WriteData('.');
 	}
 	__enable_irq();

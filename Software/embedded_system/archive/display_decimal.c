@@ -10,7 +10,7 @@ void Set_CursorPosition(int line, int position)
 }
 void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
 {
-	//__disable_irq();
+	__disable_irq();
 	int maxDigits = digits - 1;
 	int logOf = (int)log10(num);
 
@@ -24,7 +24,7 @@ void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint
 		--logOf;
 		num = -num;
 	}
-	int decimalplaces = -(maxDigits - logOf);
+	int decimalplaces = fmin(-(maxDigits - logOf - 1), 0);
 	printf("%d\n", maxDigits);
 	printf("%d\n", logOf);
 	printf("%d\n", decimalplaces);
@@ -37,7 +37,7 @@ void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint
 		if (j++ < maxDigits && i == 0)
 			LCD_WriteData('.');
 	}
-	//__enable_irq();
+	__enable_irq();
 }
 
 int main()
