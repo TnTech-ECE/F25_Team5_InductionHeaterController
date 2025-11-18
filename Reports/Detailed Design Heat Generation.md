@@ -27,7 +27,7 @@ This subsystem is primarily concerned with meeting the customer Specifications 3
 
 ANSI/IEEE 844-200 [2] applies directly to induction heating for pipelines and vessels. This standard states that the electric shock hazard for induction heating is minimal, but the high temperatures and induced current flow are design considerations, maximum maintainance temperature is anything exceeding 1200°F (649°C), and magnetic isolation is required. For the heat generation subsystem, the high temperatures are the main consideration. 
 
-1. The subsystem shall limit the temperature rise of the metal to meet customer specs. The application is primarily a water heater rather than a water boiler, so the temperature of the metal should not greatly exceed 212°F (100°C). Many sensors are rated for temps up to 425°F (220°C), so this subsystem will set the max temp induced to be 200°F (93°C) to ensure specs are met without damaging equipment. 
+1. The subsystem shall limit the temperature rise of the metal to meet customer specs. The application is primarily a water heater rather than a water boiler, so the temperature of the metal does not need to greatly exceed 212°F (100°C). Many sensor bodies are rated for temps up to 425°F (220°C), so this subsystem will set the max temp induced to be 350°F (177°C) to ensure specs are met without damaging equipment. 
 
 
 ## Overview of Proposed Solution
@@ -97,7 +97,9 @@ Thermocouples are available in grounded, ungrounded, and exposed junctions confi
 
 The implementation of the Omega KMQSS-062U-12 thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
 
-The user desired temperature shall be determined from the user desired power input setting. This shall be accomplished through testing and comparing the 
+The user desired temperature shall be determined from the user desired power input setting and common practices. Typical hot water temperatures for residential use vary between 120 °F and 160 °F [18], so the pipe should be heated to around those temperatures. However, the heating of the water would be slower than the heating of the pipe, so the pipe temperature may be increased if faster water heating is desired. For this application, temperature values between 120 °F and 160 °F provide a good baseline for desired temps. 
+
+Once the coil and pipe are prototyped it will be necessary to experimentally derive the temperature output of the system in response to the power input. These values will help model the system using the first order approximation tools mentioned earlier, and allow the team to predict the temperature induced on the pipe in response to specific power inputs. This will allow the team to create a table of predictable temperature responses based on user specified power inputs, with the PID controller ensuring consistency and reliability. 
 
 
 ## Interface with Other Subsystems
@@ -190,3 +192,5 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 [16] D. Dlugos, “Grounded vs. Ungrounded Thermocouple Junctions: Why Select One over the Other?,” Ashcroft.com, Sep. 26, 2024. https://blog.ashcroft.com/grounded-vs-ungrounded-thermocouple-junctions (accessed Nov. 17, 2025).
 ‌
 [17] Alouani, Ali. ECE 3260_DAQ_Notes P.12.
+
+[18] State Water Heaters, "A Technical Guide to Designing Energy-Efficient Commercial Water Heater Systems," Available: https://assets.statewaterheaters.com/damroot/Original/10008/317913-000.pdf (accessed 18 Nov. 2025).
