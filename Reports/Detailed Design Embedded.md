@@ -7,7 +7,6 @@ This document delineates the objectives of a comprehensive system design. Upon r
 - The rationale behind each crucial design decision
 - The procedure for constructing the solution
 
-
 ## General Requirements for the Document
 
 The document should include:
@@ -67,17 +66,18 @@ Describe the solution and how it will fulfill the specifications and constraints
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
 
 - **Inputs:**
-  1. 5V DC from the power board.  
-  2. Reading Micro SD Interface
-  3. MAX31855 ADC to SPI for a Thermocouple
-  4. MAX31855 ADC to SPI for a Thermocouple
-  5. MCP9600 ADC to I2C for a Thermocouple
-  6. AD8495 Amplification of a Thermocouple.
-  7. Keypad
-  8. Rotary Encoder
-  9. Flow Sensor
-  10. Current Sensor
- 
+Overview:
+ 1. 5V DC from the power board.  
+ 2. Reading Micro SD Interface
+ 3. MAX31855 ADC to SPI for a Thermocouple
+ 4. MAX31855 ADC to SPI for a Thermocouple
+ 5. MCP9600 ADC to I2C for a Thermocouple
+ 6. AD8495 Amplification of a Thermocouple.
+ 7. Keypad
+ 8. Rotary Encoder
+ 9. Flow Sensor
+ 10. Current Sensor
+Specifics:
  1. 5V DC from the power board. 
    The STM32l476RG needs 5V volts from the power board to run all the devices.  
  2. Reading Micro SD Interface
@@ -94,18 +94,26 @@ Provide detailed information about the inputs, outputs, and data transferred to 
    The Keypad will be check via on PIN D0-D3 assigned to interrupts. Then D4-D7 will be scan to determine which button was pressed. The keypad will be able to set values for the system and change the mode of the LCD.
  8. Rotary Encoder
    The Rotary Encoder will be able to change values for the system as well depending on the mode of the lcd. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. the Buttons use on PC8 is TBD.
- 9.  w 
-   
+ 9. Flow Sensor
+   The flow sensor will use ADC 3 CH 4 on PC3. The flow sensor will detect when the water is flowing then turn of the induction gate driver.
+ 10. Current Sensor
+   The current sensor will use ADC 2 CH 3 on PC2. The current sensor will make electrical current flowing in the system is at a safe value so that components don't explode.
 
 - **Outputs:**
-  1. LCD
-  2. PWM signals to Gate Drivers
-  3. Writing Micro SD Reader
-  4. System Fault Signal
-
-
-
-
+Overview:
+ 1. LCD
+ 2. PWM signals to Gate Drivers
+ 3. Writing Micro SD Interface
+ 4. System Fault Signal
+Specifics:
+ 1. LCD
+  The LCD uses GPIO Pins A0-A5. A0 which is PA0, connects to the register Select, RS pin. The read/write pin is tied to ground since the LCD only needs to be written to. A1 which is PA1, connects to the Enable pin, EN pin. A2-A5, which is pins PA4, PB0,PC1, and PC0 respectively, is connected to data pin D4-D7. 
+ 2. PWM signals to Gate Drivers
+   PWM signals to Gate Drivers are driven using TIM8 CH3 and TIM8 CH4N to get the same frequency signals but 180 degrees out of phase. TIM8 CH3n is on PB1 and TIM8 CH4 is on PC9.
+ 3. Writing Micro SD Interface
+   Writing Micro SD Interface uses SPI 1 MOSI on PA7 to write data to micro SD card. Inputs 2. explains the rest of the connection for the SD card interface.
+ 4. System Fault Signal
+   The system fault Signal signal will be a GPIO output on PC5
 ## Buildable Schematic 
 
 Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
