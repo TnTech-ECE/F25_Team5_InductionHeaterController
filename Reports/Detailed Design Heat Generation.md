@@ -97,8 +97,6 @@ The AD8495 thermocouple amplifier is the primary component of this subsystem req
 The Nucleo shall send a PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. 
 
 #### 2. Embedded Subsystem 
-- **Inputs:**
- 
 - **Outputs:**
 The AD8495 thermocouple amplifier shall connect to the Nucleo-STM32L476RG ADC 1 CH14 on PC4 providing an analog voltage signal.The Nucleo provides the brain act as a controller to enable the sending of a PWM signal to the power subsystem.
 
