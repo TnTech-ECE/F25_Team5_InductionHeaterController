@@ -86,8 +86,6 @@ The user desired temperature shall be determined from the user desired power inp
 
 ## Interface with Other Subsystems
 
-Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
-
 This subsystem primarily consists of the thermocouple sensors, any necessary components to make the thermocouples work, and the PID controller code to control the system. 
 
 #### 1. Power Subsystem 
