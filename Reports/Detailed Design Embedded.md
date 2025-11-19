@@ -31,7 +31,7 @@ The document should include:
 
 This segment should elucidate the role of the subsystem within the entire system, detailing its intended function, aligned with the conceptual design.
 
-The Embededded Subsystem describes the software for the microcontroller, the connections the microcontoller, and the connections to the sensors, power PCB, etc.
+The Embedded Subsystem describes the software for the microcontroller, the connections the microcontroller, and the connections to the sensors, power PCB, etc.
 
 ## Specifications and Constraints
 
@@ -67,24 +67,43 @@ Describe the solution and how it will fulfill the specifications and constraints
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
 
 - **Inputs:**
-  1. 5V DC from the power board.
+  1. 5V DC from the power board.  
   2. Reading Micro SD Interface
-  3. MAX31855 Thermocouple ADC to SPI
+  3. MAX31855 ADC to SPI for a Thermocouple
   4. MAX31855 ADC to SPI for a Thermocouple
   5. MCP9600 ADC to I2C for a Thermocouple
-  6. AD8495 Amplify
+  6. AD8495 Amplification of a Thermocouple.
   7. Keypad
   8. Rotary Encoder
   9. Flow Sensor
   10. Current Sensor
  
-  - User input commands from the HMI (LCD buttons or keypad)  
+ 1. 5V DC from the power board. 
+   The STM32l476RG needs 5V volts from the power board to run all the devices.  
+ 2. Reading Micro SD Interface
+   A micro SD card interface will be read using SPI 1. SPI 1 MISO on PA7 will receive the data off the SD card. SP1 SCLK will output a clock signal to time the data being received on PA5. The CS Pin which enables data transfer is on on PB6. The Micro SD interface will be used to grab the old state of the system including the desired temperature, what mode the lcd is in, etc.
+ 3. MAX31855 ADC to SPI for a Thermocouple 
+   MAX31855 ADC to SPI for a Thermocouple will take the < 50 mV signal from the Thermocouple then amplify the signal. Next, it ADCs the signal and sends that information bit by bit via SPI in this case SPI 2. This Thermocouple converter will be for the output water temperature. Uses SPI 2 MISO on PB14 to receive the data. The SPI 2 CN pin is on PB15 which enables the data reception. The SPI 2 SCLK is on PB13 to time the data.
+ 4. MAX31855 ADC to SPI for a Thermocouple
+   MAX31855 ADC to SPI for a Thermocouple will measure the temperature of the input water. Uses SPI 3 MISO on PC11. The SPI 3 SCLK pin is on PC10. The CN pin is on PD2.
+ 5. MCP9600 ADC to I2C for a Thermocouple
+   MCP9600 ADC to I2C for a Thermocouple is to measure the IGBT Temperature on the power board to make sure it is not exceeding 100°C. The I2C 1 SDA is on SB9 which is the data pin and I2C 1 SCL is the clock pin on PB8.
+ 6. AD8495 Amplification of a Thermocouple.
+   AD8495 Amplification of a Thermocouple will amplify the thermocouple voltage so that the board can ADC the voltage to get a temperature. This thermocouple converter will be for the pipe that is being heated. The signal be received to ADC 1 CH14 on PC4.
+ 7. Keypad
+   The Keypad will be check via on PIN D0-D3 assigned to interrupts. Then D4-D7 will be scan to determine which button was pressed. The keypad will be able to set values for the system and change the mode of the LCD.
+ 8. Rotary Encoder
+   The Rotary Encoder will be able to change values for the system as well depending on the mode of the lcd. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. the Buttons use on PC8 is TBD.
+ 9.  w 
+   
 
 - **Outputs:**
   1. LCD
   2. PWM signals to Gate Drivers
   3. Writing Micro SD Reader
-  4. 
+  4. System Fault Signal
+
+
 
 
 ## Buildable Schematic 
@@ -116,7 +135,9 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 
 All sources that have contributed to the detailed design and are not considered common knowledge should be duly cited, incorporating multiple references.
 
-[28] Enisz, K., G. Kohlrusz, D. Fodor, and L. Kovacs. “Degradation Analysis of DC-Link Aluminium Electrolytic Capacitors Operating in PWM Power Converters.” Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020, https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters
+[1] https://www.st.com/resource/en/user_manual/um1724-stm32-nucleo64-boards-mb1136-stmicroelectronics.pdf
+
+[28] Enisz, K., G. Kohlrusz, D. Fodor, and L. Kovacs. “Degradation Analysis of DC-Link Aluminum Electrolytic Capacitors Operating in PWM Power Converters.” Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020, https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters
 [34] “IGBTs for Induction Heaters.” Power Electronics News, 2023, https://www.powerelectronicsnews.com/igbts-for-induction-heaters/
 
 [35] Arrow Electronics. What's the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices. Arrow Whitepaper, 2023. PDF, https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf
@@ -125,3 +146,4 @@ All sources that have contributed to the detailed design and are not considered 
 [38] “IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications.” JSW XDH, 2021, https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html
 [46] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
 [47] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
+
