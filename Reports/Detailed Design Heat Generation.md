@@ -92,15 +92,15 @@ This subsystem primarily consists of the thermocouple sensors, any necessary com
 
 #### 1. Power Subsystem 
 - **Inputs:**
-The AD8495 thermocouple amplifier is the primary component of this subsystem requiring power. According to the datasheet the AD8495 works best when supplied with 5 V [12]. It should be noted that the KMQSS-062U-12 thermocouple does not require any power input, only the amplifier. 
+The AD8495 thermocouple amplifier is the primary component of this subsystem requiring power. According to the datasheet the AD8495 works best when supplied with 5 V [12] with a power consumption of less than 1 mW. It should be noted that the KMQSS-062U-12 thermocouple does not require any power input, only the amplifier. 
 - **Outputs:**
 The Nucleo shall send a PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. 
 
-#### 2. Software Subsystem 
+#### 2. Embedded Subsystem 
 - **Inputs:**
-User desired power input to the microcontroller
+ 
 - **Outputs:**
-
+The AD8495 thermocouple amplifier shall connect to the Nucleo-STM32L476RG ADC 1 CH14 on PC4 providing an analog voltage signal.The Nucleo provides the brain act as a controller to enable the sending of a PWM signal to the power subsystem.
 
 ## Buildable Schematic 
 
