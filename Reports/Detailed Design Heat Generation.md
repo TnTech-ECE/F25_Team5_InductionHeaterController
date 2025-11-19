@@ -35,14 +35,14 @@ ANSI/IEEE 844-200 [2] applies directly to induction heating for pipelines and ve
 
 The subsystem can be best understood using a control block diagram: 
 
-![alt text](<Control_Block_Diagram.drawio (1).png>)
+![alt text](Updated_Control_Block_Diagram.drawio.png)
 
 For our system: 
- - R(s) = user desired power
+ - R(s) = user desired temperature (based on user power input)
  - Y(s) = temperature of the pipe
  - G(s) = dynamics of the induction heating 
  - H(s) = dynamics of the thermocouple sensor
- - Gc(s) = compensation to be implemented to ensure specifications are met
+ - Gc(s) = PID compensation to implemented using microcontroller 
  - summing junction = signals to and from microcontroller
 
 PID control [1] is compensation solution that is the most comprehensive of compensators available. PID by definition is a Proportional, Integral, and Derivative control that allows for the reduction of error, noise, and chattering of signals respectively. This is achieved primarily by adjusting the values of and ratios of constants Kp, Ki, and Kd associated with each PID parameter. 
@@ -54,9 +54,9 @@ PID can be implemented using software or hardware, but it is typically done usin
 Typical PID control implemented using C code is of the following form according to Digikey [13]: 
 ![alt text](Digikey_PID.png)
 
-Where the constants are adjusted using control theory or ad hoc methods, the interval is the sampling rate of the microcontroller, and the output for this system is the PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. 
+Where the constants are adjusted using control theory or ad hoc methods, the interval is the sampling rate of the microcontroller, and the output for this system is the PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. The PID controller recieves an error signal based on the difference between the actual temperature of the pipe and the user desired temperature of the pipe, and the controller outputs a controller signal that determines the PWM signal delivered to the power subsystem. 
 
-An additional part of this subsystem is the implementation of thermocouple sensors. A PID controller operates by trying to reduce the error of output by as much as possible, and thus requires feedback sensors to be able to do that. Thermocouples are used as these sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6].
+An additional part of this subsystem is the implementation of thermocouple sensors. A PID controller operates by trying to reduce the error of output by as much as possible, and thus requires feedback sensors to be able to read error values. Thermocouples are used as these sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6].
 
 Thermocouple Voltage [6]: 
 ![alt text](Thermocouple_TI_Image.png)
@@ -104,9 +104,41 @@ User desired power input to the microcontroller
 
 ## Buildable Schematic 
 
-Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
+Pseudo Code for system: 
 
-The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned.
+// variables
+int Kp, Kd, Ki, actual_temp, user_desired_temp, error, sampling_rate, prev_error; 
+
+//initialize variables 
+prev_error = 0; 
+integral = 0; 
+
+// PID constants 
+Kp = 1;             // tune 
+Kd = 0;             // tune
+Ki = 0;             // tune
+
+// sampling rate for system 
+sampling_rate = 0.001; // 1 ms
+
+
+// main loop 
+while(true)
+{
+  // get value from amplified thermocouple signal 
+        actual_temp = read_from_sensor(); 
+
+  // calculate PID terms
+        error = user_desired_temp - actual_temp;                  // for proportional control
+        integral = integral + (error * sampling_rate);            // for integral control 
+        derivative = (error - prev_error) / sampling_rate;        // for derivative control 
+
+        control_signal_output = (Kp * error) + (Ki * integral) + (Kd * derivative) // used to control PWM output 
+
+  // save values for next 
+  prev_error = error; 
+}
+
 
 
 ## Flowchart
