@@ -35,7 +35,7 @@ ANSI/IEEE 844-200 [2] applies directly to induction heating for pipelines and ve
 
 The subsystem can be best understood using a control block diagram: 
 
-![alt text](Updated_Control_Block_Diagram.drawio.png)
+![alt text](./Heat_Generation_Subsystem/Updated_Control_Block_Diagram.drawio.png)
 
 For our system: 
  - R(s) = user desired temperature (based on user power input)
@@ -52,19 +52,19 @@ These constants can be calculated using control theory if the system specificati
 PID can be implemented using software or hardware, but it is typically done using software for modern applications [5]. The chosen microcontroller of the Software Subsystem is a Nucleo-STM32L476RG, so this subsystem will implement the PID control using C code to ensure compatibility. 
 
 Typical PID control implemented using C code is of the following form according to Digikey [13]: 
-![alt text](Digikey_PID.png)
+![alt text](./Heat_Generation_Subsystem/Digikey_PID.png)
 
 Where the constants are adjusted using control theory or ad hoc methods, the interval is the sampling rate of the microcontroller, and the output for this system is the PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. The PID controller recieves an error signal based on the difference between the actual temperature of the pipe and the user desired temperature of the pipe, and the controller outputs a controller signal that determines the PWM signal delivered to the power subsystem. 
 
 An additional part of this subsystem is the implementation of thermocouple sensors. A PID controller operates by trying to reduce the error of output by as much as possible, and thus requires feedback sensors to be able to read error values. Thermocouples are used as these sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6].
 
 Thermocouple Voltage [6]: 
-![alt text](Thermocouple_TI_Image.png)
+![alt text](./Heat_Generation_Subsystem/Thermocouple_TI_Image.png)
 
 When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. 
 
 Adafruit produces an AD8495 K-Type Thermocouple Amplifier [12] that solves both the issue of amplification and cold junction amplification: 
-![alt text](adafruit_amplifier_block_diagram.png)
+![alt text](./Heat_Generation_Subsystem/adafruit_amplifier_block_diagram.png)
 
 There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. The critical requirement for the thermocouple chosen for this application is electromagnetic interference (EMI) shielding. This is because of the chosen coil geometry. 
 
@@ -75,7 +75,7 @@ Recall, the induction coil will be wrapped around the pipe:
 The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. The Omega KMQSS-062U-12 thermocouple has a 0.062" diameter 304 Stainless Steel (SS) sheath [14] that provides decent EMI shielding, mechanical strength, and corrosion resistance [15] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water: 
 
 
-![alt text](Omega_thermocouple_picture.png)
+![alt text](./Heat_Generation_Subsystem/Omega_thermocouple_picture.png)
 
 
 
@@ -107,7 +107,7 @@ User desired power input to the microcontroller
 Pseudo Code for system: 
 
 
-![alt text](Heat_Gen_Psuedo_Code.png)
+![alt text](./Heat_Generation_Subsystem/Heat_Gen_Psuedo_Code.png)
 
 
 ## Flowchart
@@ -115,13 +115,13 @@ Pseudo Code for system:
 Shown below is a detailed flow chart of the Heat Generation Subsystem's Hardware Components: 
 
 
-![alt text](Heat_Generation_Schematic.drawio.png)
+![alt text](./Heat_Generation_Subsystem/Heat_Generation_Schematic.drawio.png)
 
 
 Shown below is a detailed flow chart of the Heat Generation Subsystem's Software Components: 
 
 
-![alt text](HeatGenerationSubsystem_11_12_25_2.drawio.png)
+![alt text](./Heat_Generation_Subsystem/HeatGenerationSubsystem_11_12_25_2.drawio.png)
 
 
 where: 
@@ -143,12 +143,12 @@ where:
 Temperature systems have plant dynamics that can be approximated as a first order order system due to the dynamics of their operation. 
 
 Typical response of a temperature system [16]: 
-![alt text](temperature_graph.png)
+![alt text](./Heat_Generation_Subsystem/temperature_graph.png)
 
 First order approximation [17]: 
-![alt text](timedomain.png)
-![alt text](firstordertransfer.png)
-![alt text](yss_stuff.png)
+![alt text](./Heat_Generation_Subsystem/timedomain.png)
+![alt text](./Heat_Generation_Subsystem/firstordertransfer.png)
+![alt text](./Heat_Generation_Subsystem/yss_stuff.png)
 
 where: 
 
@@ -159,12 +159,12 @@ This model should give an approximation of the the system dynamics, but it would
 
 PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. 
 
-Thermocouples are used as the sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6]. Thermocouple sensors themselves do not require any power to operate, but thermocouples do require power for their peripherals interpreting the data being sent. 
+Thermocouples are used as the sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6]. Thermocouple sensors themselves do not require any power to operate, but thermocouples do require power for their peripherals interpreting the data being sent. For this subsystem, the only peripheral is the thermocouple amplifier, which only consumes approximately 1 milliWatt [12]. 
 
 The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [10]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [11]. Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [9]. Cold junction compensation is often included with dedicated thermocouple amplifiers [12]. 
 
 Adafruit produces an AD8495 K-Type Thermocouple Amplifier [12] that solves both issues of amplification and cold junction amplification: 
-![alt text](adafruit_amplifier_block_diagram.png)
+![alt text](./Heat_Generation_Subsystem/adafruit_amplifier_block_diagram.png)
 
 The Adafruit AD8495 K-Type Thermocouple Amplifier is a cheaper option available since it can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. Thus, this amplifier will be a good low cost solution to quickly and efficiently measure the temperature of the workpiece using a K-type thermocouple.
 
