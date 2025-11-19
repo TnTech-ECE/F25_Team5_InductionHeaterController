@@ -106,39 +106,8 @@ User desired power input to the microcontroller
 
 Pseudo Code for system: 
 
-// variables
-int Kp, Kd, Ki, actual_temp, user_desired_temp, error, sampling_rate, prev_error; 
 
-//initialize variables 
-prev_error = 0; 
-integral = 0; 
-
-// PID constants 
-Kp = 1;             // tune 
-Kd = 0;             // tune
-Ki = 0;             // tune
-
-// sampling rate for system 
-sampling_rate = 0.001; // 1 ms
-
-
-// main loop 
-while(true)
-{
-  // get value from amplified thermocouple signal 
-        actual_temp = read_from_sensor(); 
-
-  // calculate PID terms
-        error = user_desired_temp - actual_temp;                  // for proportional control
-        integral = integral + (error * sampling_rate);            // for integral control 
-        derivative = (error - prev_error) / sampling_rate;        // for derivative control 
-
-        control_signal_output = (Kp * error) + (Ki * integral) + (Kd * derivative) // used to control PWM output 
-
-  // save values for next 
-  prev_error = error; 
-}
-
+![alt text](Heat_Gen_Psuedo_Code.png)
 
 
 ## Flowchart
