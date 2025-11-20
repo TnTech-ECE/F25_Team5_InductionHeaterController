@@ -28,6 +28,8 @@ This subsystem is primarily concerned with meeting the customer Specifications 3
 ANSI/IEEE 844-200 [2] applies directly to induction heating for pipelines and vessels. This standard states that the electric shock hazard for induction heating is minimal, but the high temperatures and induced current flow are design considerations, maximum maintainance temperature is anything exceeding 1200°F (649°C), and magnetic isolation is required. For the heat generation subsystem, the high temperatures are the main consideration. 
 
 1. The subsystem shall limit the temperature rise of the metal to meet customer specs. The application is primarily a water heater rather than a water boiler, so the temperature of the metal does not need to greatly exceed 212°F (100°C). Many sensor bodies are rated for temps up to 425°F (220°C), so this subsystem will set the max temp induced to be 350°F (177°C) to ensure specs are met without damaging equipment. 
+2. The Embedded Subsytem utilizes a Nucleo-STM32L476RG microcontroller, so any control implemented must be compatible with that microcontroller. 
+3. The Power Subsystem will be responsible for generating heat on the pipe by inducing current on the coil, and the 240 V voltage source should remain constant. So, the primary method of control will operate by changing the duty cycle of the current delivered to the coil.  
 
 
 ## Overview of Proposed Solution
@@ -111,7 +113,7 @@ Pseudo Code for system:
 Shown below is a detailed flow chart of the Heat Generation Subsystem's Hardware Components: 
 
 
-![alt text](./Heat_Generation_Subsystem/Heat_Generation_Schematic.drawio.png)
+![alt text](./Heat_Generation_Subsystem/New_Heat_Generation_Schematic.drawio.png)
 
 
 Shown below is a detailed flow chart of the Heat Generation Subsystem's Software Components: 
@@ -152,6 +154,8 @@ where:
   A = analog input 
 
 This model should give an approximation of the the system dynamics, but it would be necessary to experimentally collect data in order to find values of K and tau which cannot be accomplished until the coil and pipe hardware are implemented. Thus this model will serve primarily as an approximation of the expected dynamics to make the PID constants a bit easier to predict.  
+
+It is difficult to accurately predict the exact response of the system without having an physical model of the pipe and coil. Typical system identification using the black box method requires the ability to get experimental data from the system given a known input and output [5]. An alternative method is to analytically derive the transfer function of the system using the laws of physics. This would require knowledge about the material, the resistance, the length, and the diameter of the section of the pipe heated; the number of turns of and the material of the coil; 
 
 PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. 
 
