@@ -102,9 +102,19 @@ The AD8495 thermocouple amplifier shall connect to the Nucleo-STM32L476RG ADC 1 
 
 ## Buildable Schematic 
 
+Recommended Schematic from Adafruit [12]: 
+![alt text](./Heat_Generation_Subsystem/AdaFruit_Recommended_Schematic.png)
+
+
+
+
+Simplified KiCAD Schematic with Nucleo Connection: 
+![alt text](./Heat_Generation_Subsystem/KiCad_Heat_Gen_Schematic.png)
+
+
+
+
 Pseudo Code for system: 
-
-
 ![alt text](./Heat_Generation_Subsystem/Heat_Gen_Psuedo_Code.png)
 
 
@@ -155,7 +165,7 @@ where:
 
 This model should give an approximation of the the system dynamics, but it would be necessary to experimentally collect data in order to find values of K and tau which cannot be accomplished until the coil and pipe hardware are implemented. Thus this model will serve primarily as an approximation of the expected dynamics to make the PID constants a bit easier to predict.  
 
-It is difficult to accurately predict the exact response of the system without having an physical model of the pipe and coil. Typical system identification using the black box method requires the ability to get experimental data from the system given a known input and output [5]. An alternative method is to analytically derive the transfer function of the system using the laws of physics. This would require knowledge about the material, the resistance, the length, and the diameter of the section of the pipe heated; the number of turns of and the material of the coil; 
+It is difficult to accurately predict the exact response of the system without having an physical model of the pipe and coil. Typical system identification using the black box method requires the ability to get experimental data from the system given a known input and output [5]. An alternative method is to analytically derive the transfer function of the system using the laws of physics. This would require knowledge about the material, the resistance, the length, and the diameter of the section of the pipe heated; the number of turns of and the material of the coil; and knowledge about thermodynamics. 
 
 PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. 
 
