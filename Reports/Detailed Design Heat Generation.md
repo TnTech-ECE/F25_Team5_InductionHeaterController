@@ -119,7 +119,7 @@ Shown below is a detailed flow chart of the Heat Generation Subsystem's Hardware
 Shown below is a detailed flow chart of the Heat Generation Subsystem's Software Components: 
 
 
-![alt text](./Heat_Generation_Subsystem/HeatGenerationSubsystem_11_12_25_2.drawio.png)
+![alt text](./Heat_Generation_Subsystem/New_HeatGenerationSubsystem.drawio.png)
 
 
 where: 
