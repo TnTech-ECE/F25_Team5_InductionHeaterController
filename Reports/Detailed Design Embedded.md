@@ -161,11 +161,12 @@ Provide a comprehensive list of all necessary components along with their prices
 | Adafruit I2C  Thermocouple Amplifier [5] [6] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         |
 | Analog Output  Thermocouple Amplifier [7]    | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         |
 | Keypad [8] [9#]                              | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          |
+| Rotery Encoder [1569] [15610]                | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
 | LCD [9] [10]                                 | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675  (at 5 V)    | 1      | 135.0            | $30.87         |
 | Adafruit Micro SD Card Interface [12] [13]   | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
 | Lem Electric Current Sensor [14] [15]        | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         |
 | Liquid Flow Meter 1/2" [16] [17]             | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
-| Total (not incuding MCU)                     | N/A               | N/A    | N/A                   | 301.53 mA (at 5V)          |                  | N/A    | 1507.644         | $120.82        |
+| Total ( electricals not incuding MCU)        | N/A               | N/A    | N/A                   | 203.53 mA (at 5V)          |                  | N/A    | 1017.64          | $138.24        |
 ## Analysis
 
 Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
@@ -197,6 +198,8 @@ All sources that have contributed to the detailed design and are not considered 
 [8] https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536?gclsrc=aw.ds&gad_source=1&gad_campaignid=20243136172&gbraid=0AAAAADrbLliZiCrl6hqJBIzBNlEDIPphk&gclid=CjwKCAiAuIDJBhBoEiwAxhgyFuTC3eNILxZ_V3RNUjOgWIFA-pF-Hi-mRqvYBmpmRT8wH40hcAgOmBoCBowQAvD_BwE
 [9#] https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf?_gl=1*c3szw3*_up*MQ..*_gs*MQ..&gclid=CjwKCAiAuIDJBhBoEiwAxhgyFuTC3eNILxZ_V3RNUjOgWIFA-pF-Hi-mRqvYBmpmRT8wH40hcAgOmBoCBowQAvD_BwE&gclsrc=aw.ds&gbraid=0AAAAADrbLliZiCrl6hqJBIzBNlEDIPphk
 
+[1569] https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223?gclsrc=aw.ds&gad_source=1&gad_campaignid=20232005509&gbraid=0AAAAADrbLlhsazWyskHiDysKW0ob--vDy&gclid=CjwKCAiAuIDJBhBoEiwAxhgyFtZPUlC4xZpkvQJvUF6UWXIUL2IbGHd4vTePPCjh1KaX-CtTKIio9hoCYugQAvD_BwE
+[15610] https://raw.githubusercontent.com/Arduinolibrary/DFRobot_SEN0235_EC11_Rotary_Encoder_Module/master/EC11I-152%20Datasheet.pdf
 [9] https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941
 [10] https://newhavendisplay.com/content/specs/NHD-0216CW-AB3.pdf
 
