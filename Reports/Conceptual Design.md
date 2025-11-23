@@ -52,16 +52,16 @@ Lochinvar has supplied the team with an OMEO SK-IH18G23T induction cooker [2]. T
 
 
 OMEO PCB with Heatsink:
-![alt text](<Induction PCB with Heatsink.jpeg>)
+![alt text](<./Conceptual%20Design/Induction PCB with Heatsink.jpeg>)
 
 
 OMEO PCB without  Heatsink:
-![alt text](<Induction PCB without Heatsink.jpeg>)
+![alt text](<./Conceptual%20Design/Induction PCB without Heatsink.jpeg>)
 
 
 The system the team will be implementing can be best understood using a control block diagram: 
 
-![alt text](<Control_Block_Diagram.drawio (1).png>)
+![alt text](<./Conceptual%20Design/Control_Block_Diagram.drawio (1).png>)
 
 For our system: 
  - R(s) = user desired power
@@ -175,11 +175,11 @@ Insulated Gate Bipolar Transistors (IGBTs) are chosen for the induction heater p
 
 Lochinvar specified that the controller shall heat the pipe using an induction coil wrapped around the pipe. 
 
-![alt text](image-7.png)
+![alt text](./Conceptual%20Design/image-7.png)
 
 This is a simple but effective configuration that evenly induces current on the pipe. It is a low cost implementation requiring only a malleable conductor that can easily be reshaped into coils with a diameter slightly greater than the diameter of the pipe. A common solution is to use copper as that malleable conductor, as seen in the flat pancake coil configuration utilized in the OMEO induction cooktop. 
 
-![alt text](IMG_6816.jpeg)
+![alt text](./Conceptual%20Design/IMG_6816.jpeg)
 
 The primary issue that arises using this configuration is that the user should not be exposed to the conductor, otherwise they risk an electric shock or, for induction heating, a burning hazard. The team will need to implement protections to ensure that the user is not exposed to these risks. Possible solutions include insulating the wire or enclosing the wire using a case that presents no shock / burn hazard to users. For this system, using a case will be a better solution to prevent both hazards, while insulating the wire would only prevent shock hazards. 
 
@@ -214,12 +214,12 @@ This subsystem shall provide a user interface by utilizing a PCB. The PCB will b
 ***
 A Hardware Block Diagram showing an overview of our project and its subsystems is shown below in Figure .
 
-![alt text](<Block Diagram Project.drawio (1).png>)
+![alt text](<./Conceptual%20Design/Block Diagram Project.drawio (1).png>)
 
 ### Operational Flow Chart
 ***
 
-![alt text](<control_system_flow_chart.drawio (2).png>)
+![alt text](<./Conceptual%20Design/control_system_flow_chart.drawio (2).png>)
 
 ## Atomic Subsystem Specifications
 ***
@@ -260,7 +260,7 @@ Please view the Power Tree below to see how the power will be distributed to acr
 
 
 
-![alt text](<Power Tree - Capstone.drawio (2).png>)
+![alt text](<./Conceptual%20Design/Power Tree - Capstone.drawio (2).png>)
 
 
 For the color Red, the voltage level is to be a DC HV bus. (Please note that the IGBT voltage is labeled as high DC voltage due to it monitoring this part of the circuit)
@@ -303,7 +303,7 @@ The heat generation subsystem primarily focuses on ensuring the output temperatu
 Shown below is a detailed flow chart of the Heat Generation Subsystem:
 
 
-![alt text](<HeatGenerationSubsystem.drawio.png>)
+![alt text](<./Conceptual%20Design/HeatGenerationSubsystem.drawio.png>)
 
 ### Safety and Protections System
 This system is responsible for ensuring the induction heater operates within safe limits, protecting both the user from harm and the device from damage. It will function in the background, continuously monitoring signals such as temperature and current to ensure the system is operating within these safe limits, and if not, shuts down accordingly. It directly enforces the constraints set in ethical, professional, and standards considerations.
@@ -358,7 +358,7 @@ The Safety and Protection Controls subsystem acts as the central control. It wil
 ##### Operation Flow
 Shown below is a detailed flow chart of the Safety and Protections Controls Subsystem:
 
-![alt text](<Safety Flowchart.drawio (2).png>)
+![alt text](<./Conceptual%20Design/Safety Flowchart.drawio (2).png>)
 
 #### Electronic Housing Safety Sub-System
 
@@ -589,9 +589,9 @@ The responsibilities for designing each subsystem are allocated as follows:
 
 ### Timeline
 
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-6.png)
+![alt text](./Conceptual%20Design/image-1.png)
+![alt text](./Conceptual%20Design/image-2.png)
+![alt text](./Conceptual%20Design/image-6.png)
 
 ## References
 ***
