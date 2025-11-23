@@ -149,7 +149,6 @@ For sections including a software component, produce a chart that demonstrates t
 ![Micro-Tasked LCD System Flow Chart](./Embedded_System/LCD%20logic.drawio.png)
   
 
-
 ## BOM
 
 Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
@@ -157,19 +156,22 @@ Provide a comprehensive list of all necessary components along with their prices
 | Component Name                               | Component Id      | Cost   | Operating Voltage (V) | Max Operating Current (mA) | Power Cost (mW)  | Amount | Total Power (mW) | Total Cost ($) |
 | -------------------------------------------- | ----------------- | ------ | --------------------- | -------------------------- | ---------------- | ------ | ---------------- | -------------- |
 | STM32Microcontroller [1] [923]               | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         |
-| Adafruit SPI Thermocouple Amplifier  [4]     | MAX31855 Breakout | $14.95 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $29.9          |
+| Adafruit SPI Thermocouple Amplifier  [4]     | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         |
 | Adafruit I2C  Thermocouple Amplifier [5] [6] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         |
 | Analog Output  Thermocouple Amplifier [7]    | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         |
 | Keypad [8] [9#]                              | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          |
-| Rotery Encoder [1569] [15610]                | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
+| Rotary Encoder [1569] [15610]                | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
 | LCD [9] [10]                                 | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675  (at 5 V)    | 1      | 135.0            | $30.87         |
 | Adafruit Micro SD Card Interface [12] [13]   | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
 | Lem Electric Current Sensor [14] [15]        | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         |
 | Liquid Flow Meter 1/2" [16] [17]             | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
-| Total ( electricals not incuding MCU)        | N/A               | N/A    | N/A                   | 203.53 mA (at 5V)          |                  | N/A    | 1017.64          | $138.24        |
+| Potentiometer LCD                            | 3362P-1-502LF     | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
+| Total ( electricals not including MCU)       | N/A               | N/A    | N/A                   | 203.53 mA (at 5V)          |                  | N/A    | 1017.64          | $143.46        |
 ## Analysis
 
 Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
+
+Interrupts will be used over polling for user inputs as actions for inputs will only need to take up the thread when the users interacts with a interface. Reading the sensors temperature sensors will be polled with PID logic as the temperature sensors do not need to be as fast. The shut off temperatures for the objects the sensors are measuring can be programed on amplifier the signal directly a fault after the temperature passes a certain threshold. The direct wiring of fault signals from the amplifier would speed up a issue disabling the circuit. Due to majority of the pins on the microcontroller being used, the termocouples will need to be amplified in different ways. There is only 3 ADC, 3 API, and 3 I2C. Since the system has 6 interfaces/sensors, they have to be spread across the ways of interfacing. The thermocouple that is reading the pipe can have the amplifier setup to fault pass a certain temperature. The direct fault signal will speed up the disabling of the system bypassing SPI. To set the threshold fault temperature SPI MOSI will be used. The IGBT termocouples on the power board will have a similar capability. 
 
 ## References
 
