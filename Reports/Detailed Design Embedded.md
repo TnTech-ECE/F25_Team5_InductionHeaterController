@@ -147,8 +147,9 @@ For sections including a software component, produce a chart that demonstrates t
   
 
 ![Micro-Tasked LCD System Flow Chart](./Embedded_System/LCD%20logic.drawio.png)
-  
 
+### Proportional Differential Integral Controller Flow Chart
+![pid flowchart](Embedded_System/New_HeatGenerationSubsystem.drawio.png)
 ## BOM
 
 Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
@@ -177,43 +178,62 @@ Interrupts will be used over polling for user inputs as actions for inputs will 
 
 All sources that have contributed to the detailed design and are not considered common knowledge should be duly cited, incorporating multiple references.
 
-[1] https://www.st.com/resource/en/user_manual/um1724-stm32-nucleo64-boards-mb1136-stmicroelectronics.pdf
-[2] https://www.nxp.com/docs/en/application-note/AN1259.pdf
-[3] https://www.mouser.com/pdfdocs/alphawire-Understanding-Shielded-Cable.pdf?srsltid=AfmBOoppfOhI17DhVwhIefDsZUTN9mPuMLCOyps0Y1D29tUU9E0vIf34
-[28] Enisz, K., G. Kohlrusz, D. Fodor, and L. Kovacs. “Degradation Analysis of DC-Link Aluminum Electrolytic Capacitors Operating in PWM Power Converters.” Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020, https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters
-[34] “IGBTs for Induction Heaters.” Power Electronics News, 2023, https://www.powerelectronicsnews.com/igbts-for-induction-heaters/
+## References
 
-[35] Arrow Electronics. What's the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices. Arrow Whitepaper, 2023. PDF, https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf
+[1] STMicroelectronics, "STM32 Nucleo-64 boards (MB1136) user manual (UM1724)," PDF, Available: https://www.st.com/resource/en/user_manual/um1724-stm32-nucleo64-boards-mb1136-stmicroelectronics.pdf (Accessed: Nov. 23, 2025).
 
-[36] “MOSFET vs. IGBT: Key Differences.” AllPCB, 2022, https://www.allpcb.com/allelectrohub/mosfet-vs-igbt-key-differences
-[38] “IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications.” JSW XDH, 2021, https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html
-[46] IPC Association Connecting Electronics Industries, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," IPC, Bannockburn, IL, 2013.
-[47] IPC Association Connecting Electronics Industries, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," IPC, Bannockburn, IL, 2010.
+[2] NXP Semiconductors, "AN1259 Application Note," PDF, Available: https://www.nxp.com/docs/en/application-note/AN1259.pdf (Accessed: Nov. 23, 2025).
 
-[923] https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711
+[3] Alpha Wire, "Understanding Shielded Cable," PDF, Available: https://www.mouser.com/pdfdocs/alphawire-Understanding-Shielded-Cable.pdf (Accessed: Nov. 23, 2025).
 
-[4] https://cdn-shop.adafruit.com/datasheets/MAX31855.pdf
-[5] https://cdn-learn.adafruit.com/downloads/pdf/adafruit-mcp9600-i2c-thermocouple-amplifier.pdf
-[6] https://cdn.sparkfun.com/assets/a/b/e/5/5/MCP9600-Data-Sheet-DS20005426D.pdf
-[7] https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf
+[28] K. Enisz, G. Kohlrusz, D. Fodor, and L. Kovacs, "Degradation Analysis of DC-Link Aluminum Electrolytic Capacitors Operating in PWM Power Converters," Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020. Available: https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters (Accessed: Nov. 23, 2025).
 
-[8] https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536?gclsrc=aw.ds&gad_source=1&gad_campaignid=20243136172&gbraid=0AAAAADrbLliZiCrl6hqJBIzBNlEDIPphk&gclid=CjwKCAiAuIDJBhBoEiwAxhgyFuTC3eNILxZ_V3RNUjOgWIFA-pF-Hi-mRqvYBmpmRT8wH40hcAgOmBoCBowQAvD_BwE
-[9#] https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf?_gl=1*c3szw3*_up*MQ..*_gs*MQ..&gclid=CjwKCAiAuIDJBhBoEiwAxhgyFuTC3eNILxZ_V3RNUjOgWIFA-pF-Hi-mRqvYBmpmRT8wH40hcAgOmBoCBowQAvD_BwE&gclsrc=aw.ds&gbraid=0AAAAADrbLliZiCrl6hqJBIzBNlEDIPphk
+[34] Power Electronics News, "IGBTs for Induction Heaters," 2023. Available: https://www.powerelectronicsnews.com/igbts-for-induction-heaters/ (Accessed: Nov. 23, 2025).
 
-[1569] https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223?gclsrc=aw.ds&gad_source=1&gad_campaignid=20232005509&gbraid=0AAAAADrbLlhsazWyskHiDysKW0ob--vDy&gclid=CjwKCAiAuIDJBhBoEiwAxhgyFtZPUlC4xZpkvQJvUF6UWXIUL2IbGHd4vTePPCjh1KaX-CtTKIio9hoCYugQAvD_BwE
-[15610] https://raw.githubusercontent.com/Arduinolibrary/DFRobot_SEN0235_EC11_Rotary_Encoder_Module/master/EC11I-152%20Datasheet.pdf
-[9] https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941
-[10] https://newhavendisplay.com/content/specs/NHD-0216CW-AB3.pdf
+[35] Arrow Electronics, "What’s the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices," Whitepaper, 2023. Available: https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf (Accessed: Nov. 23, 2025).
 
-[12] https://www.adafruit.com/product/4682
-[13] https://cdn-learn.adafruit.com/downloads/pdf/adafruit-microsd-spi-sdio.pdf
+[36] AllPCB, "MOSFET vs. IGBT: Key Differences," 2022. Available: https://www.allpcb.com/allelectrohub/mosfet-vs-igbt-key-differences (Accessed: Nov. 23, 2025).
 
-[14] https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653?gclsrc=aw.ds&gad_source=1&gad_campaignid=20232005509&gbraid=0AAAAADrbLlhsazWyskHiDysKW0ob--vDy&gclid=CjwKCAiAuIDJBhBoEiwAxhgyFuoWIV3V7RL287N4IRsOCQjxiz_g5lzgpNZoOd94cXDA_auuLb5DhRoCegMQAvD_BwE
-[15] https://www.lem.com/sites/default/files/products_datasheets/ho_6_10_25-p_series.pdf
+[38] JSW XDH, "IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications," 2021. Available: https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html (Accessed: Nov. 23, 2025).
 
-[16] https://www.adafruit.com/product/828
-[17] https://cdn-shop.adafruit.com/product-files/828/C898+datasheet.pdf
+[46] IPC, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," 2013.
 
-[89383983298398] https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf?_gl=1*xtrx4b*_up*MQ..*_gs*MQ..&gclid=CjwKCAiAuIDJBhBoEiwAxhgyFuTC3eNILxZ_V3RNUjOgWIFA-pF-Hi-mRqvYBmpmRT8wH40hcAgOmBoCBowQAvD_BwE&gclsrc=aw.ds&gbraid=0AAAAADrbLliZiCrl6hqJBIzBNlEDIPphk
+[47] IPC, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," 2010.
 
-[38723872378328] http://file.gifar.com.tw/gifar/character/spec/GFC1602AK-BNFA-JP_Ver.C.pdf
+[923] STMicroelectronics, "NUCLEO-L476RG Product Page," Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711 (Accessed: Nov. 23, 2025).
+
+[4] Analog Devices, "MAX31855 Cold-Junction Compensated Thermocouple-to-Digital Converter," Datasheet, Available: https://cdn-shop.adafruit.com/datasheets/MAX31855.pdf (Accessed: Nov. 23, 2025).
+
+[5] Adafruit, "MCP9600 I2C Thermocouple Amplifier," Guide, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-mcp9600-i2c-thermocouple-amplifier.pdf (Accessed: Nov. 23, 2025).
+
+[6] Microchip, "MCP9600 Thermocouple EMF Converter with Cold-Junction Compensation," Datasheet, Available: https://cdn.sparkfun.com/assets/a/b/e/5/5/MCP9600-Data-Sheet-DS20005426D.pdf (Accessed: Nov. 23, 2025).
+
+[7] Analog Devices, "AD8494/AD8495/AD8496/AD8497 Thermocouple Amplifiers," Datasheet, Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf (Accessed: Nov. 23, 2025).
+
+[8] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
+
+[9#] Adafruit, "3844 Membrane Keypad Technical Docs," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
+
+[1569] DFRobot, "SEN0235 EC11 Rotary Encoder Module," Product Page, Available: https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223 (Accessed: Nov. 23, 2025).
+
+[15610] DFRobot, "EC11 Rotary Encoder Module Datasheet," PDF, Available: https://raw.githubusercontent.com/Arduinolibrary/DFRobot_SEN0235_EC11_Rotary_Encoder_Module/master/EC11I-152%20Datasheet.pdf (Accessed: Nov. 23, 2025).
+
+[9] Newhaven Display, "NHD-0216CW-AB3 16x2 OLED Module," Product Page, Available: https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941 (Accessed: Nov. 23, 2025).
+
+[10] Newhaven Display, "NHD-0216CW-AB3 Specification," PDF, Available: https://newhavendisplay.com/content/specs/NHD-0216CW-AB3.pdf (Accessed: Nov. 23, 2025).
+
+[12] Adafruit, "MicroSD Card Breakout Board+," Product Page, Available: https://www.adafruit.com/product/4682 (Accessed: Nov. 23, 2025).
+
+[13] Adafruit, "MicroSD SPI/SDIO Library Guide," PDF, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-microsd-spi-sdio.pdf (Accessed: Nov. 23, 2025).
+
+[14] LEM, "HO 10-P Current Transducer," Product Page, Available: https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653 (Accessed: Nov. 23, 2025).
+
+[15] LEM, "HO 6/10/25-P Series Datasheet," PDF, Available: https://www.lem.com/sites/default/files/products_datasheets/ho_6_10_25-p_series.pdf (Accessed: Nov. 23, 2025).
+
+[16] Adafruit, "Liquid Flow Meter - 1/2\"," Product Page, Available: https://www.adafruit.com/product/828 (Accessed: Nov. 23, 2025).
+
+[17] Adafruit, "YF-S201 Flow Meter Datasheet," PDF, Available: https://cdn-shop.adafruit.com/product-files/828/C898+datasheet.pdf (Accessed: Nov. 23, 2025).
+
+[89383983298398] Adafruit, "3844 Membrane Keypad Technical Docs (Duplicate)," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
+
+[38723872378328] GIFAR, "GFC1602AK-BNFA-JP Character LCD Module Specifications," PDF, Available: http://file.gifar.com.tw/gifar/character/spec/GFC1602AK-BNFA-JP_Ver.C.pdf (Accessed: Nov. 23, 2025).
