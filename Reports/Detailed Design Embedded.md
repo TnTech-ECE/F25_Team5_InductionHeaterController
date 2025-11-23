@@ -1,6 +1,6 @@
 # Detailed Design
 
-This document delineates the objectives of a comprehensive system design. Upon reviewing this design, the reader should have a clear understanding of:
+<!-- This document delineates the objectives of a comprehensive system design. Upon reviewing this design, the reader should have a clear understanding of:
 
 - How the specific subsystem integrates within the broader solution
 - The constraints and specifications relevant to the subsystem
@@ -22,13 +22,13 @@ The document should include:
 - A comprehensive Bill of Materials (BOM)
 - Analysis of crucial design decisions
 
-*Note: These technical documentation elements are mandatory only when relevant to the particular subsystem.
+*Note: These technical documentation elements are mandatory only when relevant to the particular subsystem. -->
 
 
 
 ## Function of the Subsystem
 
-This segment should elucidate the role of the subsystem within the entire system, detailing its intended function, aligned with the conceptual design.
+<!-- This segment should elucidate the role of the subsystem within the entire system, detailing its intended function, aligned with the conceptual design. -->
 
 The Embedded Subsystem describes the software for the microcontroller, the connections the microcontroller, and the connections to the sensors, power PCB, etc. The software on the microcontroller will control the heating of the pipe and the water, check for faults with in the system, display to the lcd, interpret sensors and use inputs. The connections will be via terminal blocks on other peripherals and on the shield PCB for the microcontroller. 
 
@@ -52,16 +52,16 @@ Overview:
 
 
 
-This section should provide a list of constraints applicable to the subsystem, along with the rationale behind these limitations. For instance, constraints can stem from physics-based limitations or requirements, subsystem prerequisites, standards, ethical considerations, or socio-economic factors.
+<!-- This section should provide a list of constraints applicable to the subsystem, along with the rationale behind these limitations. For instance, constraints can stem from physics-based limitations or requirements, subsystem prerequisites, standards, ethical considerations, or socio-economic factors.
 
 The team should set specifications for each subsystem. These specifications may require modifications, which must be authorized by the team. It could be necessary to impose additional constraints as further information becomes available.
 
-Every subsystem must incorporate at least one constraint stemming from standards, ethics, or socio-economic factors.
+Every subsystem must incorporate at least one constraint stemming from standards, ethics, or socio-economic factors. -->
 
 
 ## Overview of Proposed Solution
 
-Describe the solution and how it will fulfill the specifications and constraints of this subsystem.
+<!-- Describe the solution and how it will fulfill the specifications and constraints of this subsystem. -->
 
 
 
@@ -99,7 +99,7 @@ Specifics:
  6. AD8495 Amplification of a Thermocouple.
    AD8495 Amplification of a Thermocouple will amplify the thermocouple voltage so that the board can ADC the voltage to get a temperature. This thermocouple converter will be for the pipe that is being heated. The signal be received to ADC 1 CH14 on PC4.
  7. Keypad
-   The Keypad will be check via on PIN D0-D3 assigned to interrupts. Then D4-D7 will be scan to determine which button was pressed. The keypad will be able to set values for the system and change the mode of the LCD.
+   The Keypad will be check via on PIN D0-D3 assigned to interrupts. Then D4-D7 will be output pins and will be scanned to determine which button was pressed. The keypad will be able to set values for the system and change the mode of the LCD.
  8. Rotary Encoder
    The Rotary Encoder will be able to change values for the system as well depending on the mode of the lcd. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. the Buttons use on PC8 is TBD.
  9. Flow Sensor
@@ -125,9 +125,9 @@ Specifics:
    The system fault Signal signal will be a GPIO output on PC5
 ## Buildable Schematic 
 
-Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
+<!-- Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
 
-The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned.
+The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned. -->
 ![Embedded System Connection Diagram](./Embedded_System/Embedded_System_Connection_Diagram.png)
 
 ## Printed Circuit Board Layout
@@ -172,7 +172,9 @@ Provide a comprehensive list of all necessary components along with their prices
 
 Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
 
-Interrupts will be used over polling for user inputs as actions for inputs will only need to take up the thread when the users interacts with a interface. Reading the sensors temperature sensors will be polled with PID logic as the temperature sensors do not need to be as fast. The shut off temperatures for the objects the sensors are measuring can be programed on amplifier the signal directly a fault after the temperature passes a certain threshold. The direct wiring of fault signals from the amplifier would speed up a issue disabling the circuit. Due to majority of the pins on the microcontroller being used, the termocouples will need to be amplified in different ways. There is only 3 ADC, 3 API, and 3 I2C. Since the system has 6 interfaces/sensors, they have to be spread across the ways of interfacing. The thermocouple that is reading the pipe can have the amplifier setup to fault pass a certain temperature. The direct fault signal will speed up the disabling of the system bypassing SPI. To set the threshold fault temperature SPI MOSI will be used. The IGBT termocouples on the power board will have a similar capability. 
+Interrupts will be used over polling for user inputs as actions for inputs will only need to take up the thread when the users interacts with a interface. The keypad is for buttons to control the lcd and set values. A rotary controller will also be used to set values. Then fault display signals from the sensors will be on interrupts. For less important display and setting of inputs they will be on Interrupts so CPU time is not wasted.
+
+Reading the sensors temperature sensors will be polled with PID logic as the temperature sensors do not need to be as fast. The shut off temperatures for the objects the sensors are measuring can be programed on amplifier the signal directly a fault after the temperature passes a certain threshold. The direct wiring of fault signals from the amplifier would speed up a issue disabling the circuit. Due to majority of the pins on the microcontroller being used, the termocouples will need to be amplified in different ways. There is only 3 ADC, 3 API, and 3 I2C. Since the system has 6 interfaces/sensors, they have to be spread across the ways of interfacing. The thermocouple that is reading the pipe can have the amplifier setup to fault pass a certain temperature. The direct fault signal will speed up the disabling of the system bypassing SPI. To set the threshold fault temperature SPI MOSI will be used. The IGBT termocouples on the power board will have a similar capability. 
 
 ## References
 
