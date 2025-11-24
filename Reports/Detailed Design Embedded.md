@@ -34,13 +34,13 @@ The Embedded Subsystem describes the software for the microcontroller, the conne
 
 ## Specifications and Constraints
 Overview:
- 1. This Microcontroller shall not exceed 100°C during operation. [28]
- 2. This Microcontroller shall control the switching frequency of the power board. [34], [35], [36], [38]
- 3. This Microcontroller shall output PWM and toggle its pins. [35], [36], [38]
- 4. This Microcontroller shall interpret sensors. [46]
- 5. This Microcontroller shall have Analog-to-Digital converting capabilities. [46]
+ 1. This Microcontroller shall not exceed 100°C during operation. [4]
+ 2. This Microcontroller shall control the switching frequency of the power board. [5], [6], [7], [8]
+ 3. This Microcontroller shall output PWM and toggle its pins. [6], [7], [8]
+ 4. This Microcontroller shall interpret sensors. [9]
+ 5. This Microcontroller shall have Analog-to-Digital converting capabilities. [9]
  6. This Microcontroller shall interpret user interface inputs.
- 7. This Microcontroller shall interface with an LCD. [47]
+ 7. This Microcontroller shall interface with an LCD. [10]
    
 ## Overview of Proposed Solution
  1. The microcontroller should not exceed 100°C so that the microcontroller does not overheat requiring the MCU to be replaced.
@@ -150,16 +150,16 @@ Provide a comprehensive list of all necessary components along with their prices
 
 | Component Name                              | Component Id      | Cost   | Operating Voltage (V) | Max Operating Current (mA) | Power Cost (mW)  | Amount | Total Power (mW) | Total Cost ($) |
 | ------------------------------------------- | ----------------- | ------ | --------------------- | -------------------------- | ---------------- | ------ | ---------------- | -------------- |
-| STM32Microcontroller [1] [923]              | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         |
-| Adafruit SPI Thermocouple Amplifier  [4]    | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         |
-| Adafruit I2C Thermocouple Amplifier [5] [6] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         |
-| Analog Output Thermocouple Amplifier [7]    | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         |
-| Keypad [8] [9#]                             | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          |
-| Rotary Encoder [1569] [15610]               | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
-| LCD [9] [10]                                | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675  (at 5 V)    | 1      | 135.0            | $30.87         |
-| Adafruit Micro SD Card Interface [12] [13]  | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
-| Lem Electric Current Sensor [14] [15]       | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         |
-| Liquid Flow Meter 1/2" [16] [17]            | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
+| STM32Microcontroller [1] [11]              | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         |
+| Adafruit SPI Thermocouple Amplifier  [12]    | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         |
+| Adafruit I2C Thermocouple Amplifier [13] [14] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         |
+| Analog Output Thermocouple Amplifier [15]    | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         |
+| Keypad [16] [17]                             | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          |
+| Rotary Encoder [18] [19]               | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
+| LCD [20] [21]                                | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675  (at 5 V)    | 1      | 135.0            | $30.87         |
+| Adafruit Micro SD Card Interface [22] [23]  | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
+| Lem Electric Current Sensor [24] [25]       | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         |
+| Liquid Flow Meter 1/2" [26] [27]            | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
 | Total (electricals not including MCU)       | N/A               | N/A    | N/A                   | 203.53 mA (at 5V) < 500 mA |                  | N/A    | 1017.64          | $143.46        |
 ## Analysis
 
@@ -193,54 +193,54 @@ All sources that have contributed to the detailed design and are not considered 
 
 [3] Alpha Wire, "Understanding Shielded Cable," PDF, Available: https://www.mouser.com/pdfdocs/alphawire-Understanding-Shielded-Cable.pdf (Accessed: Nov. 23, 2025).
 
-[28] K. Enisz, G. Kohlrusz, D. Fodor, and L. Kovacs, "Degradation Analysis of DC-Link Aluminum Electrolytic Capacitors Operating in PWM Power Converters," Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020. Available: https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters (Accessed: Nov. 23, 2025).
+[4] K. Enisz, G. Kohlrusz, D. Fodor, and L. Kovacs, "Degradation Analysis of DC-Link Aluminum Electrolytic Capacitors Operating in PWM Power Converters," Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020. Available: https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters (Accessed: Nov. 23, 2025).
 
-[34] Power Electronics News, "IGBTs for Induction Heaters," 2023. Available: https://www.powerelectronicsnews.com/igbts-for-induction-heaters/ (Accessed: Nov. 23, 2025).
+[5] Power Electronics News, "IGBTs for Induction Heaters," 2023. Available: https://www.powerelectronicsnews.com/igbts-for-induction-heaters/ (Accessed: Nov. 23, 2025).
 
-[35] Arrow Electronics, "What’s the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices," Whitepaper, 2023. Available: https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf (Accessed: Nov. 23, 2025).
+[6] Arrow Electronics, "What’s the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices," Whitepaper, 2023. Available: https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf (Accessed: Nov. 23, 2025).
 
-[36] AllPCB, "MOSFET vs. IGBT: Key Differences," 2022. Available: https://www.allpcb.com/allelectrohub/mosfet-vs-igbt-key-differences (Accessed: Nov. 23, 2025).
+[7] AllPCB, "MOSFET vs. IGBT: Key Differences," 2022. Available: https://www.allpcb.com/allelectrohub/mosfet-vs-igbt-key-differences (Accessed: Nov. 23, 2025).
 
-[38] JSW XDH, "IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications," 2021. Available: https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html (Accessed: Nov. 23, 2025).
+[8] JSW XDH, "IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications," 2021. Available: https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html (Accessed: Nov. 23, 2025).
 
-[46] IPC, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," 2013.
+[9] IPC, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," 2013.
 
-[47] IPC, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," 2010.
+[10] IPC, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," 2010.
 
-[923] STMicroelectronics, "NUCLEO-L476RG Product Page," Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711 (Accessed: Nov. 23, 2025).
+[11] STMicroelectronics, "NUCLEO-L476RG Product Page," Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711 (Accessed: Nov. 23, 2025).
 
-[4] Analog Devices, "MAX31856 Cold-Junction Compensated Thermocouple-to-Digital Converter," Datasheet, Available: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31856.pdf (Accessed: Nov. 23, 2025).
+[12] Analog Devices, "MAX31856 Cold-Junction Compensated Thermocouple-to-Digital Converter," Datasheet, Available: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31856.pdf (Accessed: Nov. 23, 2025).
 
-[5] Adafruit, "MCP9600 I2C Thermocouple Amplifier," Guide, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-mcp9600-i2c-thermocouple-amplifier.pdf (Accessed: Nov. 23, 2025).
+[13] Adafruit, "MCP9600 I2C Thermocouple Amplifier," Guide, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-mcp9600-i2c-thermocouple-amplifier.pdf (Accessed: Nov. 23, 2025).
 
-[6] Microchip, "MCP9600 Thermocouple EMF Converter with Cold-Junction Compensation," Datasheet, Available: https://cdn.sparkfun.com/assets/a/b/e/5/5/MCP9600-Data-Sheet-DS20005426D.pdf (Accessed: Nov. 23, 2025).
+[14] Microchip, "MCP9600 Thermocouple EMF Converter with Cold-Junction Compensation," Datasheet, Available: https://cdn.sparkfun.com/assets/a/b/e/5/5/MCP9600-Data-Sheet-DS20005426D.pdf (Accessed: Nov. 23, 2025).
 
-[7] Analog Devices, "AD8494/AD8495/AD8496/AD8497 Thermocouple Amplifiers," Datasheet, Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf (Accessed: Nov. 23, 2025).
+[15] Analog Devices, "AD8494/AD8495/AD8496/AD8497 Thermocouple Amplifiers," Datasheet, Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf (Accessed: Nov. 23, 2025).
 
-[8] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
+[16] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
 
-[9#] Adafruit, "3844 Membrane Keypad Technical Docs," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
+[17] Adafruit, "3844 Membrane Keypad Technical Docs," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
 
-[1569] DFRobot, "SEN0235 EC11 Rotary Encoder Module," Product Page, Available: https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223 (Accessed: Nov. 23, 2025).
+[18] DFRobot, "SEN0235 EC11 Rotary Encoder Module," Product Page, Available: https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223 (Accessed: Nov. 23, 2025).
 
-[15610] DFRobot, "EC11 Rotary Encoder Module Datasheet," PDF, Available: https://raw.githubusercontent.com/Arduinolibrary/DFRobot_SEN0235_EC11_Rotary_Encoder_Module/master/EC11I-152%20Datasheet.pdf (Accessed: Nov. 23, 2025).
+[19] DFRobot, "EC11 Rotary Encoder Module Datasheet," PDF, Available: https://raw.githubusercontent.com/Arduinolibrary/DFRobot_SEN0235_EC11_Rotary_Encoder_Module/master/EC11I-152%20Datasheet.pdf (Accessed: Nov. 23, 2025).
 
-[9] Newhaven Display, "NHD-0216CW-AB3 16x2 OLED Module," Product Page, Available: https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941 (Accessed: Nov. 23, 2025).
+[20] Newhaven Display, "NHD-0216CW-AB3 16x2 OLED Module," Product Page, Available: https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941 (Accessed: Nov. 23, 2025).
 
-[10] Newhaven Display, "NHD-0216CW-AB3 Specification," PDF, Available: https://newhavendisplay.com/content/specs/NHD-0216CW-AB3.pdf (Accessed: Nov. 23, 2025).
+[21] Newhaven Display, "NHD-0216CW-AB3 Specification," PDF, Available: https://newhavendisplay.com/content/specs/NHD-0216CW-AB3.pdf (Accessed: Nov. 23, 2025).
 
-[12] Adafruit, "MicroSD Card Breakout Board+," Product Page, Available: https://www.adafruit.com/product/4682 (Accessed: Nov. 23, 2025).
+[22] Adafruit, "MicroSD Card Breakout Board+," Product Page, Available: https://www.adafruit.com/product/4682 (Accessed: Nov. 23, 2025).
 
-[13] Adafruit, "MicroSD SPI/SDIO Library Guide," PDF, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-microsd-spi-sdio.pdf (Accessed: Nov. 23, 2025).
+[23] Adafruit, "MicroSD SPI/SDIO Library Guide," PDF, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-microsd-spi-sdio.pdf (Accessed: Nov. 23, 2025).
 
-[14] LEM, "HO 10-P Current Transducer," Product Page, Available: https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653 (Accessed: Nov. 23, 2025).
+[24] LEM, "HO 10-P Current Transducer," Product Page, Available: https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653 (Accessed: Nov. 23, 2025).
 
-[15] LEM, "HO 6/10/25-P Series Datasheet," PDF, Available: https://www.lem.com/sites/default/files/products_datasheets/ho_6_10_25-p_series.pdf (Accessed: Nov. 23, 2025).
+[25] LEM, "HO 6/10/25-P Series Datasheet," PDF, Available: https://www.lem.com/sites/default/files/products_datasheets/ho_6_10_25-p_series.pdf (Accessed: Nov. 23, 2025).
 
-[16] Adafruit, "Liquid Flow Meter - 1/2\"," Product Page, Available: https://www.adafruit.com/product/828 (Accessed: Nov. 23, 2025).
+[26] Adafruit, "Liquid Flow Meter - 1/2\"," Product Page, Available: https://www.adafruit.com/product/828 (Accessed: Nov. 23, 2025).
 
-[17] Adafruit, "YF-S201 Flow Meter Datasheet," PDF, Available: https://cdn-shop.adafruit.com/product-files/828/C898+datasheet.pdf (Accessed: Nov. 23, 2025).
+[27] Adafruit, "YF-S201 Flow Meter Datasheet," PDF, Available: https://cdn-shop.adafruit.com/product-files/828/C898+datasheet.pdf (Accessed: Nov. 23, 2025).
 
-[89383983298398] Adafruit, "3844 Membrane Keypad Technical Docs (Duplicate)," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
+[4] Adafruit, "3844 Membrane Keypad Technical Docs (Duplicate)," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
 
-[38723872378328] GIFAR, "GFC1602AK-BNFA-JP Character LCD Module Specifications," PDF, Available: http://file.gifar.com.tw/gifar/character/spec/GFC1602AK-BNFA-JP_Ver.C.pdf (Accessed: Nov. 23, 2025).
+[29] GIFAR, "GFC1602AK-BNFA-JP Character LCD Module Specifications," PDF, Available: http://file.gifar.com.tw/gifar/character/spec/GFC1602AK-BNFA-JP_Ver.C.pdf (Accessed: Nov. 23, 2025).
