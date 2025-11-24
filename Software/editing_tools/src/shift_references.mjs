@@ -3,7 +3,7 @@ import fs from "fs";
 function isFile(filePath) {
 	try {
 		const test = fs.lstatSync(filePath);
-		return test.isFile;
+		return test.isFile();
 	} catch { }
 	return false;
 }
@@ -18,16 +18,14 @@ const referencesIndex = file.search(/[#]+\s+References/g);
 const referencesFile = file.slice(referencesIndex, file.length - 1);
 //console.warn({ referencesIndex, referencesFile });
 
-/**
- * @type {number[]}
- */
-const referencesToShiftFrom = [...(file.matchAll(/\[(\d+)#\]/g) ?? [])].map(match => Number(match[1])).reduce((s, c) => {
-	if (s.includes(c)) return s;
-	s.push(c);
-	return s;
-}, []);
-console.warn(filePathText, filePath, referencesToShiftFrom);
-if (!referencesToShiftFrom || !referencesToShiftFrom.length) throw new Error("No reference to shift found");
+// /**
+//  * @type {number[]}
+//  */
+// const referencesToShiftFrom = [...(file.matchAll(/\[(\d+)#\]/g) ?? [])].map(match => Number(match[1])).reduce((s, c) => {
+// 	if (s.includes(c)) return s;
+// 	s.push(c);
+// 	return s;
+// }, []);
 //if (referenceToShiftFromArray.length > 1) throw new Error("Multiple references to shift found");
 
 
@@ -38,6 +36,7 @@ const outPath = path.join(outFileFolder, base);
  * @type {[number, string][]}
  */
 const referencesToShift = [...(referencesFile.matchAll(/\[(\d+)#?\]/g) ?? [])].map(match => [Number(match[1]), match[0]]);
+if (!referencesToShift || !referencesToShift.length) throw new Error("No reference to shift found");
 
 referencesToShift.reverse();
 
@@ -56,18 +55,16 @@ referencesToShift.forEach(([referenceToShift, referenceString], i) => {
 if (throws.length) {
 	throw new Error(throws.join('\n'));
 }
-referencesToShift.forEach(([referenceToShift, referenceString], i) => {
-	// console.warn({ isNewRef: referenceString.includes('#'), count, referenceString, newVal: maxReference - i });
-	if (referenceString.includes('#')) return;
-	file = file.replaceAll(`[${referenceToShift}]`, `[${referencesToShift.length - i}]`);
-});
-
+// referencesToShift.forEach(([referenceToShift, referenceString], i) => {
+// 	// console.warn({ isNewRef: referenceString.includes('#'), count, referenceString, newVal: maxReference - i });
+// 	if (referenceString.includes('#')) return;
+// 	file = file.replaceAll(`[${referenceToShift}]`, `[${referencesToShift.length - i}]`);
+// });
+const appendKey = "#28893983";
 console.warn({ referencesToShift });
 referencesToShift.forEach(([referenceToShift, referenceString], i) => {
-
-	if (!referenceString.includes('#')) return;
 	console.warn({ isNewRef: referenceString.includes('#'), i, referenceString, newVal: referencesToShift.length - i });
-
-	file = file.replaceAll(`[${referenceToShift}#]`, `[${referencesToShift.length - i}]`);
+	file = file.replaceAll(`${referenceString}`, `[{${referencesToShift.length - i}${appendKey}}]`);
 });
+file = file.replaceAll(new RegExp(`\\[\\{(\\d+)${appendKey}\\}\\]`, "g"), (a, g1) => `[${g1}]`);
 fs.writeFileSync(outPath, file);

@@ -34,13 +34,13 @@ The Embedded Subsystem describes the software for the microcontroller, the conne
 
 ## Specifications and Constraints
 Overview:
- 1. This Microcontroller shall not exceed 100°C during operation. [4]
- 2. This Microcontroller shall control the switching frequency of the power board. [5], [6], [7], [8]
- 3. This Microcontroller shall output PWM and toggle its pins. [6], [7], [8]
- 4. This Microcontroller shall interpret sensors. [9]
- 5. This Microcontroller shall have Analog-to-Digital converting capabilities. [9]
- 6. This Microcontroller shall interpret user interface inputs.
- 7. This Microcontroller shall interface with an LCD. [10]
+1. This Microcontroller **shall** not exceed 100°C during operation.  [28]  
+2. This Microcontroller **shall** control the switching frequency of the power board. [34], [35], [36], [38]  
+3. This Microcontroller **shall** output PWM and toggle its pins. [35], [36], [38]  
+4. This Microcontroller **shall** interpret sensors.   [46]  
+5. This Microcontroller **shall** have Analog-to-Digital converting capabilities.   [46]
+6. This Microcontroller **shall** interpret user interface inputs. 
+7. This Microcontroller **shall** interface with an LCD. [47]
    
 ## Overview of Proposed Solution
  1. The microcontroller should not exceed 100°C so that the microcontroller does not overheat requiring the MCU to be replaced.
@@ -80,7 +80,7 @@ Specifics:
  1. 5V DC from the power board. 
    The STM32l476RG needs 5V volts from the power board to run all the devices [1].  
  2. Reading Micro SD Interface
-   A micro SD card interface will be read using SPI 1. SPI 1 MISO on PA7 will receive the data off the SD card. SP1 SCLK will output a clock signal to time the data being received on PA5. The CS Pin which enables data transfer is on on PB6. The Micro SD interface will be used to grab the old state of the system including the desired temperature, what mode the lcd is in, etc [1] [23].
+   A micro SD card interface will be read using SPI 1. SPI 1 MISO on PA7 will receive the data off the SD card. SP1 SCLK will output a clock signal to time the data being received on PA5. The CS Pin which enables data transfer is on on PB6. The Micro SD interface will be used to grab the old state of the system including the desired temperature, what mode the lcd is in, etc [1] [23#].
  3. MAX31856 ADC to SPI for a Thermocouple 
    MAX31856 ADC to SPI for a Thermocouple will take the < 50 mV signal from the Thermocouple then amplify the signal. Next, it ADCs the signal and sends that information bit by bit via SPI in this case SPI 2. This Thermocouple converter will be for the Pipe temperature. Uses SPI 2 MISO on PB14 to receive the data. The SPI 2 CN pin is on PB12 which enables the data reception. The SPI 2 SCLK is on PB13 to time the data. The Over Temperature Fault signal will be on PA11 interrupt [1] [12].
  4. MAX31856 ADC to SPI for a Thermocouple
@@ -90,9 +90,9 @@ Specifics:
  6. AD8495 Amplification of a Thermocouple
    AD8495 Amplification of a Thermocouple will amplify the thermocouple voltage so that the board can ADC the voltage to get a temperature. This thermocouple converter will be for the pipe that is being heated. The signal be received to ADC 1 CH14 on PC4. [1] [15].
  7. Keypad
-   The Keypad will be check via on PIN D0-D3 assigned to interrupts. Then D4-D7 will be output pins and will be scanned to determine which button was pressed. The keypad will be able to set values for the system and change the mode of the LCD [1] [4].
+   The Keypad will be check via on PIN D0-D3 assigned to interrupts. Then D4-D7 will be output pins and will be scanned to determine which button was pressed. The keypad will be able to set values for the system and change the mode of the LCD [1] [17].
  8. Rotary Encoder
-   The Rotary Encoder will be able to change values for the system as well depending on the mode of the lcd. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. the Buttons use on PC8 is TBD [1].
+   The Rotary Encoder will be able to change values for the system as well depending on the mode of the lcd. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. the Buttons use on PC8 is TBD [1] [19].
  9. Flow Sensor
    The flow sensor will use ADC 3 CH 4 on PC3. The flow sensor will detect when the water is flowing then turn of the induction gate driver [1] [27].
  10. Current Sensor
@@ -112,11 +112,11 @@ Specifics:
  2. PWM signals to Gate Drivers
    PWM signals to Gate Drivers are driven using TIM8 CH3 and TIM8 CH4N to get the same frequency signals but 180 degrees out of phase. TIM8 CH3n is on PB1 and TIM8 CH4 is on PC9. TIM4 Ch2 on PB8 will send a 80KHz PWM signal to the power board [1].
  3. Writing Micro SD Interface
-   Writing Micro SD Interface uses SPI 1 MOSI on PA7 to write data to micro SD card. Inputs 2. explains the rest of the connection for the SD card interface [1] [23].
+   Writing Micro SD Interface uses SPI 1 MOSI on PA7 to write data to micro SD card. Inputs 2. explains the rest of the connection for the SD card interface [1] [23#].
  4. Setting Pipe Fault Temperature For Amplifier
    Setting Pipe Fault Temperature uses SPI 2 MOSI on PB15. Inputs 4. explains the rest of the connections for the Pipe Temperature Amplifier [1] [12].
  5. Setting IGBT Fault Temperature For Amplifier
-   Setting IGBT Fault Temperature uses SPI 3 MOSI on PC12. Inputs 5. explains the rest of the connections for the IGBT Temperature Amplifier [12].
+   Setting IGBT Fault Temperature uses SPI 3 MOSI on PC12. Inputs 5. explains the rest of the connections for the IGBT Temperature Amplifier [1] [12].
 ## Buildable Schematic 
 
 <!-- Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
@@ -160,7 +160,7 @@ Provide a comprehensive list of all necessary components along with their prices
 | Keypad [16] [17]                              | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          |
 | Rotary Encoder [18] [19]                      | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
 | LCD [20] [21]                                 | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675  (at 5 V)    | 1      | 135.0            | $30.87         |
-| Adafruit Micro SD Card Interface [22] [23]    | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
+| Adafruit Micro SD Card Interface [22] [23#]   | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
 | Lem Electric Current Sensor [24] [25]         | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         |
 | Liquid Flow Meter 1/2" [26] [27]              | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
 | Total (electricals not including MCU)         | N/A               | N/A    | N/A                   | 203.53 mA (at 5V) < 500 mA |                  | N/A    | 1017.64          | $143.46        |
@@ -176,7 +176,7 @@ Reading the sensors temperature sensors will be polled with PID logic as the tem
 
 The keypad will be used to set the desired temp and interface with the system. the A-C will set 3/4 modes of the LCD. The First 3 are the display temp mode (A key), the set temp (B key), and set power level (C key). The display temp mode displays the desired temperature or power level, the pipe temperature, the output and input water temperature, and the IGBT temperature. Basically a system vitals mode. The second mode allows the user to change the desired temperature via the keypad or the rotary encoder. The temperature is entered when the user presses pound on the keypad. The same operation is down for the third mode but for the power level. The 4th mode is the fault mode it occurs when the system has a fault via over Current in the current transducer or over temp fault from any MAX31856 amplifier. Faults are only cleared via the star key. The keypad and rotary encoder will work off of interrupts. D0-D3 interrupts and TIM 3 configured to encoder mode with interrupts [1].
 
-Adafruit Micro SD Card Interface will be used to save the state of the system and log the systems vials over time. The Micro SD Interface is used over ROM as the Interface is easier viewable on a computer for displaying data. The Interface will use SPI 1 configured to full duplex master. [23]
+Adafruit Micro SD Card Interface will be used to save the state of the system and log the systems vials over time. The Micro SD Interface is used over ROM as the Interface is easier viewable on a computer for displaying data. The Interface will use SPI 1 configured to full duplex master. [23#]
 
 Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters.
 
@@ -190,33 +190,23 @@ All sources that have contributed to the detailed design and are not considered 
 
 ## References
 
-[2] NXP Semiconductors, "AN1259 Application Note," PDF, Available: https://www.nxp.com/docs/en/application-note/AN1259.pdf (Accessed: Nov. 23, 2025).
+[28] K. Enisz, G. Kohlrusz, D. Fodor, and L. Kovacs, "Degradation Analysis of DC-Link Aluminum Electrolytic Capacitors Operating in PWM Power Converters," Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020. Available: https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters (Accessed: Nov. 23, 2025).
 
-[3] Alpha Wire, "Understanding Shielded Cable," PDF, Available: https://www.mouser.com/pdfdocs/alphawire-Understanding-Shielded-Cable.pdf (Accessed: Nov. 23, 2025).
+[34] Power Electronics News, "IGBTs for Induction Heaters," 2023. Available: https://www.powerelectronicsnews.com/igbts-for-induction-heaters/ (Accessed: Nov. 23, 2025).
 
-[4] K. Enisz, G. Kohlrusz, D. Fodor, and L. Kovacs, "Degradation Analysis of DC-Link Aluminum Electrolytic Capacitors Operating in PWM Power Converters," Power Engineering and Electrical Engineering, vol. 18, no. 2, 2020. Available: https://www.researchgate.net/publication/342538837_Degradation_Analysis_of_DC-Link_Aluminium_Electrolytic_Capacitors_Operating_in_PWM_Power_Converters (Accessed: Nov. 23, 2025).
+[35] Arrow Electronics, "What’s the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices," Whitepaper, 2023. Available: https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf (Accessed: Nov. 23, 2025).
 
-[5] Power Electronics News, "IGBTs for Induction Heaters," 2023. Available: https://www.powerelectronicsnews.com/igbts-for-induction-heaters/ (Accessed: Nov. 23, 2025).
+[36] AllPCB, "MOSFET vs. IGBT: Key Differences," 2022. Available: https://www.allpcb.com/allelectrohub/mosfet-vs-igbt-key-differences (Accessed: Nov. 23, 2025).
 
-[6] Arrow Electronics, "What’s the Right Switch for You? When to Use Si MOSFETs, IGBTs, and SiC Devices," Whitepaper, 2023. Available: https://static4.arrow.com/-/media/Arrow/Files/Pdf/Arrow-IGBT7-Whitepaper.pdf (Accessed: Nov. 23, 2025).
+[38] JSW XDH, "IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications," 2021. Available: https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html (Accessed: Nov. 23, 2025).
 
-[7] AllPCB, "MOSFET vs. IGBT: Key Differences," 2022. Available: https://www.allpcb.com/allelectrohub/mosfet-vs-igbt-key-differences (Accessed: Nov. 23, 2025).
+[46] IPC, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," 2013.
 
-[8] JSW XDH, "IGBT vs. MOSFET: Choosing the Right Semiconductor for High-Power Applications," 2021. Available: https://www.jswxdh.com/IGBT-Vs-MOSFET-Choosing-The-Right-Semiconductor-for-High-Power-Applications-id40319716.html (Accessed: Nov. 23, 2025).
-
-[9] IPC, "IPC-2222: Sectional Design Standard for Rigid Organic Printed Boards," 2013.
-
-[10] IPC, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," 2010.
+[47] IPC, "IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard," 2010.
 
 [1] STMicroelectronics, "STM32 Nucleo-64 boards (MB1136) user manual (UM1724)," PDF, Available: https://www.st.com/resource/en/user_manual/um1724-stm32-nucleo64-boards-mb1136-stmicroelectronics.pdf (Accessed: Nov. 23, 2025).
 
-
-
-
-
-
-
-[23] Adafruit, "MicroSD SPI/SDIO Library Guide," PDF, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-microsd-spi-sdio.pdf (Accessed: Nov. 23, 2025).
+[23#] Adafruit, "MicroSD SPI/SDIO Library Guide," PDF, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-microsd-spi-sdio.pdf (Accessed: Nov. 23, 2025).
 
 [12] Analog Devices, "MAX31856 Cold-Junction Compensated Thermocouple-to-Digital Converter," Datasheet, Available: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31856.pdf (Accessed: Nov. 23, 2025).
 
@@ -228,20 +218,21 @@ All sources that have contributed to the detailed design and are not considered 
 
 [15] Analog Devices, "AD8494/AD8495/AD8496/AD8497 Thermocouple Amplifiers," Datasheet, Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf (Accessed: Nov. 23, 2025).
 
-[16] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
+
+[17] Adafruit, "3844 Membrane Keypad Technical Docs," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
+
+[19] DFRobot, "EC11 Rotary Encoder Module Datasheet," PDF, Available: https://raw.githubusercontent.com/Arduinolibrary/DFRobot_SEN0235_EC11_Rotary_Encoder_Module/master/EC11I-152%20Datasheet.pdf (Accessed: Nov. 23, 2025).
 
 [27] Adafruit, "YF-S201 Flow Meter Datasheet," PDF, Available: https://cdn-shop.adafruit.com/product-files/828/C898+datasheet.pdf (Accessed: Nov. 23, 2025).
 
 [25] LEM, "HO 6/10/25-P Series Datasheet," PDF, Available: https://www.lem.com/sites/default/files/products_datasheets/ho_6_10_25-p_series.pdf (Accessed: Nov. 23, 2025).
 
-[4] Adafruit, "3844 Membrane Keypad Technical Docs (Duplicate)," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
+
 
 [21] Newhaven Display, "NHD-0216CW-AB3 Specification," PDF, Available: https://newhavendisplay.com/content/specs/NHD-0216CW-AB3.pdf (Accessed: Nov. 23, 2025).
 
 [11] STMicroelectronics, "NUCLEO-L476RG Product Page," Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711 (Accessed: Nov. 23, 2025).
-
-[17] Adafruit, "3844 Membrane Keypad Technical Docs," PDF, Available: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/761/3844_Web.pdf (Accessed: Nov. 23, 2025).
-[19] DFRobot, "EC11 Rotary Encoder Module Datasheet," PDF, Available: https://raw.githubusercontent.com/Arduinolibrary/DFRobot_SEN0235_EC11_Rotary_Encoder_Module/master/EC11I-152%20Datasheet.pdf (Accessed: Nov. 23, 2025).
+[16] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
 
 [18] DFRobot, "SEN0235 EC11 Rotary Encoder Module," Product Page, Available: https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223 (Accessed: Nov. 23, 2025).
 
