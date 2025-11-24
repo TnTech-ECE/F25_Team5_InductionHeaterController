@@ -33,7 +33,7 @@ The document should include:
 The Embedded Subsystem describes the software for the microcontroller, the connections the microcontroller, and the connections to the sensors, power PCB, etc. The software on the microcontroller will control the heating of the pipe and the water, check for faults with in the system, display to the lcd, interpret sensors and use inputs. The connections will be via terminal blocks on other peripherals and on the shield PCB for the microcontroller. 
 
 ## Specifications and Constraints
-Overview:
+
 1. This Microcontroller **shall** not exceed 100°C during operation.  [1]  
 2. This Microcontroller **shall** control the switching frequency of the power board. [2], [3], [4], [5]  
 3. This Microcontroller **shall** output PWM and toggle its pins. [3], [4], [5]  
@@ -43,6 +43,7 @@ Overview:
 7. This Microcontroller **shall** interface with an LCD. [7]
    
 ## Overview of Proposed Solution
+
  1. The microcontroller should not exceed 100°C so that the microcontroller does not overheat requiring the MCU to be replaced.
  2. The microcontroller should control the switching frequency of the power board gate drivers. The frequency will control the power level as the frequency shifts away from the resonance frequency of the coil.
  3. The Microcontroller will use GPIO pins to interface with peripherals and use PWM signals to control the frequency sent to the gate drivers.
@@ -64,8 +65,8 @@ Every subsystem must incorporate at least one constraint stemming from standards
 
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
 
-- **Inputs:**
-Overview:
+### - Inputs:
+#### Overview:
  1. 5V DC from the power board
  2. Reading Micro SD Interface
  3. MAX31856 ADC to SPI for a Thermocouple
@@ -76,7 +77,8 @@ Overview:
  8. Rotary Encoder
  9. Flow Sensor
  10. Current Sensor
-Specifics:
+
+#### Specifics:
  1. 5V DC from the power board. 
    The STM32l476RG needs 5V volts from the power board to run all the devices [8].  
  2. Reading Micro SD Interface
@@ -98,15 +100,15 @@ Specifics:
  10. Current Sensor
    The current sensor will use ADC 2 CH 3 on PC2. The current sensor will make electrical current flowing in the system is at a safe value so that components don't explode [17] [8].
 
-- **Outputs:**
-Overview:
+### - Outputs:
+#### Overview:
  1. LCD
  2. PWM signals to Gate Drivers
  3. Writing Micro SD Interface
  4. Setting Pipe Fault Temperature For Amplifier
  5. Setting IGBT Fault Temperature For Amplifier
   
-Specifics:
+#### Specifics:
  1. LCD
    The LCD uses GPIO Pins A0-A5. A0 which is PA0, connects to the register Select, RS pin. The read/write pin is tied to ground since the LCD only needs to be written to. A1 which is PA1, connects to the Enable pin, EN pin. A2-A5, which is pins PA4, PB0,PC1, and PC0 respectively, is connected to data pin D4-D7 [8].
  2. PWM signals to Gate Drivers
@@ -117,6 +119,7 @@ Specifics:
    Setting Pipe Fault Temperature uses SPI 2 MOSI on PB15. Inputs 4. explains the rest of the connections for the Pipe Temperature Amplifier [8] [10].
  5. Setting IGBT Fault Temperature For Amplifier
    Setting IGBT Fault Temperature uses SPI 3 MOSI on PC12. Inputs 5. explains the rest of the connections for the IGBT Temperature Amplifier [8] [10].
+
 ## Buildable Schematic 
 
 <!-- Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
