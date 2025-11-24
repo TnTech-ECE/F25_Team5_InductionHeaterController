@@ -41,7 +41,8 @@ Overview:
  5. This Microcontroller shall have Analog-to-Digital converting capabilities. [46]
  6. This Microcontroller shall interpret user interface inputs.
  7. This Microcontroller shall interface with an LCD. [47]
-Overview:
+   
+## Overview of Proposed Solution
  1. The microcontroller should not exceed 100°C so that the microcontroller does not overheat requiring the MCU to be replaced.
  2. The microcontroller should control the switching frequency of the power board gate drivers. The frequency will control the power level as the frequency shifts away from the resonance frequency of the coil.
  3. The Microcontroller will use GPIO pins to interface with peripherals and use PWM signals to control the frequency sent to the gate drivers.
@@ -58,17 +59,7 @@ The team should set specifications for each subsystem. These specifications may 
 
 Every subsystem must incorporate at least one constraint stemming from standards, ethics, or socio-economic factors. -->
 
-
-## Overview of Proposed Solution
-
 <!-- Describe the solution and how it will fulfill the specifications and constraints of this subsystem. -->
-
-
-
-
-
-
-
 ## Interface with Other Subsystems
 
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
@@ -128,11 +119,12 @@ Specifics:
 <!-- Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
 
 The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned. -->
+#### Embedded System Connection Diagram
 ![Embedded System Connection Diagram](./Embedded_System/Embedded_System_Connection_Diagram.png)
 
 ## Printed Circuit Board Layout
 
-Include a manufacturable printed circuit board layout.
+<!-- Include a manufacturable printed circuit board layout. -->
 
 The microcontroller will have a terminal shield that the PCB subsystem will design. The shield will have 2 sets of double female headers 19 long which will mate to the 2 sets of double male headers on the microcontroller. The female double headers will be soldered to the shield. The left and right side, which will be 19 pins long, of the double headers will be connected to terminal blocks through copper PCB traces. The rows terminal blocks are soldered to the opposite side of the pcb as the female headers. Each pin on the headers will have its own terminal block. Both sets of the headers will be connect to single row terminal blocks. The headers are on opposite sides to the Terminal blocks. The headers and Terminal Blocks pins are spaced 2.54 mm apart. In between the inner rows of terminal blocks, there will be 4 rows of 10 for the microcontroller 5V, 3.3V, ground, and analog ground. The output of the sensor ADCS and amimplfiers will be Terminal blocked as well.
 
@@ -140,7 +132,10 @@ The microcontroller will have a terminal shield that the PCB subsystem will desi
 
 For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail.
 
+![LCD Abstracted logic](./Embedded_System/LCD%20abstracted%20logic.drawio.png)
 
+### Proportional Differential Integral Controller Flow Chart
+![pid flowchart](Embedded_System/New_HeatGenerationSubsystem.drawio.png)
 
 ![Delay System Flow Chart](./Embedded_System/delay%20system.drawio.png)
   
@@ -148,33 +143,43 @@ For sections including a software component, produce a chart that demonstrates t
 
 ![Micro-Tasked LCD System Flow Chart](./Embedded_System/LCD%20logic.drawio.png)
 
-### Proportional Differential Integral Controller Flow Chart
-![pid flowchart](Embedded_System/New_HeatGenerationSubsystem.drawio.png)
+
 ## BOM
 
 Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
 
-| Component Name                               | Component Id      | Cost   | Operating Voltage (V) | Max Operating Current (mA) | Power Cost (mW)  | Amount | Total Power (mW) | Total Cost ($) |
-| -------------------------------------------- | ----------------- | ------ | --------------------- | -------------------------- | ---------------- | ------ | ---------------- | -------------- |
-| STM32Microcontroller [1] [923]               | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         |
-| Adafruit SPI Thermocouple Amplifier  [4]     | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         |
-| Adafruit I2C  Thermocouple Amplifier [5] [6] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         |
-| Analog Output  Thermocouple Amplifier [7]    | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         |
-| Keypad [8] [9#]                              | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          |
-| Rotary Encoder [1569] [15610]                | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
-| LCD [9] [10]                                 | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675  (at 5 V)    | 1      | 135.0            | $30.87         |
-| Adafruit Micro SD Card Interface [12] [13]   | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
-| Lem Electric Current Sensor [14] [15]        | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         |
-| Liquid Flow Meter 1/2" [16] [17]             | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
-| Potentiometer LCD                            | 3362P-1-502LF     | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
-| Total ( electricals not including MCU)       | N/A               | N/A    | N/A                   | 203.53 mA (at 5V)          |                  | N/A    | 1017.64          | $143.46        |
+| Component Name                              | Component Id      | Cost   | Operating Voltage (V) | Max Operating Current (mA) | Power Cost (mW)  | Amount | Total Power (mW) | Total Cost ($) |
+| ------------------------------------------- | ----------------- | ------ | --------------------- | -------------------------- | ---------------- | ------ | ---------------- | -------------- |
+| STM32Microcontroller [1] [923]              | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         |
+| Adafruit SPI Thermocouple Amplifier  [4]    | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         |
+| Adafruit I2C Thermocouple Amplifier [5] [6] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         |
+| Analog Output Thermocouple Amplifier [7]    | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         |
+| Keypad [8] [9#]                             | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          |
+| Rotary Encoder [1569] [15610]               | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
+| LCD [9] [10]                                | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675  (at 5 V)    | 1      | 135.0            | $30.87         |
+| Adafruit Micro SD Card Interface [12] [13]  | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
+| Lem Electric Current Sensor [14] [15]       | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         |
+| Liquid Flow Meter 1/2" [16] [17]            | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
+| Total (electricals not including MCU)       | N/A               | N/A    | N/A                   | 203.53 mA (at 5V) < 500 mA |                  | N/A    | 1017.64          | $143.46        |
 ## Analysis
 
-Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
+<!-- Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness. -->
+
+NUCLEO-L476RG is the microcontroller used since it what the team is most comfortable with. Also, the MCU fits the teams needs of being low power and having GPIO, ADC, TIMERS 80MHZ I2C, SPI, and PWM capabilities. 
 
 Interrupts will be used over polling for user inputs as actions for inputs will only need to take up the thread when the users interacts with a interface. The keypad is for buttons to control the lcd and set values. A rotary controller will also be used to set values. Then fault display signals from the sensors will be on interrupts. For less important display and setting of inputs they will be on Interrupts so CPU time is not wasted.
 
-Reading the sensors temperature sensors will be polled with PID logic as the temperature sensors do not need to be as fast. The shut off temperatures for the objects the sensors are measuring can be programed on amplifier the signal directly a fault after the temperature passes a certain threshold. The direct wiring of fault signals from the amplifier would speed up a issue disabling the circuit. Due to majority of the pins on the microcontroller being used, the termocouples will need to be amplified in different ways. There is only 3 ADC, 3 API, and 3 I2C. Since the system has 6 interfaces/sensors, they have to be spread across the ways of interfacing. The thermocouple that is reading the pipe can have the amplifier setup to fault pass a certain temperature. The direct fault signal will speed up the disabling of the system bypassing SPI. To set the threshold fault temperature SPI MOSI will be used. The IGBT termocouples on the power board will have a similar capability. 
+Reading the sensors temperature sensors will be polled with PID logic as the temperature sensors do not need to be as fast. The shut off temperatures for the objects the sensors are measuring can be programed on amplifier the signal directly a fault after the temperature passes a certain threshold For the MCP9600 and MAX31856 via I2C and SPI respectively. The direct wiring of fault signals from the amplifier would speed up a issue disabling the circuit. Due to majority of the pins on the microcontroller being used, the termocouples will need to be amplified in different ways. There is only 3 ADC, 3 SPI, and 3 I2C. Since the system has 6 interfaces/sensors, they have to be spread across the ways of interfacing. The thermocouple that is reading the pipe can have the amplifier setup to fault pass a certain temperature. The direct fault signal will speed up the disabling of the system bypassing SPI interfacing speeds. To set the threshold fault temperature SPI MOSI will be used. The IGBT termocouples on the power board will have a similar capability. The IGBT will be setup similar to the pipe amplifier. The IGBT and Pipe will be amplified and ADCed via a MAX31856 via SPI. The output water temp will be amplified via a AD8495 and ADC 1 as ADC reads a lot faster than I2C. The input water temp will be amplified via a MCP9600 via I2C as it does not not need to read as fast the output since it will change at a minium of every hour. 
+
+The keypad will be used to set the desired temp and interface with the system. the A-C will set 3/4 modes of the LCD. The First 3 are the display temp mode (A key), the set temp (B key), and set power level (C key). The display temp mode displays the desired temperature or power level, the pipe temperature, the output and input water temperature, and the IGBT temperature. Basically a system vitals mode. The second mode allows the user to change the desired temperature via the keypad or the rotary encoder. The temperature is entered when the user presses pound on the keypad. The same operation is down for the third mode but for the power level. The 4th mode is the fault mode it occurs when the system has a fault via over Current in the current transducer or over temp fault from any MAX31856 amplifier. It is cleared only via the star key.
+
+Adafruit Micro SD Card Interface will be used to save the state of the system and log the systems vials over time. The Micro SD Interface is used over ROM as the Interface is easier viewable on a computer for displaying data.
+
+Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters.
+
+The Microcontroller will have to interface will the power board by sending 20-50Khz PWM signals. Two that are 180 degrees out of phase which can be done via a negated timer alternate pin. The power board also needs a 80Khz PWM signal. 
+
+
 
 ## References
 
@@ -204,7 +209,7 @@ All sources that have contributed to the detailed design and are not considered 
 
 [923] STMicroelectronics, "NUCLEO-L476RG Product Page," Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711 (Accessed: Nov. 23, 2025).
 
-[4] Analog Devices, "MAX31855 Cold-Junction Compensated Thermocouple-to-Digital Converter," Datasheet, Available: https://cdn-shop.adafruit.com/datasheets/MAX31855.pdf (Accessed: Nov. 23, 2025).
+[4] Analog Devices, "MAX31856 Cold-Junction Compensated Thermocouple-to-Digital Converter," Datasheet, Available: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31856.pdf (Accessed: Nov. 23, 2025).
 
 [5] Adafruit, "MCP9600 I2C Thermocouple Amplifier," Guide, Available: https://cdn-learn.adafruit.com/downloads/pdf/adafruit-mcp9600-i2c-thermocouple-amplifier.pdf (Accessed: Nov. 23, 2025).
 
