@@ -141,7 +141,7 @@ where:
 
 | Component | Manufactuer | Part Number | Distrubutor | Distributor Part Number | Quantity | Price | Purchasing Website URL |
 | --------- | ----------- | ----------- | ----------- | ----------------------- | -------- | ----- | ---------------------- |
-| Pipe Temp Thermocouple | Omega | KMQSS-062U-12 | Digikey | 5880-KMQSS-062U-12-ND | 1 | $70.82 | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840) |
+| Surface Temp Thermocouple | Omega | KMQSS-062U-12 | Digikey | 5880-KMQSS-062U-12-ND | 1 | $70.82 | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840) |
 | Thermocouple Amplifier | Adafruit | 1778  | Digikey | 1528-1778-ND | 2 | $11.95 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/1778/5638304) |
 | Total Cost | N/A | N/A | N/A | N/A | N/A | $82.77 | N/A |
 
