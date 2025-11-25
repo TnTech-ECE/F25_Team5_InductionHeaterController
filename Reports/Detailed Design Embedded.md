@@ -107,7 +107,7 @@ Provide detailed information about the inputs, outputs, and data transferred to 
  3. Writing Micro SD Interface
  4. Setting Pipe Fault Temperature For Amplifier
  5. Setting IGBT Fault Temperature For Amplifier
-  
+
 #### Specifics:
  1. LCD
    The LCD uses GPIO Pins A0-A5. A0 which is PA0, connects to the register Select, RS pin. The read/write pin is tied to ground since the LCD only needs to be written to. A1 which is PA1, connects to the Enable pin, EN pin. A2-A5, which is pins PA4, PB0,PC1, and PC0 respectively, is connected to data pin D4-D7 [8].
@@ -172,6 +172,10 @@ Provide a comprehensive list of all necessary components along with their prices
 <!-- Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness. -->
 
 NUCLEO-L476RG is the microcontroller used since it what the team is most comfortable with. Also, the MCU fits the teams needs of being low power and having GPIO, ADC, TIMERS 80MHZ I2C, SPI, and PWM capabilities. THe proportional integral deferential controller will be implemented on the microcontroller ran on an 100ms interval [8].
+
+The purpose of the delay system is to not busy wait for a long duration. The system checks every millisecond, counting down from the delay value. This allow other processes to run between the millisecond checks/runs. The contrast is HAL_Delay() which uses a while loop checking how many ticks have past while is why the system is micro-tasked. Run interval is to repeatably run a task at a specific interval. The run timeout delays for a specific amount of time then runs the task. The run interval until will run a task specific interval until the until callback returns true. [8]
+
+The LCD system is micro-tasked as the LCD displaying information is not as important as for example the PID controller. Writing data and commands to the lcd will queue to instructions in a circular queue so that reading the next instruction and adding the the queue is O(1) time. The queue runs on an 200 microsecond interval so it can write a char per 1 ms. The micro-tasked system allows for other tasks to run between the LCD writes so that the processor is more efficiently used. HAL_Delay() is also removed from the system to not have any busy waiting which this can happen as a uint is stored in the queue. the most significant 7 bits are the after the LCD instruction delay from 0-127 ms. The delay is so that the LCD can process the instruction until the next command. The Delay is set based on the LCD data-sheet per command execution time [18]. The 9th bit controls whether the instruction is data or a command. Then the 8 Least significant bits are the data. [8]
 
 Interrupts will be used over polling for user inputs as actions for inputs will only need to take up the thread when the users interacts with a interface. The keypad is for buttons to control the lcd and set values. A rotary controller will also be used to set values. Then fault display signals from the sensors will be on interrupts. For less important display and setting of inputs they will be on Interrupts so CPU time is not wasted [8].
 
