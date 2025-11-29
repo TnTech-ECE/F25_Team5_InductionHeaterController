@@ -96,7 +96,7 @@ Provide detailed information about the inputs, outputs, and data transferred to 
  8. Rotary Encoder
    The Rotary Encoder will be able to change values for the system as well depending on the mode of the lcd. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. the Buttons use on PC8 is TBD [8] [15].
  9. Flow Sensor
-   The flow sensor will use ADC 3 CH 4 on PC3. The flow sensor will detect when the water is flowing then turn of the induction gate driver [8] [16].
+   The flow sensor will use GPIO Interrupt 3 on PC3. The flow sensor will detect when the water is flowing then turn of the induction gate driver [8] [16].
  10. Current Sensor
    The current sensor will use ADC 2 CH 3 on PC2. The current sensor will make electrical current flowing in the system is at a safe value so that components don't explode [17] [8].
 
@@ -185,7 +185,7 @@ The keypad will be used to set the desired temp and interface with the system. t
 
 Adafruit Micro SD Card Interface will be used to save the state of the system and log the systems vials over time. The Micro SD Interface is used over ROM as the Interface is easier viewable on a computer for displaying data. The Interface will use SPI 1 configured to full duplex master. [9]
 
-Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters.
+Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters. The system will use a GPIO Interrupts to count the pulses per second which is 7.5 times more than the flow rate in Liters per minute.
 
 The Microcontroller will have to interface will the power board by sending 20-50Khz PWM signals. Two that are 180 degrees out of phase which can be done via a negated timer alternate pin. The power board also needs a 80Khz PWM signal. The MCU will also receive 5V from a regulator on the power board.
 
