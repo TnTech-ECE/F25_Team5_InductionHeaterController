@@ -14,8 +14,21 @@
 #include "delay.h"
 #include "save.h"
 #include "run.h"
+#include "flow_sensor.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
+#include "sd_functions.h"
+volatile bool need_save = false;
+volatile bool need_log = false;
+void save()
+{
+	need_save = true;
+}
+void log()
+{
+	need_log = true;
+}
+uint32_t value_adc;
 max6675_tc *thermoSPI2;
 max6675_tc *thermoSPI3;
 struct ControllerData controllerData;
@@ -24,44 +37,74 @@ void threeTenthSeconds(void)
 {
 	float tempSPI2 = tc_readTemp(thermoSPI2);
 	float tempSPI3 = tc_readTemp(thermoSPI3);
-	DisplayNumber((int)tempSPI2, 0, 0, 0, 3);
-	DisplayNumber((int)tempSPI3, 1, 0, 0, 3);
+	controllerData.t1 = tempSPI2;
+	controllerData.t2 = tempSPI3;
+	// int voltsADC3 = 5.0f * (float)(value_adc) / 4096.0f;
+	DisplayDecimal(tempSPI2, 0, 0, 0, 4);
+	DisplayDecimal(tempSPI3, 1, 0, 0, 4);
+	float flowRate = getFlowRateGPS();
+	DisplayDecimal(flowRate, 0, 5, 0, 6);
 	DisplayDecimal(controllerData.desiredTemperature, 0, 12, 0, 4);
+	log();
 }
 
 void run()
 {
-	char clearSector[17];
-	int i = 0;
-	for (; i < 16; i++)
-	{
-		clearSector[i] = ' ';
-	}
-	clearSector[i] = '\0';
+	printf("\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r");
 	// Initial wait for I2C and LCD to be ready
+
 	HAL_Delay(100);
+	initFlowSensor();
+	// HAL_ADC_Start_DMA(&hadc3, (uint32_t *)&value_adc, 1);
+	HAL_Delay(20);
 	//
 	//	// Initialize LCD once
 	lcd_init();
 	HAL_Delay(20); // Wait after init
+	// sd_send_initial_dummy_clocks();
 	thermoSPI2 = tc_init(&hspi2, spi_cn2_GPIO_Port, spi_cn2_Pin);
 	thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
-
+	int fr = sd_mount();
+	printf("sd_mount -> %d\r\n", fr);
+	if (fr != FR_OK)
+	{
+		printf("Mount failed\n");
+		return;
+	}
 	bool success = loadControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
 	if (!success)
-		controllerData.desiredTemperature = 48.8889f;
+
+		controllerData.desiredTemperature = 48.8f;
+
 	//
 	//	// Clear display and home cursor
 	//	HAL_Delay(2);		// Clear needs > 1.5ms
 	// LCD_WriteCommand(0xF, 1);
+
 	Write_String_Sector_LCD(0, "Tempature");
 	Write_String_Sector_LCD(4, "Sensors");
 	HAL_Delay(2000);
 	Clear_Display();
+	// WriteStringAt(success ? "true " : "false", 0, 6);
+
+	// test();
 	runInterval(threeTenthSeconds, 300);
-	i = 0;
+
 	while (1)
 	{
+		if (need_save)
+		{
+
+			bool result = saveControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
+			// WriteStringAt(result ? "true " : "false", 0, 6);
+			need_save = false;
+		}
+		if (need_log)
+		{
+			bool result = appendControllerDataSD(CONTROLLER_LOG_PATH, &controllerData);
+			// WriteStringAt(result ? "true " : "false", 0, 6);
+			need_log = false;
+		}
 		// if (!i)
 		// 	Clear_Display();
 		//		threeTenthSeconds();

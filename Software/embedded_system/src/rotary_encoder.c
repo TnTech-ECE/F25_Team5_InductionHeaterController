@@ -22,6 +22,7 @@ static uint32_t timeoutLast = UINT32_MAX;
 bool onRotateTimeout = false;
 #define ON_ROTATE_TIMEOUT_DELAY 100
 void runRotateTimeout(bool force);
+
 void onRotateTimeoutCallback(void)
 {
 
@@ -32,12 +33,12 @@ void onRotateTimeoutCallback(void)
 		int direction = sign(delta);
 		delta = direction * fmin(deltaABS, TIM3->ARR - deltaABS);
 		DisplayNumber(delta, 1, 7, 0, 4);
-		bool result = saveControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
-		WriteStringAt(result ? "true " : "false", 0, 6);
-		runRotateTimeout(true);
-		onRotateTimeout = true;
+
 		timeoutLast = TIM3->CNT;
 		controllerData.desiredTemperature += (float)(delta) / 10.0f;
+		save();
+		runRotateTimeout(true);
+		onRotateTimeout = true;
 	}
 	else
 	{

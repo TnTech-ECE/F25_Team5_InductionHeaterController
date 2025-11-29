@@ -48,6 +48,7 @@
  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
+#include "ff_gen_drv.h"
 
 #ifndef __USER_DISKIO_H
 #define __USER_DISKIO_H

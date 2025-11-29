@@ -15,16 +15,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "delay.h"
-int _write(int file, char *ptr, int len)
-{
-	if ((ITM->TCR & ITM_TCR_ITMENA_Msk) == 0 || (ITM->TER & 1U) == 0)
-		return len;
-	for (int i = 0; i < len; i++)
-	{
-		ITM_SendChar(*ptr++);
-	}
-	return len;
-}
+
 struct LCDCache cacheLCD;
 int LenStr(char *str)
 {
@@ -271,7 +262,7 @@ static inline int queue_full_or_emptying(void)
 
 uint8_t queueByte(uint8_t byte, uint8_t DataNotCommand, uint8_t delay)
 {
-	printf("byteQueteLength: %d", queue_length());
+	// printf("byteQueteLength: %d", queue_length());
 	__disable_irq();
 	if (queue_full_or_emptying())
 	{
@@ -476,20 +467,22 @@ void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint
 {
 	__disable_irq();
 	int maxDigits = digits - 1;
-	int logOf = (int)log10(num);
+	int logOf = (abs(num) <= 1) ? 0 : (int)log10(abs(num));
+	uint8_t negitive = 0;
 
+	if (num < 0)
+	{
+		negitive = 1;
+		--maxDigits;
+		num = -num;
+	}
 	if (logOf > maxDigits)
 		logOf = maxDigits;
 	if ((line != -1) && (position != -1))
 		Set_CursorPosition(line, from ? position - maxDigits : position);
-	if (num < 0)
-	{
-		LCD_WriteData('-');
-		--logOf;
-		num = -num;
-	}
 	int decimalplaces = fmin(-(maxDigits - logOf - 1), 0);
-
+	if (negitive)
+		LCD_WriteData('-');
 	int j = 0;
 	for (int i = logOf; i >= decimalplaces; i--)
 	{

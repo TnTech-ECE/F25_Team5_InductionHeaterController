@@ -16,8 +16,6 @@
  *
  ******************************************************************************
  */
-#include "diskio.h"
-#include "integer.h"
 #include "ff_gen_drv.h"
  /* USER CODE END Header */
 

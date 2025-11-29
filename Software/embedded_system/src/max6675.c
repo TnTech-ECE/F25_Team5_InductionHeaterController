@@ -18,7 +18,7 @@ float tc_readTemp(max6675_tc *sensor)
         return 0.0f;
     }
     HAL_GPIO_WritePin(sensor->CS_PORT, sensor->CS_PIN, GPIO_PIN_RESET);
-//    HAL_Delay(1);
+    //    HAL_Delay(1);
     if (HAL_SPI_Receive(sensor->hspi, buffer, 2, 100) != HAL_OK)
     {
         HAL_GPIO_WritePin(sensor->CS_PORT, sensor->CS_PIN, GPIO_PIN_SET);
@@ -26,7 +26,7 @@ float tc_readTemp(max6675_tc *sensor)
     }
     HAL_GPIO_WritePin(sensor->CS_PORT, sensor->CS_PIN, GPIO_PIN_SET);
 
-    rawValue = (buffer[0] | (buffer[1] << 8)) >> 3;
+    rawValue = (buffer[0] | (buffer[1] << 8)) >> 2;
     float celcius = rawValue * HIGH_TEMP_C / DATA_OUTPUT_RES;
     sensor->tempCelcius = celcius;
 

@@ -1,2 +1,4 @@
-../src/run.c:23:6:threeTenthSeconds	1
-../src/run.c:32:6:run	3
+../src/run.c:23:6:save	1
+../src/run.c:27:6:log	1
+../src/run.c:36:6:threeTenthSeconds	1
+../src/run.c:51:6:run	5

@@ -66,6 +66,9 @@ void Error_Handler(void);
 #define D7_GPIO_Port GPIOC
 #define D6_Pin GPIO_PIN_1
 #define D6_GPIO_Port GPIOC
+#define flow_sensor_Pin GPIO_PIN_3
+#define flow_sensor_GPIO_Port GPIOC
+#define flow_sensor_EXTI_IRQn EXTI3_IRQn
 #define RS_Pin GPIO_PIN_0
 #define RS_GPIO_Port GPIOA
 #define EN_Pin GPIO_PIN_1
