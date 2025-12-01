@@ -171,7 +171,7 @@ Provide a comprehensive list of all necessary components along with their prices
 
 <!-- Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness. -->
 
-NUCLEO-L476RG is the microcontroller used since it what the team is most comfortable with. Also, the MCU fits the teams needs of being low power and having GPIO, ADC, TIMERS 80MHZ I2C, SPI, and PWM capabilities. THe proportional integral deferential controller will be implemented on the microcontroller ran on an 100ms interval [8].
+NUCLEO-L476RG is the microcontroller used since it what the team is most comfortable with. Also, the MCU fits the teams needs of being low power and having GPIO, ADC, TIMERS, 80MHZ max clock, I2C, SPI, and PWM capabilities. THe proportional integral deferential controller will be implemented on the microcontroller ran on an 100ms interval [8].
 
 The purpose of the delay system is to not busy wait for a long duration. The system checks every millisecond, counting down from the delay value. This allow other processes to run between the millisecond checks/runs. The contrast is HAL_Delay() which uses a while loop checking how many ticks have past while is why the system is micro-tasked. Run interval is to repeatably run a task at a specific interval. The run timeout delays for a specific amount of time then runs the task. The run interval until will run a task specific interval until the until callback returns true. [8]
 
@@ -185,9 +185,9 @@ The keypad will be used to set the desired temp and interface with the system. t
 
 Adafruit Micro SD Card Interface will be used to save the state of the system and log the systems vials over time. The Micro SD Interface is used over ROM as the Interface is easier viewable on a computer for displaying data. The Interface will use SPI 1 configured to full duplex master. [9]
 
-Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters. The system will use a GPIO Interrupts to count the pulses per second which is 7.5 times more than the flow rate in Liters per minute.
+Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters. The system will use a GPIO Interrupts to count the pulses per second which is 7.5 times more than the flow rate in Liters per minute. [16] [8]
 
-The Microcontroller will have to interface will the power board by sending 20-50Khz PWM signals. Two that are 180 degrees out of phase which can be done via a negated timer alternate pin. The power board also needs a 80Khz PWM signal. The MCU will also receive 5V from a regulator on the power board.
+The Microcontroller will have to interface will the power board by sending 20-50Khz PWM signals. Two that are 180 degrees out of phase which can be done via a negated timer alternate pin. The power board also needs a 80Khz PWM signal. The MCU will also receive 5V from a regulator on the power board. [8]
 
 
 
