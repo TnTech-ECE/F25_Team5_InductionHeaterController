@@ -136,7 +136,7 @@ The microcontroller will have a terminal shield that the PCB subsystem will desi
 
 ## Flowchart
 
-For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail.
+<!-- For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail. -->
 
 ![LCD Abstracted logic](./Embedded_System/LCD%20abstracted%20logic.drawio.png)
 
