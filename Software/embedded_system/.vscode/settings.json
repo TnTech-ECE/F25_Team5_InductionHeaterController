@@ -23,6 +23,7 @@
 		"sd_benchmark.h": "c",
 		"sd_functions.h": "c",
 		"flow_sensor.h": "c",
-		"stm32l4xx_hal_adc_ex.h": "c"
+		"stm32l4xx_hal_adc_ex.h": "c",
+		"keypad.h": "c"
 	}
 }
