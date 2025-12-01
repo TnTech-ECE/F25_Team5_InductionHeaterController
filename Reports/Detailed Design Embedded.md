@@ -62,9 +62,9 @@ Every subsystem must incorporate at least one constraint stemming from standards
 
 <!-- Describe the solution and how it will fulfill the specifications and constraints of this subsystem. -->
 ## Interface with Other Subsystems
-
+<!--
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
-
+-->
 ### - Inputs:
 #### Overview:
  1. 5V DC from the power board
