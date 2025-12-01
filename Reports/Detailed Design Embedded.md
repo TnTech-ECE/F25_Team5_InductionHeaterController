@@ -62,9 +62,9 @@ Every subsystem must incorporate at least one constraint stemming from standards
 
 <!-- Describe the solution and how it will fulfill the specifications and constraints of this subsystem. -->
 ## Interface with Other Subsystems
-
+<!--
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
-
+-->
 ### - Inputs:
 #### Overview:
  1. 5V DC from the power board
@@ -189,11 +189,6 @@ Liquid Flow Meter will determine if the system is sending power. Having a flow m
 
 The Microcontroller will have to interface will the power board by sending 20-50Khz PWM signals. Two that are 180 degrees out of phase which can be done via a negated timer alternate pin. The power board also needs a 80Khz PWM signal. The MCU will also receive 5V from a regulator on the power board. [8]
 
-
-
-## References
-
-All sources that have contributed to the detailed design and are not considered common knowledge should be duly cited, incorporating multiple references.
 
 ## References
 
