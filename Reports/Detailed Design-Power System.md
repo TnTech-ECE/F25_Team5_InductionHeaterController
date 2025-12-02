@@ -159,6 +159,47 @@ This Section will detail ALL of the necessary information to acquire all compone
 
 
 
+## Power Budgeting
+The power budget tables are here to note the normal operation maximums of the components in the system, as well as detailing the expected power losses of components that have a significant impact on the efficiency of the system. Table 1 details the power consumption of the system components.  Table 2 details the power losses of the system.
+
+Table 1:
+
+| Components          | Power Consumption (Watts) |        
+| ------------------ | ------------ | 
+| Fans x 3           | 6             |  
+| MCU                | 1             | 
+| Pipe Workpiece     | 4500          | 
+| Total              | 4507          |
+
+
+
+Table 2 below details the estimated losses of the power subsystem.
+
+| Components          | Power Loss (Watts) |        
+| ------------------ | ------------ |
+| FB1                | 77            |
+| Q1,Q2,Q3,Q4        | 160           |
+| G1,G2,G3,G4        | 1.5           |  
+| U1,U2,U3,U4        | 0.25          |  
+| MPM-10-15          | 0.35          |  
+| T1                 | 0.75          |  
+| LT8316             | 0.01          |  
+| U6                 |  1            |  
+| Bleed Resistors    |  1.5          |
+| Tank Coil Copper Loss |  20        |
+| Total              |  261.36       |
+
+
+Efficiency of system:   (Load_Power / Input_Power) * 100
+
+        Input Power = Table 1 Total
+
+
+        
+Efficiency will be around 94%
+
+IF the power dissipation of the transistors was a datasheet worst, then the system efficiency would drop to 82%. The IGBT's will not get to that point because of ensured operational conditions.
+
 
 
 ## Analysis
