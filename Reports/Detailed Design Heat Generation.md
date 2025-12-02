@@ -65,24 +65,24 @@ Thermocouple Voltage [6]:
 
 When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [7]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. 
 
-Adafruit produces an AD8495 K-Type Thermocouple Amplifier [8,9] that solves both the issue of amplification and cold junction amplification: 
-![alt text](./Heat_Generation_Subsystem/Adafruit_1778.png)
-![alt text](./Heat_Generation_Subsystem/adafruit_amplifier_block_diagram.png)
+Adafruit produces an Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board [8,9] that solves both the issue of amplification and cold junction amplification: 
 
-There are many different K-type thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. The critical requirement for the thermocouple chosen for this application is electromagnetic interference (EMI) shielding. This is because of the chosen coil geometry. 
+![alt text](./Heat_Generation_Subsystem/Adafruit_MAX31856.png)
+
+There are many different thermocouples available with price mostly depending on how the thermocouple connects to the workpiece. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications, with capabilities to read from –270 to 1370 °C. The critical requirement for the thermocouple chosen for this application is electromagnetic interference (EMI) shielding. This is because of the chosen coil geometry. 
 
 Recall, the induction coil will be wrapped around the pipe: 
 
 ![alt text](image-7.png)
 
-The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. The Omega KMQSS-062U-12 thermocouple has a 0.062" diameter 304 Stainless Steel (SS) sheath [10] that provides decent EMI shielding, mechanical strength, and corrosion resistance [11] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water: 
+The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. The Omega KMQSS-062U-12 K type thermocouple has a 0.062" diameter 304 Stainless Steel (SS) sheath [10] that provides decent EMI shielding, mechanical strength, and corrosion resistance [11] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water: 
 
 
 ![alt text](./Heat_Generation_Subsystem/Omega_thermocouple_picture.png)
 
 
 
-The implementation of the Omega KMQSS-062U-12 thermocouple and AD8495 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
+The implementation of the Omega KMQSS-062U-12 thermocouple and MAX31856 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
 
 The user desired temperature shall be determined from the user desired power input setting and common practices. Typical hot water temperatures for residential use vary between 120 °F and 160 °F [12], so the pipe should be heated to around those temperatures. However, the heating of the water would be slower than the heating of the pipe, so the pipe temperature may be increased if faster water heating is desired. For this application, temperature values between 120 °F and 160 °F provide a good baseline for desired temps. 
 
@@ -93,25 +93,27 @@ This subsystem primarily consists of the thermocouple sensors, any necessary com
 
 #### 1. Power Subsystem 
 - **Inputs:**
-The AD8495 thermocouple amplifier is the primary component of this subsystem requiring power. According to the datasheet the AD8495 works best when supplied with 5 V [8] with a power consumption of less than 1 mW. It should be noted that the KMQSS-062U-12 thermocouple does not require any power input, only the amplifier. 
+The MAX31856 thermocouple amplifier is the primary component of this subsystem requiring power. According to the datasheet the MAX31856 works best when supplied with 5 V [8] with a power consumption of less than 5 mW. It should be noted that the KMQSS-062U-12 thermocouple does not require any power input, only the amplifier. 
 - **Outputs:**
 The Nucleo shall send a PWM signal controlling the duty cycle controlling the amount of amps delivered to the coil which controls the temperature of the pipe. 
 
 #### 2. Embedded Subsystem 
 - **Outputs:**
-The AD8495 thermocouple amplifier shall connect to the Nucleo-STM32L476RG ADC 1 CH14 on PC4 providing an analog voltage signal.The Nucleo provides the brain act as a controller to enable the sending of a PWM signal to the power subsystem.
+The MAX31856 thermocouple amplifier shall connect to the Nucleo-STM32L476RG ADC 1 CH14 on PC4 providing an analog voltage signal.The Nucleo provides the brain act as a controller to enable the sending of a PWM signal to the power subsystem.
 
 ## Buildable Schematic 
 
-Recommended Schematic from Adafruit [8]: 
-![alt text](./Heat_Generation_Subsystem/AdaFruit_Recommended_Schematic.png)
+Schematic from Adafruit for MAX31856 [8]: 
+![alt text](./Heat_Generation_Subsystem/MAX31856_Schematic.png)
+
+
+![alt text](./Heat_Generation_Subsystem/MAX31856_fab_print.png)
 
 
 
 
 Simplified KiCAD Schematic with Nucleo Connection: 
-![alt text](./Heat_Generation_Subsystem/KiCad_Heat_Gen_Schematic.png)
-
+![alt text](./Heat_Generation_Subsystem/KiCad_Heat_Gen_Schematic_Updated.png)
 
 
 
@@ -143,8 +145,8 @@ where:
 | Component | Manufactuer | Part Number | Distrubutor | Distributor Part Number | Quantity | Price | Purchasing Website URL |
 | --------- | ----------- | ----------- | ----------- | ----------------------- | -------- | ----- | ---------------------- |
 | Surface Temp Thermocouple | Omega | KMQSS-062U-12 | Digikey | 5880-KMQSS-062U-12-ND | 1 | $70.82 | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840) |
-| Thermocouple Amplifier | Adafruit | 1778  | Digikey | 1528-1778-ND | 2 | $11.95 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/1778/5638304) |
-| Total Cost | N/A | N/A | N/A | N/A | N/A | $82.77 | N/A |
+| Thermocouple Amplifier | Adafruit | 3263  | Digikey | 1528-1772-ND | 1 | $17.50 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3263/6227009) |
+| Total Cost | N/A | N/A | N/A | N/A | N/A | $88.32 | N/A |
 
 
 ## Analysis
@@ -172,14 +174,14 @@ It is more practical and efficient to experimentally derive the plant dynamics w
 
 This systems PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. It is possible to implement PID control using dedicated PID blocks using PLC or LabVIEW software, but these items would add unneccessary cost and compatibility issues to the system. Implementing PID control using C code is best to keep costs low and maximize compatibility with the Nucleo. 
 
-Thermocouples are used as the sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6]. Thermocouple sensors themselves do not require any power to operate, but thermocouples do require power for their peripherals interpreting the data being sent. For this subsystem, the only peripheral is the thermocouple amplifier, which only consumes approximately 1 milliWatt [8]. 
+Thermocouples are used as the sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6]. Thermocouple sensors themselves do not require any power to operate, but thermocouples do require power for their peripherals interpreting the data being sent. For this subsystem, the only peripheral is the thermocouple amplifier, which only consumes approximately 4.95 milliWatts [8]. 
 
-The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [7]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [13]. Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [15]. Cold junction compensation is often included with dedicated thermocouple amplifiers [8]. 
+The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [7]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [13]. Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [15]. Cold junction compensation is often included with dedicated thermocouple amplifiers [9]. 
 
-Adafruit produces an AD8495 K-Type Thermocouple Amplifier [9] that solves both issues of amplification and cold junction amplification: 
-![alt text](./Heat_Generation_Subsystem/Adafruit_1778.png)
+Adafruit produces an Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board [8,9] that solves both the issue of amplification and cold junction amplification: 
+![alt text](./Heat_Generation_Subsystem/Adafruit_MAX31856.png)
 
-The Adafruit AD8495 K-Type Thermocouple Amplifier is a cheaper option available since it can only read K-type thermocouples. K-type thermocouples are general purpose thermocouples and have a temperature range [6] suitable for this system's applications. Thus, this amplifier will be a good low cost solution to quickly and efficiently measure the temperature of the workpiece using a K-type thermocouple. The breakout board is set up in the basic configuration as seen in the buildable schematic, so the primary issue of integration will be connecting the thermocouple leads, the power to the amplifier, and the output to the PCB. This will require a PCB board implemented in the PCB subsystem. 
+The Adafruit Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board is able to read any type of thermococouple. Cheaper options are availabl that can only read K-type thermocouples, but this board includes the critical ability to produce fault signals to ensure safety is maintained. The fault helps reduce unneccessary delays from the microcontroller trying to shut off power using code. The breakout board is set up in the basic configuration as seen in the buildable schematic, so the primary issue of integration will be connecting the thermocouple leads, the power to the amplifier, and the output to the PCB. This will require a PCB board implemented in the PCB subsystem. 
 
 The critical requirement for the thermocouple chosen for this application is the reduction of noise in the sensor in order to maintaining accurate readings. Thus determining the proper thermocouple focused on noise reduction as the critical factor and focusing on other features later to isolate the exact model to implement. 
 
@@ -193,7 +195,7 @@ The Omega KMQSS-062U-12 Thermocouple will need to be mechanically attached to th
 
 The Omega KMQSS-062U-12 thermocouple should be placed along the pipe a short distance away from the coil but not inside the coil. The electromagnetic field within the coil could induce voltage and / or heating in the thermocouple [18]. This would create unstable reading and potentially damage the thermocouple. The pipe should be heated outside the coil by conduction and allow for accurate readings. This provides about two potential locations for the thermocouple to measure, to the left or to the right of the coil. Thus, welding's permanence should not be an issue for control as the temperature of the pipe should not drastically change from one side to another. 
 
-The Nucleo will need to be able to store the temperature measurements from the Omega KMQSS-062U-12 thermocouple as amplified by the AD8495 thermocouple amplifier in order to measure the total temperature rise of the metal. This will be accomplished by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature, which will be around 120 °F and 160 °F [12]. The Embedded Subsystem will also include a SD card act as memory to store these values, with more details on that implementation in that Subsystem's document. 
+The Nucleo will need to be able to store the temperature measurements from the Omega KMQSS-062U-12 thermocouple as amplified by the MAX31856 thermocouple amplifier in order to measure the total temperature rise of the metal. This will be accomplished by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature, which will be around 120 °F and 160 °F [12]. The Embedded Subsystem will also include a SD card act as memory to store these values, with more details on that implementation in that Subsystem's document. 
 
 ## References
 [1] N. R. Rafferty and G. Tarbutton, “IEEE 844-2000: Recommended Practice for Electrical Impedance, Induction, and Skin Effect Heating of Pipelines and Vessels,” IEEE Transactions on Industry Applications, vol. 38, no. 4, pp. 921–926, Jul. 2002, doi: https://doi.org/10.1109/tia.2002.800586.  
@@ -210,9 +212,9 @@ The Nucleo will need to be able to store the temperature measurements from the O
 
 [7] “STM32L476RG Datasheet,” ST, 2019. Available: https://www.st.com/resource/en/datasheet/stm32l476rg.pdf
 
-[8] “AD8495 Datasheet,” Adafruit Industries, 2011. Available: https://cdn-shop.adafruit.com/datasheets/AD8494_8495_8496_8497.pdf
+[8] “MAX31856 Datasheet.” Available: https://cdn-learn.adafruit.com/assets/assets/000/035/948/original/MAX31856.pdf
 ‌
-[9] Adafruit Industries, “Analog Output K-Type Thermocouple Amplifier - AD8495 Breakout,” Adafruit.com, 2020. https://www.adafruit.com/product/1778
+[9] A. Industries, “Adafruit Universal Thermocouple Amplifier MAX31856 Breakout,” www.adafruit.com. https://www.adafruit.com/product/3263
 
 [10] “Omega KMQSS-062U-12 Datasheet,” Omega, Accessed: Nov. 17, 2025. [Online]. Available: https://assets.omega.com/pdf/test-and-measurement-equipment/temperature/sensors/thermocouple-probes/JMQSS.pdf
 
