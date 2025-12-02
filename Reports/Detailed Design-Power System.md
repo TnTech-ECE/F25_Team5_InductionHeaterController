@@ -192,7 +192,7 @@ Table 2 below details the estimated losses of the power subsystem.
 
 Efficiency of system:   (Load_Power / Input_Power) * 100
 
-        Input Power = Table 1 Total
+        Input Power = Table 1 total + Table 2 total
 
 
         
