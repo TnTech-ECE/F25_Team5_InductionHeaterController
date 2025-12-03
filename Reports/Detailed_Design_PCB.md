@@ -138,7 +138,7 @@ In this screenshot from the PCB Library Component Designer, this 3D model of a 0
 
 ## Buildable Schematic 
 
-Below are the screenshot of the scematics for both the Power PCB and the Terminal I/O board. Separating the schematics into seperate sections makes it much easier to read and understand what each part of the circuit is doing. If everything was crammed into one big page, it would be messy and hard to follow, especially when you're trying to troubleshoot or make changes. Breaking it into pieces lets you keep related components together and clearly label each function. **There will be more schematic screenshot to come.**
+Below are the screenshot of the scematics for both the Power PCB and the Terminal I/O board. Separating the schematics into seperate sections makes it much easier to read and understand what each part of the circuit is doing. If everything was crammed into one big page, it would be messy and hard to follow, especially when you're trying to troubleshoot or make changes. Breaking it into pieces lets you keep related components together and clearly label each function. **There will be more schematic screenshots to come.**
 
 ![block_diagram](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/16d979507bc1b6795d6253559fa29859555ce3d3/Reports/images_PCB/terminal_IO_schematic.jpg)
 This is a screenshot of the schematic for the Terminal I/O Board. 
