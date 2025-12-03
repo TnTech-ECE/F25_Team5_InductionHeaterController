@@ -130,6 +130,8 @@ The 5 V supply to the microcontroller to power the board and supply voltage to c
 
 ## 3D Model of Custom Mechanical Components
 
+![block_diagram](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/f653ad121fec7d93034aed74f4a0c2e8f299e0e8/Reports/images_PCB/component_3d_Model.jpg)
+
 In this screenshot from the PCB Library Component Designer, this 3D model of a 0603 capacitor shows how the the physical part will sit on the PCB. The footprint includes the pads, outline, and spacing so the component can actually be soldered correctly. The '.Designator' text is just the label (like R1, C5, U3) that tells you which part it is when you're assembling or troubleshooting the board. The box around the footprint represents the component's physical boundary, which helps with placement, clearance, and making sure nothing overlaps when everything is routed.
 
 
