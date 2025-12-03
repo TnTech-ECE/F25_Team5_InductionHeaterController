@@ -35,7 +35,7 @@ For this reason, the PCB subsystem will be divided into two separate boards: the
  *Rationale:* This will help prevent any accidental disconnects and improve mechanical stability.
 ### Safety Constraints (Standards / Ethical Requirements)
 - **Fusing Required on AC Line Input**  
-*Rationale:* UL/IEC compliance; prevents fire hazards and protects users from catastrophic failures.[7][8]
+*Rationale:* UL/IEC compliance; prevents fire hazards and protects users from catastrophic failures.[5][7]
 - **High Voltage Traces Must Be Physically Isolated from User I/O**  
 *Rationale:* Ethical obligation to ensure safe operation and prevent accidental shock.
 
@@ -154,7 +154,7 @@ This Block diagram gives a visual representation of how the set up of the two bo
 
 ## BOM
 
-still being worked on
+Since the board is yet to be finalized, these values are a rough estimate. The  board will likely end up being a 4 layer stack up for the dedicated power and ground planes. The rough maximum board size is around 12 × 10 inches, with 2 oz copper on both the inside and outside layers and a 2 mm thickness to help with strength and thermal management. Based on these specs, the estimated manufacturing cost from JLCPCB comes out to about $203.66.[8]
 
 ## Analysis
 
@@ -181,9 +181,9 @@ The Terminal I/O PCB also helps keep the user interface safe and organized. Sinc
 
 [6]IPC, "IPC-2152: Standard for Determining Current Carrying Capacity in Printed Board Design," 2009.
 
-[7]International Electrotechnical Commission, "IEC 60950-1: Information Technology Equipment - Safety - Part 1: General Requirements," 2005.
+[7]Underwriters Laboratories, "UL 248-14: Low-Voltage Fuses - Part 14: Supplemental Fuses," 2010.
 
-[8]Underwriters Laboratories, "UL 248-14: Low-Voltage Fuses - Part 14: Supplemental Fuses," 2010.
+[8] JLCPCB, “Online PCB Quotation Tool,” 2025. Accessed: Dec. 2, 2025. [Online]. Available: https://cart.jlcpcb.com/quote?stencilLayer=2&stencilWidth=100&stencilLength=100&stencilCounts=5&spm=Jlcpcb.Homepage.1010
 
 [9] Texas Instruments, Designing for High Voltage: PCB Layout Guidelines, Application Report SLVA987, 2021. Available: https://www.ti.com/lit/an/slva987/slva987.pdf
 
