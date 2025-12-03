@@ -147,9 +147,11 @@ The LCD Abstracted logic Flow chart describes modes for the LCD and the actions 
 
 ### Proportional Differential Integral Controller Flow Chart
 ![PID Flowchart](Embedded_System/New_HeatGenerationSubsystem.drawio.png)
+
 The Proportional Differential Integral Flow Chart Controller shows the function of the proportional Differential Integral Controller shows the function of a proportional controller. depending on the response the of the closed loop proportional controller, the integral and differential components might be needed.
 
 ![Delay System Flow Chart](./Embedded_System/delay%20system.drawio.png)
+
 The Delay System Flow Chart explains the function of the logic behind the LCD. The right 3 flows show the 3 different functions which queue runs at different frequency and life times. The left flow handles the the logic which executes the run queue ticking down delayLeft and on time it runs the callback and if the return of run until is true it removes the delay.
   
 
@@ -194,11 +196,13 @@ The keypad will be used to set the desired temp and interface with the system. t
 
 Adafruit Micro SD Card Interface will be used to save the state of the system and log the systems vials over time. The Micro SD Interface is used over ROM as the Interface is easier viewable on a computer for displaying data. The Interface will use SPI 1 configured to full duplex master and setup to use DMA so that the thread is not blocked while saving with the SD card [9]. The interface will log the system pipe temperature, IGBT temperature, Flow Rate, system source current and possibly the water input and output temperatures with timestamps. The system state will be a saved C struct and will not be readable without a program parsing the data. [8]
 
-Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters. The system will use a GPIO Interrupts to count the pulses per second which is 7.5 times more than the flow rate in Liters per minute. [16] The GPIO Interrupts will need to be debounced to make sure that a sprit of noise did not falsy trigger the interrupt. To debounce the Interrupt the system will use runIntervalUntil at 10ms for 100ms check that the flow is greater than 1 L/min which checks if the signal is continuous. If the signal is continuous, then the system will start sending power to coil based on the PID controller.  [8]
+Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters. The system will use a GPIO Interrupts to count the pulses per second which is 7.5 times more than the flow rate in Liters per minute. [16] The GPIO Interrupts will need to be debounced to make sure that a sprit of noise did not falsely trigger the interrupt. To debounce the Interrupt the system will use runIntervalUntil at 10ms for 100ms check that the flow is greater than 1 L/min which checks if the signal is continuous. If the signal is continuous, then the system will start sending power to coil based on the PID controller.  [8]
 
 The LEM current transducer, LEM HO-10P, will use ADC 2. The value from ADC will be scaled with a constant value to show the real current value since the ADC will return a value from 0 to 4096 and is proportional to 0 to 5V. This value will be displayed on LCD in the temperature display mode. It will also be logged to the SD Card. 
 
 The Microcontroller will have to interface will the power board by sending 20-50Khz PWM signals. Two that are 180 degrees out of phase which can be done via a negated timer alternate pin. The power board also needs a 80Khz PWM signal. The MCU will also receive 5V from a regulator on the power board. The duty cycle of these signal will be changed to increase or reduce the power sent to coil. 0% being no power and 50% being maximum power. Also the further away from the resonant frequency the PWM signal is the less power the pipe will receive from the coil. [8]
+
+The safety concerns are that the microcontroller could over heat. The microcontroller has a thermistor to make sure it does not exceed 100°C and will shutoff if it detects a temperature greater than 100°C. The microcontroller will be in a compartment in the housing and the digital wires will be insulated to prevent shock even though 5V tends to not be hazardous. The amplifier for the pipe thermocouple will be outside the housing but be in its own electrical box so that the cold junction compensation can have a similar ambient temperature as the termocouples. The ethical concerns are that if a user could set any temperature or the PID constants issues could arise. If any temperature could be set to any value the system will heat forever causing the pipe to melt or the water to flash boil creating a bomb. The temperature setting will need to be capped below boiling water
 
 
 <!--
