@@ -130,9 +130,9 @@ Through the use of these skills, the team will be able to successfully navigate 
 
 ### Timeline
 
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
+![alt text](./Project%20Proposal/image-3.png)
+![alt text](./Project%20Proposal/image-4.png)
+![alt text](./Project%20Proposal/image-5.png)
 
 ## Specific Implications
 
