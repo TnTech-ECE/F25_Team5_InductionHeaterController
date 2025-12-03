@@ -170,11 +170,20 @@ The Terminal I/O PCB also helps keep the user interface safe and organized. Sinc
 ## References
 
 [1]National Fire Protection Association, "NFPA 70: National Electrical Code," Section 210, Branch Circuits, 2023
+
 [2]IPC, "IPC-2221B: Generic Standard on Printed Board Design," Table 6-1 and Table 6-2, 2012
+
 [3]International Electrotechnical Commission, "IEC 60950-1: Information Technology Equipment - Safety - Part 1: General Requirements," Annex G, Table 2Q, 2005.
+
 [4]International Electrotechnical Commission, "IEC 61000-6-3: Electromagnetic Compatibility (EMC) - Part 6-3: Generic Standards - Emission Standard for Residential, Commercial and Light-Industrial Environments," 2020.
+
 [5]STMicroelectronics, "AN5036: Guidelines for Thermal Management on STM32 Applications," Application Note, 2020. [Online]. Available: https://www.st.com/resource/en/application_note/an5036-guidelines-for-thermal-management-on-stm32-applications-stmicroelectronics.pdf
+
 [6]IPC, "IPC-2152: Standard for Determining Current Carrying Capacity in Printed Board Design," 2009.
+
 [7]International Electrotechnical Commission, "IEC 60950-1: Information Technology Equipment - Safety - Part 1: General Requirements," 2005.
+
 [8]Underwriters Laboratories, "UL 248-14: Low-Voltage Fuses - Part 14: Supplemental Fuses," 2010.
+
 [9] Texas Instruments, Designing for High Voltage: PCB Layout Guidelines, Application Report SLVA987, 2021. Available: https://www.ti.com/lit/an/slva987/slva987.pdf
+
