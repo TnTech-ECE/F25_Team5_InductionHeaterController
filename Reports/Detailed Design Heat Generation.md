@@ -73,7 +73,7 @@ There are many different thermocouples available with price mostly depending on 
 
 Recall, the induction coil will be wrapped around the pipe: 
 
-![alt text](image-7.png)
+![alt text](<Conceptual Design/image-7.png>)
 
 The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. The Omega KMQSS-062U-12 K type thermocouple has a 0.062" diameter 304 Stainless Steel (SS) sheath [10] that provides decent EMI shielding, mechanical strength, and corrosion resistance [11] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water: 
 
