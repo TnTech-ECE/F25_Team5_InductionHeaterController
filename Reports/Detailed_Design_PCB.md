@@ -35,17 +35,17 @@ For this reason, the PCB subsystem will be divided into two separate boards: the
  *Rationale:* This will help prevent any accidental disconnects and improve mechanical stability.
 ### Safety Constraints (Standards / Ethical Requirements)
 - **Fusing Required on AC Line Input**  
-*Rationale:* UL/IEC compliance; prevents fire hazards and protects users from catastrophic failures.[5][7]
+*Rationale:* UL/IEC compliance; this prevents fire hazards and protects users from catastrophic failures.[5][7]
 - **High Voltage Traces Must Be Physically Isolated from User I/O**  
-*Rationale:* Ethical obligation to ensure safe operation and prevent accidental shock.
+*Rationale:* This is an ethical obligation to ensure safe operation and prevent accidental shock.
 
 - **System State Indicators (Power, Heat, Fault LEDs) Must Be Accurate**  
 *Rationale:* This will reduce any user risks by clearly showing the operating state of the system.
 ### Socio Economic Constraints
-- **Use Components Available from Multiple Vendors**  
-*Rationale:* Avoids supply chain risk issues and makes sure of long term serviceability.
+- **Use Components that are Available from Multiple Vendors**  
+*Rationale:* This will avoid any supply chain risk issues and help with serviceability.
 - **Design Should Allow Easy Assembly and Rework**  
-*Rationale:* Makes it easier for the team to assemble as well as aids for future improvements.
+*Rationale:* This will make it much easier for the team to assemble as well as aiding any future improvements.
 
 
 ## Overview of Proposed Solution
