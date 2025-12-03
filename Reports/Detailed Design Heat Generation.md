@@ -126,7 +126,7 @@ Pseudo Code for system implemented in the Nucleo:
 Shown below is a detailed flow chart of the Heat Generation Subsystem's Hardware Components: 
 
 
-![alt text](./Heat_Generation_Subsystem/New_Heat_Generation_Schematic.drawio.png)
+![alt text](./Heat_Generation_Subsystem/Heat_Generation_Schematic_Fixed.drawio.png)
 
 
 Shown below is a detailed flow chart of the Heat Generation Subsystem's Software Components: 
