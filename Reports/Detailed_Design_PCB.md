@@ -145,7 +145,7 @@ Still being worked on
 
 
 ## Flowchart
-![block_diagram]([./images_PCB/block diagram.jpg](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/8fe1f0c4b769cce4be1279822ff243f337da463b/Reports/images_PCB/block%20diagram.jpg))
+![block_diagram](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/8fe1f0c4b769cce4be1279822ff243f337da463b/Reports/images_PCB/block%20diagram.jpg)
 
 This Block diagram gives a visual representation of how the set up of the two boards will be connected to each other. The Power PCB handles the high-power side and connects directly to the induction coil, while the Terminal I/O board sits between the power stage and the microcontroller. The microcontroller communicates through the Terminal I/O board to control the Power PCB, and interfaces with the user controlled peripherals as well as display data on the display interface. 
 
