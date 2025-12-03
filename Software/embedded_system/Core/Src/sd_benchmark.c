@@ -39,7 +39,7 @@
 #define MODE_STR "Polling"
 #endif
 
-uint32_t sd_benchmark_write(const char *filename, uint32_t size_bytes)
+unsigned sd_benchmark_write(const char *filename, unsigned size_bytes)
 {
     FIL file;
     UINT written;
@@ -53,8 +53,8 @@ uint32_t sd_benchmark_write(const char *filename, uint32_t size_bytes)
         return 0;
     }
 
-    uint32_t start = HAL_GetTick();
-    uint32_t remaining = size_bytes;
+    unsigned start = HAL_GetTick();
+    unsigned remaining = size_bytes;
 
     while (remaining > 0)
     {
@@ -69,12 +69,12 @@ uint32_t sd_benchmark_write(const char *filename, uint32_t size_bytes)
     }
 
     f_close(&file);
-    uint32_t elapsed = HAL_GetTick() - start;
+    unsigned elapsed = HAL_GetTick() - start;
     printf("[%s] Write %lu bytes in %lu ms\r\n", MODE_STR, size_bytes, elapsed);
     return elapsed;
 }
 
-uint32_t sd_benchmark_read(const char *filename, uint32_t size_bytes)
+unsigned sd_benchmark_read(const char *filename, unsigned size_bytes)
 {
     FIL file;
     UINT read;
@@ -87,8 +87,8 @@ uint32_t sd_benchmark_read(const char *filename, uint32_t size_bytes)
         return 0;
     }
 
-    uint32_t start = HAL_GetTick();
-    uint32_t remaining = size_bytes;
+    unsigned start = HAL_GetTick();
+    unsigned remaining = size_bytes;
 
     while (remaining > 0)
     {
@@ -103,7 +103,7 @@ uint32_t sd_benchmark_read(const char *filename, uint32_t size_bytes)
     }
 
     f_close(&file);
-    uint32_t elapsed = HAL_GetTick() - start;
+    unsigned elapsed = HAL_GetTick() - start;
     printf("[%s] Read %lu bytes in %lu ms\r\n", MODE_STR, size_bytes, elapsed);
     return elapsed;
 }
@@ -113,8 +113,8 @@ void sd_benchmark(void)
     if (sd_mount() == FR_OK)
     {
         printf("Starting Benchmark Test\r\n");
-        uint32_t w = sd_benchmark_write("bench.bin", TEST_SIZE);
-        uint32_t r = sd_benchmark_read("bench.bin", TEST_SIZE);
+        unsigned w = sd_benchmark_write("bench.bin", TEST_SIZE);
+        unsigned r = sd_benchmark_read("bench.bin", TEST_SIZE);
 
         if (w > 0)
             printf("Write speed: %lu KB/s\r\n", (TEST_SIZE / 1024 * 1000) / w);

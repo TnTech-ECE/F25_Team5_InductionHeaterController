@@ -18,6 +18,7 @@
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
 #include "sd_functions.h"
+#include "keypad.h"
 volatile bool need_save = false;
 volatile bool need_log = false;
 void save()
@@ -28,7 +29,7 @@ void log()
 {
 	need_log = true;
 }
-uint32_t value_adc;
+unsigned value_adc;
 max6675_tc *thermoSPI2;
 max6675_tc *thermoSPI3;
 struct ControllerData controllerData;
@@ -55,8 +56,9 @@ void run()
 
 	HAL_Delay(100);
 	initFlowSensor();
-	// HAL_ADC_Start_DMA(&hadc3, (uint32_t *)&value_adc, 1);
+	// HAL_ADC_Start_DMA(&hadc3, (unsigned *)&value_adc, 1);
 	HAL_Delay(20);
+	initKeypad();
 	//
 	//	// Initialize LCD once
 	lcd_init();
@@ -64,14 +66,14 @@ void run()
 	// sd_send_initial_dummy_clocks();
 	thermoSPI2 = tc_init(&hspi2, spi_cn2_GPIO_Port, spi_cn2_Pin);
 	thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
-	int fr = sd_mount();
-	printf("sd_mount -> %d\r\n", fr);
-	if (fr != FR_OK)
-	{
-		printf("Mount failed\n");
-		return;
-	}
-	bool success = loadControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
+	//	int fr = sd_mount();
+	//	printf("sd_mount -> %d\r\n", fr);
+	//	if (fr != FR_OK)
+	//	{
+	//		printf("Mount failed\n");
+	//		return;
+	//	}
+	bool success = false; // loadControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
 	if (!success)
 
 		controllerData.desiredTemperature = 48.8f;
@@ -88,23 +90,24 @@ void run()
 	// WriteStringAt(success ? "true " : "false", 0, 6);
 
 	// test();
-	runInterval(threeTenthSeconds, 300);
+	// runInterval(scanAllToLCD /*threeTenthSeconds*/, 300);
 
 	while (1)
 	{
-		if (need_save)
-		{
+//		scanAllToLCD();
+		// if (need_save)
+		// {
 
-			bool result = saveControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
-			// WriteStringAt(result ? "true " : "false", 0, 6);
-			need_save = false;
-		}
-		if (need_log)
-		{
-			bool result = appendControllerDataSD(CONTROLLER_LOG_PATH, &controllerData);
-			// WriteStringAt(result ? "true " : "false", 0, 6);
-			need_log = false;
-		}
+		// 	bool result = saveControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
+		// 	// WriteStringAt(result ? "true " : "false", 0, 6);
+		// 	need_save = false;
+		// }
+		// if (need_log)
+		// {
+		// 	bool result = appendControllerDataSD(CONTROLLER_LOG_PATH, &controllerData);
+		// 	// WriteStringAt(result ? "true " : "false", 0, 6);
+		// 	need_log = false;
+		// }
 		// if (!i)
 		// 	Clear_Display();
 		//		threeTenthSeconds();

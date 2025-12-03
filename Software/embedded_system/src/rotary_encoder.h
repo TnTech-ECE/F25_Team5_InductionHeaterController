@@ -9,8 +9,8 @@
 #define ROTARY_ENCODER_H_
 
 #include <stdint.h>
-void onRotate(int16_t cnt, uint32_t counting_down);
-void onWrap(uint32_t counting_down);
+void onRotate(int16_t cnt, unsigned counting_down);
+void onWrap(unsigned counting_down);
 void onRotaryPress();
 
 #endif /* ROTARY_ENCODER_H_ */

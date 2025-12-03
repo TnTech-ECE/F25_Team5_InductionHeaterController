@@ -7,6 +7,7 @@
 C_SRCS += \
 ../src/delay.c \
 ../src/flow_sensor.c \
+../src/keypad.c \
 ../src/lcd.c \
 ../src/max6675.c \
 ../src/rotary_encoder.c \
@@ -16,6 +17,7 @@ C_SRCS += \
 OBJS += \
 ./src/delay.o \
 ./src/flow_sensor.o \
+./src/keypad.o \
 ./src/lcd.o \
 ./src/max6675.o \
 ./src/rotary_encoder.o \
@@ -25,6 +27,7 @@ OBJS += \
 C_DEPS += \
 ./src/delay.d \
 ./src/flow_sensor.d \
+./src/keypad.d \
 ./src/lcd.d \
 ./src/max6675.d \
 ./src/rotary_encoder.d \
@@ -39,7 +42,7 @@ src/%.o src/%.su src/%.cyclo: ../src/%.c src/subdir.mk
 clean: clean-src
 
 clean-src:
-	-$(RM) ./src/delay.cyclo ./src/delay.d ./src/delay.o ./src/delay.su ./src/flow_sensor.cyclo ./src/flow_sensor.d ./src/flow_sensor.o ./src/flow_sensor.su ./src/lcd.cyclo ./src/lcd.d ./src/lcd.o ./src/lcd.su ./src/max6675.cyclo ./src/max6675.d ./src/max6675.o ./src/max6675.su ./src/rotary_encoder.cyclo ./src/rotary_encoder.d ./src/rotary_encoder.o ./src/rotary_encoder.su ./src/run.cyclo ./src/run.d ./src/run.o ./src/run.su ./src/save.cyclo ./src/save.d ./src/save.o ./src/save.su
+	-$(RM) ./src/delay.cyclo ./src/delay.d ./src/delay.o ./src/delay.su ./src/flow_sensor.cyclo ./src/flow_sensor.d ./src/flow_sensor.o ./src/flow_sensor.su ./src/keypad.cyclo ./src/keypad.d ./src/keypad.o ./src/keypad.su ./src/lcd.cyclo ./src/lcd.d ./src/lcd.o ./src/lcd.su ./src/max6675.cyclo ./src/max6675.d ./src/max6675.o ./src/max6675.su ./src/rotary_encoder.cyclo ./src/rotary_encoder.d ./src/rotary_encoder.o ./src/rotary_encoder.su ./src/run.cyclo ./src/run.d ./src/run.o ./src/run.su ./src/save.cyclo ./src/save.d ./src/save.o ./src/save.su
 
 .PHONY: clean-src
 

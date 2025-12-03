@@ -19,7 +19,7 @@ uint64_t getDelayScale();
 struct Run
 {
 	int id;
-	uint32_t delay;
+	unsigned delay;
 	long _delayLeft;
 	OnTimeCallback *callback;
 	UntilCheckCallback *UntilCheckCallback;
@@ -28,8 +28,8 @@ struct Run
  * @param callback
  * @param delay in milliseconds
  */
-int runInterval(OnTimeCallback callback, uint32_t delay);
-int runTimeout(OnTimeCallback callback, uint32_t delay);
-int runIntervalUntil(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, uint32_t delay);
+int runInterval(OnTimeCallback callback, unsigned delay);
+int runTimeout(OnTimeCallback callback, unsigned delay);
+int runIntervalUntil(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, unsigned delay);
 bool clearRun(int runId);
 #endif /* DELAY_H_ */

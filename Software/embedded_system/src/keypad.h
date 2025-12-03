@@ -8,4 +8,6 @@
 #ifndef KEYPAD_H_
 #define KEYPAD_H_
 void rowEvent(uint8_t rowNumber);
+void scanAllToLCD();
+void initKeypad();
 #endif /* KEYPAD_H_ */

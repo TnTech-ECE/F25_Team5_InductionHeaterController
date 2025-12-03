@@ -5,7 +5,7 @@
 #include "lcd.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
-int queueRun(OnTimeCallback callback, uint32_t delay, UntilCheckCallback UntilCheckCallback);
+int queueRun(OnTimeCallback callback, unsigned delay, UntilCheckCallback UntilCheckCallback);
 void removeRunFromList(int runId, int index);
 int runListLength = 0;
 int currentRunId = 0;
@@ -22,7 +22,7 @@ bool timeoutCallback()
 {
 	return true;
 }
-uint32_t time = 0;
+unsigned time = 0;
 void Delay_TIM_2_Callback()
 {
 	if (++time < getDelayScale())
@@ -46,15 +46,15 @@ void Delay_TIM_2_Callback()
 		++i;
 	}
 }
-int runInterval(OnTimeCallback callback, uint32_t delay)
+int runInterval(OnTimeCallback callback, unsigned delay)
 {
 	return queueRun(callback, delay, NULL);
 }
-int runTimeout(OnTimeCallback callback, uint32_t delay)
+int runTimeout(OnTimeCallback callback, unsigned delay)
 {
 	return queueRun(callback, delay, timeoutCallback);
 }
-int runIntervalUntil(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, uint32_t delay)
+int runIntervalUntil(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, unsigned delay)
 {
 	return queueRun(callback, delay, UntilCheckCallback);
 }
@@ -103,7 +103,7 @@ void removeRunFromList(int runIdFound, int index)
 	__enable_irq();
 }
 
-int queueRun(OnTimeCallback callback, uint32_t delay, UntilCheckCallback UntilCheckCallback)
+int queueRun(OnTimeCallback callback, unsigned delay, UntilCheckCallback UntilCheckCallback)
 {
 	struct Run run;
 	run.callback = callback;

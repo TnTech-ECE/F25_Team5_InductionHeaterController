@@ -39,6 +39,7 @@
 "./Middlewares/Third_Party/FatFs/src/option/syscall.o"
 "./src/delay.o"
 "./src/flow_sensor.o"
+"./src/keypad.o"
 "./src/lcd.o"
 "./src/max6675.o"
 "./src/rotary_encoder.o"

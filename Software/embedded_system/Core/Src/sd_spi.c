@@ -97,7 +97,7 @@ static void SD_ReceiveBuffer(uint8_t *buffer, uint16_t len)
 
 static SD_Status SD_WaitReady(void)
 {
-    uint32_t timeout = HAL_GetTick() + 500;
+    unsigned timeout = HAL_GetTick() + 500;
     uint8_t resp;
     do
     {
@@ -108,7 +108,7 @@ static SD_Status SD_WaitReady(void)
     return SD_ERROR;
 }
 
-static uint8_t SD_SendCommand(uint8_t cmd, uint32_t arg, uint8_t crc)
+static uint8_t SD_SendCommand(uint8_t cmd, unsigned arg, uint8_t crc)
 {
     uint8_t response, retry = 0xFF;
 
@@ -139,7 +139,7 @@ SD_Status SD_SPI_Init(void)
 {
     uint8_t i, response;
     uint8_t r7[4];
-    uint32_t retry;
+    unsigned retry;
 
     SD_CS_HIGH();
     for (i = 0; i < 10; i++)
@@ -202,7 +202,7 @@ SD_Status SD_SPI_Init(void)
     return SD_OK;
 }
 
-SD_Status SD_ReadBlocks(uint8_t *buff, uint32_t sector, uint32_t count)
+SD_Status SD_ReadBlocks(uint8_t *buff, unsigned sector, unsigned count)
 {
     if (!count)
         return SD_ERROR;
@@ -219,7 +219,7 @@ SD_Status SD_ReadBlocks(uint8_t *buff, uint32_t sector, uint32_t count)
         }
 
         uint8_t token;
-        uint32_t timeout = HAL_GetTick() + 200;
+        unsigned timeout = HAL_GetTick() + 200;
         do
         {
             token = SD_ReceiveByte();
@@ -245,7 +245,7 @@ SD_Status SD_ReadBlocks(uint8_t *buff, uint32_t sector, uint32_t count)
     }
 }
 
-SD_Status SD_ReadMultiBlocks(uint8_t *buff, uint32_t sector, uint32_t count)
+SD_Status SD_ReadMultiBlocks(uint8_t *buff, unsigned sector, unsigned count)
 {
     if (!count)
         return SD_ERROR;
@@ -262,7 +262,7 @@ SD_Status SD_ReadMultiBlocks(uint8_t *buff, uint32_t sector, uint32_t count)
     while (count--)
     {
         uint8_t token;
-        uint32_t timeout = HAL_GetTick() + 200;
+        unsigned timeout = HAL_GetTick() + 200;
 
         do
         {
@@ -291,7 +291,7 @@ SD_Status SD_ReadMultiBlocks(uint8_t *buff, uint32_t sector, uint32_t count)
     return SD_OK;
 }
 
-SD_Status SD_WriteBlocks(const uint8_t *buff, uint32_t sector, uint32_t count)
+SD_Status SD_WriteBlocks(const uint8_t *buff, unsigned sector, unsigned count)
 {
     if (!count)
         return SD_ERROR;
@@ -332,7 +332,7 @@ SD_Status SD_WriteBlocks(const uint8_t *buff, uint32_t sector, uint32_t count)
     }
 }
 
-SD_Status SD_WriteMultiBlocks(const uint8_t *buff, uint32_t sector, uint32_t count)
+SD_Status SD_WriteMultiBlocks(const uint8_t *buff, unsigned sector, unsigned count)
 {
     if (!count)
         return SD_ERROR;

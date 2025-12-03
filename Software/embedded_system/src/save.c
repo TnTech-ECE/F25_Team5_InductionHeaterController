@@ -71,7 +71,7 @@ bool loadControllerDataSD(const char *path, struct ControllerData *out)
 	return (fr == FR_OK && rd == sizeof(*out));
 	return false;
 }
-uint32_t logId = 0;
+unsigned logId = 0;
 bool appendControllerDataSD(const char *path, const struct ControllerData *data)
 {
 	//	 if (!sd_mount())

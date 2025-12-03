@@ -4,8 +4,8 @@
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
 #include "main.h"
-volatile uint32_t flowCount = 0;
-volatile uint32_t lastFlowCount = 0;
+volatile unsigned flowCount = 0;
+volatile unsigned lastFlowCount = 0;
 float getFlowRateGPS()
 {
 	return (float)(lastFlowCount) / 28.39;

@@ -65,12 +65,12 @@ Every subsystem must incorporate at least one constraint stemming from standards
 <!--
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
 -->
-### - Inputs:
+### Inputs:
 #### Overview:
  1. 5V DC from the power board
  2. Reading Micro SD Interface
- 3. MAX31856 ADC to SPI for a Thermocouple
- 4. MAX31856 ADC to SPI for a Thermocouple
+ 3. MAX31856 ADC to SPI for Pipe Thermocouple
+ 4. MAX31856 ADC to SPI for IGBT Thermocouple
  5. MCP9600 ADC to I2C for a Thermocouple
  6. AD8495 Amplification of a Thermocouple
  7. Keypad
@@ -100,7 +100,7 @@ Provide detailed information about the inputs, outputs, and data transferred to 
  10. Current Sensor
    The current sensor will use ADC 2 CH 3 on PC2. The current sensor will make electrical current flowing in the system is at a safe value so that components don't explode [17] [8].
 
-### - Outputs:
+### Outputs:
 #### Overview:
  1. LCD
  2. PWM signals to Gate Drivers
@@ -122,7 +122,9 @@ Provide detailed information about the inputs, outputs, and data transferred to 
 
 ## Buildable Schematic 
 
-<!-- Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
+<!-- THe instruction text was commented out not sure what you are referring to. 
+
+Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
 
 The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned. -->
 #### Embedded System Connection Diagram
@@ -140,38 +142,45 @@ The microcontroller will have a terminal shield that the PCB subsystem will desi
 
 ![LCD Abstracted logic](./Embedded_System/LCD%20abstracted%20logic.drawio.png)
 
+The LCD Abstracted logic Flow chart describes modes for the LCD and the actions that can occur in each mode. The top flow shows the key pad influencing the modes. Where as, the bottom shows the different modes in action. 
+
+
 ### Proportional Differential Integral Controller Flow Chart
-![pid flowchart](Embedded_System/New_HeatGenerationSubsystem.drawio.png)
+![PID Flowchart](Embedded_System/New_HeatGenerationSubsystem.drawio.png)
+The Proportional Differential Integral Flow Chart Controller shows the function of the proportional Differential Integral Controller shows the function of a proportional controller. depending on the response the of the closed loop proportional controller we might need integral and differential components.
 
 ![Delay System Flow Chart](./Embedded_System/delay%20system.drawio.png)
-  
+The Delay System Flow Chart explains the function of the logic behind the LCD. The right 3 flows show the 3 different functions which queue runs at different frequency and life times. The left flow handles the the logic which executes the run queue ticking down delayLeft and on time it runs the callback and if the return of run until is true it removes the delay.
   
 
 ![Micro-Tasked LCD System Flow Chart](./Embedded_System/LCD%20logic.drawio.png)
 
+The Micro-Tasked LCD System Flow Chart examines the process at which the LCD runs from. The top flow shows the function which queues a byte of data into the circular queue which could be a command or data which can have a after delay. The bottom flow shows the processing of that queue. The program uses a state machine to make sure that the latches has enough time to be detected.
 
 ## BOM
 
 Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
 
-| Component Name                                | Component Id      | Cost   | Operating Voltage (V) | Max Operating Current (mA) | Power Cost (mW)  | Amount | Total Power (mW) | Total Cost ($) |
-| --------------------------------------------- | ----------------- | ------ | --------------------- | -------------------------- | ---------------- | ------ | ---------------- | -------------- |
-| STM32Microcontroller [8] [19]                 | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         |
-| Adafruit SPI Thermocouple Amplifier  [10]     | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         |
-| Adafruit I2C Thermocouple Amplifier [12] [11] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         |
-| Analog Output Thermocouple Amplifier [13]     | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         |
-| Keypad [20] [14]                              | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          |
-| Rotary Encoder [21] [15]                      | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          |
-| LCD [22] [18]                                 | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675  (at 5 V)    | 1      | 135.0            | $30.87         |
-| Adafruit Micro SD Card Interface [23] [9]     | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          |
-| Lem Electric Current Sensor [24] [17]         | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         |
-| Liquid Flow Meter 1/2" [25] [16]              | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          |
-| Total (electricals not including MCU)         | N/A               | N/A    | N/A                   | 203.53 mA (at 5V) < 500 mA |                  | N/A    | 1017.64          | $143.46        |
+| Component Name                                      | Component Id      | Cost   | Operating Voltage (V) | Max Operating Current (mA) | Power Cost (mW)  | Amount | Total Power (mW) | Total Cost ($) | Product Link                                                                                           |
+| --------------------------------------------------- | ----------------- | ------ | --------------------- | -------------------------- | ---------------- | ------ | ---------------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| STM32Microcontroller [8] [19]                       | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         | [digikey.com](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711)     |
+| Adafruit SPI Thermocouple Amplifier [10] [20#]      | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         | [adafruit.com](https://www.adafruit.com/product/3263)                                                  |
+| Adafruit I2C Thermocouple Amplifier [12] [11] [21#] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         | [adafruit.com](https://www.adafruit.com/product/4101)                                                  |
+| Analog Output Thermocouple Amplifier [13] [22#]     | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         | [adafruit.com](https://www.adafruit.com/product/1727)                                                  |
+| Keypad [20] [14]                                    | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          | [digikey.com](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536)         |
+| Rotary Encoder [21] [15]                            | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          | [digikey.com](https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223)                      |
+| LCD [22] [18]                                       | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675 (at 5 V)     | 1      | 135.0            | $30.87         | [digikey.com](https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941) |
+| Adafruit Micro SD Card Interface [23] [9]           | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          | [adafruit.com](https://www.adafruit.com/product/4682)                                                  |
+| Lem Electric Current Sensor [24] [17]               | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         | [digikey.com](https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653)                  |
+| Liquid Flow Meter 1/2" [25] [16]                    | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          | [adafruit.com](https://www.adafruit.com/product/828)                                                   |
+| Total (electricals not including MCU)               | N/A               | N/A    | N/A                   | 203.53 mA (at 5V) < 500 mA |                  | N/A    | 1017.64          | $143.46        | N/A                                                                                                    |
 ## Analysis
 
 <!-- Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness. -->
 
-NUCLEO-L476RG is the microcontroller used since it what the team is most comfortable with. Also, the MCU fits the teams needs of being low power and having GPIO, ADC, TIMERS, 80MHZ max clock, I2C, SPI, and PWM capabilities. THe proportional integral deferential controller will be implemented on the microcontroller ran on an 100ms interval [8].
+NUCLEO-L476RG is the microcontroller used since it is what the team is most comfortable with. Also, the MCU fits the teams needs of being low power and having GPIO, ADC, TIMERS, 80MHZ max clock, I2C, SPI, and PWM capabilities. The MCU will have a shield placed on it which is a PCB that connects it's pins to terminal blocks. We are using terminal blocks to allow for more flexibility if something needs to be added, removed, or moved. With a PCB that hard connects all the pins the PCB would need to be reordered if something changed [8].
+
+The proportional integral deferential controller will be implemented on the microcontroller ran about 100ms interval. The interval will be around 100 ms as that is the conversion time for the MAX31856 which the pipe will use [10]. The first conversion takes around 200ms so that will be to be accounted for in the setup of the thermocouple. [8] 
 
 The purpose of the delay system is to not busy wait for a long duration. The system checks every millisecond, counting down from the delay value. This allow other processes to run between the millisecond checks/runs. The contrast is HAL_Delay() which uses a while loop checking how many ticks have past while is why the system is micro-tasked. Run interval is to repeatably run a task at a specific interval. The run timeout delays for a specific amount of time then runs the task. The run interval until will run a task specific interval until the until callback returns true. [8]
 
@@ -188,7 +197,6 @@ Adafruit Micro SD Card Interface will be used to save the state of the system an
 Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters. The system will use a GPIO Interrupts to count the pulses per second which is 7.5 times more than the flow rate in Liters per minute. [16] [8]
 
 The Microcontroller will have to interface will the power board by sending 20-50Khz PWM signals. Two that are 180 degrees out of phase which can be done via a negated timer alternate pin. The power board also needs a 80Khz PWM signal. The MCU will also receive 5V from a regulator on the power board. [8]
-
 
 ## References
 
@@ -231,6 +239,13 @@ The Microcontroller will have to interface will the power board by sending 20-50
 [18] Newhaven Display, "NHD-0216CW-AB3 Specification," PDF, Available: https://newhavendisplay.com/content/specs/NHD-0216CW-AB3.pdf (Accessed: Nov. 23, 2025).
 
 [19] STMicroelectronics, "NUCLEO-L476RG Product Page," Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711 (Accessed: Nov. 23, 2025).
+
+[20#] https://www.adafruit.com/product/3263
+
+[21#] https://www.adafruit.com/product/4101
+
+[22#] https://www.adafruit.com/product/1727
+
 [20] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
 
 [21] DFRobot, "SEN0235 EC11 Rotary Encoder Module," Product Page, Available: https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223 (Accessed: Nov. 23, 2025).

@@ -17,8 +17,8 @@ int sign(int x)
 		return 0;
 }
 
-static uint32_t last = 0;
-static uint32_t timeoutLast = UINT32_MAX;
+static unsigned last = 0;
+static unsigned timeoutLast = UINT32_MAX;
 bool onRotateTimeout = false;
 #define ON_ROTATE_TIMEOUT_DELAY 100
 void runRotateTimeout(bool force);
@@ -54,7 +54,7 @@ void runRotateTimeout(bool force)
 	timeoutLast = TIM3->CNT;
 	runTimeout(onRotateTimeoutCallback, ON_ROTATE_TIMEOUT_DELAY);
 }
-void onRotate(int16_t cnt, uint32_t counting_down)
+void onRotate(int16_t cnt, unsigned counting_down)
 {
 	int16_t delta = (int16_t)(cnt - last);
 	if (counting_down && delta > 0)
@@ -69,7 +69,7 @@ void onRotate(int16_t cnt, uint32_t counting_down)
 	DisplayNumber((int)cnt, 1, 12, 0, 4);
 	runRotateTimeout(false);
 }
-void onWrap(uint32_t counting_down)
+void onWrap(unsigned counting_down)
 {
 }
 uint8_t buttonState = 0;
