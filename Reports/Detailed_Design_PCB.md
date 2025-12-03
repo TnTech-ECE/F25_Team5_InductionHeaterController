@@ -3,7 +3,7 @@
 
 The printed circuit board (PCB) serves as the foundation for the induction heater controller. It connects every vital subsystem into a package that fits together. It allows communication between all subsystems, whether it be distributing power, processing sensor feedback, or controlling signals under the micro controller. Together, these functions require a layout that has  proper organization of both high power and low power circuitry for a safe and reliable operation. 
 
-For this reason, the PCB subsystem will be divided into two separate boards: the Power PCB, which will provide the circuitry needed to convert the AC power into regulated waveforms to energize the induction coil, and the Terminal I/O PCB, which organizes the microcontroller's I/O pins/ports for user interaction and external connections. With this, these boards will provide a structure that is required for the induction heater to operate according to the conceptual design, as well as making sure that all subsystems remain connected and functional.
+For this reason, the PCB subsystem will be divided into two separate boards: the Power PCB, which will provide the circuitry needed to convert the AC power into regulated waveforms to energise the induction coil, and the Terminal I/O PCB, which organises the microcontroller's I/O pins/ports for user interaction and external connections. With this, these boards will provide a structure that is required for the induction heater to operate according to the conceptual design, as well as ensuring that all subsystems remain connected and functional.
 
 ## Specifications and Constraints
 
