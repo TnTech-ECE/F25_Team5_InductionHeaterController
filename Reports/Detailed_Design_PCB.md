@@ -121,8 +121,7 @@ The 5 V supply to the microcontroller to power the board and supply voltage to c
 | Sensor Feedback (I, V, T) | Input   | Power PCB | Analog to ADC | Real-time measurements |
 | Fault Line              | Output    | Power PCB | Digital logic | Signals abnormal conditions |
 | LCD Control             | Output    | Terminal I/O | I2C / SPI | Sends display data |
-| Keypad Input            | Input     | Terminal I/O | Digital GPIO | User command input |
-| Encoder Input           | Input     | Terminal I/O | Quadrature GPIO | User rotary input |
+| User Input            | Input     | Terminal I/O |  GPIO | User command input |
 | Status LEDs             | Output    | Terminal I/O | Digital | Indicates system status |
 | Low-Voltage Power Rails | Both      | Both PCBs | Hardwired | 5 V distribution |
 
