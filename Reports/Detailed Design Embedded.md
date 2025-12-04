@@ -52,8 +52,6 @@ The Embedded Subsystem describes the software for the microcontroller, the conne
  6. The Microcontroller will interpret user input from a rotary encoder and keypad. The rotary encoder will be used to change constants within the system. The keypad will be used to change number values as well and change the mode of the lcd.
  7. The Microcontroller will interface with an LCD to display the current value of sensors, constants, and the current mode. 
 
-
-
 <!-- This section should provide a list of constraints applicable to the subsystem, along with the rationale behind these limitations. For instance, constraints can stem from physics-based limitations or requirements, subsystem prerequisites, standards, ethical considerations, or socio-economic factors.
 
 The team should set specifications for each subsystem. These specifications may require modifications, which must be authorized by the team. It could be necessary to impose additional constraints as further information becomes available.
@@ -66,7 +64,7 @@ Every subsystem must incorporate at least one constraint stemming from standards
 Provide detailed information about the inputs, outputs, and data transferred to other subsystems. Ensure specificity and thoroughness, clarifying the method of communication and the nature of the data transmitted.
 -->
 ### Inputs:
-#### Overview:
+##### Overview:
  1. 5V DC from the power board
  2. Reading Micro SD Interface
  3. MAX31856 ADC to SPI for Pipe Thermocouple
@@ -78,7 +76,7 @@ Provide detailed information about the inputs, outputs, and data transferred to 
  9. Flow Sensor
  10. Current Sensor
 
-#### Specifics:
+##### Specifics:
  1. 5V DC from the power board. 
    The STM32l476RG needs 5V volts from the power board to run all the devices [8].  
  2. Reading Micro SD Interface
@@ -101,14 +99,14 @@ Provide detailed information about the inputs, outputs, and data transferred to 
    The current sensor will use ADC 2 CH 3 on PC2. The current sensor will make electrical current flowing in the system is at a safe value so that components don't explode [17] [8].
 
 ### Outputs:
-#### Overview:
+##### Overview:
  1. LCD
  2. PWM signals to Gate Drivers
  3. Writing Micro SD Interface
  4. Setting Pipe Fault Temperature For Amplifier
  5. Setting IGBT Fault Temperature For Amplifier
 
-#### Specifics:
+##### Specifics:
  1. LCD
    The LCD uses GPIO Pins A0-A5. A0 which is PA0, connects to the register Select, RS pin. The read/write pin is tied to ground since the LCD only needs to be written to. A1 which is PA1, connects to the Enable pin, EN pin. A2-A5, which is pins PA4, PB0,PC1, and PC0 respectively, is connected to data pin D4-D7 [8].
  2. PWM signals to Gate Drivers
@@ -127,7 +125,7 @@ Provide detailed information about the inputs, outputs, and data transferred to 
 Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
 
 The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned. -->
-#### Embedded System Connection Diagram
+##### Embedded System Connection Diagram
 ![Embedded System Connection Diagram](./Embedded_System/Embedded_System_Connection_Diagram.png)
 
 ## Printed Circuit Board Layout
@@ -136,7 +134,7 @@ The schematic should be relevant to the design and provide ample details necessa
 
 The microcontroller will have a terminal shield that the PCB subsystem will design. The shield will have 2 sets of double female headers 19 long which will mate to the 2 sets of double male headers on the microcontroller. The female double headers will be soldered to the shield. The left and right side, which will be 19 pins long, of the double headers will be connected to terminal blocks through copper PCB traces. The rows terminal blocks are soldered to the opposite side of the pcb as the female headers. Each pin on the headers will have its own terminal block. Both sets of the headers will be connect to single row terminal blocks. The headers are on opposite sides to the Terminal blocks. The headers and Terminal Blocks pins are spaced 2.54 mm apart. In between the inner rows of terminal blocks, there will be 4 rows of 10 for the microcontroller 5V, 3.3V, ground, and analog ground. The output of the sensor ADCS and amimplfiers will be Terminal blocked as well.
 
-## Flowchart
+## Flowcharts
 
 <!-- For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail. -->
 
@@ -182,32 +180,41 @@ Provide a comprehensive list of all necessary components along with their prices
 
 <!-- Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness. -->
 
-NUCLEO-L476RG is the microcontroller used since it is what the team is most comfortable with. Also, the MCU fits the teams needs of being low power and having GPIO, ADC, TIMERS, 80MHZ max clock, I2C, SPI, and PWM capabilities. The MCU will have a shield placed on it, which is a PCB that connects the MCU’s pins to terminal blocks. Terminal blocks are used to allow for more flexibility if something needs to be added, removed, or moved. With a PCB that hard-connects all the pins, the PCB would need to be reordered if something changed [8]. 
+###### Microcontroller (Constraint 5.)
+NUCLEO-L476RG is the microcontroller used since it is what the team is most comfortable with. Also, the MCU fits the teams needs of being low power and having GPIO, ADC, TIMERS, 80MHZ max clock, I2C, SPI, and PWM capabilities. The MCU will have a shield placed on the MCU's double male headers, connecting all the MCU’s pins to terminal blocks. Terminal blocks are used to allow for more flexibility if something needs to be added, removed, or moved. With a PCB that hard-connects all the pins, the PCB would need to be reordered if something changed [8]. 
 
+###### Proportional Integral Differential Controller
 The proportional integral differential controller will be implemented on the microcontroller ran about a 100ms interval. The interval will be around 100 ms, as that is the conversion time for the MAX31856, which the pipe will use [10]. The first conversion takes around 200ms, so that will be to be accounted for in the setup of the thermocouple. The proportional component will have a constant that we can change in code, which affects the proportional gain. The proportional gain determines how fast the system reaches the target value. The integral term also has a configurable constant which the term reduces the residual error, increasing the accuracy. The term also configurable smooths out the response and reduces overshoot caused by the integral and differential terms. [26#] The controller will be implemented on the microcontroller to get the pipe temperature to a desired value and keep it within a small range around the desired temperature. The goal is within 5 degrees Celsius. Depending on the tuning process, all terms or just the proportional term might be needed. [8]  
 
-The purpose of the delay system is not to busy wait for a long duration. The system checks every millisecond, counting down from the delay value. This allows other processes to run between the millisecond checks/runs. The contrast is HAL_Delay(), which uses a while loop checking how many ticks have past while is why the system is micro-tasked. Run interval is to repeatedly run a task at a specific interval. The run timeout delays for a specific amount of time then runs the task. The run-interval-until function will run a task-specific interval until the until-callback returns true. [8]
-
-The LCD system is micro-tasked, as the LCD displaying information is not as important as, for example, the PID controller. Writing data and commands to the LCD will queue to instructions in a circular queue so that reading the next instruction and adding the the queue is O(1) time. The queue runs on a 200-microsecond interval, so it can write a char per 1 ms. The micro-tasked system allows for other tasks to run between the LCD writes so that the processor is more efficiently used. HAL_Delay() is also removed from the system to avoid any busy waiting which this can happen as a uint is stored in the queue. The most significant 7 bits are after the LCD instruction delay from 0-127 ms. The delay is so that the LCD can process the instruction until the next command. The Delay is set based on the LCD data sheet per command execution time [18]. The 9th bit controls whether the instruction is data or a command. Then the 8 least significant bits are the data. [8]
-
-Interrupts will be used over polling for user inputs as actions for inputs will only need to take up the thread when the users interacts with an interface. The keypad is for buttons to control the lcd and set values. A rotary controller will also be used to set values. The fault display signals from the sensors will be on interrupts. For less important display and setting of inputs, they will be on Interrupts, so CPU time is not wasted. [8]
-
-
-
+###### Sensor and Fault Interfacing (Constraint 4. and 3.)
 Reading the sensors, temperature sensors will be polled with PID logic, as the temperature sensors do not need to be as fast. The shut off temperatures for the objects the sensors are measuring can be programmed on the amplifier signal directly, a fault after the temperature passes a certain threshold for the MCP9600 and MAX31856 via I2C and SPI, respectively [10] [11]. The direct wiring of fault signals from the amplifier would speed up an issue, disabling the circuit. Due to the majority of the pins on the microcontroller being used, the thermocouples will need to be amplified in different ways. There are only 3 ADC, 3 SPI, and 3 I2C [8]. Since the system has 6 interfaces/sensors, they have to be spread across the ways of interfacing. The thermocouple that is reading the pipe can have the amplifier setup to fault pass a certain temperature. The direct fault signal will speed up the disabling of the system, bypassing SPI interfacing speeds. To set the threshold fault temperature, SPI MOSI will be used. The IGBT termocouples on the power board will have a similar capability. The IGBT will be set up similarly to the pipe amplifier. The IGBT and Pipe will be amplified and ADCed via a MAX31856 via SPI 3 and SPI 2, respectively, both configured to full duplex master, meaning the MCU can input from and to the output device. The output water temp will be amplified via an AD8495 and ADC 1, as ADC reads a lot faster than I2C. The input water temperature will be amplified via an MCP9600 via I2C as it does not need to read as fast as the output, since it will change at a minimum of every hour. [8]
 
+###### Keypad and User Interface (Constraint 6. and 7.)
 The keypad will be used to set the desired temperature and interface with the system. The A-C will set 3/4 modes of the LCD. The First 3 are the display temp mode (A key), the set temp (B key), and the set power level (C key). The display temp mode displays the desired temperature or power level, the pipe temperature, the output and input water temperature, and the IGBT temperature. Basically, a system vitals mode. The second mode allows the user to change the desired temperature via the keypad or the rotary encoder. The temperature is entered when the user presses pound on the keypad. The same operation is done for the third mode, but for the power level. The 4th mode is the fault mode, it occurs when the system has a fault via overcurrent in the current transducer or over over-temperature fault from any MAX31856 amplifier. Faults are only cleared via the star key. The keypad and rotary encoder will work off of interrupts. D0-D3 interrupts and TIM 3 configured to encoder mode with interrupts [8].
 
+###### Micro SD Card Interface (Constraint 4.)
 Adafruit Micro SD Card Interface will be used to save the state of the system and log the system's values over time. The Micro SD Interface is used over ROM as the Interface is easier viewable on a computer for displaying data. The Interface will use SPI 1 configured to full duplex master and set up to use DMA so that the thread is not blocked while saving with the SD card [9]. The interface will log the system pipe temperature, IGBT temperature, Flow Rate, system source current, and possibly the water input and output temperatures with timestamps. The system state will be a saved C struct and will not be readable without a program parsing the data. [8]
 
+###### Liquid Flow Meter (Constraint 4.)
 The Liquid Flow Meter will determine if the system is sending power. Having a flow meter to control the sending of power is standard in most tankless water heaters. The system will use a GPIO Interrupts to count the pulses per second, which is 7.5 times more than the flow rate in Liters per minute. [16] The GPIO Interrupts will need to be debounced to make sure that a sprit of noise did not falsely trigger the interrupt. To debounce the interrupt, the system will use runIntervalUntil at 10ms for 100ms, check that the flow is greater than 1 L/min which checks if the signal is continuous. If the signal is continuous, then the system will start sending power to the coil based on the PID controller.  [8]
 
+###### Current Transducer (Constraint 4.)
 The LEM current transducer, LEM HO-10P, will use ADC 2. The value from ADC will be scaled with a constant value to show the real current value since the ADC will return a value from 0 to 4096 and is proportional to 0 to 5V. This value will be displayed on the LCD in the temperature display mode. It will also be logged to the SD Card. 
 
+###### Power Board Interfacing (Constraint 2.)
 The Microcontroller will have to interface with the power board by sending 20-50 kHz PWM signals. Two that are 180 degrees out of phase which can be done via a negated timer alternate pin. The power board also needs an 80KHz PWM signal. The MCU will also receive 5V from a regulator on the power board. The duty cycle of these signal will be changed to increase or reduce the power sent to the coil. 0% being no power and 50% being maximum power. Also, the further away from the resonant frequency the PWM signal is, the less power the pipe will receive from the coil. [8]
 
-The safety concerns are that the microcontroller could over heat. The microcontroller has a thermistor to make sure it does not exceed 100°C and will shutoff if it detects a temperature greater than 100°C. The microcontroller will be in a compartment in the housing, and the digital wires will be insulated to prevent shock, even though 5V tends not to be hazardous. The amplifier for the pipe thermocouple will be outside the housing, but be in its own electrical box so that the cold junction compensation can have a similar ambient temperature as the termocouples. The ethical concerns are that if a user could set any temperature or the PID constants issues could arise. If an LCD mode is added for setting the PID constants, the mode will be password protected to prevent an unauthorized user from setting the values. If any temperature could be set to any value, the system would heat forever, causing the pipe to melt or the water to flash boil, creating a bomb. The temperature setting will need to be capped below boiling water, as if the water boils in the pipe, a pipe bomb could be created. If the pipe heats too much, the pipe could melt, or the fittings could also melt. The proportional and integral can be set too high, causing massive overshoot and could cause the system to be unstable, which is similar to if the temperature settings were set too high.
+###### Safety, Ethics, and Broader Impacts. (Constraint 1.)
+The safety concerns are that the microcontroller could over heat. The microcontroller has a thermistor to make sure it does not exceed 100°C and will shutoff if it detects a temperature greater than 100°C [1]. The microcontroller will be in a compartment in the housing, and the digital wires will be insulated to prevent shock, even though 5V tends not to be hazardous. The amplifier for the pipe thermocouple will be outside the housing, but be in its own electrical box so that the cold junction compensation can have a similar ambient temperature as the termocouples. The ethical concerns are that if a user could set any temperature or the PID constants issues could arise. If an LCD mode is added for setting the PID constants, the mode will be password protected to prevent an unauthorized user from setting the values. If any temperature could be set to any value, the system would heat forever, causing the pipe to melt or the water to flash boil, creating a bomb. The temperature setting will need to be capped below boiling water, as if the water boils in the pipe, a pipe bomb could be created. If the pipe heats too much, the pipe could melt, or the fittings could also melt. The proportional and integral can be set too high, causing massive overshoot and could cause the system to be unstable, which is similar to if the temperature settings were set too high. The boarder impacts are that in the temperature control will reduce the power consumption over time by only supplying the minimum amount of power to the coil to maintain the desired temperature. The recyclability of the microcontroller shield PCB could be used for other projects to allow for more secure connections but still is still adaptable. 
 
+###### Micro-Task Delay System
+The purpose of the delay system is not to busy wait for a long duration. The system checks every millisecond, counting down from the delay value. This allows other processes to run between the millisecond checks/runs. The contrast is HAL_Delay(), which uses a while loop checking how many ticks have past while is why the system is micro-tasked. Run interval is to repeatedly run a task at a specific interval. The run timeout delays for a specific amount of time then runs the task. The run-interval-until function will run a task-specific interval until the until-callback returns true. [8]
+
+###### Micro-Tasked LCD  System
+The LCD system is micro-tasked, as the LCD displaying information is not as important as, for example, the PID controller. Writing data and commands to the LCD will queue to instructions in a circular queue so that reading the next instruction and adding the the queue is O(1) time. The queue runs on a 200-microsecond interval, so it can write a char per 1 ms. The micro-tasked system allows for other tasks to run between the LCD writes so that the processor is more efficiently used. HAL_Delay() is also removed from the system to avoid any busy waiting which this can happen as a uint is stored in the queue. The most significant 7 bits are after the LCD instruction delay from 0-127 ms. The delay is so that the LCD can process the instruction until the next command. The Delay is set based on the LCD data sheet per command execution time [18]. The 9th bit controls whether the instruction is data or a command. Then the 8 least significant bits are the data. [8]
+
+###### Interrupts vs Polling 
+Interrupts will be used over polling for user inputs as actions for inputs will only need to take up the thread when the users interacts with an interface. The keypad is for buttons to control the lcd and set values. A rotary controller will also be used to set values. The fault display signals from the sensors will be on interrupts. For less important display and setting of inputs, they will be on Interrupts, so CPU time is not wasted. [8]
 
 <!--
 chat
