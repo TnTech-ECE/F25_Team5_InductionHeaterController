@@ -163,19 +163,19 @@ The Micro-Tasked LCD System Flow Chart examines the process by which the LCD run
 Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
 -->
 
-| Component Name                                      | Component Id      | Cost   | Operating Voltage (V) | Max Operating Current (mA) | Power Cost (mW)  | Amount | Total Power (mW) | Total Cost ($) | Product Link                                                                                           |
-| --------------------------------------------------- | ----------------- | ------ | --------------------- | -------------------------- | ---------------- | ------ | ---------------- | -------------- | ------------------------------------------------------------------------------------------------------ |
-| STM32Microcontroller [8] [19]                       | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         | [digikey.com](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711)     |
-| Adafruit SPI Thermocouple Amplifier [10] [20#]      | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         | [adafruit.com](https://www.adafruit.com/product/3263)                                                  |
-| Adafruit I2C Thermocouple Amplifier [12] [11] [21#] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         | [adafruit.com](https://www.adafruit.com/product/4101)                                                  |
-| Analog Output Thermocouple Amplifier [13] [22#]     | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         | [adafruit.com](https://www.adafruit.com/product/1727)                                                  |
-| Keypad [20] [14]                                    | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          | [digikey.com](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536)         |
-| Rotary Encoder [21] [15]                            | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          | [digikey.com](https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223)                      |
-| LCD [22] [18]                                       | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675 (at 5 V)     | 1      | 135.0            | $30.87         | [digikey.com](https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941) |
-| Adafruit Micro SD Card Interface [23] [9]           | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          | [adafruit.com](https://www.adafruit.com/product/4682)                                                  |
-| Lem Electric Current Sensor [24] [17]               | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         | [digikey.com](https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653)                  |
-| Liquid Flow Meter 1/2" [25] [16]                    | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          | [adafruit.com](https://www.adafruit.com/product/828)                                                   |
-| Total (electricals not including MCU)               | N/A               | N/A    | N/A                   | 203.53 mA (at 5V) < 500 mA |                  | N/A    | 1017.64          | $143.46        | N/A                                                                                                    |
+| Component Name                                     | Component Id      | Cost   | Operating Voltage (V) | Max Operating Current (mA) | Power Cost (mW)  | Amount | Total Power (mW) | Total Cost ($) | Product Link                                                                                           |
+| -------------------------------------------------- | ----------------- | ------ | --------------------- | -------------------------- | ---------------- | ------ | ---------------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| STM32Microcontroller [8] [19]                      | NUCLEO-L476RG     | $14.52 | 5-12                  | 500                        | 2500 (at 5 V)    | 1      | 2500.0           | $14.52         | [digikey.com](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711)     |
+| Adafruit SPI Thermocouple Amplifier [10] [20]      | MAX31856 Breakout | $17.50 | 3.3                   | 1.5                        | 4.95             | 2      | 9.9              | $35.12         | [adafruit.com](https://www.adafruit.com/product/3263)                                                  |
+| Adafruit I2C Thermocouple Amplifier [12] [11] [21] | MCP9600 Breakout  | $15.95 | 2.7-5                 | 2.5                        | 8.25 (at 3.3 V)  | 1      | 8.25             | $15.95         | [adafruit.com](https://www.adafruit.com/product/4101)                                                  |
+| Analog Output Thermocouple Amplifier [13] [22]     | AD8495 Breakout   | $11.95 | 2.7-36                | 0.180                      | 0.594 (at 3.3 V) | 1      | 0.594            | $11.95         | [adafruit.com](https://www.adafruit.com/product/1727)                                                  |
+| Keypad [23] [14]                                   | 3844              | $5.95  | 3.3                   | 33                         | 108.9            | 1      | 108.9            | $5.95          | [digikey.com](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536)         |
+| Rotary Encoder [24] [15]                           | SEN0235           | $2.90  | 5V                    | 10                         | 50               | 1      | 50               | $2.90          | [digikey.com](https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223)                      |
+| LCD [25] [18]                                      | NHD-0216CW-AB3    | $30.87 | 3.3-5                 | 135                        | 675 (at 5 V)     | 1      | 135.0            | $30.87         | [digikey.com](https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941) |
+| Adafruit Micro SD Card Interface [26] [9]          | N/A               | $3.50  | 3.3                   | 150                        | 495              | 1      | 495.0            | $3.50          | [adafruit.com](https://www.adafruit.com/product/4682)                                                  |
+| Lem Electric Current Sensor [27] [17]              | Lem HO-10p        | $12.75 | 5                     | 25                         | 125              | 1      | 125.0            | $12.75         | [digikey.com](https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653)                  |
+| Liquid Flow Meter 1/2" [28] [16]                   | YF-S201           | $9.95  | 5-18                  | 15                         | 85               | 1      | 85               | $9.95          | [adafruit.com](https://www.adafruit.com/product/828)                                                   |
+| Total (electricals not including MCU)              | N/A               | N/A    | N/A                   | 203.53 mA (at 5V) < 500 mA |                  | N/A    | 1017.64          | $143.46        | N/A                                                                                                    |
 ## Analysis
 
 <!-- Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness. -->
@@ -274,22 +274,22 @@ The Microcontroller will have to interface with the power board by sending 20–
 
 [19] STMicroelectronics, "NUCLEO-L476RG Product Page," Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-L476RG/5347711 (Accessed: Nov. 23, 2025).
 
-[20#] Adafruit Industries, “MAX31856 Thermocouple Amplifier Breakout,” Product Page, 2025. Available: https://www.adafruit.com/product/3263 (Accessed: Nov. 23, 2025).
+[20] Adafruit Industries, “MAX31856 Thermocouple Amplifier Breakout,” Product Page, 2025. Available: https://www.adafruit.com/product/3263 (Accessed: Nov. 23, 2025).
 
-[21#] Adafruit Industries, “MCP9600 Thermocouple Amplifier Breakout,” Product Page, 2025. Available: https://www.adafruit.com/product/4101 (Accessed: Nov. 23, 2025).
+[21] Adafruit Industries, “MCP9600 Thermocouple Amplifier Breakout,” Product Page, 2025. Available: https://www.adafruit.com/product/4101 (Accessed: Nov. 23, 2025).
 
-[22#] Adafruit Industries, “AD8495 Thermocouple Amplifier Breakout,” Product Page, 2025. Available: https://www.adafruit.com/product/1727 (Accessed: Nov. 23, 2025).
+[22] Adafruit Industries, “AD8495 Thermocouple Amplifier Breakout,” Product Page, 2025. Available: https://www.adafruit.com/product/1727 (Accessed: Nov. 23, 2025).
 
-[20] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
+[23] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
 
-[21] DFRobot, "SEN0235 EC11 Rotary Encoder Module," Product Page, Available: https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223 (Accessed: Nov. 23, 2025).
+[24] DFRobot, "SEN0235 EC11 Rotary Encoder Module," Product Page, Available: https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223 (Accessed: Nov. 23, 2025).
 
-[22] Newhaven Display, "NHD-0216CW-AB3 16x2 OLED Module," Product Page, Available: https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941 (Accessed: Nov. 23, 2025).
+[25] Newhaven Display, "NHD-0216CW-AB3 16x2 OLED Module," Product Page, Available: https://www.digikey.com/en/products/detail/newhaven-display-intl/NHD-0216CW-AB3/5022941 (Accessed: Nov. 23, 2025).
 
-[23] Adafruit, "MicroSD Card Breakout Board+," Product Page, Available: https://www.adafruit.com/product/4682 (Accessed: Nov. 23, 2025).
+[26] Adafruit, "MicroSD Card Breakout Board+," Product Page, Available: https://www.adafruit.com/product/4682 (Accessed: Nov. 23, 2025).
 
-[24] LEM, "HO 10-P Current Transducer," Product Page, Available: https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653 (Accessed: Nov. 23, 2025).
+[27] LEM, "HO 10-P Current Transducer," Product Page, Available: https://www.digikey.com/en/products/detail/lem-usa-inc/HO-10-P/4990653 (Accessed: Nov. 23, 2025).
 
-[25] Adafruit, "Liquid Flow Meter - 1/2\"," Product Page, Available: https://www.adafruit.com/product/828 (Accessed: Nov. 23, 2025).
+[28] Adafruit, "Liquid Flow Meter - 1/2\"," Product Page, Available: https://www.adafruit.com/product/828 (Accessed: Nov. 23, 2025).
 
-[26] LibreTexts, “PID Tuning via Classical Methods,” Chemical Process Dynamics and Controls, 2023. Available: https://eng.libretexts.org/Bookshelves/Industrial_and_Systems_Engineering/Chemical_Process_Dynamics_and_Controls_(Woolf)/09:_Proportional-Integral-Derivative_(PID)_Control/9.03:_PID_Tuning_via_Classical_Methods (Accessed: Nov. 23, 2025).
+[29] LibreTexts, “PID Tuning via Classical Methods,” Chemical Process Dynamics and Controls, 2023. Available: https://eng.libretexts.org/Bookshelves/Industrial_and_Systems_Engineering/Chemical_Process_Dynamics_and_Controls_(Woolf)/09:_Proportional-Integral-Derivative_(PID)_Control/9.03:_PID_Tuning_via_Classical_Methods (Accessed: Nov. 23, 2025).
