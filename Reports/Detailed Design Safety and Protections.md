@@ -108,7 +108,7 @@ This subsystem acts as a central monitor and interfaces with nearly all other su
 ## 3D Model of Custom Mechanical Components
 
 ***Figure 1 - Datasheet for Enclosure Base that will be used and modified***
-![Enclosure](Safety_Protections_Assets\EnclosureBase.png)
+![Enclosure](Safety_Protections_Assets/EnclosureBase.png)
 
 **Full 3D model to come, just submitting now to get reviewed! Waiting on PCB boards to know full size of enclosure.**
 
@@ -122,7 +122,7 @@ The electrical schematics below detail the hardware safety circuits: the IGBT de
 The schematic is divided into two parts:
 1.  **Desaturation Sensing:** The UCC21750 gate driver (G1-G4) provides a built-in DESAT pin (pin 2). This pin is connected to the collector of its respective IGBT (Q1-Q4) via a high-voltage, fast-recovery diode (D1-D4). The driver internally handles the blanking time, which is set by an external resistor (R4-R7) and capacitor (CX-C3) connected in parallel from the DESAT pin to that driver's isolated ground (COM) [5].
 ***Figure 2 - Desaturation Sensing Circuit***
-![DesatSense](Safety_Protections_Assets\DesaturationSensing.png)
+![DesatSense](Safety_Protections_Assets/DesaturationSensing.png)
 
 
 1. **Hardware Fault Latch:** This circuit creates a physical "memory" of a fault and provides a manual "OFF" switch.
@@ -139,8 +139,8 @@ The schematic is divided into two parts:
 References to the Power Systems Circuit are shown in Figure 4 (ie, Q1, ..., Q4, G1,..., G4).
 
 ***Figure 4 & 5 - Power Systems Circuit***
-![Power1](Safety_Protections_Assets\Reference-Power.png)
-![Power2](Safety_Protections_Assets\Reference-Power2.png)
+![Power1](Safety_Protections_Assets/Reference-Power.png)
+![Power2](Safety_Protections_Assets/Reference-Power2.png)
 
 
 **Sensor Interfaces**
@@ -148,7 +148,7 @@ The following circuits condition the sensor signals for the microcontroller's an
 
   1. **Heatsink Temperature Sensor:** A K-Type ring-terminal thermocouple is bolted to the IGBT heatsink. Its small voltage output is fed into an AD8495 thermocouple amplifier. The amplifier is powered by +5VDC and outputs a clean, linear analog voltage (0V-5V) proportional to the temperature, which is fed directly into an ADC pin on the microcontroller [3].
 
-  ![Thermocouple](Safety_Protections_Assets\Thermocouple.png)
+  ![Thermocouple](Safety_Protections_Assets/Thermocouple.png)
 
   2. **AC Current Sensor:** The LEM HO 10-P Hall-Effect Current Sensor is a self-contained unit that outputs a voltage proportional to the AC current. Crucially, its output is already centered around 2.5V when supplied with a 5V reference voltage, which is directly compatible with the microcontroller's ADC input [1].
 
