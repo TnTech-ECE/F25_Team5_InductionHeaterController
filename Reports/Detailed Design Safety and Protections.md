@@ -107,8 +107,8 @@ This subsystem acts as a central monitor and interfaces with nearly all other su
 
 ## 3D Model of Custom Mechanical Components
 
-***Figure 1 - Datasheet for Enclosure Base that will be used and modified***
 ![Enclosure](Safety_Protections_Assets/EnclosureBase.png)
+***Figure 1 - Datasheet for Enclosure Base that will be used and modified***
 
 **Full 3D model to come, just submitting now to get reviewed! Waiting on PCB boards to know full size of enclosure.**
 
@@ -121,9 +121,9 @@ The electrical schematics below detail the hardware safety circuits: the IGBT de
 **Protections Latch**
 The schematic is divided into two parts:
 1.  **Desaturation Sensing:** The UCC21750 gate driver (G1-G4) provides a built-in DESAT pin (pin 2). This pin is connected to the collector of its respective IGBT (Q1-Q4) via a high-voltage, fast-recovery diode (D1-D4). The driver internally handles the blanking time, which is set by an external resistor (R4-R7) and capacitor (CX-C3) connected in parallel from the DESAT pin to that driver's isolated ground (COM) [5].
-***Figure 2 - Desaturation Sensing Circuit***
-![DesatSense](Safety_Protections_Assets/DesaturationSensing.png)
 
+![DesatSense](Safety_Protections_Assets/DesaturationSensing.png)
+***Figure 2 - Desaturation Sensing Circuit***
 
 1. **Hardware Fault Latch:** This circuit creates a physical "memory" of a fault and provides a manual "OFF" switch.
      - **Fault Trigger:** When any driver detects a desaturation event, its FLT pin (pin 13) is pulled low [5]. All four FLT pins are connected in parallel with a pull-up resistor (R1) to the +5VDC logic rail. This forms a single FAULT_LINE.
@@ -133,14 +133,14 @@ The schematic is divided into two parts:
      - **Manual Off Switch:** A standard SPST "OFF" switch is connected in parallel with the SCR (from the ENABLE_LINE to GNDPWR). When flipped, this switch performs the same action as the SCR, manually pulling the ENABLE_LINE low and disabling the drivers.
      - **Reset:** The only way to turn off the latched SCR is to interrupt its anode current. This is achieved when the user performs a manual power cycle, which fulfills the "Fault State Latching" specification.
 
-***Figure 3 - Hardware Fault Latch***
 ![Latch Circuit](Safety_Protections_Assets/DesaturationLatch.png)
+***Figure 3 - Hardware Fault Latch***
 
 References to the Power Systems Circuit are shown in Figure 4 (ie, Q1, ..., Q4, G1,..., G4).
 
-***Figure 4 & 5 - Power Systems Circuit***
 ![Power1](Safety_Protections_Assets/Reference-Power.png)
 ![Power2](Safety_Protections_Assets/Reference-Power2.png)
+***Figure 4 & 5 - Power Systems Circuit***
 
 
 **Sensor Interfaces**
@@ -162,7 +162,7 @@ The following circuits condition the sensor signals for the microcontroller's an
 
 The operational logic of the Safety and Protections Controls Subsystem is detailed in the flowchart below. This flowchart primarily represents the software-based monitoring loop; the hardware latch operates in parallel to this loop.
 
-![alt](Safety_Protections_Assets\image-8.png)
+![alt](Safety_Protections_Assets/image-8.png)
 
 ## BOM
 
