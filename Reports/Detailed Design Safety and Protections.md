@@ -14,7 +14,7 @@ The subsystem's design is governed by the following specifications, which are de
 1. **IGBT Monitoring**: The subsystem shall continuously monitor the temperature of the power switching transistors' (IGBT) heatsink using a dedicated thermocouple.
 2. **IGBT Thermal Shutdown**: The subsystem shall shut down induction heating if the IGBT heatsink temperature exceeds $105^\circ\text{C}$ ($\text{221}^\circ\text{F}$).
 3. **Current Monitoring**: The subsystem shall Continuously monitor total AC current draw (LEM HO 10-P) from the device [1].
-4. **Overcurrent Shutdown**: The subsystem shall trigger a system shutdown if the current draw exceeds the rated amperage of a standard 15A circuit.
+4. **Overcurrent Shutdown**: The subsystem shall trigger a system shutdown if the current draw exceeds the rated amperage of a standard 30A circuit.
 5. **IGBT Desaturation Protection**: The subsystem shall include hardware-based Insulated Gate Bipolar Transistor (IGBT) desaturation detection that trips a shutdown latch within 5-20 microseconds of a fault.
 6. **Ground Fault Protection**: The subsystem shall limit ground fault current such that no more than 50 volts appears on any accessible metal part, per NEC Article 665.
 7. **Disconnect Switch**: The "Off" switch shall physically open all ungrounded conductors, ensuring no power can be supplied to the heating coil, per NEC Article 427.
@@ -101,14 +101,14 @@ This subsystem acts as a central monitor and interfaces with nearly all other su
 - **Embedded System (Software & PCB)**
 
   - **Analog Output:** A linear voltage signal from the AD8495 Thermocouple Amplifier, directly proportional to the IGBT heatsink temperature. This signal is routed directly to the microcontroller's Analog-to-Digital Converter (ADC) input pin for software processing.
-  - **Analog Output:** A 2.5V-biased AC voltage signal (from the LEM HO 10-P sensor). This signal is routed to a dedicated ADC input pin and requires the software to calculate RMS current and check for a 15A overcurrent condition over a 500ms duration. The 2.5V DC offset is trimmed using a potentiometer.
+  - **Analog Output:** A 2.5V-biased AC voltage signal (from the LEM HO 10-P sensor). This signal is routed to a dedicated ADC input pin and requires the software to calculate RMS current and check for a 30A overcurrent condition over a 500ms duration. The 2.5V DC offset is trimmed using a potentiometer.
   - **Digital Output:** A digital square wave pulse from the Hall-Effect flow sensor. This signal is routed to a Digital Input/External Interrupt pin for real-time frequency counting to determine the flow rate in LPM.
   - **Hardware Latch Status Output:** A Digital HIGH / LOW signal from the transistor Q1 on the latch circuit. This signal is routed to a Digital Input/Interrupt pin. A change in state indicates that a fast-moving fault (like IGBT desaturation) has occurred, the SCR has latched, and the system is in a hard shutdown state. This allows the software to confirm the hardware status and display the specific error code.
 
 ## 3D Model of Custom Mechanical Components
 
 ***Figure 1 - Datasheet for Enclosure Base that will be used and modified***
-![alt text](Safety_Protections_Assets\EnclosureBase.png)
+![Enclosure](Safety_Protections_Assets\EnclosureBase.png)
 
 **Full 3D model to come, just submitting now to get reviewed! Waiting on PCB boards to know full size of enclosure.**
 
@@ -122,7 +122,7 @@ The electrical schematics below detail the hardware safety circuits: the IGBT de
 The schematic is divided into two parts:
 1.  **Desaturation Sensing:** The UCC21750 gate driver (G1-G4) provides a built-in DESAT pin (pin 2). This pin is connected to the collector of its respective IGBT (Q1-Q4) via a high-voltage, fast-recovery diode (D1-D4). The driver internally handles the blanking time, which is set by an external resistor (R4-R7) and capacitor (CX-C3) connected in parallel from the DESAT pin to that driver's isolated ground (COM) [5].
 ***Figure 2 - Desaturation Sensing Circuit***
-![alt text](Safety_Protections_Assets\DesaturationSensing.png)
+![DesatSense](Safety_Protections_Assets\DesaturationSensing.png)
 
 
 1. **Hardware Fault Latch:** This circuit creates a physical "memory" of a fault and provides a manual "OFF" switch.
@@ -134,13 +134,13 @@ The schematic is divided into two parts:
      - **Reset:** The only way to turn off the latched SCR is to interrupt its anode current. This is achieved when the user performs a manual power cycle, which fulfills the "Fault State Latching" specification.
 
 ***Figure 3 - Hardware Fault Latch***
-![alt text](Safety_Protections_Assets/DesaturationLatch.png)
+![Latch Circuit](Safety_Protections_Assets/DesaturationLatch.png)
 
 References to the Power Systems Circuit are shown in Figure 4 (ie, Q1, ..., Q4, G1,..., G4).
 
 ***Figure 4 & 5 - Power Systems Circuit***
-![alt text](Safety_Protections_Assets\Reference-Power.png)
-![alt text](Safety_Protections_Assets\Reference-Power2.png)
+![Power1](Safety_Protections_Assets\Reference-Power.png)
+![Power2](Safety_Protections_Assets\Reference-Power2.png)
 
 
 **Sensor Interfaces**
@@ -162,8 +162,7 @@ The following circuits condition the sensor signals for the microcontroller's an
 
 The operational logic of the Safety and Protections Controls Subsystem is detailed in the flowchart below. This flowchart primarily represents the software-based monitoring loop; the hardware latch operates in parallel to this loop.
 
-![alt text](image-8.png)
-
+![alt](Safety_Protections_Assets\image-8.png)
 
 ## BOM
 
@@ -214,7 +213,7 @@ This section handles slower, environmental, and prolonged fault conditions by us
 
 For Heatsink Temperature monitoring, the system utilizes a K-Type Thermocouple paired with the AD8495 Amplifier. This amplifier simplifies the software by providing a clean, linear, 5V-compatible analog output and crucially handling the internal Cold-Junction Compensation CJC. The system will trigger a shutdown if the IGBT heatsink temperature exceeds the conservative limit of $105^\circ\text{C}$ ($\text{221}^\circ\text{F}$).
 
-AC Current is monitored using the LEM HO 10-P Hall-Effect Sensor. This sensor was selected over traditional Current Transformers CT for its superior galvanic isolation and built-in signal conditioning. The software must continuously sample the resulting 2.5V-biased AC voltage and calculate the RMS current. A fault is logged if the calculated RMS current exceeds the 15A circuit limit for more than the specified 500 milliseconds. To ensure maximum accuracy in this measurement, a $10\text{k}\Omega$ Trim Potentiometer (R_TRIM) is included. This trim pot allows for the precise manual adjustment (nulling) of the sensor's 2.5V DC offset, which is critical for maximizing the ADC's effective resolution, especially when detecting low current states required for workpiece sensing.
+AC Current is monitored using the LEM HO 10-P Hall-Effect Sensor. This sensor was selected over traditional Current Transformers CT for its superior galvanic isolation and built-in signal conditioning. The software must continuously sample the resulting 2.5V-biased AC voltage and calculate the RMS current. A fault is logged if the calculated RMS current exceeds the 30A circuit limit for more than the specified 500 milliseconds. To ensure maximum accuracy in this measurement, a $10\text{k}\Omega$ Trim Potentiometer (R_TRIM) is included. This trim pot allows for the precise manual adjustment (nulling) of the sensor's 2.5V DC offset, which is critical for maximizing the ADC's effective resolution, especially when detecting low current states required for workpiece sensing.
 
 Finally, Water Flow is monitored using a Hall-Effect Flow Sensor. This sensor is beneficial as it provides a digital pulse train, eliminating the need for an ADC channel. The signal is routed to an External Interrupt pin, where the microcontroller accurately calculates the flow rate. This allows the software to enforce a shutdown if the flow rate drops below a minimum safety threshold for a prolonged period.
 
