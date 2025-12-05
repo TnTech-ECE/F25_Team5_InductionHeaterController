@@ -108,6 +108,7 @@ This subsystem acts as a central monitor and interfaces with nearly all other su
 ## 3D Model of Custom Mechanical Components
 
 ![Enclosure](Safety_Protections_Assets/EnclosureBase.png)
+
 ***Figure 1 - Datasheet for Enclosure Base that will be used and modified***
 
 **Full 3D model to come, just submitting now to get reviewed! Waiting on PCB boards to know full size of enclosure.**
@@ -123,6 +124,7 @@ The schematic is divided into two parts:
 1.  **Desaturation Sensing:** The UCC21750 gate driver (G1-G4) provides a built-in DESAT pin (pin 2). This pin is connected to the collector of its respective IGBT (Q1-Q4) via a high-voltage, fast-recovery diode (D1-D4). The driver internally handles the blanking time, which is set by an external resistor (R4-R7) and capacitor (CX-C3) connected in parallel from the DESAT pin to that driver's isolated ground (COM) [5].
 
 ![DesatSense](Safety_Protections_Assets/DesaturationSensing.png)
+
 ***Figure 2 - Desaturation Sensing Circuit***
 
 1. **Hardware Fault Latch:** This circuit creates a physical "memory" of a fault and provides a manual "OFF" switch.
@@ -134,12 +136,14 @@ The schematic is divided into two parts:
      - **Reset:** The only way to turn off the latched SCR is to interrupt its anode current. This is achieved when the user performs a manual power cycle, which fulfills the "Fault State Latching" specification.
 
 ![Latch Circuit](Safety_Protections_Assets/DesaturationLatch.png)
+
 ***Figure 3 - Hardware Fault Latch***
 
-References to the Power Systems Circuit are shown in Figure 4 (ie, Q1, ..., Q4, G1,..., G4).
+References to the Power Systems Circuit are shown in Figure 4 & 5 (ie, Q1, ..., Q4, G1,..., G4).
 
 ![Power1](Safety_Protections_Assets/Reference-Power.png)
 ![Power2](Safety_Protections_Assets/Reference-Power2.png)
+
 ***Figure 4 & 5 - Power Systems Circuit***
 
 
