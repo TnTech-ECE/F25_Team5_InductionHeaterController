@@ -4,7 +4,10 @@
 ../src/delay.c:49:5:runInterval	1
 ../src/delay.c:53:5:runTimeout	1
 ../src/delay.c:57:5:runIntervalUntil	1
-../src/delay.c:61:12:getNullRun	1
-../src/delay.c:71:6:clearRun	4
-../src/delay.c:88:6:removeRunFromList	6
-../src/delay.c:106:5:queueRun	3
+../src/delay.c:62:5:runIntervalAux	1
+../src/delay.c:66:5:runTimeoutAux	1
+../src/delay.c:70:5:runIntervalUntilAux	1
+../src/delay.c:74:12:getNullRun	1
+../src/delay.c:84:6:clearRun	4
+../src/delay.c:101:6:removeRunFromList	6
+../src/delay.c:119:5:queueRun	3

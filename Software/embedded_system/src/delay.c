@@ -5,7 +5,7 @@
 #include "lcd.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
-int queueRun(OnTimeCallback callback, unsigned delay, UntilCheckCallback UntilCheckCallback);
+int queueRun(OnTimeCallback callback, unsigned delay, UntilCheckCallback UntilCheckCallback, void *aux);
 void removeRunFromList(int runId, int index);
 int runListLength = 0;
 int currentRunId = 0;
@@ -36,8 +36,8 @@ void Delay_TIM_2_Callback()
 		{
 			run->_delayLeft = run->delay;
 			if (run->callback != NULL)
-				run->callback();
-			if (run->UntilCheckCallback != NULL && run->UntilCheckCallback())
+				run->callback(run->aux);
+			if (run->UntilCheckCallback != NULL && run->UntilCheckCallback(run->aux))
 			{
 				removeRunFromList(run->id, i);
 				continue;
@@ -48,15 +48,28 @@ void Delay_TIM_2_Callback()
 }
 int runInterval(OnTimeCallback callback, unsigned delay)
 {
-	return queueRun(callback, delay, NULL);
+	return queueRun(callback, delay, NULL, NULL);
 }
 int runTimeout(OnTimeCallback callback, unsigned delay)
 {
-	return queueRun(callback, delay, timeoutCallback);
+	return queueRun(callback, delay, timeoutCallback, NULL);
 }
 int runIntervalUntil(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, unsigned delay)
 {
-	return queueRun(callback, delay, UntilCheckCallback);
+	return queueRun(callback, delay, UntilCheckCallback, NULL);
+}
+
+int runIntervalAux(OnTimeCallback callback, unsigned delay, void *aux)
+{
+	return queueRun(callback, delay, NULL, aux);
+}
+int runTimeoutAux(OnTimeCallback callback, unsigned delay, void *aux)
+{
+	return queueRun(callback, delay, timeoutCallback, aux);
+}
+int runIntervalUntilAux(UntilCheckCallback UntilCheckCallback, OnTimeCallback callback, unsigned delay, void *aux)
+{
+	return queueRun(callback, delay, UntilCheckCallback, aux);
 }
 struct Run getNullRun()
 {
@@ -103,12 +116,13 @@ void removeRunFromList(int runIdFound, int index)
 	__enable_irq();
 }
 
-int queueRun(OnTimeCallback callback, unsigned delay, UntilCheckCallback UntilCheckCallback)
+int queueRun(OnTimeCallback callback, unsigned delay, UntilCheckCallback UntilCheckCallback, void *aux)
 {
 	struct Run run;
 	run.callback = callback;
 	run.delay = delay;
 	run._delayLeft = delay;
+	run.aux = aux;
 	if (currentRunId >= INT32_MAX)
 	{
 		currentRunId = 0;
