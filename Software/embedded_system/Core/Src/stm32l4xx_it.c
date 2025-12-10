@@ -266,7 +266,6 @@ void EXTI9_5_IRQHandler(void)
 
   /* USER CODE END EXTI9_5_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(ROW3_Pin);
-  HAL_GPIO_EXTI_IRQHandler(ROW0_Pin);
   /* USER CODE BEGIN EXTI9_5_IRQn 1 */
 
   /* USER CODE END EXTI9_5_IRQn 1 */
@@ -323,7 +322,7 @@ void EXTI15_10_IRQHandler(void)
 
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(ROW1_Pin);
-  HAL_GPIO_EXTI_IRQHandler(pipe_temp_fault_Pin);
+  HAL_GPIO_EXTI_IRQHandler(ROW0_Pin);
   HAL_GPIO_EXTI_IRQHandler(igbt_temp_fault_Pin);
   HAL_GPIO_EXTI_IRQHandler(B1_Pin);
   HAL_GPIO_EXTI_IRQHandler(current_fault_Pin);

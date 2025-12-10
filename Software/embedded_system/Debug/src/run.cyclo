@@ -1,4 +1,5 @@
 ../src/run.c:24:6:save	1
 ../src/run.c:28:6:log	1
 ../src/run.c:37:6:threeTenthSeconds	1
-../src/run.c:52:6:run	2
+../src/run.c:52:6:testUntilCallback	2
+../src/run.c:64:6:run	2

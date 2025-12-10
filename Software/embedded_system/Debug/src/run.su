@@ -1,4 +1,5 @@
 ../src/run.c:24:6:save	4	static
 ../src/run.c:28:6:log	4	static
 ../src/run.c:37:6:threeTenthSeconds	32	static
-../src/run.c:52:6:run	16	static
+../src/run.c:52:6:testUntilCallback	24	static
+../src/run.c:64:6:run	16	static

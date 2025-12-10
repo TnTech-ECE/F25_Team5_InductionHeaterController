@@ -48,7 +48,19 @@ void threeTenthSeconds(void)
 	DisplayDecimal(controllerData.desiredTemperature, 0, 12, 0, 4);
 	log();
 }
+int kjdwkjdwjdwkj = 0;
+bool testUntilCallback(void *aux)
+{
 
+	DisplayNumber(kjdwkjdwjdwkj, 1, 0, 0, 3);
+	kjdwkjdwjdwkj++;
+	if (kjdwkjdwjdwkj > 500)
+	{
+		return true;
+	}
+	return false;
+
+}
 void run()
 {
 	printf("\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r");
@@ -91,10 +103,10 @@ void run()
 
 	// test();
 	// runInterval(scanAllToLCD /*threeTenthSeconds*/, 300);
-
+	runIntervalUntil(testUntilCallback, NULL, 1000);
 	while (1)
 	{
-//		scanAllToLCD();
+		//		scanAllToLCD();
 		// if (need_save)
 		// {
 
