@@ -15,7 +15,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "delay.h"
-
+#include "lcd_instruction_set.h"
 struct LCDCache cacheLCD;
 int LenStr(char *str)
 {
@@ -169,22 +169,22 @@ uint8_t LCD_WriteByteDirect(uint16_t byte, enum CurrentTaskIndex task)
 	{
 	case Upper:
 	{
-		//		if (!dataNotCommand && (processedByte == SHIFT_RIGHT || processedByte == SHIFT_LEFT))
-		//		{
-		//
-		//			if (cacheLCD.position > 250)
-		//			{
-		//				// overwrites the current code so that the lcd shift command doesn't run.
-		//				uint8_t code = CursorPositionToCode(!cacheLCD.line, 15);
-		//				processedByte = OveriteCurrentByte(code, 0, 1);
-		//			}
-		//			else if (cacheLCD.position > 15)
-		//			{
-		//				// overwrites the current code so that the lcd shift command doesn't run.
-		//				uint8_t code = CursorPositionToCode(!cacheLCD.line, 0);
-		//				processedByte = OveriteCurrentByte(code, 0, 1);
-		//			}
-		//		}
+		if (!dataNotCommand && (processedByte == SHIFT_RIGHT || processedByte == SHIFT_LEFT))
+		{
+
+			if (cacheLCD.position > 250)
+			{
+				// overwrites the current code so that the lcd shift command doesn't run.
+				uint8_t code = CursorPositionToCode(!cacheLCD.line, 15);
+				processedByte = OveriteCurrentByte(code, 0, 1);
+			}
+			else if (cacheLCD.position > 15)
+			{
+				// overwrites the current code so that the lcd shift command doesn't run.
+				uint8_t code = CursorPositionToCode(!cacheLCD.line, 0);
+				processedByte = OveriteCurrentByte(code, 0, 1);
+			}
+		}
 		if (dataNotCommand && cacheLCD.position >= 16)
 		{
 			// the byte is force written here as I want it to shift then rerun the char write.
@@ -314,25 +314,27 @@ void lcd_init(void)
 	__disable_irq();
 	// 4 bit initialisation
 	// HAL_Delay(50); // wait for >40ms
-	LCD_WriteCommand(0x3, 5);
+	LCD_WriteCommand(ReturnHome | 1, 5);
 	// HAL_Delay(5); // wait for >4.1ms
-	LCD_WriteCommand(0x3, 1);
+	LCD_WriteCommand(ReturnHome | 1, 1);
 	// HAL_Delay(1); // wait for >100us
-	LCD_WriteCommand(0x3, 10);
+	LCD_WriteCommand(ReturnHome | 1, 10);
 	// HAL_Delay(10);
-	LCD_WriteCommand(0x2, 10); // 4bit mode
-							   // HAL_Delay(10);
-							   //  dislay initialisation
-	LCD_WriteCommand(0x28, 1); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
-							   // HAL_Delay(1);
-	LCD_WriteCommand(0x08, 1); // Display on/off control --> D=0,C=0, B=0 ---> display off
-							   // HAL_Delay(1);
-	LCD_WriteCommand(0x01, 1); // clear display
-							   // HAL_Delay(1);
-							   // HAL_Delay(1);
-	LCD_WriteCommand(0x06, 1); // Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)
-							   // HAL_Delay(1);
-	LCD_WriteCommand(0x0C, 1); // Display on/off control --> D = 1, C and B =0. (Cursor and blink, last two bits)
+	LCD_WriteCommand(ReturnHome, 10);												   // 4bit mode
+																					   // HAL_Delay(10);
+																					   //  dislay initialisation
+	LCD_WriteCommand(FunctionSet4Bit | FunctionSet2Lines | FunctionSetChar5x7Dots, 1); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
+																					   // HAL_Delay(1);
+	LCD_WriteCommand(DisplayOnOffControlDisplayOff, 1);								   // Display on/off control --> D=0,C=0, B=0 ---> display off
+
+	// clear display
+	LCD_WriteCommand(ClearDisplay, 1);
+	// HAL_Delay(1);
+	// Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)																				   // HAL_Delay(1);
+	LCD_WriteCommand(EntryModeSetCursorMoveDirectIncrement, 1);
+	// HAL_Delay(1);
+	// Display on/off control --> D = 1, C and B =0. (Cursor and blink, last two bits)
+	LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOn | DisplayOnOffControlCursorBlinkOn, 1);
 	__enable_irq();
 }
 
@@ -341,7 +343,7 @@ void lcd_init(void)
 void Shift_Cursor_LCD(uint8_t value)
 {
 	__disable_irq();
-	LCD_WriteCommand(0x10 | (value << 2), 1);
+	LCD_WriteCommand(CursorOrDisplayShiftCursorMove | CursorOrDisplayShiftCursorShiftLeft | (value << 2), 1);
 	__enable_irq();
 }
 
@@ -374,7 +376,7 @@ void CacheCursor(uint8_t code)
 void Clear_Display()
 {
 	__disable_irq();
-	LCD_WriteCommand(0x01, 2);
+	LCD_WriteCommand(ClearDisplay, 2);
 	__enable_irq();
 }
 
@@ -417,7 +419,7 @@ void WriteStringAt(char *string, uint8_t line, uint8_t position)
 uint8_t CursorPositionToCode(uint8_t line, uint8_t position)
 {
 	__disable_irq();
-	uint8_t location = line ? 0xC0 : 0x80;
+	uint8_t location = line ? SetDDRamAddressLine1 : SetDDRamAddressLine0;
 	location |= position;
 	__enable_irq();
 	return location;

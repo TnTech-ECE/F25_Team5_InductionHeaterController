@@ -2,4 +2,6 @@
 ../src/run.c:28:6:log	4	static
 ../src/run.c:37:6:threeTenthSeconds	32	static
 ../src/run.c:52:6:testUntilCallback	24	static
-../src/run.c:64:6:run	16	static
+../src/run.c:63:6:keyStateChangeCallback	16	static
+../src/run.c:75:6:unsubscribeTest	8	static
+../src/run.c:79:6:run	16	static

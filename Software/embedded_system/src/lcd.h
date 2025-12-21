@@ -34,4 +34,5 @@ void Write_String_Sector_LCD(uint8_t sector, char *string);
 void WriteStringAt(char *string, uint8_t line, uint8_t position);
 void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t minDigits);
 void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits);
+
 #endif /* LCD_H_ */

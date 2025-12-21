@@ -59,7 +59,22 @@ bool testUntilCallback(void *aux)
 		return true;
 	}
 	return false;
-
+}
+void keyStateChangeCallback(char key, enum KeyState keyState)
+{
+	Set_CursorPosition(0, charToKeyNumber(key));
+	if (keyState == KeyPressed)
+	{
+		LCD_WriteData(key);
+	}
+	else
+	{
+		LCD_WriteData(' ');
+	}
+}
+void unsubscribeTest()
+{
+	unsubscribeKeyStateChange(keyStateChangeCallback);
 }
 void run()
 {
@@ -67,7 +82,7 @@ void run()
 	// Initial wait for I2C and LCD to be ready
 
 	HAL_Delay(100);
-	initFlowSensor();
+	// initFlowSensor();
 	// HAL_ADC_Start_DMA(&hadc3, (unsigned *)&value_adc, 1);
 	HAL_Delay(20);
 	initKeypad();
@@ -76,8 +91,8 @@ void run()
 	lcd_init();
 	HAL_Delay(20); // Wait after init
 	// sd_send_initial_dummy_clocks();
-	thermoSPI2 = tc_init(&hspi2, spi_cn2_GPIO_Port, spi_cn2_Pin);
-	thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
+	// thermoSPI2 = tc_init(&hspi2, spi_cn2_GPIO_Port, spi_cn2_Pin);
+	// thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
 	//	int fr = sd_mount();
 	//	printf("sd_mount -> %d\r\n", fr);
 	//	if (fr != FR_OK)
@@ -85,6 +100,7 @@ void run()
 	//		printf("Mount failed\n");
 	//		return;
 	//	}
+	subscribeKeyStateChange(keyStateChangeCallback);
 	bool success = false; // loadControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
 	if (!success)
 
@@ -104,6 +120,7 @@ void run()
 	// test();
 	// runInterval(scanAllToLCD /*threeTenthSeconds*/, 300);
 	runIntervalUntil(testUntilCallback, NULL, 1000);
+	// runTimeout(unsubscribeTest, 10000);
 	while (1)
 	{
 		//		scanAllToLCD();

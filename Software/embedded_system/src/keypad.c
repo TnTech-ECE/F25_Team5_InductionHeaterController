@@ -141,16 +141,6 @@ void initKeypad()
 	}
 }
 
-void keyPressCallback(char key)
-{
-	Set_CursorPosition(0, charToKeyNumber(key));
-	LCD_WriteData(key);
-}
-void unkeyPressCallback(char key)
-{
-	Set_CursorPosition(0, charToKeyNumber(key));
-	LCD_WriteData(' ');
-}
 bool checkCallback(void *aux)
 {
 	struct RowState *rowState = (struct RowState *)aux;
@@ -182,7 +172,7 @@ bool checkCallback(void *aux)
 		if (++rowState->ticks > 20)
 		{
 			rowState->state = Pressed;
-			keyPressCallback(keyMatrix[rowState->row][rowState->col]);
+			runEvents(keyMatrix[rowState->row][rowState->col], KeyPressed);
 		}
 		return false;
 	}
@@ -190,7 +180,7 @@ bool checkCallback(void *aux)
 		rowState->ticks = 0;
 	if (rowState->state && pinState == GPIO_PIN_RESET)
 	{
-		unkeyPressCallback(keyMatrix[rowState->row][rowState->col]);
+		runEvents(keyMatrix[rowState->row][rowState->col], KeyUnpressed);
 		rowState->col = -1;
 		rowState->state = Unpressed;
 		setRowMode(rowState->row, InterruptRising);
@@ -213,24 +203,25 @@ enum KeyEventType
 	KeyRelease = 1,
 	KeyStateChange = 2
 };
-
-typedef void *KeyPressCallback(char key);
-typedef void *KeyReleaseCallback(char key);
-typedef void *KeyStateChangeCallback(char key, enum KeyState keyState);
-
-struct KeyEvent
+struct KeyStateChangeEvent
 {
-	union
-	{
-		KeyPressCallback press;
-		KeyReleaseCallback release;
-		KeyStateChangeCallback stateChange;
-	} callback;
-	enum KeyEventType keyEventType;
+	KeyStateChangeCallback callback;
 };
-struct KeyEvent keySubscriptions[20];
-keySubscriptionsLength = 0;
-keySubscriptionsLength = 0;
+struct KeyPressEvent
+{
+	KeyPressCallback callback;
+};
+struct KeyReleaseEvent
+{
+	KeyReleaseCallback callback;
+};
+#define MAX_EVENT_SUBSCRIPTIONS 5
+struct KeyStateChangeEvent KeyStateChangeSubscriptions[MAX_EVENT_SUBSCRIPTIONS];
+int KeyStateChangeSubscriptionsLength = 0;
+struct KeyReleaseEvent keyReleaseSubscriptions[MAX_EVENT_SUBSCRIPTIONS];
+int keyReleaseSubscriptionsLength = 0;
+struct KeyPressEvent keyPressSubscriptions[MAX_EVENT_SUBSCRIPTIONS];
+int keyPressSubscriptionsLength = 0;
 
 void rowEvent(uint8_t rowNumber)
 {
@@ -238,55 +229,120 @@ void rowEvent(uint8_t rowNumber)
 	scanCols(rowNumber);
 }
 
-void subscribeKeyPress(KeyPressCallback callback)
+bool subscribeKeyPress(KeyPressCallback callback)
 {
+	if (keyPressSubscriptionsLength >= MAX_EVENT_SUBSCRIPTIONS)
+		return false;
+	keyPressSubscriptions[keyPressSubscriptionsLength++].callback = callback;
+	return true;
 }
-void subscribeKeyRelease(KeyReleaseCallback callback)
+bool subscribeKeyRelease(KeyReleaseCallback callback)
 {
+	if (keyReleaseSubscriptionsLength >= MAX_EVENT_SUBSCRIPTIONS)
+		return false;
+	keyReleaseSubscriptions[keyReleaseSubscriptionsLength++].callback = callback;
+	return true;
 }
-void subscribeKeyStateChange(KeyStateChangeCallback callback)
+bool subscribeKeyStateChange(KeyStateChangeCallback callback)
 {
+	if (KeyStateChangeSubscriptionsLength >= MAX_EVENT_SUBSCRIPTIONS)
+		return false;
+	KeyStateChangeSubscriptions[KeyStateChangeSubscriptionsLength++].callback = callback;
+
+	return true;
 }
 
-void unsubscribeKeyPress(KeyPressCallback callback)
+bool unsubscribeKeyPress(KeyPressCallback callback)
 {
-}
-void unsubscribeKeyRelease(KeyReleaseCallback callback)
-{
-}
-void unsubscribeKeyStateChange(KeyStateChangeCallback callback)
-{
-}
-
-void runKeyEvent(char key, enum KeyState keyState)
-{
-	for (int i = 0; i < keySubscriptionsLength; i++)
+	__disable_irq();
+	bool found = false;
+	for (int i = 0; i < keyPressSubscriptionsLength; i++)
 	{
-		struct KeyEvent *keyEvent = &keySubscriptions[i];
-		switch (keyEvent->keyEventType)
+		if (!found)
 		{
-		case KeyPress:
-		{
-			if (keyState == KeyPress)
+			if (callback == keyPressSubscriptions[i].callback)
 			{
-				if (keyEvent->callback.press != NULL)
-					keyEvent->callback.press(key);
-			}
-			break;
-		}
-		case KeyRelease:
-		{
-			if (keyState == KeyRelease)
-			{
-				if (keyEvent->callback.release != NULL)
-					keyEvent->callback.release(key);
+				found = true;
+				keyPressSubscriptions[i].callback = NULL;
 			}
 		}
-		case KeyStateChange:
+		else
 		{
-			if (keyEvent->callback.stateChange != NULL)
-				keyEvent->callback.stateChange(key, keyState);
+			keyPressSubscriptions[i - 1] = keyPressSubscriptions[i];
 		}
+	}
+	if (found)
+		--keyPressSubscriptionsLength;
+	__enable_irq();
+	return found;
+}
+bool unsubscribeKeyRelease(KeyReleaseCallback callback)
+{
+	__disable_irq();
+	bool found = false;
+	for (int i = 0; i < keyReleaseSubscriptionsLength; i++)
+	{
+		if (!found)
+		{
+			if (callback == keyReleaseSubscriptions[i].callback)
+			{
+				found = true;
+				keyReleaseSubscriptions[i].callback = NULL;
+			}
 		}
+		else
+		{
+			keyReleaseSubscriptions[i - 1] = keyReleaseSubscriptions[i];
+		}
+	}
+	if (found)
+		--keyReleaseSubscriptionsLength;
+	__enable_irq();
+	return found;
+}
+bool unsubscribeKeyStateChange(KeyStateChangeCallback callback)
+{
+	__disable_irq();
+	bool found = false;
+
+	for (int i = 0; i < KeyStateChangeSubscriptionsLength; i++)
+	{
+		if (!found)
+		{
+			if (callback == KeyStateChangeSubscriptions[i].callback)
+			{
+				found = true;
+				keyPressSubscriptions[i].callback = NULL;
+			}
+			KeyStateChangeSubscriptions[i].callback = NULL;
+		}
+		else
+		{
+			KeyStateChangeSubscriptions[i - 1] = KeyStateChangeSubscriptions[i];
+		}
+	}
+	if (found)
+		--KeyStateChangeSubscriptionsLength;
+	__enable_irq();
+	return found;
+}
+
+void runEvents(char key, enum KeyState keyState)
+{
+
+	if (keyState == KeyPressed)
+		for (int i = 0; i < keyPressSubscriptionsLength; i++)
+		{
+			keyPressSubscriptions[i].callback(key);
+		}
+
+	if (keyState == KeyUnpressed)
+		for (int i = 0; i < keyReleaseSubscriptionsLength; i++)
+		{
+			keyReleaseSubscriptions[i].callback(key);
+		}
+	for (int i = 0; i < KeyStateChangeSubscriptionsLength; i++)
+	{
+		KeyStateChangeSubscriptions[i].callback(key, keyState);
 	}
 }
