@@ -188,7 +188,20 @@ Root Schematic part 3
 ## Printed Circuit Board Layout
 
 ![Power PCB board](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/power%20PCB%20board%20screenshot.jpg)
+
 Power PCB board
+
+![Power PCB board with routes ](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/power%20PCB%20board%20routes%20screenshot.jpg)
+
+Power PCB board with Routes
+
+![IO shield Board ](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/IO%20shield%20Board%20screenshot.jpg)
+
+IO shield Board
+
+![IO shield Board with Routes ](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/IO%20shield%20Board%20routes%20screenshot.jpg)
+
+IO shield Board with Routes
 
 ## Flowchart
 ![block_diagram](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/8fe1f0c4b769cce4be1279822ff243f337da463b/Reports/images_PCB/block%20diagram.jpg)
