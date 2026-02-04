@@ -39,8 +39,6 @@ For this reason, the PCB subsystem will be divided into two separate boards: the
 - **High Voltage Traces Must Be Physically Isolated from User I/O**  
 *Rationale:* This is an ethical obligation to ensure safe operation and prevent accidental shock.
 
-- **System State Indicators (Power, Heat, Fault LEDs) Must Be Accurate**  
-*Rationale:* This will reduce any user risks by clearly showing the operating state of the system.
 ### Socio Economic Constraints
 - **Use Components that are Available from Multiple Vendors**  
 *Rationale:* This will avoid any supply chain risk issues and help with serviceability.
@@ -102,11 +100,6 @@ The 5 V supply to the microcontroller to power the board and supply voltage to c
 - **LCD Display**  
   I2C/SPI/parallel data lines routed between the microcontroller and display that is connected through the terminal I/O board. 
 
-- **Status Indicator Outputs**  
-  LEDs for:  
-  - Power  
-  - Heating  
-  - Faults  
 
 - **Microcontroller Communication Lines**  
   Routes of every user interface data between the Terminal I/O PCB and Power PCB.
@@ -122,7 +115,6 @@ The 5 V supply to the microcontroller to power the board and supply voltage to c
 | Fault Line              | Output    | Power PCB | Digital logic | Signals abnormal conditions |
 | LCD Control             | Output    | Terminal I/O | I2C / SPI | Sends display data |
 | User Input            | Input     | Terminal I/O |  GPIO | User command input |
-| Status LEDs             | Output    | Terminal I/O | Digital | Indicates system status |
 | Low-Voltage Power Rails | Both      | Both PCBs | Hardwired | 5 V distribution |
 
 
