@@ -150,14 +150,12 @@ AC conversion schematic
 DC schematic part 1
 
 ![DC schematic part 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/DC_2.jpg)
-[DC schematic part 2
+DC schematic part 2
 
 ![Safety schematic part 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/Safety_1.jpg)
-
 Safety schematic part 1
 
 ![Safety schematic part 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/Safety_2.jpg)
-
 Safety schematic part 2
 
 ![Gate Driver 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/gate_driver_1.jpg)
