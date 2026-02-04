@@ -177,6 +177,7 @@ Gate Driver 3
 Gate Driver 4
 
 ![Root Schematic part 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/root_Sch_1.jpg)
+
 Root Schematic part 1
 
 ![Root Schematic part 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/root_Sch_2.jpg)
