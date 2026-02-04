@@ -144,16 +144,40 @@ This is a screenshot of the schematic for the Terminal I/O Board.
 The proceeding schematics are from both Austin Ducrest and Aaron Neuharth, just remade within Altium 
 
 ![AC conversion schematic](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/AC.jpg)
+AC conversion schematic
 
 ![DC schematic part 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/DC_1.jpg)
+DC schematic part 1
 
 ![DC schematic part 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/DC_2.jpg)
+[DC schematic part 2
 
 ![Safety schematic part 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/Safety_1.jpg)
+Safety schematic part 1
 
+![Safety schematic part 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/Safety_2.jpg)
+Safety schematic part 2
 
+![Gate Driver 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/gate_driver_1.jpg)
+Gate Driver 1
 
+![Gate Driver 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/gate_driver_2.jpg)
+Gate Driver 2
 
+![Gate Driver 3](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/gate_driver_3.jpg)
+Gate Driver 3
+
+![Gate Driver 4](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/gate_driver_4.jpg)
+Gate Driver 4
+
+![Root Schematic part 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/root_Sch_1.jpg)
+Root Schematic part 1
+
+![Root Schematic part 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/root_Sch_2.jpg)
+Root Schematic part 2
+
+![Root Schematic part 3](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/root_Sch_3.jpg)
+Root Schematic part 3
 ## Printed Circuit Board Layout
 
 Still being worked on
