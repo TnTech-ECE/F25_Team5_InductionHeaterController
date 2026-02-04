@@ -203,7 +203,59 @@ This Block diagram gives a visual representation of how the set up of the two bo
 
 ## BOM
 
-Since the board is yet to be finalized, these values are a rough estimate. The  board will likely end up being a 4 layer stack up for the dedicated power and ground planes. The rough maximum board size is around 12 × 10 inches, with 2 oz copper on both the inside and outside layers and a 2 mm thickness to help with strength and thermal management. Based on these specs, the estimated manufacturing cost from JLCPCB comes out to about $203.66.[8]
+ The  Terminal IO board is designed for a 4 layer stack up for the dedicated power, signal, and ground planes. The rough maximum board size is around 5 × 4 inches, with 1 oz copper on both the inside and outside layers fwith a 1.6mm thickness to help with strength and thermal management. Based on these specs, the estimated manufacturing cost from JLCPCB comes out to about **$47.38**.[8]
+
+ **Terminal IO shield Board Components**
+| Components         | Manufacturer | Part#           | Distributor | Dist. Part#      | Qty. | Price | Link |
+| ------------------ | ------------ | --------------- | ----------- | ---------------- | ---- | ----- | ---- |
+| J1,J10,J13,J16     | Samtec       | SSW-110-06-G-S  | Digikey     | SSW-110-06-G-S-ND | 4   | $8.52   | [digikey.com](https://www.digikey.com/en/products/detail/samtec-inc/SSW-110-06-G-S/7877530)
+| J2,J5,J6,J9,J11,J12,J14,J15 | On Shore Technology | OSTVN10A150 | Digikey | ED10567-ND | 8 | $29.76 | [digikey.com](https://www.digikey.com/en/products/detail/on-shore-technology-inc/ostvn10a150/1588870) |
+| J3,J4              | Sullins Connector Solutions | PPPC202LFBN-RC | Digikey | S7123-ND | 2 | $3.92 | [digikey.com](https://www.digikey.com/en/products/detail/sullins-connector-solutions/pppc202lfbn-rc/810259) |
+| ------------------- | ------------ | --------------- | ----------- | ---------------- | ---- | ----- | ---- |
+| **Total:** | | | | | | **$42.20** | |
+
+ The  Power board is designed for a 6 layer stack up for the dedicated power, signal, and ground planes. The rough maximum board size is around 12 × 12 inches, with 2 oz copper on both the inside and outside layers for a toal of 4oz of copper, aswell as 2mm thickness to help with strength and thermal management. there will also be edge plating to support EMC performance and grounding. Based on these specs, the estimated manufacturing cost from JLCPCB comes out to about **$376.46**.[8]
+
+ **Power Board Components**
+| Components         | Manufacturer | Part#           | Distributor | Dist. Part#      | Qty. | Price | Link |
+| ------------------ | ------------ | ----------- | ----------- | ---------- | ---- | ----   | ----- |           
+| FB1                |  Panjit      | GBJ3510     | Mouser Electronics | 241-GBJ3510_T0_00601 |1| $2.27 |[mouser.com](https://www.mouser.com/c/semiconductors/discrete-semiconductors/diodes-rectifiers/bridge-rectifiers/?q=GBJ3510 )|       
+| Q1,Q2,Q3,Q4        |  ROHM        | RGW80TS65DGC13 | Mouser Electronics | 755-RGW80TS65DGC13 |4|$24.96 | [mouser.com](https://www.mouser.com/ProductDetail/ROHM-Semiconductor/RGW80TS65DGC13?qs=dbcCsuKDzFUOUanxGPiR5w%3D%3D)|
+| G1,G2,G3,G4        | Texas Instruments | UCC21750 | Mouser Electronics |595-UCC21750DWR |4 | $18.20|[mouser.com](https://www.mouser.com/c/semiconductors/power-management-ics/galvanically-isolated-gate-drivers/?q=UCC21750 )|                                                       
+| U1,U2,U3,U4  | MURATA | MGJ2D151505SC | Mouser Electronics |580-MGJ2D151505SC| 4 |$33.84 |[mouser.com](https://www.mouser.com/ProductDetail/Murata-Power-Solutions/MGJ2D151505SC?qs=xLDY6iXSiQYIfXYEkf8RzA%3D%3D )|          
+|MPM-10-15| MEAN WELL| MPM-10-15 | Mouser Electronics| 709-MPM10-15|  1 | $10.10| [mouser.com](https://www.mouser.com/ProductDetail/MEAN-WELL/MPM-10-15?qs=xhbEVWpZdWesTikav2ic2A%3D%3D)|                             
+| U6  | Microchip Technology |  MIC5219-29YM5-TR  | Mouser Electronics | 998-MIC5219-2.9YM5TR | 1 | $1.28|[mouser.com](https://www.mouser.com/ProductDetail/Microchip-Technology/MIC5219-2.9YM5-TR?qs=U6T8BxXiZAUu28ZTWpa0Sw%3D%3D )|    
+| F1,F2        |Littelfuse Inc.|0314030.MXP | Digikey |F4830-ND |2 |$3.64 |[digikey.com](https://www.digikey.com/en/products/detail/littelfuse-inc/0314030-MXP/778344)|
+| C1 | KEMET| R46KN410045N1K | Mouser Electronics     |    80-R46KN410045N1K |1|$1.47|[mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN410045N1K?qs=sGAEpiMZZMsh%252B1woXyUXj4OxC4raikkmeB%2FwhDzdQF8%3D)|                         
+| C2,C3 | KEMET| R46KN347000S0K | Mouser Electronics|  80-R46KN347000S0K |2 |$3.36 |[mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN347000S0K?qs=zsw%2FKduBDDCxrxFscGQ5uQ%3D%3D)|        
+| C49 |EPCOS - TDK Electronics|B32676E6205K000 |  Digikey|495-2967-ND | 1  |$3.49| [digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32676E6205K000/1277731?s=N4IgTCBcDaIEIGYwDYDsyCiywAYCsA0jsSALoC%2BQA )|    
+| C53,C56 |Panasonic Electronic Components| ECW-FE2J104PD| Digikey |P124888-ND |2 |$1.48 | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECW-FE2J104PD/10292125?gclid=52232bb22e4e1d00d749429b369ded47&gclsrc=3p.ds&msclkid=52232bb22e4e1d00d749429b369ded47)|  
+|  C4_Bank | Vishay / Sprague | TVA1703| Mouser Electronics |75-TVA1703 | 1 | $7.81 | [mouser.com](https://www.mouser.com/ProductDetail/Vishay-Sprague/TVA1703?qs=Jc0vmPlqnSzO64EtNsmyOw%3D%3D)| 
+| C52| Nichicon | UVR2WR47MPD1TA |Mouser Electronics |647-UVR2WR47MPD1TA |1 |$0.27 |[mouser.com](https://www.mouser.com/ProductDetail/Nichicon/UVR2WR47MPD1TA?qs=sGAEpiMZZMvwFf0viD3Y3bXvgfG2gej7dC5wqpdmRvg7M7%252BgfNUw5Q%3D%3D )| 
+|C_resonant_bank |WIMA |MKP10-.22/630/5P22  | Mouser Electronics |505-MKP10-.226305P22 |4 |$7.52 |[mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D&mgh=1&utm_source=chatgpt.com)|         
+|R1  | YAGEO |   RSF50SJT-52-330K|  Mouser Electronics|603-RSF50SJT-52-330K |1 |$0.18 |[mouser.com](https://www.mouser.com/ProductDetail/YAGEO/RSF50SJT-52-330K?qs=sGAEpiMZZMtlubZbdhIBIMMVXX%252BgggzkwMlyWq3j6Pk%3D )|  
+| R9 |  Bourns  | 3362U-1-504RLF  | Mouser Electronics |652-3362U-1-504RLF |1 |$2.05 |[mouser.com](https://www.mouser.com/ProductDetail/Bourns/3362U-1-504RLF?qs=sGAEpiMZZMtlubZbdhIBIAQM2Qjzi%2FAyAEPNZgNnw3U%3D )|
+|  R22 | Bourns | PV32H105A01B00| Mouser Electronics | 81-PV32H105A01B00 |1 |$2.59|[mouser.com](https://www.mouser.com/ProductDetail/Bourns/PV32H105A01B00?qs=sGAEpiMZZMtlubZbdhIBIIiZvkqlAA9uzG1McxUFrHs%3D )|
+|EMI_Choke| KEMET |SC-30-E100 | Digikey|399-SC-30-E100-ND |1 |$15.13 |[digikey.com](https://www.digikey.com/en/products/detail/kemet/SC-30-E100/10385065 )|
+|C44,C46,C50,C48,C69,C64,C66,C71,C6,C8,C10,C12,C28,C30,C32,C33,C36,C37,C40,C41,C75|Murata Electronics |RDER71E104K0P1H03B|Digikey| 490-8809-ND| 20 | $5.40 |[digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/RDER71E104K0P1H03B/4770964?s=N4IgTCBcDaIEoBECicDsBGJ6AMAWA0tgAroAS2AzAEIAEIAugL5A )| 
+| C56,C51,C72,C67 |TDK Corporation|FG18X7R1E105KRT06  | Digikey|445-173261-1-ND - Cut Tape (CT) |4 | $1.20 |[digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X7R1E105KRT06/5802875)| 
+|C29,C31,C34,C35,C38,C39,C42,C43,C13,C11,C9,C7,C23,C24,C4,C21,C65 | Panasonic Electronic Components|ECA-1EM100|Digikey| P5148-ND|18 | $2.61 |[digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECA-1EM100/245007?s=N4IgTCBcDaIKIGECChEAgIxwLJoAw5ALoC%2BQA )|    
+| C19 |KEMET  |C322C471K3G5TA |Digikey|399-C322C471K3G5TA-ND |1 |$0.38|[digikey.com](https://www.digikey.com/en/products/detail/kemet/C322C471K3G5TA/6656585 )|
+| C20,C22 |TDK Corporation |FG18X5R1E225KRT06|Digikey|445-173253-1-ND - Cut Tape (CT) |2 |$0.64|[digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X5R1E225KRT06/5802867 )|
+| R6,R18,R23,R26,R27,R20,R35,R38,R39,R41,R44,R45 | Stackpole Electronics Inc|CF14JT10K0|Digikey|CF14JT10K0CT-ND|12 |$0.50|[digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265)|
+| L1 | Pulse Electronics | BFSI001211094R7M05 | Digikey | 553-BFSI001211094R7M05CT-ND - Cut Tape (CT) | 1 | $1.27 | [digikey.com](https://www.digikey.com/en/products/detail/pulse-electronics/BFSI001211094R7M05/16510826)  |
+| C74 |KEMET |F861DU225M310R | Digikey |399-F861DU225M310RCT-ND |1 |$2.62 |[digikey.com](https://www.digikey.com/en/products/detail/kemet/F861DU225M310R/18144023) |
+| PS1|Mornsun America, LLC |LDE60-20B12 |Digikey |2725-LDE60-20B12-ND |1 |$8.86 |[digikey.com](https://www.digikey.com/en/products/detail/mornsun-america-llc/LDE60-20B12/13168172?s=N4IgTCBcDaIDIBECiA2ADAWjGgQgRggF0BfIA) |
+|R8 |Ohmite |WNE5R0FET |Digikey |WNE5R0FETCT-ND |1 |$2.27 |[digikey.com](https://www.digikey.com/en/products/detail/ohmite/WNE5R0FET/3114558) |
+|C70 |EPCOS - TDK Electronics |B32922C3224M289 |Digikey |495-B32922C3224M289CT-ND |1 |$0.59 |[digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32922C3224M289/2504694) |
+| PWR1,PWR2          | Eaton | YK8810303000G | Digikey | 281-YK8810303000G-ND | 2 | $5.42 | [digikey.com](https://www.digikey.com/en/products/detail/amphenol-anytek/YK8810303000G/4962666) |
+| TB1,TB2            | On Shore Technology | OSTVN06A150 | Digikey | ED10564-ND | 2 | $4.00 | [digikey.com](https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTVN05A150/1588865?s=N4IgTCBcDaIKIBECMAGArANgCwFoByCIAugL5A) |
+| TB3                | On Shore Technology | OSTVN02A150 | Digikey | ED10561-ND | 1 | $0.87 | [digikey.com](https://www.digikey.com/en/products/detail/on-shore-technology-inc/ostvn02a150/1588862) |
+| F1,F2              | Keystone Electronics | 01240061H | Digikey | ED10561-ND | 4 | $3.08 | [digikey.com](https://www.digikey.com/en/products/filter/fuse-holders/152) |
+
+|-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
+|**Total:** | | | | | | **$179.35** | |
+
 
 ## Analysis
 
