@@ -141,6 +141,11 @@ Below are the screenshot of the scematics for both the Power PCB and the Termina
 
 ![block_diagram](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/16d979507bc1b6795d6253559fa29859555ce3d3/Reports/images_PCB/terminal_IO_schematic.jpg)
 This is a screenshot of the schematic for the Terminal I/O Board. 
+The proceeding schematics are from both Austin Ducrest and Aaron Neuharth, just remade within Altium 
+
+![block_diagram]([https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/16d979507bc1b6795d6253559fa29859555ce3d3/Reports/images_PCB/terminal_IO_schematic.jpg](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/AC.jpg))
+
+
 
 ## Printed Circuit Board Layout
 
