@@ -97,7 +97,7 @@ The following images show the circuit diagram layouts for the Power System. Afte
 ![alt text](image-10.png)
         **Figure 3, Gate Driver IC's for IGBT 3 and 4.
 
-![alt text](image-23.png)
+![alt text](image-24.png)
         **Figure 4, Branch conversion for DC buses.
 
 ![alt text](image-12.png)
@@ -122,7 +122,7 @@ This Section will detail ALL of the necessary information to acquire all compone
 | G1,G2,G3,G4        | Texas Instruments | UCC21750 | Mouser Electronics |595-UCC21750DWR |4 | $18.20|[mouser.com](https://www.mouser.com/c/semiconductors/power-management-ics/galvanically-isolated-gate-drivers/?q=UCC21750 )|                                                         
 | U1,U2,U3,U4  | MURATA | MGJ2D151505SC | Mouser Electronics |580-MGJ2D151505SC| 4 |$33.84 |[mouser.com](https://www.mouser.com/ProductDetail/Murata-Power-Solutions/MGJ2D151505SC?qs=xLDY6iXSiQYIfXYEkf8RzA%3D%3D )|          
 |MPM-10-15| MEAN WELL| MPM-10-15 | Mouser Electronics| 709-MPM10-15|  1 | $10.10| [mouser.com](https://www.mouser.com/ProductDetail/MEAN-WELL/MPM-10-15?qs=xhbEVWpZdWesTikav2ic2A%3D%3D)|                             
-| U6  | Microchip Technology |  MIC5219-29YM5-TR  | Mouser Electronics | 998-MIC5219-2.9YM5TR | 1 | $1.28|[mouser.com](https://www.mouser.com/ProductDetail/Microchip-Technology/MIC5219-2.9YM5-TR?qs=U6T8BxXiZAUu28ZTWpa0Sw%3D%3D )|    
+| U6  | Microchip Technology |  MIC5219-5.0YMM  | Mouser Electronics | 998-MIC5219-5.0YMM | 1 | $1.56|[mouser.com](https://www.mouser.com/ProductDetail/Microchip-Technology/MIC5219-5.0YMM?qs=kh6iOki%2FeLGcAZQ4JCOeow%3D%3D)|    
 | F1,F2        |Littelfuse Inc.|0314030.MXP | Digikey |F4830-ND |2 |$3.64 |[digikey.com](https://www.digikey.com/en/products/detail/littelfuse-inc/0314030-MXP/778344)|
 | C1 | KEMET| R46KN410045N1K | Mouser Electronics     |    80-R46KN410045N1K |1|$1.47|[mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN410045N1K?qs=sGAEpiMZZMsh%252B1woXyUXj4OxC4raikkmeB%2FwhDzdQF8%3D)|                         
 | C2,C3 | KEMET| R46KN347000S0K | Mouser Electronics|  80-R46KN347000S0K |2 |$3.36 |[mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN347000S0K?qs=zsw%2FKduBDDCxrxFscGQ5uQ%3D%3D)|        
@@ -147,7 +147,7 @@ This Section will detail ALL of the necessary information to acquire all compone
 |R8 |Ohmite |WNE5R0FET |Digikey |WNE5R0FETCT-ND |1 |$2.27 |[digikey.com](https://www.digikey.com/en/products/detail/ohmite/WNE5R0FET/3114558) |
 |C70 |EPCOS - TDK Electronics |B32922C3224M289 |Digikey |495-B32922C3224M289CT-ND |1 |$0.59 |[digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32922C3224M289/2504694) |
 |-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
-|Total: $165.98 |
+|Total: $166.28 |
 
 
 
