@@ -154,9 +154,13 @@ DC schematic part 2
 
 ![Safety schematic part 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/Safety_1.jpg)
 
+
+
 Safety schematic part 1
 
 ![Safety schematic part 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/Safety_2.jpg)
+
+
 
 Safety schematic part 2
 
