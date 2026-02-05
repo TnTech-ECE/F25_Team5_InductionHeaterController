@@ -29,7 +29,7 @@ ANSI/IEEE 844-200 [1] applies directly to induction heating for pipelines and ve
 
 1. The subsystem shall limit the temperature rise of the metal to meet customer specs. The application is primarily a water heater rather than a water boiler, so the temperature of the metal does not need to greatly exceed 212°F (100°C). Many sensor bodies are rated for temps up to 425°F (220°C), so this subsystem will set the max temp induced to be 350°F (177°C) to ensure specs are met without damaging equipment. 
 2. The Embedded Subsytem utilizes a Nucleo-STM32L476RG microcontroller, so any control implemented must be compatible with that microcontroller. 
-3. The Power Subsystem will be responsible for generating heat on the pipe by inducing current on the coil, and the 240 V voltage source should remain constant. So, the primary method of control will operate by changing the duty cycle of the current delivered to the coil.  
+3. The Power Subsystem will be responsible for generating heat on the pipe by inducing current on the coil, and the voltage source should remain constant. So, the primary method of control will operate by changing the duty cycle of the current delivered to the coil.  
 
 
 ## Overview of Proposed Solution
@@ -123,13 +123,24 @@ Pseudo Code for system implemented in the Nucleo:
 
 ## Flowchart
 
-Shown below is a detailed flow chart of the Heat Generation Subsystem's Hardware Components: 
-![alt text](./Heat_Generation_Subsystem/Heat_Generation_Schematic.png)
+#### Shown below is a detailed flow chart of the Heat Generation Subsystem's Hardware Components: 
 
-Shown below is a detailed flow chart of the Heat Generation Subsystem's Software Components: 
+
+![alt text](./Heat_Generation_Subsystem/Heat_Generation_Schematic_AGAIN.drawio.png)
+
+
+#### Shown below is a detailed flow chart of how the Hardware Components read the pipe surface temperature: 
+
+
+![alt text](./Heat_Generation_Subsystem/MAX31856_Flow_Chart.drawio.png)
+
+
+#### Shown below is a detailed flow chart of the Heat Generation Subsystem's Software Components: 
 
 
 ![alt text](./Heat_Generation_Subsystem/New_HeatGenerationSubsystem.drawio.png)
+
+
 
 
 where: 
@@ -145,6 +156,9 @@ where:
 | Thermocouple Amplifier | Adafruit | 3263  | Digikey | 1528-1772-ND | 1 | $17.50 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3263/6227009) |
 | Total Cost | N/A | N/A | N/A | N/A | N/A | $88.32 | N/A |
 
+ADDITIONAL PARTS IN OTHER SUBSYSTEMS
+
+Fabrication shops with welders are available at TTU in Brown, so the additional cost of welding equipment for attaching the thermocouple to the pipe is unneccessary. 
 
 ## Analysis
 
@@ -167,7 +181,7 @@ This model should give an approximation of the the system dynamics, but it would
 
 It is difficult to accurately predict the exact response of the system without having an physical model of the pipe and coil. Typical system identification using the black box method requires the ability to get experimental data from the system given a known input and output [3]. An alternative method is to analytically derive the transfer function of the system using the laws of physics. This would require knowledge about the material, the resistance, the length, and the diameter of the section of the pipe heated; the number of turns of and the material of the coil; and knowledge about thermodynamics. It is difficult to determine analytically the exact temperature output in response to a certain current input. 
 
-It is more practical and efficient to experimentally derive the plant dynamics when able, but this will not be practical for this application until Capstone 2 Spring 2026 (currently Capstone 1 Fall 2025) when the team is able to start constructing the physical system and able to obtain experimental data. When the team is experimenting with the system in Spring 2026 the current delivered to the coil will be kept low with the ability to stop the system using an emergency stop if the temperature output is suspected of being unstable. Once this data is obtained it will be possible to analytically and experimentally determine the values for the PID constants. 
+It is more practical and efficient to experimentally derive the plant dynamics when able, but this will not be practical for this application until after parts are ordered and when the team is able to start constructing the physical system and able to obtain experimental data. When the team is experimenting with the system the current delivered to the coil will be kept low with the ability to stop the system using an emergency stop if the temperature output is suspected of being unstable. Once this data is obtained it will be possible to analytically and experimentally determine the values for the PID constants. 
 
 This systems PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. It is possible to implement PID control using dedicated PID blocks using PLC or LabVIEW software, but these items would add unneccessary cost and compatibility issues to the system. Implementing PID control using C code is best to keep costs low and maximize compatibility with the Nucleo. 
 
@@ -178,7 +192,20 @@ The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPI
 Adafruit produces an Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board [8,9] that solves both the issue of amplification and cold junction amplification: 
 ![alt text](./Heat_Generation_Subsystem/Adafruit_MAX31856.png)
 
-The Adafruit Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board is able to read any type of thermococouple. Cheaper options are availabl that can only read K-type thermocouples, but this board includes the critical ability to produce fault signals to ensure safety is maintained. The fault helps reduce unneccessary delays from the microcontroller trying to shut off power using code. The breakout board is set up in the basic configuration as seen in the buildable schematic, so the primary issue of integration will be connecting the thermocouple leads, the power to the amplifier, and the output to the PCB. This will require a PCB board implemented in the PCB subsystem. 
+The Adafruit Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board is able to read any type of thermococouple, including the K-type thermocouple selected for this application. Furthermore, the MAX31856 performs the amplication of the thermocouple signals: 
+
+The MAX31856 Datsheet [8] states "The temperature conversion process consists of five steps as described in the sections below: 
+1. The input amplifier and ADC amplify and digitize the thermocouple’s voltage output. 
+2. The internal temperature sensor measures the cold-junction temperature. 
+3. Using the internal lookup table (LUT), the ADC code corresponding to the cold junction temperature for the selected thermocouple type is determined. 
+4. The thermocouple code and the cold-junction code are summed to produce the code corresponding to the cold-junction compensated thermocouple temperature. 
+5. The LUT is used to produce a cold-junction compensated output code in units of °C." [8]
+
+The output signal from the MAX31856 is then sent to the Nucleo. The Nucleo recieves a signal indicating the temperature of the surface of the pipe, as determined using the thermocouple and MAX31856. The Nucleo is then able to perform closed loop control using this information. 
+
+![alt text](./Heat_Generation_Subsystem/MAX31856_Flow_Chart.drawio.png)
+
+The MAX31856 also includes the ability to produce fault signals to ensure safety is maintained. The fault helps reduce unneccessary delays from the microcontroller trying to shut off power using code. The breakout board is set up in the basic configuration as seen in the buildable schematic, so the primary issue of integration will be connecting the thermocouple leads, the power to the amplifier, and the output to the PCB. This set up is detailed by the PCB and Embedded subsystems. 
 
 The critical requirement for the thermocouple chosen for this application is the reduction of noise in the sensor in order to maintaining accurate readings. Thus determining the proper thermocouple focused on noise reduction as the critical factor and focusing on other features later to isolate the exact model to implement. 
 
