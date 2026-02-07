@@ -50,9 +50,9 @@ After EMI filtering, the 120 VAC input is intentionally divided into three indep
 
 The first AC branch feeds the primary full-bridge diode rectifier responsible for generating the high-voltage DC bus used by the induction-heating inverter. Bulk capacitors smooth the rectified voltage, and bleed resistors ensure safe discharge of stored energy after shutdown. This DC bus forms the power backbone for the full-bridge inverter that drives the resonant LC tank which in turn transfers energy via induction onto a steel pipe workpiece.
 
-##### Branch 2 — Auxiliary Power Flyback Converter (12 V and 5 V Rails)
+##### Branch 2 — Auxiliary Power AC-DC Converter (12 V and 5 V Rails)
 
-The second AC branch routes the filtered 120 VAC into a separate rectification stage dedicated to the auxiliary flyback supply. A rectifier diode and filter capacitor convert the AC input into a high-voltage DC level suitable for the flyback controller IC. The flyback converter then steps this voltage down to produce a regulated 12 VDC rail, which powers the system’s cooling fans and other low-voltage auxiliary components that could be integrated in the future. From the 12 V output, a linear low-dropout regulator produces a clean and low-noise 5 VDC rail required by the microcontroller and digital logic circuitry. This arrangement satisfies the specification that the subsystem provide well-filtered, stable voltages for downstream electronics.
+The second AC branch routes the filtered 120 VAC into a separate rectification stage dedicated to the AC-DC converter. The converter internally isolates the high voltage input with the low voltage secondary. The converter then produces a 12 VDC rail assisted by some capacitors to ensure the voltage is smooth and near zero interference. This voltage powers the system’s cooling fans and other low-voltage auxiliary components that could be integrated in the future. From the 12 V output, a linear low-dropout regulator produces a clean and low-noise 5 VDC rail required by the microcontroller and digital logic circuitry. This arrangement satisfies the specification that the subsystem provide well-filtered, stable voltages for downstream electronics.
 
 ##### Branch 3 — Dedicated AC-to-DC 15 V Gate-Driver Supply
 
@@ -64,7 +64,7 @@ At the core of the main power path, a high-frequency full-bridge inverter conver
 
 Finally, all subsystem interfaces which include AC inputs, the three AC branches, DC-bus nodes, auxiliary rails, and resonant-tank connections, are clearly mapped and organized to ensure clean routing and efficient subsystem integration.
 
-Collectively, the EMI filter, main rectification stage, three-branch AC distribution network, isolated gate-driver supply, auxiliary flyback converter, and full-bridge inverter form a cohesive power solution that fulfills all subsystem specifications while satisfying CISPR 11 EMI constraints, NEC grounding and load-sizing rules, and 20 A branch-circuit limitations.
+Collectively, the EMI filter, main rectification stage, three-branch AC distribution network, isolated gate-driver supply, auxiliary AC-DC converter, and full-bridge inverter form a cohesive power solution that fulfills all subsystem specifications while satisfying CISPR 11 EMI constraints, NEC grounding and load-sizing rules, and 20 A branch-circuit limitations.
 
 ## Interface with Other Subsystems
 
@@ -88,25 +88,25 @@ The Power Subsystem will need to be able to be integrated onto a PCB for physica
 The following images show the circuit diagram layouts for the Power System. After this section, please refer to the following section where the schematic BOM will be nested.
 
 
-![alt text](image-22.png)
+![alt text](image-25.png)
         **Figure 1, AC main -> Rectified DC bus -> Inverter
 
-![alt text](image-9.png)
+![alt text](image-26.png)
         **Figure 2, Gate Driver IC's for IGBT 1 and 2.
 
-![alt text](image-10.png)
+![alt text](image-27.png)
         **Figure 3, Gate Driver IC's for IGBT 3 and 4.
 
-![alt text](image-24.png)
+![alt text](image-28.png)
         **Figure 4, Branch conversion for DC buses.
 
-![alt text](image-12.png)
+![alt text](image-29.png)
         **Figure 5, DC bus routing to small loads.
 
-![alt text](image-13.png)
+![alt text](image-30.png)
         **Figure 6, AC conversion to DC for Gate Driver IC operation.
 
-![alt text](image-14.png)
+![alt text](image-31.png)
         **Figure 7, Grounding Grid layout.
 
 ## BOM
@@ -118,19 +118,18 @@ This Section will detail ALL of the necessary information to acquire all compone
 | Components         | Manufacturer |  Part#      | Distributor | Dist. Part# | Qty. | Price |  Link |
 | ------------------ | ------------ | ----------- | ----------- | ---------- | ---- | ----   | ----- |           
 | FB1                |  Panjit      | GBJ3510     | Mouser Electronics | 241-GBJ3510_T0_00601 |1| $2.27 |[mouser.com](https://www.mouser.com/c/semiconductors/discrete-semiconductors/diodes-rectifiers/bridge-rectifiers/?q=GBJ3510 )|       
-| Q1,Q2,Q3,Q4        |  ROHM        | RGW80TS65DGC13 | Mouser Electronics | 755-RGW80TS65DGC13 |4|$24.96 | [mouser.com](https://www.mouser.com/ProductDetail/ROHM-Semiconductor/RGW80TS65DGC13?qs=dbcCsuKDzFUOUanxGPiR5w%3D%3D)|
-| G1,G2,G3,G4        | Texas Instruments | UCC21750 | Mouser Electronics |595-UCC21750DWR |4 | $18.20|[mouser.com](https://www.mouser.com/c/semiconductors/power-management-ics/galvanically-isolated-gate-drivers/?q=UCC21750 )|                                                         
-| U1,U2,U3,U4  | MURATA | MGJ2D151505SC | Mouser Electronics |580-MGJ2D151505SC| 4 |$33.84 |[mouser.com](https://www.mouser.com/ProductDetail/Murata-Power-Solutions/MGJ2D151505SC?qs=xLDY6iXSiQYIfXYEkf8RzA%3D%3D )|          
+| Q1,Q2,Q3,Q4        |  ROHM        | RGW80TS65DGC13 | Mouser Electronics | 755-RGW80TS65DGC13 |4|$6.24 | [mouser.com](https://www.mouser.com/ProductDetail/ROHM-Semiconductor/RGW80TS65DGC13?qs=dbcCsuKDzFUOUanxGPiR5w%3D%3D)|
+| G1,G2,G3,G4        | Texas Instruments | UCC21750 | Mouser Electronics |595-UCC21750DWR |4 | $4.55|[mouser.com](https://www.mouser.com/ProductDetail/Texas-Instruments/UCC21750DWR?qs=2WXlatMagcGW8IDFLYjShA%3D%3D )|                                                         
+| U1,U2,U3,U4  | MURATA | MGJ2D151505SC | Mouser Electronics |580-MGJ2D151505SC| 4 |$8.46 |[mouser.com](https://www.mouser.com/ProductDetail/Murata-Power-Solutions/MGJ2D151505SC?qs=xLDY6iXSiQYIfXYEkf8RzA%3D%3D )|          
 |MPM-10-15| MEAN WELL| MPM-10-15 | Mouser Electronics| 709-MPM10-15|  1 | $10.10| [mouser.com](https://www.mouser.com/ProductDetail/MEAN-WELL/MPM-10-15?qs=xhbEVWpZdWesTikav2ic2A%3D%3D)|                             
 | U6  | Microchip Technology |  MIC5219-5.0YMM  | Mouser Electronics | 998-MIC5219-5.0YMM | 1 | $1.56|[mouser.com](https://www.mouser.com/ProductDetail/Microchip-Technology/MIC5219-5.0YMM?qs=kh6iOki%2FeLGcAZQ4JCOeow%3D%3D)|    
-| F1,F2        |Littelfuse Inc.|0314030.MXP | Digikey |F4830-ND |2 |$3.64 |[digikey.com](https://www.digikey.com/en/products/detail/littelfuse-inc/0314030-MXP/778344)|
 | C1 | KEMET| R46KN410045N1K | Mouser Electronics     |    80-R46KN410045N1K |1|$1.47|[mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN410045N1K?qs=sGAEpiMZZMsh%252B1woXyUXj4OxC4raikkmeB%2FwhDzdQF8%3D)|                         
 | C2,C3 | KEMET| R46KN347000S0K | Mouser Electronics|  80-R46KN347000S0K |2 |$3.36 |[mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN347000S0K?qs=zsw%2FKduBDDCxrxFscGQ5uQ%3D%3D)|        
 | C49 |EPCOS - TDK Electronics|B32676E6205K000 |  Digikey|495-2967-ND | 1  |$3.49| [digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32676E6205K000/1277731?s=N4IgTCBcDaIEIGYwDYDsyCiywAYCsA0jsSALoC%2BQA )|    
 | C53,C56 |Panasonic Electronic Components| ECW-FE2J104PD| Digikey |P124888-ND |2 |$1.48 | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECW-FE2J104PD/10292125?gclid=52232bb22e4e1d00d749429b369ded47&gclsrc=3p.ds&msclkid=52232bb22e4e1d00d749429b369ded47)|  
 |  C4_Bank | Vishay / Sprague | TVA1703| Mouser Electronics |75-TVA1703 | 1 | $7.81 | [mouser.com](https://www.mouser.com/ProductDetail/Vishay-Sprague/TVA1703?qs=Jc0vmPlqnSzO64EtNsmyOw%3D%3D)| 
 | C52| Nichicon | UVR2WR47MPD1TA |Mouser Electronics |647-UVR2WR47MPD1TA |1 |$0.27 |[mouser.com](https://www.mouser.com/ProductDetail/Nichicon/UVR2WR47MPD1TA?qs=sGAEpiMZZMvwFf0viD3Y3bXvgfG2gej7dC5wqpdmRvg7M7%252BgfNUw5Q%3D%3D )| 
-|C_resonant_bank |WIMA |MKP10-.22/630/5P22  | Mouser Electronics |505-MKP10-.226305P22 |4 |$7.52 |[mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D&mgh=1&utm_source=chatgpt.com)|         
+|C_resonant_bank |WIMA |MKP10-.22/630/5P22  | Mouser Electronics |505-MKP10-.226305P22 |4 |$1.88 |[mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D&mgh=1&utm_source=chatgpt.com)|         
 |R1  | YAGEO |   RSF50SJT-52-330K|  Mouser Electronics|603-RSF50SJT-52-330K |1 |$0.18 |[mouser.com](https://www.mouser.com/ProductDetail/YAGEO/RSF50SJT-52-330K?qs=sGAEpiMZZMtlubZbdhIBIMMVXX%252BgggzkwMlyWq3j6Pk%3D )|  
 | R9 |  Bourns  | 3362U-1-504RLF  | Mouser Electronics |652-3362U-1-504RLF |1 |$2.05 |[mouser.com](https://www.mouser.com/ProductDetail/Bourns/3362U-1-504RLF?qs=sGAEpiMZZMtlubZbdhIBIAQM2Qjzi%2FAyAEPNZgNnw3U%3D )|
 |  R22 | Bourns | PV32H105A01B00| Mouser Electronics | 81-PV32H105A01B00 |1 |$2.59|[mouser.com](https://www.mouser.com/ProductDetail/Bourns/PV32H105A01B00?qs=sGAEpiMZZMtlubZbdhIBIIiZvkqlAA9uzG1McxUFrHs%3D )|
@@ -140,14 +139,16 @@ This Section will detail ALL of the necessary information to acquire all compone
 |C29,C31,C34,C35,C38,C39,C42,C43,C13,C11,C9,C7,C23,C24,C4,C21,C65 | Panasonic Electronic Components|ECA-1EM100|Digikey| P5148-ND|18 | $2.61 |[digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECA-1EM100/245007?s=N4IgTCBcDaIKIGECChEAgIxwLJoAw5ALoC%2BQA )|    
 | C19 |KEMET  |C322C471K3G5TA |Digikey|399-C322C471K3G5TA-ND |1 |$0.38|[digikey.com](https://www.digikey.com/en/products/detail/kemet/C322C471K3G5TA/6656585 )|
 | C20,C22 |TDK Corporation |FG18X5R1E225KRT06|Digikey|445-173253-1-ND - Cut Tape (CT) |2 |$0.64|[digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X5R1E225KRT06/5802867 )|
-| R6,R18,R23,R26,R27,R20,R35,R38,R39,R41,R44,R45 | Stackpole Electronics Inc|CF14JT10K0|Digikey|CF14JT10K0CT-ND|12 |$0.50|[digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265)|
+| R6,R18,R23,R26,R27,R20,R35,R38,R39,R41,R44,R45,R46,R47,R48,R49 | Stackpole Electronics Inc|CF14JT10K0|Digikey|CF14JT10K0CT-ND|16 |$0.50|[digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265)|
 | L1 | Pulse Electronics | BFSI001211094R7M05 | Digikey | 553-BFSI001211094R7M05CT-ND - Cut Tape (CT) | 1 | $1.27 | [digikey.com](https://www.digikey.com/en/products/detail/pulse-electronics/BFSI001211094R7M05/16510826)  |
 | C74 |KEMET |F861DU225M310R | Digikey |399-F861DU225M310RCT-ND |1 |$2.62 |[digikey.com](https://www.digikey.com/en/products/detail/kemet/F861DU225M310R/18144023) |
 | PS1|Mornsun America, LLC |LDE60-20B12 |Digikey |2725-LDE60-20B12-ND |1 |$8.86 |[digikey.com](https://www.digikey.com/en/products/detail/mornsun-america-llc/LDE60-20B12/13168172?s=N4IgTCBcDaIDIBECiA2ADAWjGgQgRggF0BfIA) |
 |R8 |Ohmite |WNE5R0FET |Digikey |WNE5R0FETCT-ND |1 |$2.27 |[digikey.com](https://www.digikey.com/en/products/detail/ohmite/WNE5R0FET/3114558) |
 |C70 |EPCOS - TDK Electronics |B32922C3224M289 |Digikey |495-B32922C3224M289CT-ND |1 |$0.59 |[digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32922C3224M289/2504694) |
+|R2,R24,R42,R36 |Stackpole Electronics Inc |CF12JT10R0 |Digikey |CF12JT10R0CT-ND |4 | $0.10 |[digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF12JT10R0/1741018) |
+|R43,R37,R4,R25|Ohmite |WHA5R0FET |Digikey |WHA5R0FECT-ND |4 |1.85 |[digikey.com](https://www.digikey.com/en/products/detail/ohmite/WHA5R0FET/678818) |
 |-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
-|Total: $166.28 |
+|Total: $172.04 |
 
 
 
@@ -158,7 +159,7 @@ Table 1:
 
 | Components          | Power Consumption (Watts) |        
 | ------------------ | ------------ | 
-| Fans x 3           | 6             |  
+| Fans x 2           | 6             |  
 | MCU                | 1             | 
 | Pipe Workpiece     | 1600          | 
 | Total              | 1607          |
@@ -205,7 +206,7 @@ The main power stage rectifies the filtered AC through a GBJ3510 35 A, 1000 V br
 
 At the center of the design is the full-bridge inverter composed of four high-voltage IGBTs [6] arranged in a standard H-bridge topology. This inverter is responsible for generating the high-frequency bipolar AC waveform that excites the resonant heating tank. The inverter midpoints feed a parallel LC resonant network consisting of a 25 µH induction coil and a capacitor bank totaling approximately 1.16 µF. The actual inductance of the coil will be able to be tuned in real life to achieve resonance with the capacitance value. This parallel configuration produces a resonant frequency around 30 kHz and presents a high impedance at resonance, which naturally limits inverter current even as coil current becomes large. Such behavior is advantageous in induction-heating applications, which often demand high circulating currents at the load but moderate bus currents at the switching bridge. The use of localized high-frequency decoupling capacitors across each half-bridge minimizes voltage overshoot due to parasitic inductance and improves switching performance. Collectively, these measures ensure the inverter can reliably operate at the required switching frequency while controlling switching losses, limiting electromagnetic emissions, and maintaining stable resonant operation.
 
-The gate-driver topology is designed with particular attention to safety, isolation integrity, and transient immunity. Each IGBT is driven by a dedicated UCC21750 isolated gate-driver IC, powered by its own fully isolated 15 V DC supply derived from Murata MGJ2D151505SC modules [9]. This structure provides four distinct galvanically isolated drive domains, preventing cross-talk between high-side and low-side devices and ensuring that each IGBT gate is referenced cleanly to its own emitter node, which is essential in a full-bridge inverter where both high-side devices experience rapid dv/dt at their gate-drive reference. The UCC21750 [7] devices incorporate desaturation protection, fault-reporting, and Miller-clamp functionality, enabling controlled shutdown during short-circuit or fault events and preventing false turn-on during high-frequency switching transients. Each driver is further supported by local ceramic decoupling capacitors, selected gate resistances, and single-point logic grounding, forming a noise-resilient and electrically robust control interface to the inverter.
+The gate-driver topology is designed with particular attention to safety, isolation integrity, and transient immunity. Each IGBT is driven by a dedicated UCC21750 isolated gate-driver IC, powered by its own fully isolated 15 V DC supply derived from Murata MGJ2D151505SC modules [9]. This structure provides four distinct isolated drive domains, preventing cross-talk between high-side and low-side devices and ensuring that each IGBT gate is referenced cleanly to its own emitter node, which is essential in a full-bridge inverter where both high-side devices experience rapid dv/dt at their gate-drive reference. The UCC21750 [7] devices incorporate desaturation protection, fault-reporting, and Miller-clamp functionality, enabling controlled shutdown during short-circuit or fault events and preventing false turn-on during high-frequency switching transients. Each driver is further supported by local ceramic decoupling capacitors, selected gate resistances, and single-point logic grounding, forming a noise-resilient and electrically robust control interface to the inverter.
 
 The auxiliary power architecture provides clean, stable low-voltage rails necessary for system control and thermal management. An LDE60-20B12 AC-DC converter [8] generates a regulated 12 V rail used to drive the forced-air cooling fans. With a max power output of 60 Watts and max current draw this component will be able to supply our DC loads without fear of overload. This power supply is well-suited for high-voltage, isolated bias generation and incorporates  isolation to ensure the logic subsystem is electrically separated from the high-voltage domain. A MIC5219 low-dropout regulator [11] derives a stable, low-noise 5 V rail for the microcontroller and logic circuits, with appropriate output filtering to minimize ripple and ensure digital-signal integrity. The totality of the auxiliary supply chain is electrically and physically segregated from the gate-drive islands, reducing noise coupling and ensuring stable operation even during high-power switching events.
 
@@ -217,6 +218,24 @@ Overall, the system architecture demonstrates a disciplined application of power
 See reference [12] to learn more on the full bridge inverter topology that is utilized in this design.
 
 
+
+#### Testing
+
+The success of this project includes the ability to test and monitor critical values that determine the operating characteristics of the system. There are 3 main categories that are to be analyzed. Thermal, Power and Standards compliance.
+
+##### Thermal
+ 
+ This system has intelligence implemented by a microcontroller. In other words, there are thermocouples in place around critical pieces of equipment, and also the enclosure of the electronics to send signals back to the MCU for informational processing. From there, the programming can authorize the system to begin countermeasures to regulate heat generation at the load, as well as internally. Likewise, an information readout will be sent to the LCD screen. 
+
+ For more information regarding thermal, please see the detailed designs of Heat Generation and Safety Protections and Controls.
+
+ ##### Power
+
+For the testing of the power aspect of the system. The utilization of differential lab probes, oscilloscopes, and handheld multimeters will be used to measure the voltage and current waveforms of the power signals along different test points on the PCB. From there, measurements of the voltage and currents (AC or DC) will then be used with mathematical manipulation to give insight on the different power types inside the system. These different powers include Real, Reactive, and Apparent. Methods such as Short and Open circuit testing will be used also. Physically, the use of a rated voltage level VARIAC will be able to provide different voltage levels that can be used to test system correctness at low levels to help avoid damage to components that would elsewise be destroyed at full power. 
+
+##### Standards Compliance
+
+From the information obtained from thermal and power measurement testing, the regulations that this project will abide by can be carefully compared with the information from the tests conducted on the PCB. Hence, standards compliance can be ensured.
 
 ## References
 
