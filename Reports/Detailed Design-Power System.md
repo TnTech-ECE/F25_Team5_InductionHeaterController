@@ -147,8 +147,9 @@ This Section will detail ALL of the necessary information to acquire all compone
 |C70 |EPCOS - TDK Electronics |B32922C3224M289 |Digikey |495-B32922C3224M289CT-ND |1 |$0.59 |[digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32922C3224M289/2504694) |
 |R2,R24,R42,R36 |Stackpole Electronics Inc |CF12JT10R0 |Digikey |CF12JT10R0CT-ND |4 | $0.10 |[digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF12JT10R0/1741018) |
 |R43,R37,R4,R25|Ohmite |WHA5R0FET |Digikey |WHA5R0FECT-ND |4 |1.85 |[digikey.com](https://www.digikey.com/en/products/detail/ohmite/WHA5R0FET/678818) |
+|F1,F2 |OptiFuse |FSC-18A |Digikey |2298-FSC-18A-ND |2 |$0.88 |[Digikey.com](https://www.digikey.com/en/products/detail/optifuse/FSC-18A/12089887) |
 |-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
-|Total: $172.04 |
+|Total: $173.80 |
 
 
 
