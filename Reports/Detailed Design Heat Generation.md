@@ -152,16 +152,18 @@ where:
 
 | Component | Manufactuer | Part Number | Distrubutor | Distributor Part Number | Quantity | Price | Purchasing Website URL |
 | --------- | ----------- | ----------- | ----------- | ----------------------- | -------- | ----- | ---------------------- |
-| Surface Temp Thermocouple | Omega | KMQSS-062U-12 | Digikey | 5880-KMQSS-062U-12-ND | 1 | $70.82 | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840) |
+| Surface Temp Thermocouple | Omega | KMQSS-062U-12 | Digikey | 5880-KMQSS-062U-12-ND | 1 | $72.24 | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840) |
 | Thermocouple Amplifier | Adafruit | 3263  | Digikey | 1528-1772-ND | 1 | $17.50 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3263/6227009) |
 | Total Cost | N/A | N/A | N/A | N/A | N/A | $88.32 | N/A |
 
-ADDITIONAL PARTS IN OTHER SUBSYSTEMS
 
-Fabrication shops with welders are available at TTU in Brown, so the additional cost of welding equipment for attaching the thermocouple to the pipe is unneccessary. 
+The Embedded Subsystem includes the cost of the Nucleo and provides more detail about the nature of the connections between the Nucleo and the MAX31856. The Embedded Subsystem also includes the cost for shielded extension wire used for connecting the Nucleo and MAX31856 using terminal blocks.  
+
+The Power Subsystem includees the cost of testing equipment such as a variac that will be used to experimentally obtain data. The variac will be used to increase the voltage slowly so that the team can test the response of the system in a safe manner, starting with lower voltages before increasing the voltage to minimize risk in case of system failure during testing. The math for the control theory remains the same. 
 
 ## Analysis
 
+#### PID Closed Loop Control
 Temperature systems have plant dynamics that can be approximated as a first order order system due to the dynamics of their operation. 
 
 Typical response of a temperature system [13]: 
@@ -185,14 +187,18 @@ It is more practical and efficient to experimentally derive the plant dynamics w
 
 This systems PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. It is possible to implement PID control using dedicated PID blocks using PLC or LabVIEW software, but these items would add unneccessary cost and compatibility issues to the system. Implementing PID control using C code is best to keep costs low and maximize compatibility with the Nucleo. 
 
+
+#### Thermocouple Requirements Overview 
 Thermocouples are used as the sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6]. Thermocouple sensors themselves do not require any power to operate, but thermocouples do require power for their peripherals interpreting the data being sent. For this subsystem, the only peripheral is the thermocouple amplifier, which only consumes approximately 4.95 milliWatts [8]. 
 
 The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [7]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [13]. Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [15]. Cold junction compensation is often included with dedicated thermocouple amplifiers [9]. 
 
+
+#### Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board
 Adafruit produces an Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board [8,9] that solves both the issue of amplification and cold junction amplification: 
 ![alt text](./Heat_Generation_Subsystem/Adafruit_MAX31856.png)
 
-The Adafruit Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board is able to read any type of thermococouple, including the K-type thermocouple selected for this application. Furthermore, the MAX31856 performs the amplication of the thermocouple signals: 
+The Adafruit Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board is able to read any type of thermococouple, including the K-type thermocouple selected for this application. Furthermore, the MAX31856 performs the amplication of the thermocouple signals:  
 
 The MAX31856 Datsheet [8] states "The temperature conversion process consists of five steps as described in the sections below: 
 1. The input amplifier and ADC amplify and digitize the thermocouple’s voltage output. 
@@ -201,12 +207,13 @@ The MAX31856 Datsheet [8] states "The temperature conversion process consists of
 4. The thermocouple code and the cold-junction code are summed to produce the code corresponding to the cold-junction compensated thermocouple temperature. 
 5. The LUT is used to produce a cold-junction compensated output code in units of °C." [8]
 
-The output signal from the MAX31856 is then sent to the Nucleo. The Nucleo recieves a signal indicating the temperature of the surface of the pipe, as determined using the thermocouple and MAX31856. The Nucleo is then able to perform closed loop control using this information. 
+The output signal from the MAX31856 is then sent to the Nucleo. The Nucleo recieves a signal indicating the temperature of the surface of the pipe, as determined using the thermocouple and MAX31856, in the form of code. The Nucleo is then able to perform closed loop control using this information.  
 
 ![alt text](./Heat_Generation_Subsystem/MAX31856_Flow_Chart.drawio.png)
 
 The MAX31856 also includes the ability to produce fault signals to ensure safety is maintained. The fault helps reduce unneccessary delays from the microcontroller trying to shut off power using code. The breakout board is set up in the basic configuration as seen in the buildable schematic, so the primary issue of integration will be connecting the thermocouple leads, the power to the amplifier, and the output to the PCB. This set up is detailed by the PCB and Embedded subsystems. 
 
+#### Thermocouple Noise Reduction 
 The critical requirement for the thermocouple chosen for this application is the reduction of noise in the sensor in order to maintaining accurate readings. Thus determining the proper thermocouple focused on noise reduction as the critical factor and focusing on other features later to isolate the exact model to implement. 
 
 The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. This can be accomplished on the wire by buying mineral insulated thermocouples, or by buying shielded thermocouple extension wire. Mineral insulated thermocouples have EMI shielding by nature. The Omega KMQSS-062U-12 has a 304 Stainless Steel (SS) sheath [10] that provides decent EMI shielding and physical protections [11] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water. 
@@ -215,9 +222,24 @@ Thermocouples are available in grounded, ungrounded, and exposed junctions confi
 
 The sheath diameter can be decreased to increase response time [13], but it also reduces durability so the KMQSS-062U-12's 0.062" diameter sheath should be a good compromise as it is half the size of Omega's next largest diameter 0.125" diameter sheaths but within a few thousandths of the other sizes offered [10]. The KMQSS-062U-12's standard 12" is preferred to ensure the thermcouple can measure the length of the pipe as needed without picking up too much noise from the coil since the pipe measured is expected to be at least 1-2 feet or greater. The standard 6" provides less reach capabilities for only a couple US Dollars less. 
 
-The Omega KMQSS-062U-12 Thermocouple will need to be mechanically attached to the pipe's surface. This can be accomplished a few different ways, but welding the thermocouple to the pipe is gold standard [16]. Welding eliminates any air gaps that would create insulation between the thermocouple and pipe that would interfere with the readings. Capacitive discharge (CD) welding is recommended for welding thermocouples to pipe [16]. CD welding minimizes thermal distortion [17] which helps prevents damage to the thermocouple or changing of the pipe's material properties [16]. One downside of welding the thermocouple would be that thermocouple could not be moved to measure other locations on the pipe. An alternative solution would be to utilize pipe clamps to connect the thermocouple to the pipe, but these can add additional parts costs to the BOM. A pipe clamp would be more convenient to move the thermocouple compared to welding, but ideally the KMQSS-062U-12 thermocouple should not have to be moved.
 
-The Omega KMQSS-062U-12 thermocouple should be placed along the pipe a short distance away from the coil but not inside the coil. The electromagnetic field within the coil could induce voltage and / or heating in the thermocouple [18]. This would create unstable reading and potentially damage the thermocouple. The pipe should be heated outside the coil by conduction and allow for accurate readings. This provides about two potential locations for the thermocouple to measure, to the left or to the right of the coil. Thus, welding's permanence should not be an issue for control as the temperature of the pipe should not drastically change from one side to another. 
+#### Thermocouple Mounting 
+The Omega KMQSS-062U-12 thermocouple should be placed along the pipe a short distance away from the coil but not inside the coil. The electromagnetic field within the coil could induce voltage and / or heating in the thermocouple [18]. This would create unstable reading and potentially damage the thermocouple. The pipe will be heated outside the coil by conduction and allow for accurate readings. This provides about two potential locations for the thermocouple to measure, to the left or to the right of the coil. Thus, welding's permanence should not be an issue for control as the temperature of the pipe should not drastically change from one side to another. 
+
+The Omega KMQSS-062U-12 Thermocouple will need to be mechanically attached to the pipe's surface. 
+
+This can be accomplished a few different ways, such as welding or using adhesive or mechanical mounting equipment [16]. Utilizing pipe clamps to connect the thermocouple to the pipe, but these can add additional parts costs to the BOM. A pipe clamp would be more convenient to move the thermocouple compared to welding, but ideally the KMQSS-062U-12 thermocouple should not have to be moved. 
+
+If welding is chosen, the sheath of the ungrounded thermocouple would be welded to the pipe. Capacitive discharge (CD) welding [17] is recommended for welding thermocouples to pipe [16] to minimize the amount the thermocouple is heated up. If the sheath is heated up too much, the thermocouple wires may become joined to the sheath and have a shorted connection. This would destroy the thermocouple's ability to function. Welding as a service would be free using the fabrication shop at TTU's Brown building, but the possibility of destroying a thermocouple is not desirable because of wait times and cost for replacing the Omega KMQSS-062U-12 Thermocouple. 
+
+An additional option is to drill a small hole partially into the surface of the pipe and to mount the thermocouple there using thermal rated epoxy or ceramic cements [16]. 
+
+
+The Omega KMQSS-062U-12 comes with a glass filled nylon connector body compatible with mating connectors and clamps sold seperately. 
+
+![alt text](./Heat_Generation_Subsystem/omega_quick_connect.png)
+
+This feature is not necessary for our project, so there is no need to spend additional money on these mating connectors and clamps. The quick connect body can be removed in the fabrication shop if the plugs are unable to fit in the MAX31856 breakout board's terminal blocks, as seen in the picture above [9] it is the green connectors with screws with (+) and (-) indicators. In that case, the quick connect body can simply be cut off and the thermocouple wires fed directly into terminal blocks. 
 
 The Nucleo will need to be able to store the temperature measurements from the Omega KMQSS-062U-12 thermocouple as amplified by the MAX31856 thermocouple amplifier in order to measure the total temperature rise of the metal. This will be accomplished by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature, which will be around 120 °F and 160 °F [12]. The Embedded Subsystem will also include a SD card act as memory to store these values, with more details on that implementation in that Subsystem's document. 
 
