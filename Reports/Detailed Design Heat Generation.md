@@ -81,8 +81,8 @@ The thermocouple must be placed near or around such coil geometry in order to be
 ![alt text](./Heat_Generation_Subsystem/Omega_thermocouple_picture.png)
 
 
-
 The implementation of the Omega KMQSS-062U-12 thermocouple and MAX31856 thermocouple amplifier will allow for accurate temperature measurements of the pipe being heated. The Nucleo will need to be able to store these temperature measurements in order to measure the total temperature rise of the metal. This can be accomplished fairly simply by writing a program to store the measured temperature of the pipe when the user selects to start the operation and to store the measured temperature of the pipe when the measured temperature is within ± 5% of the user desired temperature. 
+
 
 The user desired temperature shall be determined from the user desired power input setting and common practices. Typical hot water temperatures for residential use vary between 120 °F and 160 °F [12], so the pipe should be heated to around those temperatures. However, the heating of the water would be slower than the heating of the pipe, so the pipe temperature may be increased if faster water heating is desired. For this application, temperature values between 120 °F and 160 °F provide a good baseline for desired temps. 
 
@@ -154,12 +154,15 @@ where:
 | --------- | ----------- | ----------- | ----------- | ----------------------- | -------- | ----- | ---------------------- |
 | Surface Temp Thermocouple | Omega | KMQSS-062U-12 | Digikey | 5880-KMQSS-062U-12-ND | 1 | $72.24 | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840) |
 | Thermocouple Amplifier | Adafruit | 3263  | Digikey | 1528-1772-ND | 1 | $17.50 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3263/6227009) |
-| Total Cost | N/A | N/A | N/A | N/A | N/A | $88.32 | N/A |
+| Ceramic Cement | Rutland | 78 | Amazon | B000V4LTXC | 1 | $11.99 | [Link](https://www.amazon.com/Rutland-Stove-Gasket-Cement-Cartridge/dp/B000V4LTXC/ref=pd_bxgy_d_sccl_1/134-4821432-9170960?pd_rd_w=cU7Um&content-id=amzn1.sym.9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_p=9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_r=Y39JSRBEYQNH54AASQZK&pd_rd_wg=k0ZDf&pd_rd_r=f9976f11-6d41-48c8-9771-a0034455f62a&pd_rd_i=B000V4LTXC&th=1) |
+| Total Cost | N/A | N/A | N/A | N/A | N/A | $101.73 | N/A |
 
 
 The Embedded Subsystem includes the cost of the Nucleo and provides more detail about the nature of the connections between the Nucleo and the MAX31856. The Embedded Subsystem also includes the cost for shielded extension wire used for connecting the Nucleo and MAX31856 using terminal blocks.  
 
+
 The Power Subsystem includees the cost of testing equipment such as a variac that will be used to experimentally obtain data. The variac will be used to increase the voltage slowly so that the team can test the response of the system in a safe manner, starting with lower voltages before increasing the voltage to minimize risk in case of system failure during testing. The math for the control theory remains the same. 
+
 
 ## Analysis
 
@@ -179,17 +182,22 @@ where:
   yss = steady state output 
   A = analog input 
 
+
 This model should give an approximation of the the system dynamics, but it would be necessary to experimentally collect data in order to find values of K and tau which cannot be accomplished until the coil and pipe hardware are implemented. Thus this model will serve primarily as an approximation of the expected dynamics to make the PID constants a bit easier to predict.  
+
 
 It is difficult to accurately predict the exact response of the system without having an physical model of the pipe and coil. Typical system identification using the black box method requires the ability to get experimental data from the system given a known input and output [3]. An alternative method is to analytically derive the transfer function of the system using the laws of physics. This would require knowledge about the material, the resistance, the length, and the diameter of the section of the pipe heated; the number of turns of and the material of the coil; and knowledge about thermodynamics. It is difficult to determine analytically the exact temperature output in response to a certain current input. 
 
+
 It is more practical and efficient to experimentally derive the plant dynamics when able, but this will not be practical for this application until after parts are ordered and when the team is able to start constructing the physical system and able to obtain experimental data. When the team is experimenting with the system the current delivered to the coil will be kept low with the ability to stop the system using an emergency stop if the temperature output is suspected of being unstable. Once this data is obtained it will be possible to analytically and experimentally determine the values for the PID constants. 
 
-This systems PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. It is possible to implement PID control using dedicated PID blocks using PLC or LabVIEW software, but these items would add unneccessary cost and compatibility issues to the system. Implementing PID control using C code is best to keep costs low and maximize compatibility with the Nucleo. 
+
+This systems PID control is implemented using C code to ensure compatibility with the Nucleo-STM32L476RG. It is possible to implement PID control using dedicated PID blocks using PLC or LabVIEW software, but these items would add unneccessary cost and compatibility issues to the system. Implementing PID control using C code is best to keep costs low and maximize compatibility with the Nucleo. A notable constraint from the Safety and Protections Subsystem is that the Heat Generation subsystem will be unable to operate if the 
 
 
 #### Thermocouple Requirements Overview 
 Thermocouples are used as the sensors to meet customer specs. Thermocouples operate by producing a Seebeck voltage in reponse to metals being heated, and this voltage can be measured by an ADC (analog to digital converter) to tell the controller the measured temperature of the part [6]. Thermocouple sensors themselves do not require any power to operate, but thermocouples do require power for their peripherals interpreting the data being sent. For this subsystem, the only peripheral is the thermocouple amplifier, which only consumes approximately 4.95 milliWatts [8]. 
+
 
 The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPIs. When an ADC is used the Nucleo operates on an analog supply voltage between 1.62 and 3.6 V [7]. This is much higher than the typical millivolt output of a thermocouple [6]. Therefore, amplification will be required for this system's thermocouples. This can be accomplished a number of ways using standard circuit components, but can be more easily done using dedicated thermocouple amplifiers. Dedicated thermocouple amplifiers interface easily with microcontrollers and thermocouples which would lead to faster and more efficient build times [13]. Thermocouples typically require cold junction compensation because the standard reference tables in use are designed for a reference temperature of 0˚C [15]. Cold junction compensation is often included with dedicated thermocouple amplifiers [9]. 
 
@@ -198,7 +206,7 @@ The Nucleo-STM32L476RG has three 12 bit ADCs with 16 channels each and three SPI
 Adafruit produces an Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board [8,9] that solves both the issue of amplification and cold junction amplification: 
 ![alt text](./Heat_Generation_Subsystem/Adafruit_MAX31856.png)
 
-The Adafruit Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board is able to read any type of thermococouple, including the K-type thermocouple selected for this application. Furthermore, the MAX31856 performs the amplication of the thermocouple signals:  
+The Adafruit Adafruit Universal Thermocouple Amplifier MAX31856 Breakout Board is able to read any type of thermococouple, including the K-type thermocouple selected for this application. Furthermore, the MAX31856 performs the amplication of the thermocouple signals. 
 
 The MAX31856 Datsheet [8] states "The temperature conversion process consists of five steps as described in the sections below: 
 1. The input amplifier and ADC amplify and digitize the thermocouple’s voltage output. 
@@ -207,18 +215,23 @@ The MAX31856 Datsheet [8] states "The temperature conversion process consists of
 4. The thermocouple code and the cold-junction code are summed to produce the code corresponding to the cold-junction compensated thermocouple temperature. 
 5. The LUT is used to produce a cold-junction compensated output code in units of °C." [8]
 
+
 The output signal from the MAX31856 is then sent to the Nucleo. The Nucleo recieves a signal indicating the temperature of the surface of the pipe, as determined using the thermocouple and MAX31856, in the form of code. The Nucleo is then able to perform closed loop control using this information.  
 
 ![alt text](./Heat_Generation_Subsystem/MAX31856_Flow_Chart.drawio.png)
+
 
 The MAX31856 also includes the ability to produce fault signals to ensure safety is maintained. The fault helps reduce unneccessary delays from the microcontroller trying to shut off power using code. The breakout board is set up in the basic configuration as seen in the buildable schematic, so the primary issue of integration will be connecting the thermocouple leads, the power to the amplifier, and the output to the PCB. This set up is detailed by the PCB and Embedded subsystems. 
 
 #### Thermocouple Noise Reduction 
 The critical requirement for the thermocouple chosen for this application is the reduction of noise in the sensor in order to maintaining accurate readings. Thus determining the proper thermocouple focused on noise reduction as the critical factor and focusing on other features later to isolate the exact model to implement. 
 
+
 The thermocouple must be placed near or around such coil geometry in order to best measure the temperature rise of the pipe due to induction. Thus, to reduce the noise from EMI, the thermocouple used requires EMI shielding. This can be accomplished on the wire by buying mineral insulated thermocouples, or by buying shielded thermocouple extension wire. Mineral insulated thermocouples have EMI shielding by nature. The Omega KMQSS-062U-12 has a 304 Stainless Steel (SS) sheath [10] that provides decent EMI shielding and physical protections [11] that will be useful for an application involving noise from the induction coil and ensure durability from potential hazards such as heat or water. 
 
+
 Thermocouples are available in grounded, ungrounded, and exposed junctions configurations. Grounded and exposed junctions have typically have faster temperature resonses, but they are more susceptible to noise due to the electrical contact [4]. Ungrounded junctions have slower temperature responses, but ungrounded junctions isolate the sensor from noise [13]. Isolation from noise is desirable due to the EMI of the coil; therefore, the thermocouple shall be ungrounded. The Omega KMQSS-062U-12 is ungrounded [10]. 
+
 
 The sheath diameter can be decreased to increase response time [13], but it also reduces durability so the KMQSS-062U-12's 0.062" diameter sheath should be a good compromise as it is half the size of Omega's next largest diameter 0.125" diameter sheaths but within a few thousandths of the other sizes offered [10]. The KMQSS-062U-12's standard 12" is preferred to ensure the thermcouple can measure the length of the pipe as needed without picking up too much noise from the coil since the pipe measured is expected to be at least 1-2 feet or greater. The standard 6" provides less reach capabilities for only a couple US Dollars less. 
 
@@ -226,13 +239,17 @@ The sheath diameter can be decreased to increase response time [13], but it also
 #### Thermocouple Mounting 
 The Omega KMQSS-062U-12 thermocouple should be placed along the pipe a short distance away from the coil but not inside the coil. The electromagnetic field within the coil could induce voltage and / or heating in the thermocouple [18]. This would create unstable reading and potentially damage the thermocouple. The pipe will be heated outside the coil by conduction and allow for accurate readings. This provides about two potential locations for the thermocouple to measure, to the left or to the right of the coil. Thus, welding's permanence should not be an issue for control as the temperature of the pipe should not drastically change from one side to another. 
 
-The Omega KMQSS-062U-12 Thermocouple will need to be mechanically attached to the pipe's surface. 
 
-This can be accomplished a few different ways, such as welding or using adhesive or mechanical mounting equipment [16]. Utilizing pipe clamps to connect the thermocouple to the pipe, but these can add additional parts costs to the BOM. A pipe clamp would be more convenient to move the thermocouple compared to welding, but ideally the KMQSS-062U-12 thermocouple should not have to be moved. 
+The Omega KMQSS-062U-12 Thermocouple will need to be mechanically attached to the pipe's surface. This can be accomplished a few different ways, such as welding or using adhesive or mechanical mounting equipment [16]. Utilizing pipe clamps to connect the thermocouple to the pipe, but these can add additional parts costs to the BOM. A pipe clamp would be more convenient to move the thermocouple compared to welding, but ideally the KMQSS-062U-12 thermocouple should not have to be moved. 
 
-If welding is chosen, the sheath of the ungrounded thermocouple would be welded to the pipe. Capacitive discharge (CD) welding [17] is recommended for welding thermocouples to pipe [16] to minimize the amount the thermocouple is heated up. If the sheath is heated up too much, the thermocouple wires may become joined to the sheath and have a shorted connection. This would destroy the thermocouple's ability to function. Welding as a service would be free using the fabrication shop at TTU's Brown building, but the possibility of destroying a thermocouple is not desirable because of wait times and cost for replacing the Omega KMQSS-062U-12 Thermocouple. 
 
-An additional option is to drill a small hole partially into the surface of the pipe and to mount the thermocouple there using thermal rated epoxy or ceramic cements [16]. 
+If welding is chosen, the sheath of the ungrounded thermocouple would be welded to the pipe. Capacitive discharge (CD) welding [17] is recommended for welding thermocouples to pipe [16] to minimize the amount the thermocouple is heated up. If the sheath and the pipe are welded together is chosen, the  sheath will heat up due to the conduction of heat between the sheath and the pipe. The welded connection would also ground the sheath of the thermocouple. This would require additional protective casings to prevent operators from touching the sheath's hot surface. Notably, if the sheath is heated up too much during the welding process, the thermocouple wires may become joined to the sheath and have a shorted connection to the pipe. This would destroy the thermocouple's ability to function. Welding as a service would be free using the fabrication shop at TTU's Brown building, but the possibility of destroying a thermocouple is not desirable because of wait times and cost for replacing the Omega KMQSS-062U-12 Thermocouple. 
+
+
+An additional option is to drill a small hole partially into the surface of the pipe and to mount the thermocouple there using thermal rated epoxy or ceramic cements [16]. This method is simpler and cheaper than other mounting methods with less room for fabrication errors. Epoxies are typically rated for lower temperatures, around 550 °F [19] compared to ceramic cement [16], and for this induction heating application the temperature may spike to higher temperatures.
+
+
+Ceramic cement is thermal insulating [20], so this will slow the thermal response of the thermocouple. To minimize the effect of this in the application it will be important to avoid applying too much cement, only enough to make the connection between the thermocouple sheath and the pipe. Ceramic cement is likely to fail due to constant shock loads and vibrations due to its brittle nature [20]. This system, an Induction Heater Controller for a water pipe should not suffer from these issues unless the system is dropped, and if the connection fails reconnection is possible using more cement. Ceramic Cement is eletrically nonconductive due to the properties of ceramic as an insulator, so the use of ceramic cement should not suffer from picking up any extra noise. Ceramic cement is available from suppliers such as Amazon for relatively cheap, such as Rutland Stove and Gasket Cement [21], which can be purchased for around $12. Rutland does not explicity state it is ceramic cement, but the chemical makeup and the reviews match with common properties of ceramic cement. This specific adhesive must sit for at least 1 hour and then have a heat cure performed within 30 days. The team can utilize scrap wood from the fabrication shop in Brown as or to make supports to keep the thermocouple straight while the ceramic cement is drying and/or during operation. 
 
 
 The Omega KMQSS-062U-12 comes with a glass filled nylon connector body compatible with mating connectors and clamps sold seperately. 
@@ -279,4 +296,10 @@ The Nucleo will need to be able to store the temperature measurements from the O
 [17] “Understanding Capacitor Discharge Welding: An In-Depth Technical Overview | Process Equipment Company Welding Services,” Peco-us.com, 2025. https://peco-us.com/understanding-capacitor-discharge-welding-an-in-depth-technical-overview/ (accessed Nov. 24, 2025).
 ‌
 [18] “Temperature Measurement in Electromagnetic Environments,” https://www.dwyeromega.com/en-us/, 2023. https://www.dwyeromega.com/en-us/resources/temperature-measurement-in-electromagnetic-environments
+
+[19] “HighHeat Syringe,” J-B Weld, 2026. https://www.jbweld.com/product/high-heat-syringe (accessed Feb. 09, 2026).
+‌
+‌[20] P. R. Mehta, “An In-Depth Analysis of Ceramic Cement: Properties and Future Directions,” Physixis, Nov. 08, 2024. https://physixis.com/articles/ceramic-cement-analysis-properties-applications/ (accessed Feb. 09, 2026).
+
+[21] “Stove & Gasket Cement,” Rutland, 2022. https://rutland.com/products/stove-gasket-cement (accessed Feb. 09, 2026).
 ‌
