@@ -263,7 +263,7 @@ This Block diagram gives a visual representation of how the set up of the two bo
 
 
 |-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
-|**Total:** | | | | | | **$179.35** | |
+|**Total:**  **$179.35** | |
 
 
 ## Analysis
