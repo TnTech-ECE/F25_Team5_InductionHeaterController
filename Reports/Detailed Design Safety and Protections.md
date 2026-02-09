@@ -109,7 +109,7 @@ This subsystem acts as a central monitor and interfaces with nearly all other su
 
 - **Power System**
 
-  - **Input:**  Receives two 2.5V-biased AC voltage signal from the Current Transformer (CT) circuit (LEM HO 15-NP) [1]. These signals are fed into the microcontroller's ADC pin (PC2 and PC5)
+  - **Input:**  Receives two 2.5V-biased AC voltage signal from the Current Sensor circuit (LEM HO 15-NP) [1]. These signals are fed into the microcontroller's ADC pin (PC2 and PC5)
 
   - **Input:** Receives an analog voltage from an AD8495 thermocouple amplifier, which corresponds to the IGBT heatsink temperature [3].
 
@@ -137,9 +137,6 @@ This subsystem acts as a central monitor and interfaces with nearly all other su
 
 ![Enclosure](Safety_Protections_Assets/EnclosureBase.png)
 ***Figure 1 - Datasheet for Enclosure Base that will be used and modified***
-
-**Full 3D model to come, just submitting now to get reviewed! Waiting on PCB boards to know full size of enclosure.**
-
 
 ## Buildable Schematic 
 
@@ -214,7 +211,7 @@ Provide a comprehensive list of all necessary components along with their prices
 | **Heatsink Temp Sensor** | | | | | | | | |
 | U1 | Thermocouple Amp | Adafruit Industries LLC | `3263` | Digi-Key | `1528-1772-ND` | 1 | $17.50 | $17.50 |
 | TC1 | Thermocouple, K-Type, Bolt-On | McMASTER-CARR | `3648K24` | McMASTER-CARR | `3648K24` | 1 | $36.57 | $36.57 |
-| **Current Transformer** | | | | | | | | |
+| **Current Sensors** | | | | | | | | |
 | SEN-Current(1-2) | Current Sensor | LEM | `HO 15-NP` | Digi-Key | `398-1142-ND` | 2 | $11.35 | $22.70 |
 | N/A | Cap, 47nF | Yageo | `CC0603KRX7R9BB104` | Digi-Key | `311-1344-2-ND` | 6 | $0.08 | $0.48 |
 | **Flow Sensor** |See Embedded System |
