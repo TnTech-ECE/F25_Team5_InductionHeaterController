@@ -5,7 +5,7 @@
 
 ## Function of the Subsystem
 
-The Power Subsystem serves as the foundational energy source and conditioning stage for the induction-heating system. Its primary function is to convert the 240 VAC mains input into a regulated, high-frequency AC waveform capable of efficiently energizing the induction work coil. This subsystem provides all electrical power necessary to induce eddy-current heating within the steel pipe, ensuring the system can deliver the targeted thermal output to the load.
+The Power Subsystem serves as the foundational energy source and conditioning stage for the induction-heating system. Its primary function is to convert the 120 VAC mains input into a regulated, high-frequency AC waveform capable of efficiently energizing the induction work coil. This subsystem provides all electrical power necessary to induce eddy-current heating within the steel pipe, ensuring the system can deliver the targeted thermal output to the load.
 
 To accomplish this, the Power Subsystem performs several key tasks. First, it rectifies and filters the incoming AC line voltage to produce a stable high-voltage DC bus suitable for high-power switching. This includes the integration of EMI-compliant line-side filtering, and DC-bus energy storage to meet safety and regulatory requirements. Next, the subsystem utilizes a full-bridge inverter stage—driven by isolated gate drivers to convert the DC bus into a controlled, high-frequency AC excitation waveform at approximately 30 kHz. This waveform drives the resonant LC tank composed of the work coil and high-current resonant capacitors, enabling efficient power transfer into the pipe.
 
