@@ -230,37 +230,37 @@ This Block diagram gives a visual representation of how the set up of the two bo
 | C44,C45,C46        | Nichicon | UVR2WR47MPD1TA | Mouser Electronics | 647-UVR2WR47MPD1TA | 3 | $0.81 | [mouser.com](https://www.mouser.com/ProductDetail/Nichicon/UVR2WR47MPD1TA?qs=sGAEpiMZZMvwFf0viD3Y3bXvgfG2gej7dC5wqpdmRvg7M7%252BgfNUw5Q%3D%3D) |
 | C49                | Murata Electronics | RHS7J2H152J2M2H01A | Digikey | EF2225-ND | 1 | $1.01 | [mouser.com](https://www.mouser.com/ProductDetail/Murata-Electronics/RHS7J2H152J2M2H01A?qs=xhbEVWpZdWf0OAcKZ3HSkA%3D%3D) |
 | C51                | KEMET | ECQ-E2225KF | Digikey | 399-R60MF3220AA30KCT-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECQ-E2225KF/56504?gclsrc=aw.ds&gad_source=1&gad_campaignid=120565755&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboHY70d4FeZLD8wrnPCVvqRdf6d-axy_DXUqKA9Gkq7ldYvKHpf8kIhoC-FUQAvD_BwE) |
-| C52                | KEMET | R46KI322050M1K | Digikey | 399-R46KI322050M1KCT-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/film-capacitors/62) |
+| C52                | KEMET | R46KI322050M1K | Mouser | 80-R46KI322050M1K
+ | 1 | $0.92 | [Mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KI322050M1K?qs=D0iH%252BVFiYPNDy%252BpzFjt46g%3D%3D&srsltid=AfmBOornaXK3x8LsjX38B5_fvM7R6vKl9AuGBts-nAzb0jyb5uJ-Gc_O) |
 | C53,C62            | TDK Corporation | FG18X5R1E225KRT06 | Digikey | 445-173253-1-ND | 2 | $0.64 | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X5R1E225KRT06/5802867) |
 | C54                | KEMET | C322C471K3G5TA | Digikey | 399-C322C471K3G5TA-ND | 1 | $0.38 | [digikey.com](https://www.digikey.com/en/products/detail/kemet/C322C471K3G5TA/6656585) |
 | C64,C65,C66,C67    | WIMA | MKP10-.22/630/5P22 | Mouser Electronics | 505-MKP10-.226305P22 | 4 | $7.52 | [mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D) |
-| D6                 | Littelfuse | S4X8ES | Digikey | S4X8ES-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/thyristors-scrs/114) |
-| D7,D8,D9,D10       | ON Semiconductor | MUR160 | Digikey | MUR160-TPMSCT-ND | 4 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/diodes-rectifiers-single/280) |
-| F1,F2              | Littelfuse | 01240061H | Digikey | F9278-ND | 2 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/fuse-holders/152) |
+| D6                 | Littelfuse | S4X8ES | Digikey | S4X8ES-ND | 1 | $0.82 | (https://www.digikey.com/en/products/detail/littelfuse-inc/S4X8ES/1212630) |
+| D7,D8,D9,D10       | ON Semiconductor | MUR160 | Digikey | MUR160GOS-ND | 4 | $0.84 | [digikey.com] (https://www.digikey.com/en/products/detail/onsemi/MUR160G/1482797) |
+| F1,F2              | Littelfuse | 01240061H | Digikey | F9278-ND | 4 | $3.40 | [digikey.com](https://www.digikey.com/en/products/detail/littelfuse-inc/01240061H/14641014?gclsrc=aw.ds&gad_source=1&gad_campaignid=120565755&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboMDA6BU6LVDkoFpAK7lJX3YsO-URDur913YgReQoGCJUEeFF2KtIwxoCJ84QAvD_BwE) |
 | FR1                | Panjit | GBJ3510 | Digikey | 1655-GBJ3510-ND | 1 | $2.27 | [digikey.com](https://www.digikey.com/en/products/detail/panjit-international-inc/GBJ3510/16526896) |
 | G1,G2,G3,G4        | Texas Instruments | UCC21750DW | Mouser Electronics | 595-UCC21750DWR | 4 | $18.20 | [mouser.com](https://www.mouser.com/c/semiconductors/power-management-ics/galvanically-isolated-gate-drivers/?q=UCC21750) |
-| K1                 | Panasonic | ANT11SECQE | Digikey | PB1051-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/toggle-switches/199) |
+| K1                 | Panasonic | ANT11SECQE | Digikey | 2449-ANT11SF1CQE-ND | 1 | $2.13 | [digikey.com] (https://www.digikey.com/en/products/detail/cit-relay-and-switch/ANT11SF1CQE/12503396?gclsrc=aw.ds&gad_source=1&gad_campaignid=120565755&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboK9P5cN5Dz5Ppoylcq0cd_m2U7qj8OI3U7KcLsEqeFR_H33_HLtN2RoC4DMQAvD_BwE)) |
 | L1                 | Pulse Electronics | BFSI001211094R7M05 | Digikey | 553-BFSI001211094R7M05CT-ND | 1 | $1.27 | [digikey.com](https://www.digikey.com/en/products/detail/pulse-electronics/BFSI001211094R7M05/16510826) |
 | PS1                | MEAN WELL | MPM-10-15 | Mouser Electronics | 709-MPM10-15 | 1 | $10.10 | [mouser.com](https://www.mouser.com/ProductDetail/MEAN-WELL/MPM-10-15?qs=xhbEVWpZdWesTikav2ic2A%3D%3D) |
-| PWR1,PWR2          | Eaton | YK8810303000G | Digikey | 281-YK8810303000G-ND | 2 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/terminal-blocks-barrier-blocks/370) |
+| PWR1,PWR2          | Eaton | YK8810303000G | Digikey |YK8810303000G-ND | 2 | $5.42 | [digikey.com] (https://www.digikey.com/en/products/detail/amphenol-anytek/yk8810303000g/4962666?_gl=1*1m066aa*_up*MQ..*_gs*MQ..&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboK9P5cN5Dz5Ppoylcq0cd_m2U7qj8OI3U7KcLsEqeFR_H33_HLtN2RoC4DMQAvD_BwE&gclsrc=aw.ds&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z) |
 | Q1,Q2,Q3,Q4        | ROHM | RGW80TS65DGC13 | Mouser Electronics | 755-RGW80TS65DGC13 | 4 | $24.96 | [mouser.com](https://www.mouser.com/ProductDetail/ROHM-Semiconductor/RGW80TS65DGC13?qs=dbcCsuKDzFUOUanxGPiR5w%3D%3D) |
-| Q6                 | ON Semiconductor | 2N3904BU | Digikey | 2N3904BU-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/transistors-bipolar-bjt-single/276) |
+| Q6                 | ON Semiconductor | 2N3904BU | Digikey | 2N3904BU-ND | 1 | $0.28 | [digikey.com](https://www.digikey.com/en/products/detail/onsemi/2n3904bu/1413?_gl=1*1x9clm*_up*MQ..*_gs*MQ..&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboK9P5cN5Dz5Ppoylcq0cd_m2U7qj8OI3U7KcLsEqeFR_H33_HLtN2RoC4DMQAvD_BwE&gclsrc=aw.ds&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z) |
 | R1,R2,R3,R4,R5,R6,R11,R12,R13,R14,R15,R16 | Stackpole Electronics | CF14JT10K0 | Digikey | CF14JT10K0CT-ND | 12 | $0.50 | [digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265) |
-| R7,R8,R17,R18      | Yageo | CFR-25JT-52-5R | Digikey | 5.0XBK-ND | 4 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/through-hole-resistors/53) |
-| R9,R10,R19,R20,R25,R26,R27,R28 | Stackpole Electronics | CF14JT10R0 | Digikey | CF14JT10R0CT-ND | 8 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/through-hole-resistors/53) |
-| R21                | Stackpole Electronics | CF12JT1M00 | Digikey | CF12JT1M00CT-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/through-hole-resistors/53) |
+| R7,R8,R17,R18      | Yageo | CFR-25JT-52-5R | Digikey | 5.0XBK-ND | 4 | $0.68 | [digikey.com] (https://www.mouser.com/ProductDetail/YAGEO/CFR-25JT-52-5R?qs=xZ%2FP%252Ba9zWqbg6zyLXgADzg%3D%3D&srsltid=AfmBOooo5sWQgdBxMGZDLWCbKUu_X3gMonGBzFHYfccJuqG3_fC1fLiC) |
+| R9,R10,R19,R20,R25,R26,R27,R28 | Stackpole Electronics | CF14JT10R0 | Digikey | CF14JT10R0CT-ND | 8 | $0.80 | [digikey.com] (https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10R0/1741276) |
+| R21                | Stackpole Electronics | CF12JT1M00 | Digikey | CF12JT1M00CT-ND | 1 | $0.10 | [digikey.com] (https://www.digikey.com/en/products/detail/stackpole-electronics-inc/cf12jt1m00/1741064) |
 | R22                | Yageo | RSF-50JT-52-330K | Mouser Electronics | 603-RSF50SJT-52-330K | 1 | $0.18 | [mouser.com](https://www.mouser.com/ProductDetail/YAGEO/RSF50SJT-52-330K?qs=sGAEpiMZZMtlubZbdhIBIMMVXX%252BgggzkwMlyWq3j6Pk%3D) |
-| R23                | Vishay Dale | RN65E5003FB14 | Digikey | RN65E5003FB14CT-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/through-hole-resistors/53) |
+| R23                | Vishay Dale | RN65E5003FB14 | Digikey | RN65E5003FB14CT-ND | 1 | $2.33 | [digikey.com](https://www.digikey.com/en/products/detail/vishay-dale/rn65e5003fb14/3349704) |
 | R24                | Ohmite | WNE5R0FET | Digikey | WNE5R0FETCT-ND | 1 | $2.27 | [digikey.com](https://www.digikey.com/en/products/detail/ohmite/WNE5R0FET/3114558) |
-| R31,R32,R33,R34,R35,R36,R38 | Vishay Dale | CRCW080510K0FKEA | Digikey | 541-10KCCCT-ND | 7 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/chip-resistor-surface-mount/52) |
-| R37                | Stackpole Electronics | CF14JT1K00 | Digikey | CF14JT1K00CT-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/through-hole-resistors/53) |
-| TB1,TB2,TB4        | On Shore Technology | OSTVN06A150 | Digikey | ED10564-ND | 3 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/terminal-blocks-headers-plugs-and-sockets/314) |
-| TB3                | On Shore Technology | OSTVN02A150 | Digikey | ED10560-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/terminal-blocks-headers-plugs-and-sockets/314) |
+| R31,R32,R33,R34,R35,R36,R38 | Vishay Dale | CRCW080510K0FKEA | Digikey | 541-10KCCCT-ND | 7 | $0.70 | [digikey.com](https://www.digikey.com/en/products/detail/vishay-dale/crcw080510k0fkea/1175751) |
+| R37                | Stackpole Electronics | CF14JT1K00 | Digikey | CF14JT1K00CT-ND | 1 | $0.10 | [digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/cf14jt1k00/1741314) |
+| TB1,TB2,TB4        | On Shore Technology | OSTVN06A150 | Digikey | ED10564-ND | 3 | $7.05 | [digikey.com](https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTVN06A150/1588866) |
+| TB3                | On Shore Technology | OSTVN02A150 | Digikey | ED10560-ND | 1 | $0.87 | [digikey.com](https://www.digikey.com/en/products/detail/on-shore-technology-inc/ostvn02a150/1588862) |
 | U1,U2,U3,U4        | Murata | MGJ2D151505SC | Mouser Electronics | 580-MGJ2D151505SC | 4 | $33.84 | [mouser.com](https://www.mouser.com/ProductDetail/Murata-Power-Solutions/MGJ2D151505SC?qs=xLDY6iXSiQYIfXYEkf8RzA%3D%3D) |
 | U5                 | Mornsun America | LDE60-20B12 | Digikey | 2725-LDE60-20B12-ND | 1 | $8.86 | [digikey.com](https://www.digikey.com/en/products/detail/mornsun-america-llc/LDE60-20B12/13168172) |
-| U7                 | Texas Instruments | LM2940IMP-12/NOPB | Digikey | 296-LM2940IMP-12/NOPBCT-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/filter/pmic-voltage-regulators-linear/699) |
-| ------------------- | ------------ | --------------- | ----------- | ---------------- | ---- | ----- | ---- |
-| **Total:** | | | | | | **~$165-195** | |
+| U7                 | Texas Instruments | LM2940IMP-12/NOPB | Digikey | 296-LM2940IMP-12/NOPBCT-ND | 1 | $2.15 | [digikey.com](https://www.digikey.com/en/products/detail/texas-instruments/lm2940imp-12-nopb/363888) |
+
 
 |-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
 |**Total:** | | | | | | **$179.35** | |
