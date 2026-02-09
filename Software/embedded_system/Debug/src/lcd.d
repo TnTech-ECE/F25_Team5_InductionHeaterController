@@ -32,7 +32,7 @@ src/lcd.o: ../src/lcd.c ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h ../src/lcd.h \
- ../src/delay.h
+ ../src/delay.h ../src/lcd_instruction_set.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -69,3 +69,4 @@ src/lcd.o: ../src/lcd.c ../Core/Inc/main.h \
 ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h:
 ../src/lcd.h:
 ../src/delay.h:
+../src/lcd_instruction_set.h:

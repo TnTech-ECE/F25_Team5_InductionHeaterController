@@ -54,10 +54,10 @@ bool testUntilCallback(void *aux)
 
 	DisplayNumber(kjdwkjdwjdwkj, 1, 0, 0, 3);
 	kjdwkjdwjdwkj++;
-	if (kjdwkjdwjdwkj > 500)
-	{
-		return true;
-	}
+	// if (kjdwkjdwjdwkj > 500)
+	// {
+	// 	return true;
+	// }
 	return false;
 }
 void keyStateChangeCallback(char key, enum KeyState keyState)
