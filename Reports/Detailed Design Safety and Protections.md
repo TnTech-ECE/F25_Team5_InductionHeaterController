@@ -201,7 +201,8 @@ Provide a comprehensive list of all necessary components along with their prices
 | **Desaturation Sensing (From Driver Sheet)** | | | | | | | | |
 | D2, D3, D4, D5 | Diode, Ultrafast, 600V, 1A | onsemi | `MUR160GOS-ND` | Digi-Key | `MUR160G` | 4 | $0.23 | $0.92 |
 | R5, R6, R7, R8 | Resistor, 10k $\Omega$, 1/4W | Yageo | `RC0603FR-0710KL` | Digi-Key | `13-RC0603FR-1075KLTR-ND` | 4 | $0.01 | $0.04 |
-| C1, C2, C3, C4| Cap, 100nF, 50V, X7R | Yageo | `CC0603KRX7R9BB104` | Digi-Key | `311-1344-2-ND` | 6 | $0.08 | $0.48 |
+| N/A | Cap, 100nF, 50V, X7R | Yageo | `CC0603KRX7R9BB104` | Digi-Key | `311-1344-2-ND` | 2 | $0.08 | $0.16 |
+| C1, C2, C3, C4| Cap, 220pF, 50V, X7R | Yageo | `C0603C104K5RACTU` | Digi-Key | `311-1344-2-ND` | 6 | $0.08 | $0.48 |
 | **Hardware Fault Latch** | | | | | | | | |
 | D1 | SCR, 600V, 800mA, 200µA Gate | onsemi | `MCR100-6G` | Digi-Key | `MCR100-6GOS-ND` | 1 | $0.34 | $0.34 |
 | R1, R2, R4 | Resistor, 10k $\Omega$, 1/4W | Yageo | `RC0603FR-0710KL` | Digi-Key | `13-RC0603FR-1075KLTR-ND` | 3 | $0.01 | $0.03 |
@@ -234,7 +235,7 @@ Provide a comprehensive list of all necessary components along with their prices
 | N/A | 1/2 to 3/4 F to M | Lowes | `877205` | Lowes | `877205` | 1 | $8.09 | $8.09 |
 | N/A | 15Ft Hose | Lowes | `2626706` | Lowes | `2626706` | 2 | $12.98 | $25.96 |
 | N/A | Plumbers Tape | Lowes | `456833` | Lowes | `456833` | 1 | $1.48 | $1.48 |
-| | | | | | **Subsystem Total:** | **$368.48** | |  |
+| | | | | | **Subsystem Total:** | **$368.64** | |  |
 
 ## Analysis
 The system employs a hybrid safety architecture; integrating a high-speed hardware latch with versatile software monitoring. This hybrid approach ensures protection against all identified failure modes, from slow thermal issues to catastrophic, microsecond-level component failures.
