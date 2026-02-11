@@ -13,7 +13,7 @@ If any signal exceeds a predefined safe limit, this subsystem will trigger a fau
 The subsystem's design is governed by the following specifications, which are derived from customer requirements, standards compliance, and analysis of existing hardware:
 1. **IGBT Monitoring**: The subsystem shall continuously monitor the temperature of the power switching transistors' (IGBT) heatsink using a dedicated thermocouple.
 2. **IGBT Thermal Shutdown**: The subsystem shall shut down induction heating if the IGBT heatsink temperature exceeds $105^\circ\text{C}$ ($\text{221}^\circ\text{F}$).
-3. **Current Monitoring**: The subsystem shall Continuously monitor total AC current draw (LEM HO 15-NP) from the device [1].
+3. **Current Monitoring**: The subsystem shall Continuously monitor total current draw (LEM HO 15-NP) from the device [1].
 4. **Overcurrent Shutdown**: The subsystem shall trigger a system shutdown if the current draw exceeds the rated amperage of a standard 20A circuit.
 5. **IGBT Desaturation Protection**: The subsystem shall include hardware-based Insulated Gate Bipolar Transistor (IGBT) desaturation detection that trips a shutdown latch within 5-20 microseconds of a fault.
 6. **Ground Fault Protection**: The subsystem shall limit ground fault current such that no more than 50 volts appears on any accessible metal part, per NEC Article 665.
@@ -21,7 +21,7 @@ The subsystem's design is governed by the following specifications, which are de
 8. **Workpiece Detection**: The subsystem shall prevent the induction coil from energizing if a compatible workpiece, like the steel pipe, is not detected.
 9.   **User Notification**: Upon detecting any fault condition, the subsystem shall provide a specific error code to the user display.
 10.  **Fault State Latching**: Once a fault state is triggered (either by software or hardware), the subsystem shall remain in a safe, non-operational mode until the user performs a manual power cycle.
-11. **Flow Rate Minimum**: Enforce a minimum water flow rate of 1.5 LPM to prevent nucleate boiling and potential melting of the copper induction coil.
+11. **Flow Rate Minimum**: Enforce a minimum water flow rate of 1.5 LPM to prevent boiling as well as potential overheating of pipe.
 12. **EMI/RFI Shielding**: Utilize a grounded aluminum enclosure to contain high-frequency noise and protect control electronics [9].
 
 
@@ -31,7 +31,6 @@ The proposed solution is a hybrid software and hardware design to ensure continu
 
  - **Software Controls**: 
 The microcontroller will be the primary brain for monitoring slow-moving fault conditions. It will continuously read and condition signals from sensors for total current draw, IGBT heatsink temperature, and water flow. 
-    - **IGBT Temperature:** The temperature of the IGBT heatsink is provided by a K-Type Thermocouple connected through the MAX31856 amplifier. It features a dedicated FAULT pin and internal registers that detect if the thermocouple is shorted to VCC/GND or if the wire is broken.. This thermocouple will be threaded and screwed on to the heatsink to ensure a proper connection to the heatsink. 
     - **Workpiece Detection:** The system performs a 50ms "detection test." The MCU will generate a low-pulse signal and measure the AC current in the resonant tank. Since an empty coil has low series resistance, the software samples the current via the LEM HO 15-NP. If current is below the "No-Load Threshold," operation is blocked.
     - **Water Flow:** A Hall-Effect-based flow sensor outputs a digital pulse train. The microcontroller will use an external interrupt pin to count these pulses over a time interval and calculate the flow rate in Liters Per Minute (LPM).
     - **Current Monitoring:** The system will use two current sensors,the HO 15-NP, to fulfill two different roles. One sensor will read in the input current from the high-side of the DC rail after the bulk capacitor bank before the H-Bridge inverter. This sensor will detect any overcurrents and will keep the system limited to the 20A threshold. The second sensor will monitor the current through the resonant capacitor bank to detemrine power delivery to the coil as well as be used for workpiece sensing.
@@ -45,11 +44,12 @@ The microcontroller will be the primary brain for monitoring slow-moving fault c
 
  - **Hardware Controls**: For fast-moving catastrophic events, such as an IGBT desaturation or a severe over-current event, a dedicated hardware latch will be implemented. This circuit will operate in parallel with the microcontroller.
 
-     - The DESAT (desaturation) pin on each of the four UCC21750 gate drivers will monitor its respective IGBT's collector voltage [2]. If the collector voltage rises excessively while the gate is high (a desaturation event), the driver will immediately pull its FLT (Fault) pin low. This signal will trip an SCR (Silicon Controlled Rectifier) [4], which will immediately pull the RST_EN (Reset/Enable) pin of all gate drivers low, disabling them and placing them in a safe, non-operational state. A physical "OFF" switch will be wired in parallel with this SCR to provide a manual hardware override. This hardware latch will also be tied to the microcontroller's fault state, ensuring the system software is aware of the shutdown.
+     - **Desaturation Latch:** The DESAT (desaturation) pin on each of the four UCC21750 gate drivers will monitor its respective IGBT's collector voltage [2]. If the collector voltage rises excessively while the gate is high (a desaturation event), the driver will immediately pull its FLT (Fault) pin low. This signal will trip an SCR (Silicon Controlled Rectifier) [4], which will immediately pull the RST_EN (Reset/Enable) pin of all gate drivers low, disabling them and placing them in a safe, non-operational state. A physical "OFF" switch will be wired in parallel with this SCR to provide a manual hardware override. This hardware latch will also be tied to the microcontroller's fault state, ensuring the system software is aware of the shutdown.
+     - **IGBT Temperature:** The temperature of the IGBT heatsink is provided by a K-Type Thermocouple connected through the MAX31856 amplifier. It features a dedicated FAULT pin and internal registers that detect if the thermocouple is shorted to VCC/GND or if the wire is broken. This thermocouple will be threaded and screwed on to the heatsink to ensure a proper connection to the heatsink. 
 
 This combined approach provides the flexibility of software for general monitoring and the microsecond-level detection of a hardware latch to prevent catastrophic IGBT failure.
 
-### *Enclosure*
+### Enclosure
 The proposed enclosure utilizes a robust aluminum chassis to meet the functional requirements of housing sensitive electronics while rigorously adhering to safety standards, specifically NEC mandates.
 
 - **Primary Enclosure Material:** While the original plan referenced a non-conductive polycarbonate housing for electrical safety, we propose using an aluminum enclosure for its superior performance characteristics, which significantly enhance system reliability:
@@ -67,8 +67,8 @@ The design incorporates redundant safety features focused on compliance and wate
 **Wet/Dry Compartmentalization:** The enclosure will be seperated by a solid internal barrier to create two electrically isolated zones:
   - **Power Zone:** This area houses all of the power electronics as well as the induction coil connections. 
   - **Control Zone:** This area houses the low-voltage control PCB and sensing electronics. The water flow sensor cable will pass between zones only through a sealed connection[10].
-  - 
-All connectors entering the enclosure will be watertight (IP-rated glands or compression fittings) to prevent fluid migration [10].
+  
+All connectors entering the enclosure will be watertight to prevent fluid migration. [10].
 
 #### Enclosure Thermal Management
 Using the following methods, the enclosure is designed to efficiently remove the heat from the IGBT heatsink.
@@ -99,7 +99,7 @@ With a temperature rise of $4.8^\circ\text{C}$, a flow rate of 1.5LPM is suffici
 #### NEC Grounding Compliance
 
 As the system does not utilize a traditional 20A mechanical circuit breaker for primary fault clearing, compliance focuses on Chassis Bonding and Safe Touch Voltage.
-- **Chassis Bonding:** The aluminum enclosure is bonded to the AC Earth Ground using 12 AWG copper.
+- **Chassis Bonding:** The aluminum enclosure is bonded to the AC Earth Ground using 10 AWG copper.
 - **Fault Analysis:** In a fault, the HO 15-NP OCD pin trips at 39.45A. To keep the chassis voltage ($V_c$) below the NEC-mandated 50V, the total ground path impedance must be:$$R_g < \frac{50V}{39.45A} \approx 1.26 \Omega$$
   With 10 AWG copper wire and stainless steel star-washers, the measured ground-path resistance is $< 0.1 \Omega$. At the maximum hardware trip point of the HO 15-NP (39.45A), the maximum touch voltage is $39.45A \times 0.1\Omega = 3.945V$, which is well below the 50V limit."
 
@@ -151,7 +151,7 @@ The schematic is divided into two parts:
 
 ***Figure 2 - Desaturation Sensing Circuit***
 
-1. **Hardware Fault Latch:** This circuit creates a physical "memory" of a fault and provides a manual "OFF" switch.
+2. **Hardware Fault Latch:** This circuit creates a physical "memory" of a fault and provides a manual "OFF" switch.
      - **Fault Trigger:** When any driver detects a desaturation event, its FLT pin (pin 13) is pulled low [5]. All four FLT pins are connected in parallel with a pull-up resistor (R1) to the +5VDC logic rail. This forms a single FAULT_LINE.
      - **Signal Inverter:** A SCR requires a positive voltage on its gate to trigger. The FAULT_LINE provides the opposite (a LOW signal), so it must be inverted. The FAULT_LINE is connected to the base of an NPN transistor (Q1) via a current-limiting resistor (R3). During normal operation, this transistor is held ON, keeping the SCR's gate at ground.
      - **Fault Latch:** When a fault pulls the FAULT_LINE LOW, Q1 turns OFF. This allows a pull-up resistor (R4) to send a HIGH signal to the Gate (pin 2) of the Silicon-Controlled Rectifier (SCR) (D2). The SCR latches ON.
@@ -192,8 +192,6 @@ The operational logic of the Safety and Protections Controls Subsystem is detail
 
 ## BOM
 
-Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
-
 *The following Bill of Materials includes only the discrete components required to implement the safety and sensing circuits discussed above. Components from the main power board or driver sheets (UCC21750 drivers) are listed for reference.*
 
 | Component Name | Description | Manufacturer | Part Number | Distributor | Distributor P/N | Qty | Price (ea) | Total |
@@ -208,7 +206,7 @@ Provide a comprehensive list of all necessary components along with their prices
 | R1, R2, R4 | Resistor, 10k $\Omega$, 1/4W | Yageo | `RC0603FR-0710KL` | Digi-Key | `13-RC0603FR-1075KLTR-ND` | 3 | $0.01 | $0.03 |
 | R3 | Resistor, 1k $\Omega$, 1/4W | Yageo | `RC0603FR-071KL` | Digi-Key | `13-RC0603FR-7W100RLTR-ND` | 1 | $0.01 | $0.01 |
 | SW_OFF | Switch, Toggle | CIT | `	ANT11SECQE` | Digi-Key | `2449-ANT11SECQE-ND` | 1 | $1.94 | $1.94 |
-| Disconnect | DBST Switch, Toggle | E-Switch | `	ST242D00` | Digi-Key | `		EG4820-ND` | 1 | $7.35 | $7.35 |
+| Disconnect | DBST Switch, Toggle | E-Switch | `	ST242D00` | Digi-Key | `		EG4820-ND` | 1 | $6.08 | $6.08 |
 | Q1 | Transistor, NPN, 40V, 200mA | onsemi | `2N3904BU` | Digi-Key | `2N3904BU-ND` | 1 | $0.28 | $0.28 |
 | **Heatsink Temp Sensor** | | | | | | | | |
 | U1 | Thermocouple Amp | Adafruit Industries LLC | `3263` | Digi-Key | `1528-1772-ND` | 1 | $17.50 | $17.50 |
@@ -236,7 +234,7 @@ Provide a comprehensive list of all necessary components along with their prices
 | N/A | 1/2 to 3/4 F to M | Lowes | `877205` | Lowes | `877205` | 1 | $8.09 | $8.09 |
 | N/A | 15Ft Hose | Lowes | `2626706` | Lowes | `2626706` | 2 | $12.98 | $25.96 |
 | N/A | Plumbers Tape | Lowes | `456833` | Lowes | `456833` | 1 | $1.48 | $1.48 |
-| | | | | | **Subsystem Total:** | **$373.89** | |  |
+| | | | | | **Subsystem Total:** | **$372.62** | |  |
 
 ## Analysis
 The system employs a hybrid safety architecture; integrating a high-speed hardware latch with versatile software monitoring. This hybrid approach ensures protection against all identified failure modes, from slow thermal issues to catastrophic, microsecond-level component failures.
