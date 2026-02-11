@@ -95,12 +95,12 @@ Provide detailed information about the inputs, outputs, and data transferred to 
  7. Keypad
  The Keypad will be checked via a PIN D0-D3 assigned to interrupts. Then D4-D7 will be output pins and will be scanned to determine which button was pressed. The keypad will be able to set values for the system and change the mode of the LCD [8] [14].
  8. Rotary Encoder
- The Rotary Encoder will be able to change values for the system as well, depending on the mode of the LCD. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. The buttons used on PC8 are TBD [8] [15].
- 9. Flow Sensor
+ The Rotary Encoder will be able to change values for the system as well, depending on the mode of the LCD. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. [8] [15].
+ 1. Flow Sensor
  The flow sensor will use GPIO Interrupt 3 on PC3. The flow sensor will detect when the water is flowing, then turn on the induction gate driver [8] [16].
- 10.  Source Current Sensor
+ 1.   Source Current Sensor
  The current sensor will use ADC 1 CH 3 on PC2. The current sensor will ensure that the electrical current flowing in the system is at a safe value so that components don't explode [17] [8]. 
- 11.  Tank Current Sensor
+ 1.   Tank Current Sensor
  The current sensor will use ADC 2 CH 14 on PC5. The current sensor will ensure that the electrical current flowing in the Tank is at a safe value so that components don't explode [17] [8]. 
 
 ### Outputs:
@@ -115,7 +115,7 @@ Provide detailed information about the inputs, outputs, and data transferred to 
  1. LCD
  The LCD uses GPIO Pins A0-A5. A0, which is PA0, connects to the register Select, RS pin. The read/write pin is tied to ground since the LCD only needs to be written to. A1, which is PA1, connects to the Enable pin, EN pin. A2-A5, which is pins PA4, PB0,PC1, and PC0 respectively, is connected to data pin D4-D7 [8].
  2. PWM signals to Gate Drivers
- PWM signals to Gate Drivers are driven using TIM8 CH3 and TIM8 CH4N to get the same frequency signals, but 180 degrees out of phase. TIM8 CH3n is on PB1 and TIM8 CH4 is on PC9. TIM4 Ch2 on PB8 will send an 80KHz PWM signal to the power board [8].
+ PWM signals to Gate Drivers are driven using TIM8 CH3 and TIM8 CH3N to get the same frequency signals, but 180 degrees out of phase. TIM8 CH3n is on PB1 and TIM8 CH3 is on PC8. TIM4 Ch2 on PB8 will send an 80KHz PWM signal to the power board [8].
  3. Writing Micro SD Interface
  Writing Micro SD Interface uses SPI 1 MOSI on PA7 to write data to the micro SD card. Inputs 2. explains the rest of the connection for the SD card interface [8] [9].
  4. Setting Pipe Fault Temperature For Amplifier
@@ -294,7 +294,7 @@ The Microcontroller will have to interface with the power board by sending 20–
 
 [22] Adafruit Industries, “AD8495 Thermocouple Amplifier Breakout,” Product Page, 2025. Available: https://www.adafruit.com/product/1727 (Accessed: Nov. 23, 2025).
 
-[23] Adafruit, "Membrane Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
+[23] Adafruit, "Keypad - 3x4," Product Page, Available: https://www.digikey.com/en/products/detail/adafruit-industries-llc/3844/9561536 (Accessed: Nov. 23, 2025).
 
 [24] DFRobot, "SEN0235 EC11 Rotary Encoder Module," Product Page, Available: https://www.digikey.com/en/products/detail/dfrobot/SEN0235/7597223 (Accessed: Nov. 23, 2025).
 
@@ -302,7 +302,7 @@ The Microcontroller will have to interface with the power board by sending 20–
 
 [26] Adafruit, "MicroSD Card Breakout Board+," Product Page, Available: https://www.adafruit.com/product/4682 (Accessed: Nov. 23, 2025).
 
-[27] LEM, "HO 25-NPPR" Product Page, Available: https://www.digikey.com/en/products/detail/lem-usa-inc/HO-15-NP-0000/4331965 (Accessed: Nov. 23, 2025). 
+[27] LEM, "HO 15-NP" Product Page, Available: https://www.digikey.com/en/products/detail/lem-usa-inc/HO-15-NP-0000/4331965 (Accessed: Nov. 23, 2025). 
 
 [28] Amazon, "Liquid Flow Meter - 1/2\"," Product Page, Available: https://a.co/d/027tJyEe (Accessed: Nov. 23, 2025).
 
