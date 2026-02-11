@@ -207,7 +207,8 @@ Provide a comprehensive list of all necessary components along with their prices
 | D1 | SCR, 600V, 800mA, 200µA Gate | onsemi | `MCR100-6G` | Digi-Key | `MCR100-6GOS-ND` | 1 | $0.34 | $0.34 |
 | R1, R2, R4 | Resistor, 10k $\Omega$, 1/4W | Yageo | `RC0603FR-0710KL` | Digi-Key | `13-RC0603FR-1075KLTR-ND` | 3 | $0.01 | $0.03 |
 | R3 | Resistor, 1k $\Omega$, 1/4W | Yageo | `RC0603FR-071KL` | Digi-Key | `13-RC0603FR-7W100RLTR-ND` | 1 | $0.01 | $0.01 |
-| SW_OFF | Switch, Toggle | CIT | `	ANT11SECQE` | Digi-Key | `	2449-ANT11SECQE-ND` | 2 | $1.94 | $3.88 |
+| SW_OFF | Switch, Toggle | CIT | `	ANT11SECQE` | Digi-Key | `2449-ANT11SECQE-ND` | 1 | $1.94 | $1.94 |
+| Disconnect | DBST Switch, Toggle | E-Switch | `	ST242D00` | Digi-Key | `		EG4820-ND` | 1 | $7.35 | $7.35 |
 | Q1 | Transistor, NPN, 40V, 200mA | onsemi | `2N3904BU` | Digi-Key | `2N3904BU-ND` | 1 | $0.28 | $0.28 |
 | **Heatsink Temp Sensor** | | | | | | | | |
 | U1 | Thermocouple Amp | Adafruit Industries LLC | `3263` | Digi-Key | `1528-1772-ND` | 1 | $17.50 | $17.50 |
@@ -235,7 +236,7 @@ Provide a comprehensive list of all necessary components along with their prices
 | N/A | 1/2 to 3/4 F to M | Lowes | `877205` | Lowes | `877205` | 1 | $8.09 | $8.09 |
 | N/A | 15Ft Hose | Lowes | `2626706` | Lowes | `2626706` | 2 | $12.98 | $25.96 |
 | N/A | Plumbers Tape | Lowes | `456833` | Lowes | `456833` | 1 | $1.48 | $1.48 |
-| | | | | | **Subsystem Total:** | **$368.64** | |  |
+| | | | | | **Subsystem Total:** | **$373.89** | |  |
 
 ## Analysis
 The system employs a hybrid safety architecture; integrating a high-speed hardware latch with versatile software monitoring. This hybrid approach ensures protection against all identified failure modes, from slow thermal issues to catastrophic, microsecond-level component failures.
