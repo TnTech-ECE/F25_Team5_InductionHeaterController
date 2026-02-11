@@ -103,10 +103,10 @@ The following images show the circuit diagram layouts for the Power System. Afte
 ![alt text](image-36.png)
         **Figure 5, DC bus routing to small loads.
 
-![alt text](image-37.png)
+![alt text](image-40.png)
         **Figure 6, AC conversion to DC for Gate Driver IC operation.
 
-![alt text](image-38.png)
+![alt text](image-39.png)
         **Figure 7, Grounding Grid layout.
 
 ## BOM
@@ -132,7 +132,7 @@ This Section will detail ALL of the necessary information to acquire all compone
 |C_resonant_bank |WIMA |MKP10-.22/630/5P22  | Mouser Electronics |505-MKP10-.226305P22 |4 |$1.88 |[mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D&mgh=1&utm_source=chatgpt.com)|         
 |R1  | YAGEO |   RSF50SJT-52-330K|  Mouser Electronics|603-RSF50SJT-52-330K |1 |$0.18 |[mouser.com](https://www.mouser.com/ProductDetail/YAGEO/RSF50SJT-52-330K?qs=sGAEpiMZZMtlubZbdhIBIMMVXX%252BgggzkwMlyWq3j6Pk%3D )|  
 | R9 |  Bourns  | 3362U-1-504RLF  | Mouser Electronics |652-3362U-1-504RLF |1 |$2.05 |[mouser.com](https://www.mouser.com/ProductDetail/Bourns/3362U-1-504RLF?qs=sGAEpiMZZMtlubZbdhIBIAQM2Qjzi%2FAyAEPNZgNnw3U%3D )|
-|  R22,R10 | Bourns | PV32H105A01B00| Mouser Electronics | 81-PV32H105A01B00 |2 |$2.59|[mouser.com](https://www.mouser.com/ProductDetail/Bourns/PV32H105A01B00?qs=sGAEpiMZZMtlubZbdhIBIIiZvkqlAA9uzG1McxUFrHs%3D )|
+| R22 | Bourns | PV32H105A01B00| Mouser Electronics | 81-PV32H105A01B00 |1 |$2.59|[mouser.com](https://www.mouser.com/ProductDetail/Bourns/PV32H105A01B00?qs=sGAEpiMZZMtlubZbdhIBIIiZvkqlAA9uzG1McxUFrHs%3D )|
 |EMI_Choke| KEMET |SC-30-E100 | Digikey|399-SC-30-E100-ND |1 |$15.13 |[digikey.com](https://www.digikey.com/en/products/detail/kemet/SC-30-E100/10385065 )|
 |C44,C46,C50,C48,C69,C64,C66,C71,C6,C8,C10,C12,C28,C30,C32,C33,C36,C37,C40,C41,C75|Murata Electronics |RDER71E104K0P1H03B|Digikey| 490-8809-ND| 20 | $5.40 |[digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/RDER71E104K0P1H03B/4770964?s=N4IgTCBcDaIEoBECicDsBGJ6AMAWA0tgAroAS2AzAEIAEIAugL5A )| 
 | C56,C51,C72,C67 |TDK Corporation|FG18X7R1E105KRT06  | Digikey|445-173261-1-ND - Cut Tape (CT) |4 | $1.20 |[digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X7R1E105KRT06/5802875)| 
@@ -148,9 +148,8 @@ This Section will detail ALL of the necessary information to acquire all compone
 |R2,R24,R42,R36 |Stackpole Electronics Inc |CF12JT10R0 |Digikey |CF12JT10R0CT-ND |4 | $0.10 |[digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF12JT10R0/1741018) |
 |R43,R37,R4,R25|Ohmite |WHA5R0FET |Digikey |WHA5R0FECT-ND |4 |1.85 |[digikey.com](https://www.digikey.com/en/products/detail/ohmite/WHA5R0FET/678818) |
 |F1,F2 |OptiFuse |FSC-18A |Digikey |2298-FSC-18A-ND |2 |$0.88 |[Digikey.com](https://www.digikey.com/en/products/detail/optifuse/FSC-18A/12089887) |
-|C76 |Murata Electronics |DE2E3SA222MN3AT02F |Digikey |490-16241-1-ND |1 |$0.53 |[digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/DE2E3SA222MN3AT02F/7319220) |
 |-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
-|Total: $177.42 |
+|Total: $174.30 |
 
 
 
