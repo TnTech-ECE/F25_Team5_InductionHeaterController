@@ -206,7 +206,7 @@ The operational logic of the Safety and Protections Controls Subsystem is detail
 | R1, R2, R4 | Resistor, 10k $\Omega$, 1/4W | Yageo | `RC0603FR-0710KL` | Digi-Key | `13-RC0603FR-1075KLTR-ND` | 3 | $0.01 | $0.03 |
 | R3 | Resistor, 1k $\Omega$, 1/4W | Yageo | `RC0603FR-071KL` | Digi-Key | `13-RC0603FR-7W100RLTR-ND` | 1 | $0.01 | $0.01 |
 | SW_OFF | Switch, Toggle | CIT | `	ANT11SECQE` | Digi-Key | `2449-ANT11SECQE-ND` | 1 | $1.94 | $1.94 |
-| Disconnect | DBST Switch, Toggle | E-Switch | `	ST242D00` | Digi-Key | `		EG4820-ND` | 1 | $6.08 | $6.08 |
+| Disconnect | DBST Switch, Toggle | VCC | `		VTS-1-2Q4PPM-12SNN-0` | Digi-Key | `28-VTS-1-2Q4PPM-12SNN-0-ND` | 1 | $6.08 | $6.08 |
 | Q1 | Transistor, NPN, 40V, 200mA | onsemi | `2N3904BU` | Digi-Key | `2N3904BU-ND` | 1 | $0.28 | $0.28 |
 | **Heatsink Temp Sensor** | | | | | | | | |
 | U1 | Thermocouple Amp | Adafruit Industries LLC | `3263` | Digi-Key | `1528-1772-ND` | 1 | $17.50 | $17.50 |
