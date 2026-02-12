@@ -213,7 +213,7 @@ The operational logic of the Safety and Protections Controls Subsystem is detail
 | TC1 | Thermocouple, K-Type, Bolt-On | McMASTER-CARR | `3648K24` | McMASTER-CARR | `3648K24` | 1 | $36.57 | $36.57 |
 | **Current Sensors** | | | | | | | | |
 | SEN-Current(1-2) | Current Sensor | LEM | `HO 15-NP` | Digi-Key | `398-1142-ND` | 2 | $11.35 | $22.70 |
-| N/A | Cap, 47nF | Yageo | `CC0603KRX7R9BB104` | Digi-Key | `311-1344-2-ND` | 6 | $0.08 | $0.48 |
+| N/A | Cap, 0.1uF | Yageo | `CC0603KRX7R9BB104` | Digi-Key | `311-1344-2-ND` | 6 | $0.08 | $0.48 |
 | **Flow Sensor** |See Embedded System |
 | **Enclosure** | | | | | | | | |
 | N/A | 10 AWG Grounding Wire (25ft) | Lowes | `5994007` | Lowes | `5994007` | 1 | $21.33 | $21.33 |
