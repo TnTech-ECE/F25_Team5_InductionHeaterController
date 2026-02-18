@@ -177,6 +177,9 @@ Root Schematic part 2
 
 ![Root Schematic part 3](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/root_Sch_3.jpg)
 Root Schematic part 3
+
+![Root Schematic part 4](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/root_Sch_4.jpg)
+Root Schematic part 4
 ## Printed Circuit Board Layout
 
 ![Power PCB board](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/power%20PCB%20board%20screenshot.jpg)
