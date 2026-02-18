@@ -225,8 +225,8 @@ This Block diagram gives a visual representation of how the set up of the two bo
 | Components         | Manufacturer | Part#           | Distributor | Dist. Part#      | Qty. | Price | Link |
 | ------------------ | ------------ | --------------- | ----------- | ---------------- | ---- | ----- | ---- |
 | B1                 | KEMET        | SC-30-E100      | Digikey     | 399-SC-30-E100-ND | 1   | $15.13 | [digikey.com](https://www.digikey.com/en/products/detail/kemet/SC-30-E100/10385065) |
-| C1,C3,C5,C7,C9,C11,C13,C15,C17,C19,C21,C22,C28,C29,C30,C31,C36,C37,C38,C39 | Murata Electronics | RDER71E104K0P1H03B | Digikey | 490-8809-ND | 20 | $5.40 | [digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/RDER71E104K0P1H03B/4770964) |
-| C2,C4,C6,C8,C10,C12,C14,C16,C18,C20,C23,C47,C48,C50,C55,C68 | Panasonic Electronic Components | ECA-1EM100 | Digikey | P5148-ND | 16 | $2.32 | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECA-1EM100/245007) |
+| C1,C3,C5,C7,C9,C11,C13,C15,C17,C19,C21,C22,C28,C29,C30,C31,C36,C37,C38,C39, C57, C63, C69, C70, C71 | Murata Electronics | RDER71E104K0P1H03B | Digikey | 490-8809-ND | 20 | $6.00 | [digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/RDER71E104K0P1H03B/4770964) |
+| C2,C4,C6,C8,C10,C12,C14,C16,C18,C20,C23,C47,C48,C50,C55,C68, C49 | Panasonic Electronic Components | ECA-1EM100 | Digikey | P5148-ND | 16 | $2.33 | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECA-1EM100/245007) |
 | C24,C26,C32,C34    | TDK Corporation | FG18X7R1E105KRT06 | Digikey | 445-173261-1-ND | 4 | $1.20 | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X7R1E105KRT06/5802875) |
 | C25,C27,C33,C35    | ROHM Semiconductor | KTD250B107M80A0B00 | Mouser | 511-KTD250B107M80A0B00CT-ND | 4 | $46.60 | [mouser.com](https://www.mouser.com/ProductDetail/Chemi-Con/KTD250B107M80A0B00?qs=YQnJFR48xcDR2vQIc5p%2FHg%3D%3D&srsltid=AfmBOoqyxxk7kuU38xjR_rxIa0Q1O5qtc2bZE9aHthkMnr-nPpf-SEqL) |
 | C40,C41,C58,C59,C60,C61 | Panasonic Electronic Components | ECW-FE2J104PD | Digikey | P124888-ND | 6 | $0.89 | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECW-FE2J104PD/10292125) |
@@ -239,13 +239,17 @@ This Block diagram gives a visual representation of how the set up of the two bo
  | 1 | $0.92 | [Mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KI322050M1K?qs=D0iH%252BVFiYPNDy%252BpzFjt46g%3D%3D&srsltid=AfmBOornaXK3x8LsjX38B5_fvM7R6vKl9AuGBts-nAzb0jyb5uJ-Gc_O) |
 | C53,C62            | TDK Corporation | FG18X5R1E225KRT06 | Digikey | 445-173253-1-ND | 2 | $0.64 | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X5R1E225KRT06/5802867) |
 | C54                | KEMET | C322C471K3G5TA | Digikey | 399-C322C471K3G5TA-ND | 1 | $0.38 | [digikey.com](https://www.digikey.com/en/products/detail/kemet/C322C471K3G5TA/6656585) |
+| C56                | KEMET | R46KN410045N1K | Mouser | 80-R46KN410045N1K | 1 | $1.47 | [mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN410045N1K?qs=D0iH%252BVFiYPOpDN60Y4GCFA%3D%3D&srsltid=AfmBOorubpOkagTzxH3SXlWjrFuPFZxt4yWrAjUvWnKOd_3Cv_s6EwX6) |
+
 | C64,C65,C66,C67    | WIMA | MKP10-.22/630/5P22 | Mouser Electronics | 505-MKP10-.226305P22 | 4 | $7.52 | [mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D) |
 | D6                 | Littelfuse | S4X8ES | Digikey | S4X8ES-ND | 1 | $0.82 | (https://www.digikey.com/en/products/detail/littelfuse-inc/S4X8ES/1212630) |
 | D7,D8,D9,D10       | ON Semiconductor | MUR160 | Digikey | MUR160GOS-ND | 4 | $0.84 | [digikey.com] (https://www.digikey.com/en/products/detail/onsemi/MUR160G/1482797) |
 | F1,F2              | Littelfuse | 01240061H | Digikey | F9278-ND | 4 | $3.40 | [digikey.com](https://www.digikey.com/en/products/detail/littelfuse-inc/01240061H/14641014?gclsrc=aw.ds&gad_source=1&gad_campaignid=120565755&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboMDA6BU6LVDkoFpAK7lJX3YsO-URDur913YgReQoGCJUEeFF2KtIwxoCJ84QAvD_BwE) |
 | FR1                | Panjit | GBJ3510 | Digikey | 1655-GBJ3510-ND | 1 | $2.27 | [digikey.com](https://www.digikey.com/en/products/detail/panjit-international-inc/GBJ3510/16526896) |
 | G1,G2,G3,G4        | Texas Instruments | UCC21750DW | Mouser Electronics | 595-UCC21750DWR | 4 | $18.20 | [mouser.com](https://www.mouser.com/c/semiconductors/power-management-ics/galvanically-isolated-gate-drivers/?q=UCC21750) |
-| K1                 | Panasonic | ANT11SECQE | Digikey | 2449-ANT11SF1CQE-ND | 1 | $2.13 | [digikey.com] (https://www.digikey.com/en/products/detail/cit-relay-and-switch/ANT11SF1CQE/12503396?gclsrc=aw.ds&gad_source=1&gad_campaignid=120565755&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboK9P5cN5Dz5Ppoylcq0cd_m2U7qj8OI3U7KcLsEqeFR_H33_HLtN2RoC4DMQAvD_BwE)) |
+| J1,J2              | TE Connectivity | 2393237-1 | Digikey |17-2393237-1TR-ND | 4 | $1.68 | [digikey.com](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2393237-1/19512806) |
+
+| K1,K2                 | Panasonic | ANT11SECQE | Digikey | 2449-ANT11SF1CQE-ND | 1 | $4.26 | [digikey.com] (https://www.digikey.com/en/products/detail/cit-relay-and-switch/ANT11SF1CQE/12503396?gclsrc=aw.ds&gad_source=1&gad_campaignid=120565755&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboK9P5cN5Dz5Ppoylcq0cd_m2U7qj8OI3U7KcLsEqeFR_H33_HLtN2RoC4DMQAvD_BwE)) |
 | L1                 | Pulse Electronics | BFSI001211094R7M05 | Digikey | 553-BFSI001211094R7M05CT-ND | 1 | $1.27 | [digikey.com](https://www.digikey.com/en/products/detail/pulse-electronics/BFSI001211094R7M05/16510826) |
 | PS1                | MEAN WELL | MPM-10-15 | Mouser Electronics | 709-MPM10-15 | 1 | $10.10 | [mouser.com](https://www.mouser.com/ProductDetail/MEAN-WELL/MPM-10-15?qs=xhbEVWpZdWesTikav2ic2A%3D%3D) |
 | PWR1,PWR2          | Eaton | YK8810303000G | Digikey |YK8810303000G-ND | 2 | $5.42 | [digikey.com] (https://www.digikey.com/en/products/detail/amphenol-anytek/yk8810303000g/4962666?_gl=1*1m066aa*_up*MQ..*_gs*MQ..&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboK9P5cN5Dz5Ppoylcq0cd_m2U7qj8OI3U7KcLsEqeFR_H33_HLtN2RoC4DMQAvD_BwE&gclsrc=aw.ds&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z) |
@@ -265,10 +269,11 @@ This Block diagram gives a visual representation of how the set up of the two bo
 | U1,U2,U3,U4        | Murata | MGJ2D151505SC | Mouser Electronics | 580-MGJ2D151505SC | 4 | $33.84 | [mouser.com](https://www.mouser.com/ProductDetail/Murata-Power-Solutions/MGJ2D151505SC?qs=xLDY6iXSiQYIfXYEkf8RzA%3D%3D) |
 | U5                 | Mornsun America | LDE60-20B12 | Digikey | 2725-LDE60-20B12-ND | 1 | $8.86 | [digikey.com](https://www.digikey.com/en/products/detail/mornsun-america-llc/LDE60-20B12/13168172) |
 | U7                 | Texas Instruments | LM2940IMP-12/NOPB | Digikey | 296-LM2940IMP-12/NOPBCT-ND | 1 | $2.15 | [digikey.com](https://www.digikey.com/en/products/detail/texas-instruments/lm2940imp-12-nopb/363888) |
+| U6,U8              | LEM | HO 15-NP | Digikey | 398-1142-ND | 2 | $22.70 | [digikey.com](https://www.digikey.com/en/products/detail/lem-usa-inc/HO-15-NP-0000/4331965) |
 
 
 |-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
-|**Total:** ||||| **$179.35** | |
+|**Total:**  **$233.45** | |
 
 
 ## Analysis
