@@ -152,9 +152,11 @@ Safety schematic part 1
 
 ![Safety schematic part 2](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/Safety_2.jpg)
 
-
-
 Safety schematic part 2
+
+![Safety schematic part 3](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/Safety_3.jpg)
+
+Safety schematic part 3
 
 ![Gate Driver 1](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/Detail_Design_PCB/Reports/images_PCB/gate_driver_1.jpg)
 Gate Driver 1
