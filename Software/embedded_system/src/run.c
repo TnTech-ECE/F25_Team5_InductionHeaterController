@@ -18,7 +18,9 @@
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
 #include "sd_functions.h"
+#include "pwm.h"
 #include "keypad.h"
+#include "max31856.h"
 volatile bool need_save = false;
 volatile bool need_log = false;
 void save()
@@ -30,23 +32,32 @@ void log()
 	need_log = true;
 }
 unsigned value_adc;
-max6675_tc *thermoSPI2;
-max6675_tc *thermoSPI3;
+max31856_t thermoSPI2 = {&hspi2, {spi_cn2_GPIO_Port, spi_cn2_Pin}};
+// max6675_tc *thermoSPI3;
 struct ControllerData controllerData;
 int tick = 1;
+
 void threeTenthSeconds(void)
 {
-	float tempSPI2 = tc_readTemp(thermoSPI2);
-	float tempSPI3 = tc_readTemp(thermoSPI3);
-	controllerData.t1 = tempSPI2;
-	controllerData.t2 = tempSPI3;
-	// int voltsADC3 = 5.0f * (float)(value_adc) / 4096.0f;
-	DisplayDecimal(tempSPI2, 0, 0, 0, 4);
-	DisplayDecimal(tempSPI3, 1, 0, 0, 4);
-	float flowRate = getFlowRateGPS();
-	DisplayDecimal(flowRate, 0, 5, 0, 6);
-	DisplayDecimal(controllerData.desiredTemperature, 0, 12, 0, 4);
-	log();
+	float tempSPI2 = max31856_read_TC_temp(&thermoSPI2);
+	if (thermoSPI2.sr.val)
+	{
+		return;
+	}
+	// tempSPI2 /= 128.0f;
+	DisplayDecimal(tempSPI2, 0, 0, 0, 6);
+	// DisplayNumberBase(tempSPI2, 0, 0, 0, 8, 16);
+	// float tempSPI2 = tc_readTemp(thermoSPI2);
+	// float tempSPI3 = tc_readTemp(thermoSPI3);
+	// controllerData.t1 = tempSPI2;
+	// controllerData.t2 = tempSPI3;
+	// // int voltsADC3 = 5.0f * (float)(value_adc) / 4096.0f;
+	// DisplayDecimal(tempSPI2, 0, 0, 0, 4);
+	// DisplayDecimal(tempSPI3, 1, 0, 0, 4);
+	// float flowRate = getFlowRateGPS();
+	// DisplayDecimal(flowRate, 0, 5, 0, 6);
+	// DisplayDecimal(controllerData.desiredTemperature, 0, 12, 0, 4);
+	// log();
 }
 int kjdwkjdwjdwkj = 0;
 bool testUntilCallback(void *aux)
@@ -72,9 +83,23 @@ void keyStateChangeCallback(char key, enum KeyState keyState)
 		LCD_WriteData(' ');
 	}
 }
+void startTim8()
+{
+	TIM8_UpdateStart(10000, 15, 1, true);
+}
 void unsubscribeTest()
 {
 	unsubscribeKeyStateChange(keyStateChangeCallback);
+}
+void setupTempAmp(max31856_t *amp)
+{
+	max31856_init(amp);
+	max31856_set_noise_filter(amp, CR0_FILTER_OUT_60Hz);
+	max31856_set_cold_junction_enable(amp, CR0_CJ_ENABLED);
+	max31856_set_thermocouple_type(amp, CR1_TC_TYPE_K);
+	max31856_set_average_samples(amp, CR1_AVG_TC_SAMPLES_2);
+	max31856_set_open_circuit_fault_detection(amp, CR0_OC_DETECT_ENABLED_TC_LESS_2ms);
+	max31856_set_conversion_mode(amp, CR0_CONV_CONTINUOUS);
 }
 void run()
 {
@@ -91,7 +116,7 @@ void run()
 	lcd_init();
 	HAL_Delay(20); // Wait after init
 	// sd_send_initial_dummy_clocks();
-	// thermoSPI2 = tc_init(&hspi2, spi_cn2_GPIO_Port, spi_cn2_Pin);
+	setupTempAmp(&thermoSPI2);
 	// thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
 	//	int fr = sd_mount();
 	//	printf("sd_mount -> %d\r\n", fr);
@@ -118,8 +143,9 @@ void run()
 	// WriteStringAt(success ? "true " : "false", 0, 6);
 
 	// test();
-	// runInterval(scanAllToLCD /*threeTenthSeconds*/, 300);
+	runInterval(threeTenthSeconds, 50);
 	runIntervalUntil(testUntilCallback, NULL, 1000);
+	runTimeout(startTim8, 5000);
 	// runTimeout(unsubscribeTest, 10000);
 	while (1)
 	{

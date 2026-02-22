@@ -43,7 +43,7 @@ src/run.o: ../src/run.c ../src/lcd.h \
  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h \
  ../Core/Inc/sd_functions.h \
  C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/FATFS/App/fatfs.h \
- ../src/keypad.h
+ ../src/pwm.h ../src/keypad.h ../src/max31856.h
 ../src/lcd.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -93,4 +93,6 @@ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Sof
 ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h:
 ../Core/Inc/sd_functions.h:
 C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/FATFS/App/fatfs.h:
+../src/pwm.h:
 ../src/keypad.h:
+../src/max31856.h:

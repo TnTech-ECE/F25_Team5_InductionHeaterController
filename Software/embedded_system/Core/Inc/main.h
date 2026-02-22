@@ -39,11 +39,15 @@ extern "C" {
   extern SPI_HandleTypeDef hspi1;
   extern SPI_HandleTypeDef hspi2;
   extern SPI_HandleTypeDef hspi3;
+
+  extern TIM_HandleTypeDef htim8;
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-  TIM_TypeDef getTimer3Instance();
+  TIM_TypeDef
+  getTimer3Instance();
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/

@@ -312,29 +312,61 @@ uint8_t Write_String_LCD(char *str)
 void lcd_init(void)
 {
 	__disable_irq();
+	LCD_WriteCommand(0x2A, 1); // function set (extended command set)
+	LCD_WriteCommand(0x71, 1); // function selection A
+	LCD_WriteData(0x00);	   // disable internal VDD regulator (2.8V I/O). data(0x5C) = enable regulator (5V I/O)
+	LCD_WriteCommand(0x28, 1); // function set (fundamental command set)
+	LCD_WriteCommand(0x08, 1); // display off, cursor off, blink off
+	LCD_WriteCommand(0x2A, 1); // function set (extended command set)
+	LCD_WriteCommand(0x79, 1); // OLED command set enabled
+	LCD_WriteCommand(0xD5, 1); // set display clock divide ratio/oscillator frequency
+	LCD_WriteCommand(0x70, 1); // set display clock divide ratio/oscillator frequency
+	LCD_WriteCommand(0x78, 1); // OLED command set disabled
+	LCD_WriteCommand(0x08, 1); // extended function set (2-lines)
+	LCD_WriteCommand(0x06, 1); // COM SEG direction
+	LCD_WriteCommand(0x72, 1); // function selection B
+	LCD_WriteData(0x00);	   // ROM CGRAM selection
+	LCD_WriteCommand(0x2A, 1); // function set (extended command set)
+	LCD_WriteCommand(0x79, 1); // OLED command set enabled
+	LCD_WriteCommand(0xDA, 1); // set SEG pins hardware configuration
+	LCD_WriteCommand(0x10, 1); // set SEG pins hardware configuration
+	LCD_WriteCommand(0xDC, 1); // function selection C
+	LCD_WriteCommand(0x00, 1); // function selection C
+	LCD_WriteCommand(0x81, 1); // set contrast control
+	LCD_WriteCommand(0x7F, 1); // set contrast control
+	LCD_WriteCommand(0xD9, 1); // set phase length
+	LCD_WriteCommand(0xF1, 1); // set phase length
+	LCD_WriteCommand(0xDB, 1); // set VCOMH deselect level
+	LCD_WriteCommand(0x40, 1); // set VCOMH deselect level
+	LCD_WriteCommand(0x78, 1); // OLED command set disabled
+	LCD_WriteCommand(0x28, 1); // function set (fundamental command set)
+	LCD_WriteCommand(0x01, 1); // clear display
+	LCD_WriteCommand(0x80, 1); // set DDRAM address to 0x00
+	LCD_WriteCommand(0x0C, 1); // display ON
+	// delayms(100);  // delay
 	// 4 bit initialisation
 	// HAL_Delay(50); // wait for >40ms
-	LCD_WriteCommand(ReturnHome | 1, 5);
-	// HAL_Delay(5); // wait for >4.1ms
-	LCD_WriteCommand(ReturnHome | 1, 1);
-	// HAL_Delay(1); // wait for >100us
-	LCD_WriteCommand(ReturnHome | 1, 10);
-	// HAL_Delay(10);
-	LCD_WriteCommand(ReturnHome, 10);												   // 4bit mode
-																					   // HAL_Delay(10);
-																					   //  dislay initialisation
-	LCD_WriteCommand(FunctionSet4Bit | FunctionSet2Lines | FunctionSetChar5x7Dots, 1); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
-																					   // HAL_Delay(1);
-	LCD_WriteCommand(DisplayOnOffControlDisplayOff, 1);								   // Display on/off control --> D=0,C=0, B=0 ---> display off
+	// LCD_WriteCommand(ReturnHome | 1, 5);
+	// // HAL_Delay(5); // wait for >4.1ms
+	// LCD_WriteCommand(ReturnHome | 1, 1);
+	// // HAL_Delay(1); // wait for >100us
+	// LCD_WriteCommand(ReturnHome | 1, 10);
+	// // HAL_Delay(10);
+	// LCD_WriteCommand(ReturnHome, 10);												   // 4bit mode
+	// 																				   // HAL_Delay(10);
+	// 																				   //  dislay initialisation
+	// LCD_WriteCommand(FunctionSet4Bit | FunctionSet2Lines | FunctionSetChar5x7Dots, 1); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
+	// 																				   // HAL_Delay(1);
+	// LCD_WriteCommand(DisplayOnOffControlDisplayOff, 1);								   // Display on/off control --> D=0,C=0, B=0 ---> display off
 
-	// clear display
-	LCD_WriteCommand(ClearDisplay, 1);
-	// HAL_Delay(1);
-	// Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)																				   // HAL_Delay(1);
-	LCD_WriteCommand(EntryModeSetCursorMoveDirectIncrement, 1);
-	// HAL_Delay(1);
-	// Display on/off control --> D = 1, C and B =0. (Cursor and blink, last two bits)
-	LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOn | DisplayOnOffControlCursorBlinkOn, 1);
+	// // clear display
+	// LCD_WriteCommand(ClearDisplay, 1);
+	// // HAL_Delay(1);
+	// // Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)																				   // HAL_Delay(1);
+	// LCD_WriteCommand(EntryModeSetCursorMoveDirectIncrement, 1);
+	// // HAL_Delay(1);
+	// // Display on/off control --> D = 1, C and B =0. (Cursor and blink, last two bits)
+	// LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOn | DisplayOnOffControlCursorBlinkOn, 1);
 	__enable_irq();
 }
 
@@ -443,7 +475,7 @@ void Write_String_Sector_LCD(uint8_t sector, char *string)
 	__enable_irq();
 }
 
-void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
+void DisplayNumberBase(long num, int8_t line, int8_t position, uint8_t from, uint8_t digits, uint8_t base)
 {
 	__disable_irq();
 	int logOf = digits - 1;
@@ -458,13 +490,20 @@ void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t
 
 	for (int i = logOf; i >= 0; i--)
 	{
-		uint8_t place = (int)num / (int)pow(10, i);
-		uint8_t digit = place % 10;
-		LCD_WriteData(digit + '0');
+		uint8_t place = (int)num / (int)pow(base, i);
+		uint8_t digit = place % base;
+		char digitChar = (digit > 61)	? '*'
+						 : (digit > 35) ? (digit - 36) + 'A'
+						 : (digit > 9)	? (digit - 10) + 'a'
+										: digit + '0';
+		LCD_WriteData(digitChar);
 	}
 	__enable_irq();
 }
-
+void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
+{
+	DisplayNumberBase(num, line, position, from, digits, 10);
+}
 void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
 {
 	__disable_irq();
