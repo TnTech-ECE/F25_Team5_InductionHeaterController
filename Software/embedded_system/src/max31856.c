@@ -170,7 +170,7 @@ dwc42
 begin
 */
 
-const float TEMPERATURE_TO_MASK_RATIO = 128.0f;
+const float TEMPERATURE_TO_MASK_RATIO = 16.0f;
 void max31856_setHighFaultTemp(max31856_t *max31856, float temperature)
 {
 	int mask = (int)(temperature * TEMPERATURE_TO_MASK_RATIO);
@@ -197,6 +197,11 @@ void max31856_setLowColdJunctionFaultTemp(max31856_t *max31856, float temperatur
 {
 	int mask = (int)(temperature);
 	max31856_write_register(max31856, MAX31856_CJLF, mask);
+}
+
+void max31856_enableDisableFaults(max31856_t *max31856, max31856_sr_t faultsEnableDisable)
+{
+	max31856_write_register(max31856, MAX31856_MASK, faultsEnableDisable.val);
 }
 /*
 dwc42

@@ -32,7 +32,7 @@ void onRotateTimeoutCallback(void)
 		long deltaABS = abs((long)TIM3->CNT - (long)timeoutLast);
 		int direction = sign(delta);
 		delta = direction * fmin(deltaABS, TIM3->ARR - deltaABS);
-//		DisplayNumber(delta, 1, 7, 0, 4);
+		//		DisplayNumber(delta, 1, 7, 0, 4);
 
 		timeoutLast = TIM3->CNT;
 		controllerData.desiredTemperature += (float)(delta) / 10.0f;
@@ -43,7 +43,7 @@ void onRotateTimeoutCallback(void)
 	else
 	{
 		onRotateTimeout = false;
-//		DisplayNumber(0, 1, 7, 0, 4);
+		//		DisplayNumber(0, 1, 7, 0, 4);
 	}
 }
 void runRotateTimeout(bool force)
@@ -66,7 +66,7 @@ void onRotate(int16_t cnt, unsigned counting_down)
 		delta += (getTimer3Instance().ARR + 1);
 	}
 	last = cnt;
-	DisplayNumber((int)cnt, 1, 12, 0, 4);
+	// DisplayNumber((int)cnt, 1, 12, 0, 4);
 	runRotateTimeout(false);
 }
 void onWrap(unsigned counting_down)
@@ -77,7 +77,7 @@ bool pressTimeOut = false;
 void onRotaryPressTimeoutCallback(void)
 {
 	buttonState ^= 1;
-//	DisplayNumber(buttonState, 0, 4, 0, 1);
+	//	DisplayNumber(buttonState, 0, 4, 0, 1);
 	pressTimeOut = false;
 }
 void onRotaryPress()

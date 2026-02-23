@@ -189,6 +189,12 @@ extern "C"
 	uint8_t max31856_read_register(max31856_t *max31856, uint8_t reg_addr);
 	void max31856_read_nregisters(max31856_t *max31856, uint8_t reg_addr, uint8_t *buff, uint16_t len);
 
+	// dwc42
+	void max31856_setHighFaultTemp(max31856_t *max31856, float temperature);
+	void max31856_setLowFaultTemp(max31856_t *max31856, float temperature);
+	void max31856_setHighColdJunctionFaultTemp(max31856_t *max31856, float temperature);
+	void max31856_setLowColdJunctionFaultTemp(max31856_t *max31856, float temperature);
+
 #ifdef __cplusplus
 }
 #endif

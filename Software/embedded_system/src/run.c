@@ -117,6 +117,7 @@ void run()
 	HAL_Delay(20); // Wait after init
 	// sd_send_initial_dummy_clocks();
 	setupTempAmp(&thermoSPI2);
+	max31856_setHighFaultTemp(&thermoSPI2, 25);
 	// thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
 	//	int fr = sd_mount();
 	//	printf("sd_mount -> %d\r\n", fr);
