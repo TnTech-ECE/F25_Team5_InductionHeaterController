@@ -1,0 +1,7 @@
+../src/rotary_encoder.c:10:5:sign	16	static
+../src/rotary_encoder.c:26:6:onRotateTimeoutCallback	40	static
+../src/rotary_encoder.c:49:6:runRotateTimeout	16	static
+../src/rotary_encoder.c:57:6:onRotate	232	static
+../src/rotary_encoder.c:72:6:onWrap	16	static
+../src/rotary_encoder.c:77:6:onRotaryPressTimeoutCallback	4	static
+../src/rotary_encoder.c:83:6:onRotaryPress	8	static
