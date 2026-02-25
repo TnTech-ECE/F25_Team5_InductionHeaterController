@@ -33,6 +33,7 @@ void log()
 }
 unsigned value_adc;
 max31856_t thermoSPI2 = {&hspi2, {spi_cn2_GPIO_Port, spi_cn2_Pin}};
+max31856_t thermoSPI3 = {&hspi3, {spi_cn3_GPIO_Port, spi_cn3_Pin}};
 // max6675_tc *thermoSPI3;
 struct ControllerData controllerData;
 int tick = 1;
@@ -44,8 +45,14 @@ void threeTenthSeconds(void)
 	{
 		return;
 	}
+	float tempSPI3 = max31856_read_TC_temp(&thermoSPI3);
+	if (thermoSPI3.sr.val)
+	{
+		return;
+	}
 	// tempSPI2 /= 128.0f;
 	DisplayDecimal(tempSPI2, 0, 0, 0, 6);
+	DisplayDecimal(tempSPI3, 0, 8, 0, 6);
 	// DisplayNumberBase(tempSPI2, 0, 0, 0, 8, 16);
 	// float tempSPI2 = tc_readTemp(thermoSPI2);
 	// float tempSPI3 = tc_readTemp(thermoSPI3);
@@ -117,7 +124,9 @@ void run()
 	HAL_Delay(20); // Wait after init
 	// sd_send_initial_dummy_clocks();
 	setupTempAmp(&thermoSPI2);
-	max31856_setHighFaultTemp(&thermoSPI2, 25);
+	setupTempAmp(&thermoSPI3);
+	max31856_setHighFaultTemp(&thermoSPI2, 30);
+	max31856_setHighFaultTemp(&thermoSPI3, 30);
 	// thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
 	//	int fr = sd_mount();
 	//	printf("sd_mount -> %d\r\n", fr);
