@@ -10,6 +10,7 @@
 struct ControllerData
 {
 	float desiredTemperature;
+	float powerLevel;
 	float t1;
 	float t2;
 };

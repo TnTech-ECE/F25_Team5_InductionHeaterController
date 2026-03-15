@@ -32,11 +32,11 @@ void onRotateTimeoutCallback(void)
 		long deltaABS = abs((long)TIM3->CNT - (long)timeoutLast);
 		int direction = sign(delta);
 		delta = direction * fmin(deltaABS, TIM3->ARR - deltaABS);
-		//		DisplayNumber(delta, 1, 7, 0, 4);
 
 		timeoutLast = TIM3->CNT;
 		controllerData.desiredTemperature += (float)(delta) / 10.0f;
-		save();
+		DisplayDecimal(controllerData.desiredTemperature, 1, 8, 0, 5);
+		saveSD();
 		runRotateTimeout(true);
 		onRotateTimeout = true;
 	}

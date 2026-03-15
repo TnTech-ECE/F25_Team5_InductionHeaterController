@@ -41,6 +41,7 @@
 "./src/flow_sensor.o"
 "./src/keypad.o"
 "./src/lcd.o"
+"./src/lcd_ui.o"
 "./src/max31856.o"
 "./src/max6675.o"
 "./src/pwm.o"

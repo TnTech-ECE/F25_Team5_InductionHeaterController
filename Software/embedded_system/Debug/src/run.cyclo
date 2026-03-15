@@ -1,9 +1,7 @@
-../src/run.c:26:6:save	1
-../src/run.c:30:6:log	1
-../src/run.c:41:6:threeTenthSeconds	3
-../src/run.c:70:6:testUntilCallback	1
-../src/run.c:81:6:keyStateChangeCallback	2
-../src/run.c:93:6:startTim8	1
-../src/run.c:97:6:unsubscribeTest	1
-../src/run.c:101:6:setupTempAmp	1
-../src/run.c:111:6:run	2
+../src/run.c:27:6:saveSD	1
+../src/run.c:31:6:logSD	1
+../src/run.c:42:6:keyStateChangeCallback	2
+../src/run.c:54:6:startTim8	1
+../src/run.c:58:6:unsubscribeTest	1
+../src/run.c:62:6:setupTempAmp	1
+../src/run.c:72:6:run	2

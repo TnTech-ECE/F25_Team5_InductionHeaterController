@@ -21,13 +21,14 @@
 #include "pwm.h"
 #include "keypad.h"
 #include "max31856.h"
+#include "lcd_ui.h"
 volatile bool need_save = false;
 volatile bool need_log = false;
-void save()
+void saveSD()
 {
 	need_save = true;
 }
-void log()
+void logSD()
 {
 	need_log = true;
 }
@@ -38,49 +39,9 @@ max31856_t thermoSPI3 = {&hspi3, {spi_cn3_GPIO_Port, spi_cn3_Pin}};
 struct ControllerData controllerData;
 int tick = 1;
 
-void threeTenthSeconds(void)
-{
-	float tempSPI2 = max31856_read_TC_temp(&thermoSPI2);
-	if (thermoSPI2.sr.val)
-	{
-		return;
-	}
-	float tempSPI3 = max31856_read_TC_temp(&thermoSPI3);
-	if (thermoSPI3.sr.val)
-	{
-		return;
-	}
-	// tempSPI2 /= 128.0f;
-	DisplayDecimal(tempSPI2, 0, 0, 0, 6);
-	DisplayDecimal(tempSPI3, 0, 8, 0, 6);
-	// DisplayNumberBase(tempSPI2, 0, 0, 0, 8, 16);
-	// float tempSPI2 = tc_readTemp(thermoSPI2);
-	// float tempSPI3 = tc_readTemp(thermoSPI3);
-	// controllerData.t1 = tempSPI2;
-	// controllerData.t2 = tempSPI3;
-	// // int voltsADC3 = 5.0f * (float)(value_adc) / 4096.0f;
-	// DisplayDecimal(tempSPI2, 0, 0, 0, 4);
-	// DisplayDecimal(tempSPI3, 1, 0, 0, 4);
-	// float flowRate = getFlowRateGPS();
-	// DisplayDecimal(flowRate, 0, 5, 0, 6);
-	// DisplayDecimal(controllerData.desiredTemperature, 0, 12, 0, 4);
-	// log();
-}
-int kjdwkjdwjdwkj = 0;
-bool testUntilCallback(void *aux)
-{
-
-	DisplayNumber(kjdwkjdwjdwkj, 1, 0, 0, 3);
-	kjdwkjdwjdwkj++;
-	// if (kjdwkjdwjdwkj > 500)
-	// {
-	// 	return true;
-	// }
-	return false;
-}
 void keyStateChangeCallback(char key, enum KeyState keyState)
 {
-	Set_CursorPosition(0, charToKeyNumber(key));
+	Set_CursorPosition(1, 6);
 	if (keyState == KeyPressed)
 	{
 		LCD_WriteData(key);
@@ -146,16 +107,7 @@ void run()
 	//	HAL_Delay(2);		// Clear needs > 1.5ms
 	// LCD_WriteCommand(0xF, 1);
 
-	Write_String_Sector_LCD(0, "Tempature");
-	Write_String_Sector_LCD(4, "Sensors");
-	HAL_Delay(2000);
-	Clear_Display();
-	// WriteStringAt(success ? "true " : "false", 0, 6);
-
-	// test();
-	runInterval(threeTenthSeconds, 50);
-	runIntervalUntil(testUntilCallback, NULL, 1000);
-	runTimeout(startTim8, 5000);
+	LCDstartUI();
 	// runTimeout(unsubscribeTest, 10000);
 	while (1)
 	{
