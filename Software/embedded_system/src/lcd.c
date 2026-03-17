@@ -9,11 +9,11 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdint.h"
+#include "stdio.h"
+#include "math.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
 #include "lcd.h"
-#include "stdio.h"
-#include "math.h"
 #include "delay.h"
 #include "lcd_instruction_set.h"
 struct LCDCache cacheLCD;
@@ -490,8 +490,8 @@ void DisplayNumberBase(long num, int8_t line, int8_t position, uint8_t from, uin
 
 	for (int i = logOf; i >= 0; i--)
 	{
-		uint8_t place = (int)num / (int)pow(base, i);
-		uint8_t digit = place % base;
+		int place = (int)num / (int)pow(base, i);
+		int digit = place % base;
 		char digitChar = (digit > 61)	? '*'
 						 : (digit > 35) ? (digit - 36) + 'A'
 						 : (digit > 9)	? (digit - 10) + 'a'
@@ -504,7 +504,7 @@ void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t
 {
 	DisplayNumberBase(num, line, position, from, digits, 10);
 }
-void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
+void DisplayDecimalWithPlaces(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits, int8_t decimalPlaces)
 {
 	__disable_irq();
 	int maxDigits = digits - 1;
@@ -521,7 +521,13 @@ void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint
 		logOf = maxDigits;
 	if ((line != -1) && (position != -1))
 		Set_CursorPosition(line, from ? position - maxDigits : position);
-	int decimalplaces = fmin(-(maxDigits - logOf - 1), 0);
+	int expectedDecimalplaces = fmin(-(maxDigits - logOf - 1), 0);
+
+	int decimalplaces = fmax(expectedDecimalplaces, -decimalPlaces);
+	if (expectedDecimalplaces < decimalplaces)
+		logOf += decimalplaces - expectedDecimalplaces;
+	if (logOf > maxDigits)
+		logOf = maxDigits;
 	if (negitive)
 		LCD_WriteData('-');
 	int j = 0;
@@ -529,9 +535,62 @@ void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint
 	{
 		int place = (int)(num / pow(10, i));
 		int digit = place % 10;
+		if (i <= decimalplaces)
+		{
+			int placeNext = (int)(num / pow(10, i - 1));
+			int digitNext = placeNext % 10;
+			if (digitNext >= 5)
+				digit++;
+		}
 		LCD_WriteData(digit + '0');
+
 		if (j++ < maxDigits && i == 0)
 			LCD_WriteData('.');
 	}
+	if (negitive)
+		++j;
+	if (decimalplaces > 0)
+		for (; j < digits; j++)
+		{
+			LCD_WriteData('0');
+		}
 	__enable_irq();
 }
+
+void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
+{
+	DisplayDecimalWithPlaces(num, line, position, from, digits, INT8_MAX);
+}
+
+// void DisplayDecimalWithPlaces(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits, int8_t decimalPlaces)
+// {
+// 	__disable_irq();
+// 	int maxDigits = digits - 1;
+// 	int logOf = (abs(num) <= 1) ? 0 : (int)log10(abs(num));
+// 	uint8_t negitive = 0;
+
+// 	if (num < 0)
+// 	{
+// 		negitive = 1;
+// 		--maxDigits;
+// 		num = -num;
+// 	}
+// 	if (logOf > maxDigits)
+// 		logOf = maxDigits;
+// 	if ((line != -1) && (position != -1))
+// 		Set_CursorPosition(line, from ? position - maxDigits : position);
+// 	if (decimalPlaces == INT8_MIN) decimalPlaces = 0;
+// 		int decimalplaces = fmin(-(maxDigits - logOf - 1), decimalPlaces);
+// 	if (negitive)
+// 		LCD_WriteData('-');
+// 	int j = 0;
+// 	for (int i = logOf; i >= decimalplaces; i--)
+// 	{
+// 		int place = (int)(num / pow(10, i));
+// 		int digit = place % 10;
+// 		LCD_WriteData(digit + '0');
+// 		if (j++ < maxDigits && i == 0)
+// 			LCD_WriteData('.');
+// 	}
+// 	__enable_irq();
+// }

@@ -12,11 +12,44 @@
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
 #include "max31856.h"
-enum DisplayMode lastDisplayMode = NoModeSet;
-enum DisplayMode displayMode;
+#include "pwm.h"
+#include "lcd_instruction_set.h"
+enum DisplayMode displayMode = NoModeSet;
 
 bool displayLocked = false;
 unsigned cursor = 0;
+bool enableControl = false;
+void keyPressSwitchModeCallback(char key)
+{
+	switch (key)
+	{
+	case 'A':
+	{
+		setDisplayMode(SetPowerLevel);
+		break;
+	}
+	case 'B':
+	{
+		setDisplayMode(SetDesiredTemperature);
+		break;
+	}
+	case 'C':
+	{
+		setDisplayMode(SetFrequency);
+		break;
+	}
+	case 'D':
+	{
+		setDisplayMode(SetSettings);
+		break;
+	}
+	}
+}
+
+int setOffset = 7;
+static char *setUnit = "";
+static char *setMessage = "";
+
 void runTimeoutMessageCallback(void *aux)
 {
 	enum DisplayMode *displayMode = (enum DisplayMode *)aux;
@@ -35,71 +68,223 @@ void showMessageForTime(MessageCallback callbackMessage, unsigned time, enum Dis
 		callbackMessage(aux);
 	runTimeoutAux(runTimeoutMessageCallback, time, &pendingReturnMode);
 }
-void checkCursorSet() // for writing a 4 digit float 1 of those being a decimal place
+void checkCursorSet(bool move) // for writing a 4 digit float 1 of those being a decimal place
 {
 	cursor++;
-	if (cursor == 3)
+	if ((displayMode == SetPowerLevel || displayMode == SetDesiredTemperature) && cursor == 3)
 	{
 		cursor++;
-		Set_CursorPosition(1, cursor);
+		Set_CursorPosition(1, setOffset + cursor);
 	}
 	else if (cursor >= 5)
 	{
 		cursor = 0;
-		Set_CursorPosition(1, cursor);
+		Set_CursorPosition(1, setOffset + cursor);
+	}
+	else if (move)
+	{
+		Set_CursorPosition(1, setOffset + cursor);
 	}
 }
-void showSetPowerLevelMessageCallback(void *aux)
+void showSetFrequencyMessageCallback(void *aux)
 {
-	float *value = (float *)aux;
-	WriteStringAt("Set Power Level:", 1, 0);
-	DisplayDecimal(*value, 1, 0, 0, 5);
+	WriteStringAt(setMessage, 0, 0);
+	unsigned int *value = (unsigned int *)aux;
+	DisplayNumber(*value, 1, 0, 0, 5);
+
+	Write_String_LCD(setUnit);
 }
-void keyPressSetPowerLevel(char key)
+void showSetMessageCallback(void *aux)
 {
-	if (key >= '0' || key <= '9')
+	WriteStringAt(setMessage, 0, 0);
+	float *value = (float *)aux;
+	DisplayDecimalWithPlaces(*value, 1, 0, 0, 5, 1);
+	Write_String_LCD(setUnit);
+}
+void showSetSettingsMessageCallback(void *aux)
+{
+	char *value = (char *)aux;
+	WriteStringAt("Set Settings:", 0, 0);
+	WriteStringAt("PWM: ", 1, 0);
+	LCD_WriteData(value[0]);
+	Write_String_LCD(" CTRL: ");
+	LCD_WriteData(value[1]);
+}
+void showErrorMessageCallback(void *aux)
+{
+	char *message = (char *)aux;
+	WriteStringAt(message, 0, 0);
+}
+void showErrorMessage(char *message)
+{
+	showMessageForTime(showErrorMessageCallback, 2000, SystemVitals, message);
+}
+void keyPressSetNumber(char key)
+{
+	// uint8_t pos = cacheLCD.position;
+	// uint8_t line = cacheLCD.line;
+	// DisplayNumber(displayMode, 0, 15, 1, 2);
+
+	// Set_CursorPosition(line, pos);
+
+	if (key >= '0' && key <= '9')
 	{
-		if (!cursor)
+		if (displayMode == SetPowerLevel)
 		{
-			if (key >= '1')
+			if (!cursor)
 			{
-				WriteStringAt("100", 1, 0);
-				WriteStringAt("0", 1, 4);
+				if (key >= '1')
+				{
+					DisplayDecimalWithPlaces(100.0, 1, setOffset, 0, 5, 1);
+					Set_CursorPosition(1, setOffset);
+					return;
+				}
+			}
+			else if (cacheLCD.string[16 + setOffset] == '1')
+			{
+				return;
 			}
 		}
-		else if (cacheLCD.string[16] == '1')
-		{
-			return;
-		}
 		LCD_WriteData(key);
-		checkCursorSet();
+		checkCursorSet(false);
+	}
+	else if (key == 'D')
+	{
+		checkCursorSet(true);
 	}
 	else if (key == '#')
 	{
-		char numberString[5];
-		memcpy(numberString, cacheLCD.string + 16, sizeof(numberString));
+		char numberString[6];
+		memcpy(numberString, cacheLCD.string + sizeof(char) * (16 + setOffset), sizeof(numberString));
+		numberString[5] = '\0';
 		char *endptr;
 		errno = 0; // Reset for error checking
 		float value = strtof(numberString, &endptr);
-
+		unsigned int intValue = strtoul(numberString, &endptr, 10);
 		if (numberString == endptr)
 		{
+			showErrorMessage("ERROR: numberString == endptr");
 			return;
 		}
 		else if (errno == ERANGE)
 		{
+			showErrorMessage("ERROR: ERANGE");
 			return;
 		}
-
-		controllerData.powerLevel = value;
-		showMessageForTime(showSetPowerLevelMessageCallback, 2000, SystemVitals, &controllerData.powerLevel);
+		switch (displayMode)
+		{
+		case SetPowerLevel:
+		{
+			controllerData.powerLevel = value;
+			showMessageForTime(showSetMessageCallback, 2000, SystemVitals, &controllerData.powerLevel);
+			updateTIM8PowerLevel(controllerData.frequency, controllerData.powerLevel);
+			break;
+		}
+		case SetDesiredTemperature:
+		{
+			controllerData.desiredTemperature = value;
+			showMessageForTime(showSetMessageCallback, 2000, SystemVitals, &controllerData.desiredTemperature);
+			break;
+		}
+		case SetFrequency:
+		{
+			controllerData.frequency = intValue;
+			showMessageForTime(showSetFrequencyMessageCallback, 2000, SystemVitals, &controllerData.frequency);
+			updateTIM8PowerLevel(controllerData.frequency, controllerData.powerLevel);
+			break;
+		}
+		default:
+			break;
+		}
+		saveSD();
 	}
 }
-void setupPowerLevel()
+uint8_t positionsSetSettings[2] = {5, 13};
+void checkCursorSetSettings() // for writing a 4 digit float 1 of those being a decimal place
 {
-	WriteStringAt("Enter %% Power:", 0, 0);
-	DisplayDecimal(controllerData.powerLevel, 1, 0, 0, 5);
+	cursor = (cursor + 1) % 2;
+	Set_CursorPosition(1, positionsSetSettings[cursor]);
 }
+void keyPressSetSettings(char key)
+{
+	uint8_t pos = cacheLCD.position;
+	uint8_t line = cacheLCD.line;
+	Set_CursorPosition(0, 15);
+	LCD_WriteData(key);
+	Set_CursorPosition(line, pos);
+
+	if (key >= '0' && key <= '9')
+	{
+		if (key >= '1')
+			LCD_WriteData('1');
+		else
+			LCD_WriteData(key);
+		checkCursorSetSettings();
+	}
+	else if (key == 'D')
+	{
+		checkCursorSetSettings();
+	}
+	else if (key == '#')
+	{
+		char enablePWMChar = cacheLCD.string[16 + positionsSetSettings[0]];
+		char enableControlChar = cacheLCD.string[16 + positionsSetSettings[1]];
+		bool enablePWM = enablePWMChar == '1' ? true : false;
+		bool enableControlForm = enableControlChar == '1' ? true : false;
+		char bufferString[2] = {enablePWMChar, enableControlChar};
+		enableControl = enableControlForm;
+		showMessageForTime(showSetSettingsMessageCallback, 2000, SystemVitals, bufferString);
+		enablePWM ? TIM8_start() : TIM8_stop();
+	}
+}
+void setupSetPowerLevel()
+{
+	cursor = 0;
+	WriteStringAt("Enter Power", 0, 0);
+	WriteStringAt("Level:", 1, 0);
+	setOffset = 7;
+	setUnit = "%";
+	setMessage = "Set Power Level:";
+	DisplayDecimalWithPlaces(controllerData.powerLevel, 1, setOffset, 0, 5, 1);
+	Write_String_LCD(setUnit);
+	Set_CursorPosition(1, setOffset);
+}
+void setupSetDesiredTemperature()
+{
+	cursor = 0;
+	WriteStringAt("Enter Desired", 0, 0);
+	WriteStringAt("Temp:", 1, 0);
+	setOffset = 6;
+	setUnit = "\x80"
+			  "C";
+	setMessage = "Set Desired Temp:";
+
+	DisplayDecimalWithPlaces(controllerData.desiredTemperature, 1, setOffset, 0, 5, 1);
+	Write_String_LCD(setUnit);
+	Set_CursorPosition(1, setOffset);
+}
+void setupSetFrequency()
+{
+	cursor = 0;
+	WriteStringAt("Enter Frequency:", 0, 0);
+	setOffset = 0;
+	setUnit = " Hz";
+	setMessage = "Set Frequency:";
+	DisplayNumber(controllerData.frequency, 1, setOffset, 0, 5);
+	Write_String_LCD(setUnit);
+	Set_CursorPosition(1, setOffset);
+}
+void setupSetSettings()
+{
+	cursor = 0;
+	WriteStringAt("Settings:", 0, 0);
+	WriteStringAt("PWM: ", 1, 0);
+	LCD_WriteData(isPWMEnabled ? '1' : '0');
+	Write_String_LCD(" CTRL: ");
+	LCD_WriteData(enableControl ? '1' : '0');
+	Set_CursorPosition(1, positionsSetSettings[0]);
+}
+
 void readThermocouples(void *aux)
 {
 	float tempSPI2 = max31856_read_TC_temp(&thermoSPI2);
@@ -136,16 +321,19 @@ bool displayTimer = false;
 
 void timerCallback(void *aux)
 {
-	int minutes = i / SECONDS_PER_MINUTE;
+	int seconds = i % SECONDS_PER_MINUTE;
+	int minutes = (i / SECONDS_PER_MINUTE) % SECONDS_PER_MINUTE;
 	int hours = i / SECONDS_PER_HOUR;
 	if (displayTimer)
 	{
+		if (reWriteTimer || !(i % SECONDS_PER_HOUR))
+			DisplayNumber(hours, 1, 0, 0, 2);
 		if (reWriteTimer || !i)
 			WriteStringAt(":", 1, 2);
 		if (reWriteTimer || !(i % SECONDS_PER_MINUTE))
 			DisplayNumber(minutes, 1, 3, 0, 2);
-		if (reWriteTimer || !(i % SECONDS_PER_HOUR))
-			DisplayNumber(hours, 1, 0, 0, 2);
+		DisplayNumber(seconds, 1, 6, 0, 2);
+		WriteStringAt(":", 1, 5);
 		if (reWriteTimer)
 			reWriteTimer = false;
 	}
@@ -169,32 +357,82 @@ void modeStartStop(enum DisplayMode displayMode, bool startNotStop)
 			reWriteTimer = true;
 			displayTimer = true;
 			temperatureRunId = runInterval(readThermocouples, 50);
-			timerRunId = runInterval(timerCallback, 1000);
+			subscribeKeyPress(keyPressSwitchModeCallback);
 		}
 		else
 		{
-
 			if (temperatureRunId >= 0)
 				clearRun(temperatureRunId);
-			if (timerRunId)
-				clearRun(timerRunId);
 			temperatureRunId = -1;
 			timerRunId = -1;
 			displayTimer = false;
+			unsubscribeKeyPress(keyPressSwitchModeCallback);
 		}
 		break;
 	}
-	case SetPowerMode:
+	case SetPowerLevel:
 	{
 		if (startNotStop)
 		{
-			setupPowerLevel();
-			subscribeKeyPress(keyPressSetPowerLevel);
+			setupSetPowerLevel();
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOn | DisplayOnOffControlCursorBlinkOn, 1);
+			subscribeKeyPress(keyPressSetNumber);
 		}
 		else
 		{
-			unsubscribeKeyPress(keyPressSetPowerLevel);
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOff | DisplayOnOffControlCursorBlinkOff, 1);
+
+			unsubscribeKeyPress(keyPressSetNumber);
 		}
+		break;
+	}
+	case SetDesiredTemperature:
+	{
+		if (startNotStop)
+		{
+			setupSetDesiredTemperature();
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOn | DisplayOnOffControlCursorBlinkOn, 1);
+			subscribeKeyPress(keyPressSetNumber);
+		}
+		else
+		{
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOff | DisplayOnOffControlCursorBlinkOff, 1);
+
+			unsubscribeKeyPress(keyPressSetNumber);
+		}
+		break;
+	}
+	case SetFrequency:
+	{
+		if (startNotStop)
+		{
+			setupSetFrequency();
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOn | DisplayOnOffControlCursorBlinkOn, 1);
+			subscribeKeyPress(keyPressSetNumber);
+		}
+		else
+		{
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOff | DisplayOnOffControlCursorBlinkOff, 1);
+
+			unsubscribeKeyPress(keyPressSetNumber);
+		}
+		break;
+	}
+	case SetSettings:
+	{
+		if (startNotStop)
+		{
+			setupSetSettings();
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOn | DisplayOnOffControlCursorBlinkOn, 1);
+			subscribeKeyPress(keyPressSetSettings);
+		}
+		else
+		{
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOff | DisplayOnOffControlCursorBlinkOff, 1);
+
+			unsubscribeKeyPress(keyPressSetSettings);
+		}
+		break;
 	}
 	case DisplayMessage:
 	{
@@ -202,6 +440,7 @@ void modeStartStop(enum DisplayMode displayMode, bool startNotStop)
 		{
 			displayLocked = true;
 		}
+		break;
 	}
 	default:
 		break;
@@ -212,14 +451,20 @@ void setDisplayMode(enum DisplayMode mode)
 {
 	if (displayLocked)
 		return;
-	modeStartStop(lastDisplayMode, false);
+	if (displayMode == mode)
+		return;
+	modeStartStop(displayMode, false);
 	modeStartStop(mode, true);
-	lastDisplayMode = mode;
+	displayMode = mode;
 }
 
 void displayTitleCallback(void *aux)
 {
-	WriteStringAt("Induction Heater Controller", 0, 0);
+	WriteStringAt("Induction HeaterController", 0, 0);
+}
+void startTimer()
+{
+	timerRunId = runInterval(timerCallback, 1000);
 }
 void LCDstartUI()
 {

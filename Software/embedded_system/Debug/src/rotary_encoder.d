@@ -40,7 +40,7 @@ src/rotary_encoder.o: ../src/rotary_encoder.c \
  C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/diskio.h \
  C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff.h \
- ../src/run.h ../src/max31856.h
+ ../src/run.h ../src/max31856.h ../src/lcd_ui.h
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h:
@@ -87,3 +87,4 @@ C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Sof
 C:/Users/mrpat/OneDrive/Documents/Github/F25_Team5_InductionHeaterController/Software/embedded_system/Middlewares/Third_Party/FatFs/src/ff.h:
 ../src/run.h:
 ../src/max31856.h:
+../src/lcd_ui.h:

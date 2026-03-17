@@ -28,4 +28,5 @@
 ../src/lcd.c:467:6:Write_String_Sector_LCD	1
 ../src/lcd.c:478:6:DisplayNumberBase	9
 ../src/lcd.c:503:6:DisplayNumber	1
-../src/lcd.c:507:6:DisplayDecimal	12
+../src/lcd.c:507:6:DisplayDecimalWithPlaces	19
+../src/lcd.c:560:6:DisplayDecimal	1

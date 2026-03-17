@@ -35,5 +35,5 @@ void WriteStringAt(char *string, uint8_t line, uint8_t position);
 void DisplayNumber(long num, int8_t line, int8_t position, uint8_t from, uint8_t minDigits);
 void DisplayNumberBase(long num, int8_t line, int8_t position, uint8_t from, uint8_t digits, uint8_t base);
 void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits);
-
+void DisplayDecimalWithPlaces(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits, int8_t decimalPlaces);
 #endif /* LCD_H_ */

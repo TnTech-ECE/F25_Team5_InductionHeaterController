@@ -4,6 +4,7 @@
 #include "stdint.h"
 #include "stdbool.h"
 #include "pwm.h"
+bool isPWMEnabled = false;
 const float CLOCK_SPEED = 5000000;
 /**
  * @param frequency
@@ -97,11 +98,27 @@ void TIM8_UpdateStart(float frequency, float dutyCycle, float deadTime, bool sta
 }
 void TIM8_start()
 {
+	if (isPWMEnabled)
+		return;
+	isPWMEnabled = true;
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_3);
 	HAL_TIMEx_PWMN_Start(&htim8, TIM_CHANNEL_3);
 }
 void TIM8_stop()
 {
+	if (!isPWMEnabled)
+		return;
+	isPWMEnabled = false;
 	HAL_TIM_PWM_Stop(&htim8, TIM_CHANNEL_3);
 	HAL_TIMEx_PWMN_Stop(&htim8, TIM_CHANNEL_3);
+}
+
+void setTIM8DeadTimePlus50DutyCycleTheRest(float frequency, float precentDeadTime)
+{
+	TIM8_Update(frequency, (precentDeadTime + 100) / 2, precentDeadTime);
+}
+
+void updateTIM8PowerLevel(float frequency, float powerLevel)
+{
+	setTIM8DeadTimePlus50DutyCycleTheRest(frequency, 100 - powerLevel);
 }

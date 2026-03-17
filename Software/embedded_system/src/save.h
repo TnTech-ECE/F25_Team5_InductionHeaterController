@@ -11,6 +11,7 @@ struct ControllerData
 {
 	float desiredTemperature;
 	float powerLevel;
+	unsigned int frequency;
 	float t1;
 	float t2;
 };

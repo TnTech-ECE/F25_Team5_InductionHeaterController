@@ -7,6 +7,11 @@
 #include "main.h"
 #include "save.h"
 #include "run.h"
+#include "lcd_ui.h"
+#include <errno.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
 int sign(int x)
 {
 	if (x > 0)
@@ -23,7 +28,7 @@ bool onRotateTimeout = false;
 #define ON_ROTATE_TIMEOUT_DELAY 100
 void runRotateTimeout(bool force);
 
-void onRotateTimeoutCallback(void)
+void onRotateTimeoutCallback(void *aux)
 {
 
 	if (TIM3->CNT != timeoutLast)
@@ -34,9 +39,55 @@ void onRotateTimeoutCallback(void)
 		delta = direction * fmin(deltaABS, TIM3->ARR - deltaABS);
 
 		timeoutLast = TIM3->CNT;
-		controllerData.desiredTemperature += (float)(delta) / 10.0f;
-		DisplayDecimal(controllerData.desiredTemperature, 1, 8, 0, 5);
-		saveSD();
+
+		char numberString[6];
+		memcpy(numberString, cacheLCD.string + sizeof(char) * (16 + setOffset), sizeof(numberString));
+		numberString[5] = '\0';
+		char *endptr;
+		errno = 0; // Reset for error checking
+		float value = strtof(numberString, &endptr);
+		int intValue = strtoul(numberString, &endptr, 10);
+		uint8_t pos = cacheLCD.position;
+		uint8_t line = cacheLCD.line;
+		switch (displayMode)
+		{
+		case SetPowerLevel:
+		{
+			value += (float)(delta) / 10.0f;
+			if (value > 100.0f)
+				value = 0.0f;
+			else if (value < 0.0f)
+				value = 100.0f;
+			DisplayDecimalWithPlaces(value, 1, setOffset, 0, 5, 1);
+			break;
+		}
+		case SetDesiredTemperature:
+		{
+			value += (float)(delta) / 10.0f;
+			if (value > 999.9f)
+				value = 0.0f;
+			else if (value < 0.0f)
+				value = 999.9f;
+			DisplayDecimalWithPlaces(value, 1, setOffset, 0, 5, 1);
+			break;
+		}
+		case SetFrequency:
+		{
+			intValue += delta * 100;
+			if (intValue > 99999)
+				intValue = 0;
+			else if (intValue < 0)
+				intValue = 99999;
+			DisplayNumber(intValue, 1, setOffset, 0, 5);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+		Set_CursorPosition(line, pos);
+		// DisplayDecimal(controllerData.desiredTemperature, 1, 8, 0, 5);
 		runRotateTimeout(true);
 		onRotateTimeout = true;
 	}
@@ -74,7 +125,7 @@ void onWrap(unsigned counting_down)
 }
 uint8_t buttonState = 0;
 bool pressTimeOut = false;
-void onRotaryPressTimeoutCallback(void)
+void onRotaryPressTimeoutCallback(void *aux)
 {
 	buttonState ^= 1;
 	//	DisplayNumber(buttonState, 0, 4, 0, 1);

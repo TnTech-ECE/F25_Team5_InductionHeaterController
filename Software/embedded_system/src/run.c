@@ -22,6 +22,7 @@
 #include "keypad.h"
 #include "max31856.h"
 #include "lcd_ui.h"
+#include "ff.h"
 volatile bool need_save = false;
 volatile bool need_log = false;
 void saveSD()
@@ -96,47 +97,40 @@ void run()
 	//		printf("Mount failed\n");
 	//		return;
 	//	}
-	subscribeKeyStateChange(keyStateChangeCallback);
-	bool success = false; // loadControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
-	if (!success)
+	// subscribeKeyStateChange(keyStateChangeCallback);
+	FRESULT mountStatus = sd_mount();
+	HAL_Delay(100);
+	if (mountStatus != FR_OK)
+	{
+		showErrorMessage("mount failed: ram only");
+	}
+	else
+	{
+		LCDstartUI();
+	}
 
-		controllerData.desiredTemperature = 48.8f;
-
+	startTimer();
+	loadControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
 	//
 	//	// Clear display and home cursor
 	//	HAL_Delay(2);		// Clear needs > 1.5ms
 	// LCD_WriteCommand(0xF, 1);
 
-	LCDstartUI();
 	// runTimeout(unsubscribeTest, 10000);
 	while (1)
 	{
-		//		scanAllToLCD();
-		// if (need_save)
-		// {
+		if (need_save)
+		{
 
-		// 	bool result = saveControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
-		// 	// WriteStringAt(result ? "true " : "false", 0, 6);
-		// 	need_save = false;
-		// }
-		// if (need_log)
-		// {
-		// 	bool result = appendControllerDataSD(CONTROLLER_LOG_PATH, &controllerData);
-		// 	// WriteStringAt(result ? "true " : "false", 0, 6);
-		// 	need_log = false;
-		// }
-		// if (!i)
-		// 	Clear_Display();
-		//		threeTenthSeconds();
-		//		i = (i + 1) % 10;
-		//		HAL_Delay(300);
-
-		// if (charCurrent > charStartEnd)
-		// {
-		// 	charCurrent = charStart;
-		// }
-		// if (cacheLCD.string[31] == charCurrent)
-		// 	charCurrent++;
-		// LCD_WriteData(charCurrent);
+			bool result = saveControllerDataSD(CONTROLLER_DATA_PATH, &controllerData);
+			// WriteStringAt(result ? "true " : "false", 0, 6);
+			need_save = false;
+		}
+		if (need_log)
+		{
+			bool result = appendControllerDataSD(CONTROLLER_LOG_PATH, &controllerData);
+			// WriteStringAt(result ? "true " : "false", 0, 6);
+			need_log = false;
+		}
 	}
 }
