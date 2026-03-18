@@ -4,14 +4,16 @@
 #include "stdint.h"
 #include "stdbool.h"
 #include "pwm.h"
+#include "stdint.h"
 bool isPWMEnabled = false;
 const float CLOCK_SPEED = 5000000;
 /**
  * @param frequency
  * @param dutyCycle 0-100%
  * @param deadTime 0-100%
+ * @param phaseDegrees 0-360
  */
-void TIM8_Update(float frequency, float dutyCycle, float deadTime)
+void TIM8_Update(float frequency, float dutyCycle, float deadTime, float phaseDegrees)
 {
 	/* USER CODE BEGIN TIM8_Init 0 */
 
@@ -23,7 +25,7 @@ void TIM8_Update(float frequency, float dutyCycle, float deadTime)
 	TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
 	/* USER CODE BEGIN TIM8_Init 1 */
-	unsigned period = (unsigned)(CLOCK_SPEED / frequency);
+	unsigned period = (unsigned)((CLOCK_SPEED * 2) / frequency);
 	/* USER CODE END TIM8_Init 1 */
 	htim8.Instance = TIM8;
 	htim8.Init.Prescaler = 0;
@@ -63,6 +65,10 @@ void TIM8_Update(float frequency, float dutyCycle, float deadTime)
 	{
 		Error_Handler();
 	}
+	if (HAL_TIM_PWM_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+	{
+		Error_Handler();
+	}
 	sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
 	sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
 	sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
@@ -82,19 +88,18 @@ void TIM8_Update(float frequency, float dutyCycle, float deadTime)
 
 	/* USER CODE END TIM8_Init 2 */
 	HAL_TIM_MspPostInit(&htim8);
-}
-/**
- * @param frequency
- * @param dutyCycle 0-100%
- * @param deadTime 0-100%
- */
-void TIM8_UpdateStart(float frequency, float dutyCycle, float deadTime, bool start)
-{
-	TIM8_Update(frequency, dutyCycle, deadTime);
-	if (start)
-	{
-		TIM8_start();
-	}
+
+	unsigned arr = __HAL_TIM_GET_AUTORELOAD(&htim8); // Period ticks
+	unsigned periodTicks = arr + 1U;
+
+	unsigned dutyTicks = (uint32_t)(periodTicks * dutyCycle / 100.0f);
+	unsigned phaseTicks = (uint32_t)(periodTicks * phaseDegrees / 360.0f);
+
+	unsigned ccr1 = dutyTicks;
+	unsigned ccr2 = (dutyTicks + phaseTicks) % periodTicks;
+
+	__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_3, ccr1);
+	__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, ccr2);
 }
 void TIM8_start()
 {
@@ -102,7 +107,7 @@ void TIM8_start()
 		return;
 	isPWMEnabled = true;
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_3);
-	HAL_TIMEx_PWMN_Start(&htim8, TIM_CHANNEL_3);
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_4);
 }
 void TIM8_stop()
 {
@@ -110,15 +115,23 @@ void TIM8_stop()
 		return;
 	isPWMEnabled = false;
 	HAL_TIM_PWM_Stop(&htim8, TIM_CHANNEL_3);
-	HAL_TIMEx_PWMN_Stop(&htim8, TIM_CHANNEL_3);
+	HAL_TIM_PWM_Stop(&htim8, TIM_CHANNEL_4);
 }
-
-void setTIM8DeadTimePlus50DutyCycleTheRest(float frequency, float precentDeadTime)
+/**
+ * @param frequency
+ * @param dutyCycle 0-100%
+ * @param deadTime 0-100%
+ * @param phaseDegrees 0-360
+ */
+void setTIM8UpdateWithRestart(float frequency, float dutyCycle, float deadTime, float phaseDegrees)
 {
-	TIM8_Update(frequency, (precentDeadTime + 100) / 2, precentDeadTime);
+	TIM8_Update(frequency, dutyCycle, deadTime, phaseDegrees);
+	TIM8_stop();
+	TIM8_start();
 }
 
 void updateTIM8PowerLevel(float frequency, float powerLevel)
 {
-	setTIM8DeadTimePlus50DutyCycleTheRest(frequency, 100 - powerLevel);
+	setTIM8UpdateWithRestart(frequency, 50.0f, 0.1, powerLevel * 1.8f);
+	TIM8_start();
 }

@@ -6,6 +6,9 @@ SourceFiles=Core\Src\main.c;FATFS\Target\user_diskio.c;FATFS\App\fatfs.c;Core\Sr
 HeaderPath=Drivers\STM32L4xx_HAL_Driver\Inc;Drivers\STM32L4xx_HAL_Driver\Inc\Legacy;Middlewares\Third_Party\FatFs\src;Drivers\CMSIS\Device\ST\STM32L4xx\Include;Drivers\CMSIS\Include;FATFS\Target;FATFS\App;Core\Inc;
 CDefines=USE_HAL_DRIVER;STM32L476xx;USE_HAL_DRIVER;USE_HAL_DRIVER;
 
+[]
+SourceFiles=;;
+
 [PreviousGenFiles]
 AdvancedFolderStructure=true
 HeaderFileListSize=6

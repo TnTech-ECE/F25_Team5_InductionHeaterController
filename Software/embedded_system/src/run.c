@@ -52,10 +52,7 @@ void keyStateChangeCallback(char key, enum KeyState keyState)
 		LCD_WriteData(' ');
 	}
 }
-void startTim8()
-{
-	TIM8_UpdateStart(10000, 15, 1, true);
-}
+
 void unsubscribeTest()
 {
 	unsubscribeKeyStateChange(keyStateChangeCallback);

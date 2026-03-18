@@ -234,7 +234,14 @@ void keyPressSetSettings(char key)
 		char bufferString[2] = {enablePWMChar, enableControlChar};
 		enableControl = enableControlForm;
 		showMessageForTime(showSetSettingsMessageCallback, 2000, SystemVitals, bufferString);
-		enablePWM ? TIM8_start() : TIM8_stop();
+		if (enablePWM)
+		{
+			updateTIM8PowerLevel(controllerData.frequency, controllerData.powerLevel);
+		}
+		else
+		{
+			TIM8_stop();
+		}
 	}
 }
 void setupSetPowerLevel()
