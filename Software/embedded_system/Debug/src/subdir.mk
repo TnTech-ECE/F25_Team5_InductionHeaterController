@@ -5,6 +5,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/PID.c \
 ../src/delay.c \
 ../src/flow_sensor.c \
 ../src/keypad.c \
@@ -18,6 +19,7 @@ C_SRCS += \
 ../src/save.c 
 
 OBJS += \
+./src/PID.o \
 ./src/delay.o \
 ./src/flow_sensor.o \
 ./src/keypad.o \
@@ -31,6 +33,7 @@ OBJS += \
 ./src/save.o 
 
 C_DEPS += \
+./src/PID.d \
 ./src/delay.d \
 ./src/flow_sensor.d \
 ./src/keypad.d \
@@ -51,7 +54,7 @@ src/%.o src/%.su src/%.cyclo: ../src/%.c src/subdir.mk
 clean: clean-src
 
 clean-src:
-	-$(RM) ./src/delay.cyclo ./src/delay.d ./src/delay.o ./src/delay.su ./src/flow_sensor.cyclo ./src/flow_sensor.d ./src/flow_sensor.o ./src/flow_sensor.su ./src/keypad.cyclo ./src/keypad.d ./src/keypad.o ./src/keypad.su ./src/lcd.cyclo ./src/lcd.d ./src/lcd.o ./src/lcd.su ./src/lcd_ui.cyclo ./src/lcd_ui.d ./src/lcd_ui.o ./src/lcd_ui.su ./src/max31856.cyclo ./src/max31856.d ./src/max31856.o ./src/max31856.su ./src/max6675.cyclo ./src/max6675.d ./src/max6675.o ./src/max6675.su ./src/pwm.cyclo ./src/pwm.d ./src/pwm.o ./src/pwm.su ./src/rotary_encoder.cyclo ./src/rotary_encoder.d ./src/rotary_encoder.o ./src/rotary_encoder.su ./src/run.cyclo ./src/run.d ./src/run.o ./src/run.su ./src/save.cyclo ./src/save.d ./src/save.o ./src/save.su
+	-$(RM) ./src/PID.cyclo ./src/PID.d ./src/PID.o ./src/PID.su ./src/delay.cyclo ./src/delay.d ./src/delay.o ./src/delay.su ./src/flow_sensor.cyclo ./src/flow_sensor.d ./src/flow_sensor.o ./src/flow_sensor.su ./src/keypad.cyclo ./src/keypad.d ./src/keypad.o ./src/keypad.su ./src/lcd.cyclo ./src/lcd.d ./src/lcd.o ./src/lcd.su ./src/lcd_ui.cyclo ./src/lcd_ui.d ./src/lcd_ui.o ./src/lcd_ui.su ./src/max31856.cyclo ./src/max31856.d ./src/max31856.o ./src/max31856.su ./src/max6675.cyclo ./src/max6675.d ./src/max6675.o ./src/max6675.su ./src/pwm.cyclo ./src/pwm.d ./src/pwm.o ./src/pwm.su ./src/rotary_encoder.cyclo ./src/rotary_encoder.d ./src/rotary_encoder.o ./src/rotary_encoder.su ./src/run.cyclo ./src/run.d ./src/run.o ./src/run.su ./src/save.cyclo ./src/save.d ./src/save.o ./src/save.su
 
 .PHONY: clean-src
 

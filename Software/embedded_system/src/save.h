@@ -7,6 +7,7 @@
 
 #ifndef SAVE_H_
 #define SAVE_H_
+#include <stdbool.h>
 struct ControllerData
 {
 	float desiredTemperature;
@@ -14,6 +15,10 @@ struct ControllerData
 	unsigned int frequency;
 	float t1;
 	float t2;
+	float kp;
+	float ki;
+	float kd;
+	bool control;
 };
 #include "ff.h"
 #include "user_diskio.h"

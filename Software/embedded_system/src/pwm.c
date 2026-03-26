@@ -5,7 +5,9 @@
 #include "stdbool.h"
 #include "pwm.h"
 #include "stdint.h"
+#include "math.h"
 bool isPWMEnabled = false;
+bool isPWMStarted = false;
 const float CLOCK_SPEED = 5000000;
 /**
  * @param frequency
@@ -69,11 +71,22 @@ void TIM1_8_Update(float frequency, float dutyCycle, float deadTime, float phase
 	__HAL_TIM_ENABLE(&htim8);
 	__HAL_TIM_ENABLE(&htim1);
 }
+void TIM1_8_Disable()
+{
+	isPWMEnabled = false;
+	TIM1_8_stop();
+}
+void TIM1_8_Enable()
+{
+	isPWMEnabled = true;
+}
 void TIM1_8_start()
 {
-	if (isPWMEnabled)
+	if (!isPWMEnabled)
 		return;
-	isPWMEnabled = true;
+	if (isPWMStarted)
+		return;
+	isPWMStarted = true;
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 	HAL_TIMEx_PWMN_Start(&htim8, TIM_CHANNEL_3);
@@ -81,9 +94,9 @@ void TIM1_8_start()
 }
 void TIM1_8_stop()
 {
-	if (!isPWMEnabled)
+	if (!isPWMStarted)
 		return;
-	isPWMEnabled = false;
+	isPWMStarted = false;
 	HAL_TIM_PWM_Stop(&htim8, TIM_CHANNEL_3);
 	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
 	HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);
@@ -104,5 +117,6 @@ void TIM1_8_stop()
 
 void updateTIM1_8_PowerLevel(float frequency, float powerLevel)
 {
-	TIM1_8_Update(frequency, 50.0f, 0.1, powerLevel * 1.8f);
+
+	TIM1_8_Update(frequency, 50.0f, 0.1, fmax(fmin(powerLevel * 1.8f, 100.0f), 0.0f));
 }

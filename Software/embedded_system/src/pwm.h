@@ -8,6 +8,7 @@
 
 #ifndef PWM_H_
 #define PWM_H_
+extern bool isPWMStarted;
 extern bool isPWMEnabled;
 /**
  * @param frequency
@@ -20,4 +21,6 @@ void TIM1_8_Update(float frequency, float dutyCycle, float deadTime, float phase
 void TIM1_8_start();
 void TIM1_8_stop();
 void updateTIM1_8_PowerLevel(float frequency, float powerLevel);
+void TIM1_8_Disable();
+void TIM1_8_Enable();
 #endif // PWM_H_

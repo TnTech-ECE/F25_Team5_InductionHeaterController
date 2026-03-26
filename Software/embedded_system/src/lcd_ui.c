@@ -8,21 +8,27 @@
 #include "lcd_ui.h"
 #include "delay.h"
 #include "run.h"
+#include "save.h"
 #include "keypad.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l476xx.h"
 #include "max31856.h"
 #include "pwm.h"
 #include "lcd_instruction_set.h"
+#include "PID.h"
 enum DisplayMode displayMode = NoModeSet;
 
 bool displayLocked = false;
 unsigned cursor = 0;
-bool enableControl = false;
 void keyPressSwitchModeCallback(char key)
 {
 	switch (key)
 	{
+	case '9':
+	{
+		setDisplayMode(SetPID);
+		break;
+	}
 	case 'A':
 	{
 		setDisplayMode(SetPowerLevel);
@@ -115,9 +121,118 @@ void showErrorMessageCallback(void *aux)
 	char *message = (char *)aux;
 	WriteStringAt(message, 0, 0);
 }
+void showSetPIDMessageCallback(void *aux)
+{
+	cursor = 0;
+	WriteStringAt("Set PID: ", 0, 0);
+	Write_String_LCD("P: ");
+	DisplayDecimalWithPlaces(controllerData.kp, -1, -1, 0, 4, 2);
+
+	WriteStringAt("I: ", 1, 0);
+	DisplayDecimalWithPlaces(controllerData.ki, -1, -1, 0, 4, 2);
+	Write_String_LCD(" D: ");
+	DisplayDecimalWithPlaces(controllerData.kd, -1, -1, 0, 4, 2);
+
+	Write_String_LCD(setUnit);
+}
 void showErrorMessage(char *message)
 {
 	showMessageForTime(showErrorMessageCallback, 2000, SystemVitals, message);
+}
+uint8_t positionsSetPID[9] =
+	{
+		8, 10, 11,
+		16 + 3, 16 + 5, 16 + 6,
+		16 + 11, 16 + 13, 16 + 14};
+//"PID: P: 00.0"
+//"I: 00.0 D: 00.0";
+void Set_CursorPositionPID(uint8_t index)
+{
+	if (index > 8)
+		return;
+	uint8_t positionPlus16TimesRow = positionsSetPID[index];
+	uint8_t position = positionPlus16TimesRow % 16;
+	uint8_t line = positionPlus16TimesRow / 16;
+	Set_CursorPosition(line, position);
+}
+void checkCursorSetPID() // for writing a 4 digit float 1 of those being a decimal place
+{
+	cursor = (cursor + 1) % 9;
+	Set_CursorPositionPID(cursor);
+}
+void keyPressSetPID(char key)
+{
+	// uint8_t pos = cacheLCD.position;
+	// uint8_t line = cacheLCD.line;
+	// DisplayNumber(displayMode, 0, 15, 1, 2);
+
+	// Set_CursorPosition(line, pos);
+
+	if (key >= '0' && key <= '9')
+	{
+		LCD_WriteData(key);
+		checkCursorSetPID();
+	}
+	else if (key == 'D')
+	{
+		checkCursorSetPID();
+	}
+	else if (key == '#')
+	{
+		char numberStringP[5];
+		char numberStringI[5];
+		char numberStringD[5];
+		memcpy(numberStringP, cacheLCD.string + sizeof(char) * (positionsSetPID[0]), sizeof(numberStringP));
+		numberStringP[5] = '\0';
+		memcpy(numberStringI, cacheLCD.string + sizeof(char) * (positionsSetPID[3]), sizeof(numberStringI));
+		numberStringI[5] = '\0';
+
+		memcpy(numberStringD, cacheLCD.string + sizeof(char) * (positionsSetPID[6]), sizeof(numberStringD));
+		numberStringD[5] = '\0';
+		char *endptr;
+		errno = 0; // Reset for error checking
+		float valueKp = strtof(numberStringP, &endptr);
+		if (numberStringP == endptr)
+		{
+			showErrorMessage("ERROR: numberStringP == endptr");
+			return;
+		}
+		else if (errno == ERANGE)
+		{
+			showErrorMessage("ERROR: ERANGE");
+			return;
+		}
+		errno = 0;
+		float valueKi = strtof(numberStringI, &endptr);
+		if (numberStringI == endptr)
+		{
+			showErrorMessage("ERROR: numberStringI == endptr");
+			return;
+		}
+		else if (errno == ERANGE)
+		{
+			showErrorMessage("ERROR: ERANGE");
+			return;
+		}
+		errno = 0;
+		float valueKd = strtof(numberStringD, &endptr);
+		if (numberStringD == endptr)
+		{
+			showErrorMessage("ERROR: numberStrinD == endptr");
+			return;
+		}
+		else if (errno == ERANGE)
+		{
+			showErrorMessage("ERROR: ERANGE");
+			return;
+		}
+		controllerData.kp = valueKp;
+		controllerData.ki = valueKi;
+		controllerData.kd = valueKd;
+
+		showMessageForTime(showSetPIDMessageCallback, 2000, SystemVitals, NULL);
+		saveSD();
+	}
 }
 void keyPressSetNumber(char key)
 {
@@ -232,17 +347,29 @@ void keyPressSetSettings(char key)
 		bool enablePWM = enablePWMChar == '1' ? true : false;
 		bool enableControlForm = enableControlChar == '1' ? true : false;
 		char bufferString[2] = {enablePWMChar, enableControlChar};
-		enableControl = enableControlForm;
+		controllerData.control = enableControlForm;
 		showMessageForTime(showSetSettingsMessageCallback, 2000, SystemVitals, bufferString);
+		if (!controllerData.control)
+		{
+			clearRun_PID();
+		}
+
 		if (enablePWM)
 		{
-			updateTIM1_8_PowerLevel(controllerData.frequency, controllerData.powerLevel);
-			TIM1_8_start();
+
+			TIM1_8_Enable();
+			if (!controllerData.control)
+			{
+				TIM1_8_start();
+				// updateTIM1_8_PowerLevel(controllerData.frequency, controllerData.powerLevel);
+			}
+			else
+			{
+				run_PID();
+			}
 		}
 		else
-		{
-			TIM1_8_stop();
-		}
+			TIM1_8_Disable();
 	}
 }
 void setupSetPowerLevel()
@@ -287,10 +414,23 @@ void setupSetSettings()
 	cursor = 0;
 	WriteStringAt("Settings:", 0, 0);
 	WriteStringAt("PWM: ", 1, 0);
-	LCD_WriteData(isPWMEnabled ? '1' : '0');
+	LCD_WriteData(isPWMStarted ? '1' : '0');
 	Write_String_LCD(" CTRL: ");
-	LCD_WriteData(enableControl ? '1' : '0');
+	LCD_WriteData(controllerData.control ? '1' : '0');
 	Set_CursorPosition(1, positionsSetSettings[0]);
+}
+void setupSetPID()
+{
+	cursor = 0;
+	WriteStringAt("PID: ", 0, 0);
+	Write_String_LCD("P: ");
+	DisplayDecimalWithPlaces(controllerData.kp, -1, -1, 0, 4, 2);
+
+	WriteStringAt("I: ", 1, 0);
+	DisplayDecimalWithPlaces(controllerData.ki, -1, -1, 0, 4, 2);
+	Write_String_LCD(" D: ");
+	DisplayDecimalWithPlaces(controllerData.kd, -1, -1, 0, 4, 2);
+	Set_CursorPositionPID(cursor);
 }
 
 void readThermocouples(void *aux)
@@ -439,6 +579,22 @@ void modeStartStop(enum DisplayMode displayMode, bool startNotStop)
 			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOff | DisplayOnOffControlCursorBlinkOff, 1);
 
 			unsubscribeKeyPress(keyPressSetSettings);
+		}
+		break;
+	}
+	case SetPID:
+	{
+		if (startNotStop)
+		{
+			setupSetPID();
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOn | DisplayOnOffControlCursorBlinkOn, 1);
+			subscribeKeyPress(keyPressSetPID);
+		}
+		else
+		{
+			LCD_WriteCommand(DisplayOnOffControlDisplayOn | DisplayOnOffControlCursorOff | DisplayOnOffControlCursorBlinkOff, 1);
+
+			unsubscribeKeyPress(keyPressSetPID);
 		}
 		break;
 	}

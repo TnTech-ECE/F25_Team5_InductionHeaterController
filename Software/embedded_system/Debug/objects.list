@@ -37,6 +37,7 @@
 "./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o"
 "./Middlewares/Third_Party/FatFs/src/option/ccsbcs.o"
 "./Middlewares/Third_Party/FatFs/src/option/syscall.o"
+"./src/PID.o"
 "./src/delay.o"
 "./src/flow_sensor.o"
 "./src/keypad.o"

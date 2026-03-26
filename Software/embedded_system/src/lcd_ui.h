@@ -8,8 +8,9 @@ enum DisplayMode
 	SetDesiredTemperature = 2,
 	SetFrequency = 3,
 	SetSettings = 4,
-	DisplayFault = 5,
-	DisplayMessage = 6,
+	SetPID = 5,
+	DisplayFault = 6,
+	DisplayMessage = 7,
 };
 typedef void MessageCallback(void *aux);
 
