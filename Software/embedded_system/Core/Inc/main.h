@@ -41,13 +41,13 @@ extern "C" {
   extern SPI_HandleTypeDef hspi3;
 
   extern TIM_HandleTypeDef htim8;
+  extern TIM_HandleTypeDef htim1;
 
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-  TIM_TypeDef
-  getTimer3Instance();
+  TIM_TypeDef getTimer3Instance();
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -65,9 +65,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define B1_Pin GPIO_PIN_13
-#define B1_GPIO_Port GPIOC
-#define B1_EXTI_IRQn EXTI15_10_IRQn
 #define D7_Pin GPIO_PIN_0
 #define D7_GPIO_Port GPIOC
 #define D6_Pin GPIO_PIN_1
@@ -89,8 +86,6 @@ void Error_Handler(void);
 #define SPI1_MOSI_GPIO_Port GPIOA
 #define COL3_Pin GPIO_PIN_4
 #define COL3_GPIO_Port GPIOC
-#define D5_Pin GPIO_PIN_0
-#define D5_GPIO_Port GPIOB
 #define COL2_Pin GPIO_PIN_2
 #define COL2_GPIO_Port GPIOB
 #define ROW1_Pin GPIO_PIN_10
@@ -119,6 +114,8 @@ void Error_Handler(void);
 #define ROW3_EXTI_IRQn EXTI9_5_IRQn
 #define SD_CS_Pin GPIO_PIN_6
 #define SD_CS_GPIO_Port GPIOB
+#define D5_Pin GPIO_PIN_7
+#define D5_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 #define HSPI_SDCARD &hspi1

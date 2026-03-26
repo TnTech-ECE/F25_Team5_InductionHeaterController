@@ -15,9 +15,9 @@ extern bool isPWMEnabled;
  * @param deadTime 0-100%
  * @param phaseDegrees 0-360
  */
-void TIM8_Update(float frequency, float dutyCycle, float deadTime, float phaseDegrees);
+void TIM1_8_Update(float frequency, float dutyCycle, float deadTime, float phaseDegrees);
 
-void TIM8_start();
-void TIM8_stop();
-void updateTIM8PowerLevel(float frequency, float powerLevel);
+void TIM1_8_start();
+void TIM1_8_stop();
+void updateTIM1_8_PowerLevel(float frequency, float powerLevel);
 #endif // PWM_H_

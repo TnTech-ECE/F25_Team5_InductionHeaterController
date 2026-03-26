@@ -177,7 +177,7 @@ void keyPressSetNumber(char key)
 		{
 			controllerData.powerLevel = value;
 			showMessageForTime(showSetMessageCallback, 2000, SystemVitals, &controllerData.powerLevel);
-			updateTIM8PowerLevel(controllerData.frequency, controllerData.powerLevel);
+			updateTIM1_8_PowerLevel(controllerData.frequency, controllerData.powerLevel);
 			break;
 		}
 		case SetDesiredTemperature:
@@ -190,7 +190,7 @@ void keyPressSetNumber(char key)
 		{
 			controllerData.frequency = intValue;
 			showMessageForTime(showSetFrequencyMessageCallback, 2000, SystemVitals, &controllerData.frequency);
-			updateTIM8PowerLevel(controllerData.frequency, controllerData.powerLevel);
+			updateTIM1_8_PowerLevel(controllerData.frequency, controllerData.powerLevel);
 			break;
 		}
 		default:
@@ -236,11 +236,12 @@ void keyPressSetSettings(char key)
 		showMessageForTime(showSetSettingsMessageCallback, 2000, SystemVitals, bufferString);
 		if (enablePWM)
 		{
-			updateTIM8PowerLevel(controllerData.frequency, controllerData.powerLevel);
+			updateTIM1_8_PowerLevel(controllerData.frequency, controllerData.powerLevel);
+			TIM1_8_start();
 		}
 		else
 		{
-			TIM8_stop();
+			TIM1_8_stop();
 		}
 	}
 }
