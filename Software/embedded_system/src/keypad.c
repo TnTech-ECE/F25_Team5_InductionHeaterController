@@ -225,7 +225,7 @@ int keyPressSubscriptionsLength = 0;
 
 void rowEvent(uint8_t rowNumber)
 {
-	printf("%d\n", rowNumber);
+	// printf("%d\n", rowNumber);
 	scanCols(rowNumber);
 }
 

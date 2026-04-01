@@ -7,6 +7,7 @@
 #include "run.h"
 #include "delay.h"
 #include "pwm.h"
+#include <stdio.h>
 float PID_Controller();
 
 // variables
@@ -29,18 +30,12 @@ void PID_Callback()
         if (lastPowerLevel == powerLevel)
                 return;
         lastPowerLevel = powerLevel;
-
-        updateTIM1_8_PowerLevel(controllerData.frequency, powerLevel);
-        if (!isPWMEnabled)
-                return;
-        if (powerLevel <= 0.01)
-                TIM1_8_stop();
-        else
-                TIM1_8_start();
+        updateTIM1_8_PowerLevelWithStart(controllerData.frequency, powerLevel);
 }
-int runId;
+int runId = -1;
 void run_PID()
 {
+        printf("ran PID\n");
         if (runId > -1)
                 return;
         runId = runInterval(PID_Callback, SAMPLING_RATE); // 100 millisecond sampling rate
@@ -55,13 +50,13 @@ float PID_Controller()
 {
         // get value from amplified thermocouple signal
         // same function from lcd_ui.c
-        float actual_temp = max31856_read_TC_temp(&thermoSPI2);
-        if (thermoSPI2.sr.val)
-        {
-                power_output_percentage = 0;
-                goto returnPosition;
-        }
-
+        float actual_temp = controllerData.t1;
+        // float actual_temp = max31856_read_TC_temp(&thermoSPI2);
+        // if (thermoSPI2.sr.val)
+        // {
+        //         power_output_percentage = 0;
+        //         goto returnPosition;
+        // }
         // protections
         if (actual_temp > max_temp)
                 control_signal_output = 0; // give pipe time to cool off, deliver less power
@@ -81,9 +76,9 @@ float PID_Controller()
         power_output_percentage = control_signal_output; /// max_temp;
 
         // if error is negative (actual temp > user wants) pipe needs to cool, turn off coil
-
+        printf("power_output_percentage: %f\n", power_output_percentage);
         // save error for next iteration if needed for derivative control
         prev_error = error;
-returnPosition:
+        // returnPosition:
         return power_output_percentage;
 }

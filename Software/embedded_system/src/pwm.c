@@ -6,9 +6,11 @@
 #include "pwm.h"
 #include "stdint.h"
 #include "math.h"
-bool isPWMEnabled = false;
+#include "run.h"
 bool isPWMStarted = false;
-const float CLOCK_SPEED = 5000000;
+bool isPWMEnabled = false;
+// For prescaler = 4, timer clock = 5 MHz
+const float CLOCK_SPEED = 80000000;
 /**
  * @param frequency
  * @param dutyCycle 0-100%
@@ -35,9 +37,9 @@ void TIM1_8_Update(float frequency, float dutyCycle, float deadTime, float phase
 		phaseDegrees += 360.0f;
 	while (phaseDegrees >= 360.0f)
 		phaseDegrees -= 360.0f;
-
+	controllerData.phaseDegrees = phaseDegrees;
 	MODIFY_REG(htim1.Instance->BDTR, TIM_BDTR_DTG, (unsigned)deadTime);
-	unsigned periodTicks = (uint32_t)((CLOCK_SPEED * 2.0f) / frequency);
+	unsigned periodTicks = (uint32_t)((CLOCK_SPEED) / frequency);
 	if (periodTicks < 2U)
 		periodTicks = 2U;
 
@@ -118,5 +120,17 @@ void TIM1_8_stop()
 void updateTIM1_8_PowerLevel(float frequency, float powerLevel)
 {
 
-	TIM1_8_Update(frequency, 50.0f, 0.1, fmax(fmin(powerLevel * 1.8f, 100.0f), 0.0f));
+	TIM1_8_Update(frequency, 50.0f, 0.001, fmax(fmin(powerLevel, 100.0f), 0.0f) * 1.8);
+}
+
+void updateTIM1_8_PowerLevelWithStart(float frequency, float powerLevel)
+{
+
+	if (powerLevel <= 0.1)
+	{
+		TIM1_8_stop();
+		return;
+	}
+	TIM1_8_Update(frequency, 50.0f, 0.001, fmax(fmin(powerLevel, 100.0f), 0.0f) * 1.8);
+	TIM1_8_start();
 }

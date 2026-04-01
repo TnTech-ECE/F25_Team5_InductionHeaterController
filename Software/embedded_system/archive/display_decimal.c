@@ -12,7 +12,7 @@ void __enable_irq()
 }
 void LCD_WriteData(char data)
 {
-	printf("%c", data);
+	("%c", data);
 }
 void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint8_t digits)
 {

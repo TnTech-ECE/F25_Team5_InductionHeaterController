@@ -49,3 +49,7 @@
 "./src/rotary_encoder.o"
 "./src/run.o"
 "./src/save.o"
+"./src/uis/set_number.o"
+"./src/uis/set_pid.o"
+"./src/uis/set_settings.o"
+"./src/uis/system_vitals.o"

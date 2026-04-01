@@ -1,5 +1,26 @@
 #ifndef LCD_UI_H
 #define LCD_UI_H
+#include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include "lcd.h"
+
+#include "delay.h"
+#include "run.h"
+#include "save.h"
+#include "keypad.h"
+#include "stm32l4xx_hal.h"
+#include "stm32l476xx.h"
+#include "max31856.h"
+#include "pwm.h"
+#include "lcd_instruction_set.h"
+#include "PID.h"
+extern unsigned cursor;
+extern int setOffset;
+extern char *setUnit;
+extern char *setMessage;
 enum DisplayMode
 {
 	NoModeSet = -1,

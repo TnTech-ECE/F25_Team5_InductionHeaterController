@@ -8,6 +8,7 @@
 #include "save.h"
 #include "run.h"
 #include "lcd_ui.h"
+#include "uis/set_pid.h"
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
@@ -53,7 +54,7 @@ void onRotateTimeoutCallback(void *aux)
 		{
 		case SetPowerLevel:
 		{
-			value += (float)(delta) / 10.0f;
+			value += ((float)(delta) / 10.0f) * pow(10, cursor == 4 ? 0 : 3 - cursor);
 			if (value > 100.0f)
 				value = 0.0f;
 			else if (value < 0.0f)
@@ -63,7 +64,7 @@ void onRotateTimeoutCallback(void *aux)
 		}
 		case SetDesiredTemperature:
 		{
-			value += (float)(delta) / 10.0f;
+			value += ((float)(delta) / 10.0f) * pow(10, cursor == 4 ? 0 : 3 - cursor);
 			if (value > 999.9f)
 				value = 0.0f;
 			else if (value < 0.0f)
@@ -73,7 +74,8 @@ void onRotateTimeoutCallback(void *aux)
 		}
 		case SetFrequency:
 		{
-			intValue += delta * 100;
+			intValue += ((float)delta) * pow(10, 4 - cursor);
+			;
 			if (intValue > 99999)
 				intValue = 0;
 			else if (intValue < 0)
@@ -81,8 +83,41 @@ void onRotateTimeoutCallback(void *aux)
 			DisplayNumber(intValue, 1, setOffset, 0, 5);
 			break;
 		}
+		case SetPID:
+		{
+			char numberStringP[5];
+			char numberStringI[5];
+			char numberStringD[5];
+			memcpy(numberStringP, cacheLCD.string + sizeof(char) * (positionsSetPID[0]), sizeof(numberStringP));
+			numberStringP[5] = '\0';
+			memcpy(numberStringI, cacheLCD.string + sizeof(char) * (positionsSetPID[3]), sizeof(numberStringI));
+			numberStringI[5] = '\0';
+
+			memcpy(numberStringD, cacheLCD.string + sizeof(char) * (positionsSetPID[6]), sizeof(numberStringD));
+			numberStringD[5] = '\0';
+			char *endptr;
+			errno = 0; // Reset for error checking
+			float valueKp = strtof(numberStringP, &endptr);
+			float valueKi = strtof(numberStringI, &endptr);
+			float valueKd = strtof(numberStringD, &endptr);
+			unsigned index = cursor / 3;
+			float value = index == 0
+							  ? valueKp
+						  : index == 1
+							  ? valueKi
+							  : valueKd;
+			value += ((float)delta / 100) * pow(10, 2 - cursor % 3);
+
+			if (value > 9.99)
+				value = 0;
+			else if (value < 0)
+				value = 9.99;
+			Set_CursorPositionPID(index * 3);
+			DisplayDecimalWithPlaces(value, -1, -1, 0, 4, 2);
+		}
 		default:
 		{
+
 			break;
 		}
 		}

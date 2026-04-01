@@ -19,6 +19,7 @@ struct ControllerData
 	float ki;
 	float kd;
 	bool control;
+	float phaseDegrees;
 };
 #include "ff.h"
 #include "user_diskio.h"

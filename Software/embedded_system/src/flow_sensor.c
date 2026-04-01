@@ -14,7 +14,7 @@ void flowSensorOnTimeCallback()
 {
 	lastFlowCount = flowCount;
 	flowCount = 0;
-	printf("flowCount: %d\n\r", lastFlowCount);
+	// printf("flowCount: %d\n\r", lastFlowCount);
 }
 static bool doneInit = false;
 void initFlowSensor()
