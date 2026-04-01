@@ -84,8 +84,8 @@ void run()
 	// sd_send_initial_dummy_clocks();
 	setupTempAmp(&thermoSPI2);
 	setupTempAmp(&thermoSPI3);
-	max31856_setHighFaultTemp(&thermoSPI2, 30);
-	max31856_setHighFaultTemp(&thermoSPI3, 30);
+	max31856_setHighFaultTemp(&thermoSPI2, 98);
+	max31856_setHighFaultTemp(&thermoSPI3, 98);
 	// thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
 	//	int fr = sd_mount();
 	//	printf("sd_mount -> %d\r\n", fr);
