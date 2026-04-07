@@ -23,6 +23,7 @@
 #include "max31856.h"
 #include "lcd_ui.h"
 #include "ff.h"
+#include "adc.h"
 volatile bool need_save = false;
 volatile bool need_log = false;
 void saveSD()
@@ -81,6 +82,7 @@ void run()
 	//	// Initialize LCD once
 	lcd_init();
 	HAL_Delay(20); // Wait after init
+	startADC();
 	// sd_send_initial_dummy_clocks();
 	setupTempAmp(&thermoSPI2);
 	setupTempAmp(&thermoSPI3);

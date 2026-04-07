@@ -19,7 +19,7 @@ void DisplayDecimal(double num, int8_t line, int8_t position, uint8_t from, uint
 	__disable_irq();
 	int maxDigits = digits - 1;
 	int logOf = (num <= 1) ? 0 : (int)log10(num);
-	printf("%d\n", logOf);
+	// printf("%d\n", logOf);
 	if (logOf > maxDigits)
 		logOf = maxDigits;
 

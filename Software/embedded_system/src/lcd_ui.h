@@ -17,6 +17,7 @@
 #include "pwm.h"
 #include "lcd_instruction_set.h"
 #include "PID.h"
+#include "adc.h"
 extern unsigned cursor;
 extern int setOffset;
 extern char *setUnit;

@@ -36,6 +36,8 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+  extern ADC_HandleTypeDef hadc1;
+
   extern SPI_HandleTypeDef hspi1;
   extern SPI_HandleTypeDef hspi2;
   extern SPI_HandleTypeDef hspi3;
