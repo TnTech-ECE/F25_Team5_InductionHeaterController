@@ -78,7 +78,8 @@ void readThermocouples(void *aux)
 	DisplayDecimal(tempSPI2, 0, 0, 0, 5);
 	DisplayDecimal(tempSPI3, 0, 6, 0, 5);
 	DisplayDecimalWithPlaces(getRMSCurrent(), 0, 12, 0, 4, 1);
-	DisplayDecimalWithPlaces(controllerData.phaseDegrees, 1, 11, 0, 5, 1);
+	DisplayDecimalWithPlaces(getAVGCurrent(), 1, 12, 0, 4, 1);
+	// DisplayDecimalWithPlaces(controllerData.phaseDegrees, 1, 11, 0, 5, 1);
 	// DisplayNumberBase(tempSPI2, 0, 0, 0, 8, 16);
 	// float tempSPI2 = tc_readTemp(thermoSPI2);
 	// float tempSPI3 = tc_readTemp(thermoSPI3);
