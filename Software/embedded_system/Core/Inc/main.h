@@ -67,19 +67,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define D7_Pin GPIO_PIN_0
-#define D7_GPIO_Port GPIOC
-#define D6_Pin GPIO_PIN_1
-#define D6_GPIO_Port GPIOC
 #define flow_sensor_Pin GPIO_PIN_3
 #define flow_sensor_GPIO_Port GPIOC
 #define flow_sensor_EXTI_IRQn EXTI3_IRQn
-#define RS_Pin GPIO_PIN_0
-#define RS_GPIO_Port GPIOA
-#define EN_Pin GPIO_PIN_1
-#define EN_GPIO_Port GPIOA
-#define D4_Pin GPIO_PIN_4
-#define D4_GPIO_Port GPIOA
 #define SPI1_SCK_Pin GPIO_PIN_5
 #define SPI1_SCK_GPIO_Port GPIOA
 #define SPI1_MISO_Pin GPIO_PIN_6
@@ -100,10 +90,16 @@ void Error_Handler(void);
 #define spi_cn2_GPIO_Port GPIOB
 #define COL1_Pin GPIO_PIN_10
 #define COL1_GPIO_Port GPIOA
+#define D7_Pin GPIO_PIN_11
+#define D7_GPIO_Port GPIOA
+#define D6_Pin GPIO_PIN_12
+#define D6_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define D4_Pin GPIO_PIN_15
+#define D4_GPIO_Port GPIOA
 #define spi_cn3_Pin GPIO_PIN_2
 #define spi_cn3_GPIO_Port GPIOD
 #define COL0_Pin GPIO_PIN_3
@@ -118,6 +114,10 @@ void Error_Handler(void);
 #define SD_CS_GPIO_Port GPIOB
 #define D5_Pin GPIO_PIN_7
 #define D5_GPIO_Port GPIOB
+#define RS_Pin GPIO_PIN_8
+#define RS_GPIO_Port GPIOB
+#define EN_Pin GPIO_PIN_9
+#define EN_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 #define HSPI_SDCARD &hspi1
