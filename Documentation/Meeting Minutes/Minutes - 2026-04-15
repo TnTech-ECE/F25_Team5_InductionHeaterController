@@ -1,0 +1,35 @@
+# Minutes - 2026-04-06
+
+## Meeting Info
+
+* **Date:** 2026-04-06
+* **Time:** 2:30-3:30
+* **Location:** Brown Lounge
+* **Note-taker:** Cole Wilson
+* **Week #:** 10
+
+## Attendees
+
+* **Present:** Dow Cox, John Donnell, Austin DuCrest, Cole Wilson, Aaron Neuharth
+* **Absent:** N/A
+* **Quorum met:** Yes
+
+## Agenda (brief)
+
+* Meeting to Discuss the current state of PCBs, parts to be ordered, and what can be worked on now 
+
+## Discussion Notes (brief)
+
+* Aaron working on getting parts ordered: fuses, gate drivers, pipe surface thermocouple
+* A flaw in PCB was discsovered due to the layers. John attempted to fix issue using dremel, but unsuccessful. Will need jumper wire for pins that do not have pads. 
+* Cole found an approved site with faster shipping times than Digikey - Newark - to order additional parts such as the pipe surface thermocouple
+* Dr. Storm said avoid ordering from Digikey due to slow shipping
+* Dow and Austin prototyping getting gate drivers to respond PWM signals and other parts that have already arrived
+* Still waiting on additional parts to be ordered due to initial funding constraints, which includes most of Aaron and Cole's subsystems and portions of the others
+
+
+
+## Next Meeting
+
+* **Planned:** Next week (TBD)
+* **Tentative agenda:** getting PCB assembled, waitng for final parts to arrive
