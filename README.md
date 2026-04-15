@@ -1,19 +1,30 @@
 ## Executive Summary
 
-Our team is tasked by Lockinvar to create an induction heater controller to [WE DO NOT KNOW THIS YET] regulate the power delivered to an induction heater. The purpose of this controller is to improve the energy efficiency and life expectancy of the heater. We plan to have safety systems in place to ensure that nothing gets overheated.
+Our team is tasked by Lockinvar to design and prototype an induction coil controller in such a way to heat both the 
+internal and surface level material of a circular heating element. 
 
 ## Capabilities
 
-[WE DO NOT KNOW THIS YET] Lochivar has a smart touch control system we might look at more. 
+Problem Statement:  Design and prototype an induction coil controller in such a way to heat both the 
+internal and surface level  material of a circular heating element.
+
+Deliverables:  
+1. Similar to current induction cook tops the control will have multiple power settings. 
+2. The controller will be capable of inducing surface eddy currents and internal heating. 
+3. Prototype shall be testing circular bar stock and standard black pipe thermocouple in such a manner to valid 
+date the success of the heating. 
+4. Total electrical power is to be measured. 
+5. Total temperature rise of the metal shall be measured.
 
 ## Salient Outcomes
 
 Our team expects to provide our customer with a ready-to-use design solution to the problem we were tasked with solving. The outcomes we expect to meet are provided as such below:
 
-- Precision temperature and power control
-- Optimization of efficiency for the heating system in regards to previous heating solutions
-- Reliable protection and safety for the design
-- Easy-to-use and user-friendly interface for technical support 
+1. The control has multiple power settings implemented using a keypad and LCD. 
+2. The controller is capable of inducing surface eddy currents and internal heating by adjusting a PWM signal to determine how much current is sent through the coil. 
+3. The prototype has a coil of wire wrapped around a pipe and measures the surface heating of the pipe using a K-type thermocouple. 
+4. Total electrical power is measured based on the user input power. 
+5. Total temperature rise of the metal is measured using the K-type thermocouple.
 
 ## Project Demonstration & Images
 
@@ -40,7 +51,9 @@ Give a brief bio for each team member and their broad contribution to the projec
 
 ### Faculty Supervisor
 
-Dr. Ali Alouani
+Mr. Ben Putnam 
+Mr. Daniel Rushing
+Dr. Christopher Storm Johnson 
 
 ### Stakeholders
 
@@ -55,16 +68,25 @@ Use this space to recognize anyone that you feel has had an impact on the projec
 
 ## Repo Organization
 
-Give the layout of the repo and what can be found where. Make it easy on those who are interested by making the headings of the various things in this section clickable links to the relevant folder or file in the repo.
 
 
 ### Reports
 
-In the reports section of this repository information about the individual expectations for the reports and how they should be housed is provided.
+The Project Proposal is the intial document for the project where the problem is defined and the goals for the project.
+
+The Conceptual Design gives a more detailed solution to the problem as well as defining the subsystems that the project will be divided into.
+
+The Detailed Design of the individual subsystems goes into more detail and includes relevant documentation, circuit design, and analysis for the Power, Embedded, Safety, Heat Gen, and PCB subsystems. 
+
+The Experimental Analysis is 
+
+The Poster is 
+
+The Final Presentation is 
 
 ### Documentation
 
-In the documentaion section information regarding the documentation that is required and how it should be organized is given.
+The Meeting Minutes contains a weekly progress update of the team's progress and challenges. 
 
 ### Software
 
