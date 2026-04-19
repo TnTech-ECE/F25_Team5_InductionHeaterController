@@ -93,7 +93,7 @@ Provide detailed information about the inputs, outputs, and data transferred to 
  6. (optional) AD8495 Amplification of a Thermocouple
  AD8495 Amplification of a Thermocouple will amplify the thermocouple voltage so that the board can ADC the voltage to get a temperature. This thermocouple converter will be for the pipe that is being heated. The signal is received by ADC 1 CH14 on PC4. [8] [13].
  7. Keypad
- The Keypad will be checked via a PIN D0-D3 assigned to interrupts. Then D4-D7 will be output pins and will be scanned to determine which button was pressed. The keypad will be able to set values for the system and change the mode of the LCD [8] [14].
+ The Keypad will be checked via 4 row pins: PB11, PB10, PB4, and PB5, respectively, assigned to interrupts. Then the 4 column pins: PB3, PA11, PB2, and PC4, respectively, will be output pins and will be scanned to determine which button was pressed on an interrupt. The keypad will be able to set values for the system and change the mode of the LCD [8] [14].
  8. Rotary Encoder
  The Rotary Encoder will be able to change values for the system as well, depending on the mode of the LCD. This uses TIM 3 in encoder mode on channels 1 and 2 on interrupts to determine if the encoder has changed position. PC6 is TIM 3 CH1 and PC7 is TIM 3 CH2. [8] [15].
  1. Flow Sensor
@@ -113,14 +113,14 @@ Provide detailed information about the inputs, outputs, and data transferred to 
 
 #### Specifics:
  1. LCD
- The LCD uses GPIO Pins A0-A5. A0, which is PA0, connects to the register Select, RS pin. The read/write pin is tied to ground since the LCD only needs to be written to. A1, which is PA1, connects to the Enable pin, EN pin. A2-A5, which is pins PA4, PB0,PC1, and PC0 respectively, is connected to data pin D4-D7 [8].
- 2. PWM signals to Gate Drivers
- PWM signals to Gate Drivers are driven using TIM8 CH3 and TIM8 CH3N to get the same frequency signals, but 180 degrees out of phase. TIM8 CH3n is on PB1 and TIM8 CH3 is on PC8. TIM4 Ch2 on PB8 will send an 80KHz PWM signal to the power board [8].
- 3. Writing Micro SD Interface
+ The LCD uses 6 GPIO Pins. PB8, which is PA0, connects to the register Select, RS pin. The read/write pin is tied to ground since the LCD only needs to be written to. PB9, connects to the Enable pin, EN pin. The 4 data pins which connect to D4-D7 on the LCD, which is pins PA15, PB7, PA12, and PA11 respectively. [8].
+ 1. PWM signals to Gate Drivers
+ PWM signals to Gate Drivers are driven using a master slave complex of TIM1 CH2 driving TIM8 CH3 to get the same frequency signals, but 0-180 degrees out of phase. The modulation of the phase is used to reduce the power output to the coil. TIM1 CH2 is on PA9 and TIM8 CH3 is on PC8 [8].
+ 1. Writing Micro SD Interface
  Writing Micro SD Interface uses SPI 1 MOSI on PA7 to write data to the micro SD card. Inputs 2. explains the rest of the connection for the SD card interface [8] [9].
- 4. Setting Pipe Fault Temperature For Amplifier
+ 1. Setting Pipe Fault Temperature For Amplifier
  Setting Pipe Fault Temperature uses SPI 2 MOSI on PB15. Inputs 4. explains the rest of the connections for the Pipe Temperature Amplifier [8] [10].
- 5. Setting IGBT Fault Temperature For Amplifier
+ 1. Setting IGBT Fault Temperature For Amplifier
  Setting IGBT Fault Temperature uses SPI 3 MOSI on PC12. Inputs 5. explains the rest of the connections for the IGBT Temperature Amplifier [8] [10].
 ## Buildable Schematic 
 
@@ -161,6 +161,13 @@ The Delay System Flow Chart explains the function of the logic behind the LCD. T
 
 The Micro-Tasked LCD System Flow Chart examines the process by which the LCD runs. The top flow shows the function that queues a byte of data into the circular queue, which could be a command or data that can have a delay. The bottom flow shows the processing of that queue. The program uses a state machine to make sure that the latches have enough time to be detected.
 
+### Electro-Cookie for LCD
+![Electro-Cookie for LCD](./Embedded_System/LCD_electro_cookie.png)
+An Electro-Cookie is basically a Perf Board but it has through holes that are connected similar to a breadboard ie a permanent breadboard. This allows the LCD to be interfaced without designing a PCB and without the jankiness of a breadboard. It has a 4 long terminal block for the 4 data pins, a 2 long terminal block for the input ground and 3.3V, three 6 long terminals for ground, 3.3V and 5V, a 3 long block where the outer 2 inputs are used for Enable and register select, and a low LCD reset switch. 
+
+### Electro-Cookie for Voltage Scaling and MicroSD Card Reader
+![Electro-Cookie for Voltage Scaling and MicroSD Card Reader](./Embedded_System/signal_scaling_electro_cookie.png)
+This allows the Voltage of the PWM to be scaled to 5V via comparators. The 5V PWM is needed by the gate drivers. The comparators output is pulled up to 5V and the threshold Voltage is 1.56V via a voltage divider from 5V. It as a 2 long block for scaler input and a 2 long block for output. There is also to voltage divider that take a 0-5V signal and convert it to 0-3.3V. The current sensors output 5V at 60 amps so there is a possibly of 5V damaging the ADC; thus, a resistor divider is needed. A 2 long block for divider input and a 2 long block for output is used. Also the a 6 long block is used to interface and power the MicroSD card reader. There is a 4 block for 5V and a 6 block for ground. As well as a 2 block for input ground and input 5V.  
 
 ## BOM
 
