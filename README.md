@@ -1,7 +1,7 @@
 ## Executive Summary
 
-Our team is tasked by Lockinvar to design and prototype an induction coil controller in such a way to heat both the 
-internal and surface level material of a circular heating element. 
+Team 5 Induction Heater Controller is tasked by Lockinvar to design and prototype an induction coil controller in such a way to heat both the 
+internal and surface level material of a metal pipe.  
 
 ## Capabilities
 
@@ -54,7 +54,7 @@ Lochinvar is the customer for this project. For over 80 years, Lochinvar, an Ame
 ### Recognitions 
 
 
-- Mr. Ben Putnam
+- Mr. Ben Putnam 
 - Mr. Daniel Rushing's expertise with electronics was invaluable while working on the Power Subsystem to ensure safe and reliable operation. 
 
 - The style of this README is inspired by a previous [Lochinvar Fan Controller team](https://github.com/TnTech-ECE/F24_Team7_Lochinvar-Fan-Controller). 
@@ -72,11 +72,11 @@ The Detailed Design of the individual subsystems goes into more detail and inclu
 
 The [Capstone Final Presentation](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Capstone%20Final%20Presentation%20%20(1).pptx) is the final presentation given at the end of Capstone 1 explaining our susbsytems. 
 
-The Experimental Analysis is 
+The Experimental Analysis shows the results of our prototype.  
 
-The Poster is 
+The Poster is a quick summary of our project to the public. 
 
-The Final Presentation is 
+The Final Presentation is the presentation presented before the Industrial Advisory Board. 
 
 ### [Documentation](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Documentation)
 
