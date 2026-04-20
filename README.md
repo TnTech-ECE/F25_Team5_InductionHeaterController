@@ -38,16 +38,11 @@ Below the video link show some well-taken, appropriately sized images of the pro
 ### Team
 
 Give a brief bio for each team member and their broad contribution to the project (no need to be terribly specifc).
-- [Aaron Neuharth](https://tntech.joinhandshake.com/profiles/ycu78y?hscid=f5442b62-e17b-4bc6-a349-da7c3d5d34f3) (Team Leader):
-  Electrical Engineering with a Controls Concentration. Knowledgeable in controls systems and PLC logic. Responsible for the Safety and Protections Subsystem. 
-- [John Donnell](https://www.linkedin.com/in/johndonnell1848/) (Reporter):
-  Computer Engineering Student with experience in PCB Design, debugging, and testing. Knowledgeable with coding. Responsible for the PCB Subsystem. 
-- [Austin DuCrest](https://www.linkedin.com/in/austin-ducrest-aa0422271/):
-  Electrical Engineering Student with Power Concentration. Knowledgeable in Power systems and Power system P&C (Protection and Controls). Responsible for the Power Subsystem. 
-- [Cole Wilson](https://www.linkedin.com/in/cole-wilson-348271256/):
-  Electrical Engineering Student with Mechatronics Concentration. Knowledgable about Controls. Responsible for the Heat Generation Subsystem. 
-- [Dow Cox](https://www.linkedin.com/in/dwc26/):  
-  Electrical and Computer Engineering Student with Industrial Control Systems Specialization. Knowledgeable in microcontrollers and software design concepts. Responsible for the Embedded Subsystem. 
+- [Aaron Neuharth](https://tntech.joinhandshake.com/profiles/ycu78y?hscid=f5442b62-e17b-4bc6-a349-da7c3d5d34f3) (Team Leader): Electrical Engineering with a Controls Concentration. Knowledgeable in controls systems and PLC logic. Responsible for the Safety and Protections Subsystem. 
+- [John Donnell](https://www.linkedin.com/in/johndonnell1848/) (Reporter): Computer Engineering Student with experience in PCB Design, debugging, and testing. Knowledgeable with coding. Responsible for the PCB Subsystem. 
+- [Austin DuCrest](https://www.linkedin.com/in/austin-ducrest-aa0422271/): Electrical Engineering Student with Power Concentration. Knowledgeable in Power systems and Power system P&C (Protection and Controls). Responsible for the Power Subsystem. 
+- [Cole Wilson](https://www.linkedin.com/in/cole-wilson-348271256/): Electrical Engineering Student with Mechatronics Concentration. Knowledgable about Controls. Responsible for the Heat Generation Subsystem. 
+- [Dow Cox](https://www.linkedin.com/in/dwc26/): Electrical and Computer Engineering Student with Industrial Control Systems Specialization. Knowledgeable in microcontrollers and software design concepts. Responsible for the Embedded Subsystem. 
 
 ### Faculty Supervisor
 
