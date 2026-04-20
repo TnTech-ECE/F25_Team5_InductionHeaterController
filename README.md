@@ -52,12 +52,8 @@ Lochinvar is the customer for this project. For over 80 years, Lochinvar, an Ame
 [Lockinvar About Us Page](https://www.lochinvar.com/en_US/about-us.html)
 
 ### Recognitions 
+The team would like to thank Mr. Ben Putnam and Mr. Daniel Rushing from Lochinvar for their expertise, and Mr. Conard Murray's help troubleshooting prototyping issues. 
 
-
-- Mr. Ben Putnam 
-- Mr. Daniel Rushing's expertise with electronics was invaluable while working on the Power Subsystem to ensure safe and reliable operation. 
-
-- The style of this README is inspired by a previous [Lochinvar Fan Controller team](https://github.com/TnTech-ECE/F24_Team7_Lochinvar-Fan-Controller). 
 
 ## Repo Organization
 
