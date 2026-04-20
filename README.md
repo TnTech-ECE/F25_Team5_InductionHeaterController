@@ -52,7 +52,7 @@ Lochinvar is the customer for this project. For over 80 years, Lochinvar, an Ame
 [Lockinvar About Us Page](https://www.lochinvar.com/en_US/about-us.html)
 
 ### Recognitions 
-The team would like to thank Mr. Ben Putnam and Mr. Daniel Rushing from Lochinvar for their expertise, and Mr. Conard Murray's help troubleshooting prototyping issues. 
+The team would like to thank Mr. Ben Putnam and Mr. Daniel Rushing from Lochinvar for their expertise, and Mr. Conard Murray and Dr. Johnson from TTU for their expertise. 
 
 
 ## Repo Organization
