@@ -39,15 +39,15 @@ Below the video link show some well-taken, appropriately sized images of the pro
 
 Give a brief bio for each team member and their broad contribution to the project (no need to be terribly specifc).
 - Aaron Neuharth (Team Leader):
-  Electrical Engineering with a Controls Concentration. Knowledgeable in controls systems and PLC logic.
+  Electrical Engineering with a Controls Concentration. Knowledgeable in controls systems and PLC logic. Responsible for the Safety and Protections Subsystem. 
 - John Donnell (Reporter):
-  Computer Engineering Student with experience in PCB Design, debugging, and testing. Knowledgeable with coding.
+  Computer Engineering Student with experience in PCB Design, debugging, and testing. Knowledgeable with coding. Responsible for the PCB Subsystem. 
 - Austin DuCrest:
-  Electrical Engineering Student with Power Concentration. Knowledgeable in Power systems and Power system P&C (Protection and Controls)
+  Electrical Engineering Student with Power Concentration. Knowledgeable in Power systems and Power system P&C (Protection and Controls). Responsible for the Power Subsystem. 
 - Cole Wilson:
-  Electrical Engineering Student with Mechatronics Concentration. Knowledgable about Controls. 
+  Electrical Engineering Student with Mechatronics Concentration. Knowledgable about Controls. Responsible for the Heat Generation Subsystem. 
 - Dow Cox:  
-  Electrical and Computer Engineering Student with Industrial Control Systems Specialization. Knowledgeable in microcontrollers and software design concepts. 
+  Electrical and Computer Engineering Student with Industrial Control Systems Specialization. Knowledgeable in microcontrollers and software design concepts. Responsible for the Embedded Subsystem. 
 
 ### Faculty Supervisor
 
@@ -55,19 +55,18 @@ Give a brief bio for each team member and their broad contribution to the projec
 
 ### Stakeholders
 
-Tell a bit about the customer for the project. Also discuss any other groups (specific or general) that are expected to be impacted by the project.
+
 - **Lockinvar:**  
-For over 80 years, Lochinvar, an American company, has been a leader of innovation and high-efficiency water heating. Through Lochinvar's pride in leadership and commitment to excellence, the company has continually improved year after year. Today, Lochinvar touts the broadest line of high-efficiency water heating solutions, a world-class research & development department, comprehensive service with every sale and industry-leading training through Lochinvar University.  
+Lochinvar is the customer for this project. For over 80 years, Lochinvar, an American company, has been a leader of innovation and high-efficiency water heating. Through Lochinvar's pride in leadership and commitment to excellence, the company has continually improved year after year. Today, Lochinvar touts the broadest line of high-efficiency water heating solutions, a world-class research & development department, comprehensive service with every sale and industry-leading training through Lochinvar University.  
 [Lockinvar About Us Page](https://www.lochinvar.com/en_US/about-us.html)
 
-### Recognitions
+### Recognitions 
 
-Use this space to recognize anyone that you feel has had an impact on the project. Be sure to recognize the work of previous teams if you referenced it for style or content. 
 
 - Mr. Ben Putnam
-- Mr. Daniel Rushing 
+- Mr. Daniel Rushing's expertise with electronics was invaluable while working on the Power Subsystem to ensure safe and reliable operation. 
 
-- The organization and format of this README is inspired by a previous [Lochinvar Fan Controller team](https://github.com/TnTech-ECE/F24_Team7_Lochinvar-Fan-Controller). 
+- The style of this README is inspired by a previous [Lochinvar Fan Controller team](https://github.com/TnTech-ECE/F24_Team7_Lochinvar-Fan-Controller). 
 
 ## Repo Organization
 
