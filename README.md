@@ -5,7 +5,8 @@ internal and surface level material of a circular heating element.
 
 ## Capabilities
 
-Problem Statement:  Design and prototype an induction coil controller in such a way to heat both the 
+#### Problem Statement:  
+Design and prototype an induction coil controller in such a way to heat both the 
 internal and surface level  material of a circular heating element.
 
 Deliverables:  
@@ -17,8 +18,6 @@ date the success of the heating.
 5. Total temperature rise of the metal shall be measured.
 
 ## Salient Outcomes
-
-Our team expects to provide our customer with a ready-to-use design solution to the problem we were tasked with solving. The outcomes we expect to meet are provided as such below:
 
 1. The control has multiple power settings implemented using a keypad and LCD. 
 2. The controller is capable of inducing surface eddy currents and internal heating by adjusting a PWM signal to determine how much current is sent through the coil. 
