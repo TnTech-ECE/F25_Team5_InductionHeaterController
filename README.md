@@ -18,24 +18,22 @@ date the success of the heating.
 
 ## Salient Outcomes
 
-1. The control has multiple power settings implemented using a keypad and LCD. 
-2. The controller is capable of inducing surface eddy currents and internal heating by adjusting a PWM signal to determine how much current is sent through the coil. 
-3. The prototype has a coil of wire wrapped around a pipe and measures the surface heating of the pipe using a K-type thermocouple. 
+1. The control has multiple power settings implemented using a keypad and LCD. The user interface allows the user to choose between inputting a desired a power level (manual) or inputting a desired temperature (controlled). The desired temperature is used as the setpoint for a PID. 
+2. The controller is capable of inducing surface eddy currents and internal heating by adjusting a PWM signal. The PWM determines how much current is sent through the coil. 
+3. The prototype has a coil of wire wrapped around a pipe and measures the surface heating of the pipe using a K-type thermocouple. The K-type thermocouple produces a voltage in the mV range that is amplified and cold-junction compensated to allows the microcontroller to determine the temperature read by the thermocouple in degrees Celcius. 
 4. Total electrical power is measured based on the user input power. 
 5. Total temperature rise of the metal is measured using the K-type thermocouple.
 
 ## Project Demonstration & Images
 
-Give a link to a video of the project being demonstrated. The video should be hosted on the capstone youtube.
 
-Below the video link show some well-taken, appropriately sized images of the project.
 
 
 ## About Us
 
 ### Team
 
-Give a brief bio for each team member and their broad contribution to the project (no need to be terribly specifc).
+
 - [Aaron Neuharth](https://tntech.joinhandshake.com/profiles/ycu78y?hscid=f5442b62-e17b-4bc6-a349-da7c3d5d34f3) (Team Leader): Electrical Engineering with a Controls Concentration. Knowledgeable in controls systems and PLC logic. Responsible for the Safety and Protections Subsystem. 
 - [John Donnell](https://www.linkedin.com/in/johndonnell1848/) (Reporter): Computer Engineering Student with experience in PCB Design, debugging, and testing. Knowledgeable with coding. Responsible for the PCB Subsystem. 
 - [Austin DuCrest](https://www.linkedin.com/in/austin-ducrest-aa0422271/): Electrical Engineering Student with Power Concentration. Knowledgeable in Power systems and Power system P&C (Protection and Controls). Responsible for the Power Subsystem. 
