@@ -5,8 +5,7 @@ internal and surface level material of a circular heating element.
 
 ## Capabilities
 
-#### Problem Statement:  
-Design and prototype an induction coil controller in such a way to heat both the 
+**Problem Statement:** Design and prototype an induction coil controller in such a way to heat both the 
 internal and surface level  material of a circular heating element.
 
 Deliverables:  
