@@ -38,16 +38,16 @@ Below the video link show some well-taken, appropriately sized images of the pro
 ### Team
 
 Give a brief bio for each team member and their broad contribution to the project (no need to be terribly specifc).
-- Austin DuCrest:
-  Electrical Engineering Student with Power Concentration. Knowledgeable in Power systems and Power system P&C (Protection and Controls)
 - Aaron Neuharth (Team Leader):
   Electrical Engineering with a Controls Concentration. Knowledgeable in controls systems and PLC logic.
+- John Donnell (Reporter):
+  Computer Engineering Student with experience in PCB Design, debugging, and testing. Knowledgeable with coding.
+- Austin DuCrest:
+  Electrical Engineering Student with Power Concentration. Knowledgeable in Power systems and Power system P&C (Protection and Controls)
 - Cole Wilson:
   Electrical Engineering Student with Mechatronics Concentration. Knowledgable about Controls. 
 - Dow Cox:  
   Electrical and Computer Engineering Student with Industrial Control Systems Specialization. Knowledgeable in microcontrollers and software design concepts. 
-- John Donnell (Reporter):
-  Computer Engineering Student with experience in PCB Design, debugging, and testing. knowledgeable with coding.
 
 ### Faculty Supervisor
 
@@ -66,17 +66,20 @@ For over 80 years, Lochinvar, an American company, has been a leader of innovati
 
 Use this space to recognize anyone that you feel has had an impact on the project. Be sure to recognize the work of previous teams if you referenced it for style or content. 
 
+The organization and format of this README is inspired by a previous [Lochinvar Fan Controller team](https://github.com/TnTech-ECE/F24_Team7_Lochinvar-Fan-Controller). 
+
 ## Repo Organization
 
 
+### [Reports](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Reports)
 
-### Reports
+The [Project Proposal](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Project%20Proposal.md) is the intial document for the project where the problem is defined and the goals for the project.
 
-The Project Proposal is the intial document for the project where the problem is defined and the goals for the project.
-
-The Conceptual Design gives a more detailed solution to the problem as well as defining the subsystems that the project will be divided into.
+The [Conceptual Design](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Conceptual%20Design.md) gives a more detailed solution to the problem as well as defining the subsystems that the project will be divided into.
 
 The Detailed Design of the individual subsystems goes into more detail and includes relevant documentation, circuit design, and analysis for the Power, Embedded, Safety, Heat Gen, and PCB subsystems. 
+
+The [Capstone Final Presentation](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Capstone%20Final%20Presentation%20%20(1).pptx) is the final presentation given at the end of Capstone 1 explaining our susbsytems. 
 
 The Experimental Analysis is 
 
@@ -84,17 +87,12 @@ The Poster is
 
 The Final Presentation is 
 
-### Documentation
+### [Documentation](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Documentation)
 
-The Meeting Minutes contains a weekly progress update of the team's progress and challenges. 
+The [Meeting Minutes](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Documentation/Meeting%20Minutes) contains a weekly progress update of the team's progress and challenges. 
 
-### Software
+### [Software](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Software/editing_tools)
 
-In the software directory of the repo information regarding how each team is expected to document software can be found.
- - Visual Studio Code
- - Github Desktop
- - SharePoint
- - Github
- - Git
- - AutoCAD Electrical
- - Inventor 
+The [Editing Tools](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/Detailed-Design-Embedded/Software/editing_tools) was created to make organizing references in IEEE format easier. 
+
+The [Embedded System](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/Detailed-Design-Embedded/Software/embedded_system) contains the necessary initializations to make the NUCLEO-L476RG work, and the code used for the project to control the system can be found in the [src](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/Detailed-Design-Embedded/Software/embedded_system/src). 
