@@ -51,9 +51,7 @@ Give a brief bio for each team member and their broad contribution to the projec
 
 ### Faculty Supervisor
 
-Mr. Ben Putnam 
-Mr. Daniel Rushing
-Dr. Christopher Storm Johnson 
+- Dr. Christopher Storm Johnson
 
 ### Stakeholders
 
@@ -66,7 +64,10 @@ For over 80 years, Lochinvar, an American company, has been a leader of innovati
 
 Use this space to recognize anyone that you feel has had an impact on the project. Be sure to recognize the work of previous teams if you referenced it for style or content. 
 
-The organization and format of this README is inspired by a previous [Lochinvar Fan Controller team](https://github.com/TnTech-ECE/F24_Team7_Lochinvar-Fan-Controller). 
+- Mr. Ben Putnam
+- Mr. Daniel Rushing 
+
+- The organization and format of this README is inspired by a previous [Lochinvar Fan Controller team](https://github.com/TnTech-ECE/F24_Team7_Lochinvar-Fan-Controller). 
 
 ## Repo Organization
 
