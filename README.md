@@ -64,7 +64,12 @@ The [Project Proposal](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterCo
 
 The [Conceptual Design](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Conceptual%20Design.md) gives a more detailed solution to the problem as well as defining the subsystems that the project will be divided into.
 
-The Detailed Design of the individual subsystems goes into more detail and includes relevant documentation, circuit design, and analysis for the Power, Embedded, Safety, Heat Gen, and PCB subsystems. 
+The Detailed Design of the individual subsystems goes into more detail and includes relevant documentation, circuit design, and analysis for the individual subsystems. 
+1. [Power Substem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Power%20System/Detailed%20Design-Power%20System.md)
+2. Embedded Subsystem 
+3. [Safety and Protections Subsystem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Detailed%20Design%20Safety%20and%20Protections.md)
+4. [Heat Generation Subsystem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Detailed%20Design%20Heat%20Generation.md)
+5. [PCB Subsystem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Detailed_Design_PCB.md)
 
 The [Capstone Final Presentation](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Capstone%20Final%20Presentation%20%20(1).pptx) is the final presentation given at the end of Capstone 1 explaining our susbsytems. 
 
