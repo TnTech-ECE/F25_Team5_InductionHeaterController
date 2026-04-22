@@ -42,7 +42,7 @@ date the success of the heating.
 
 ### Faculty Supervisor
 
-- Dr. Christopher Storm Johnson
+- Dr. Christopher Storm Johnson has a background in wireless power transfer. 
 
 ### Stakeholders
 
