@@ -1,0 +1,13 @@
+../src/delay.c:14:10:getDelayScale	72	static
+../src/delay.c:21:6:timeoutCallback	4	static
+../src/delay.c:26:6:Delay_TIM_2_Callback	24	static
+../src/delay.c:49:5:runInterval	16	static
+../src/delay.c:53:5:runTimeout	16	static
+../src/delay.c:57:5:runIntervalUntil	24	static
+../src/delay.c:62:5:runIntervalAux	24	static
+../src/delay.c:66:5:runTimeoutAux	24	static
+../src/delay.c:70:5:runIntervalUntilAux	24	static
+../src/delay.c:74:12:getNullRun	48	static
+../src/delay.c:84:6:clearRun	24	static
+../src/delay.c:101:6:removeRunFromList	56	static,ignoring_inline_asm
+../src/delay.c:119:5:queueRun	56	static,ignoring_inline_asm

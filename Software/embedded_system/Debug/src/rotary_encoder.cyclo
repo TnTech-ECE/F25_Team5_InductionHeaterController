@@ -1,0 +1,7 @@
+../src/rotary_encoder.c:16:5:sign	3
+../src/rotary_encoder.c:32:6:onRotateTimeoutCallback	18
+../src/rotary_encoder.c:135:6:runRotateTimeout	3
+../src/rotary_encoder.c:143:6:onRotate	5
+../src/rotary_encoder.c:158:6:onWrap	1
+../src/rotary_encoder.c:163:6:onRotaryPressTimeoutCallback	1
+../src/rotary_encoder.c:169:6:onRotaryPress	2

@@ -1,0 +1,6 @@
+../src/run.c:29:6:saveSD	1
+../src/run.c:33:6:logSD	1
+../src/run.c:44:6:keyStateChangeCallback	2
+../src/run.c:57:6:unsubscribeTest	1
+../src/run.c:61:6:setupTempAmp	1
+../src/run.c:71:6:run	4

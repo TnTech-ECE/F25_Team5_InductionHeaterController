@@ -1,0 +1,50 @@
+Date : 2026-03-26 15:39:10
+Directory : c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src
+Total : 25 files,  2566 codes, 299 comments, 243 blanks, all 3108 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C        |         20 |      2,328 |        270 |        211 |      2,809 |
+| C++      |          5 |        238 |         29 |         32 |        299 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                            | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                               |         25 |      2,566 |        299 |        243 |      3,108 |
++---------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                                        | language | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\PID.c                 | C        |         62 |         15 |         13 |         90 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\PID.h                 | C++      |          5 |          0 |          0 |          5 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\delay.c               | C        |        136 |          2 |          3 |        141 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\delay.h               | C        |         25 |         10 |          7 |         42 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\flow_sensor.c         | C        |         30 |          0 |          2 |         32 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\flow_sensor.h         | C        |          5 |          6 |          2 |         13 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\keypad.c              | C        |        322 |          4 |         23 |        349 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\keypad.h              | C        |         19 |          6 |          6 |         31 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\lcd.c                 | C        |        488 |         75 |         33 |        596 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\lcd.h                 | C        |         29 |          6 |          5 |         40 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\lcd_instruction_set.h | C++      |         34 |          6 |          2 |         42 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\lcd_ui.c              | C        |        584 |         24 |         29 |        637 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\lcd_ui.h              | C++      |         23 |          0 |          1 |         24 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\max31856.c            | C        |        160 |         24 |         26 |        210 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\max31856.h            | C++      |        165 |         11 |         26 |        202 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\max6675.c             | C        |         34 |          1 |          5 |         40 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\max6675.h             | C        |         19 |          1 |          7 |         27 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\pwm.c                 | C        |         82 |         25 |         15 |        122 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\pwm.h                 | C++      |         11 |         12 |          3 |         26 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\rotary_encoder.c      | C        |        131 |          8 |          7 |        146 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\rotary_encoder.h      | C        |          7 |          6 |          4 |         17 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\run.c                 | C        |         97 |         29 |          8 |        134 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\run.h                 | C        |         11 |          6 |          2 |         19 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\save.c                | C        |         63 |         14 |          8 |         85 |
+| c:\Users\mrpat\OneDrive\Documents\Github\F25_Team5_InductionHeaterController\Software\embedded_system\src\save.h                | C        |         24 |          8 |          6 |         38 |
+| Total                                                                                                                           |          |      2,566 |        299 |        243 |      3,108 |
++---------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
