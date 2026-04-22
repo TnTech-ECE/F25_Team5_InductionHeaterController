@@ -66,7 +66,7 @@ The [Conceptual Design](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterC
 
 The Detailed Design of the individual subsystems goes into more detail and includes relevant documentation, circuit design, and analysis for the individual subsystems. 
 1. [Power Substem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Power%20System/Detailed%20Design-Power%20System.md)
-2. Embedded Subsystem 
+2. [Embedded Subsystem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Detailed%20Design%20Embedded.md)
 3. [Safety and Protections Subsystem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Detailed%20Design%20Safety%20and%20Protections.md)
 4. [Heat Generation Subsystem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Detailed%20Design%20Heat%20Generation.md)
 5. [PCB Subsystem](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Detailed_Design_PCB.md)
@@ -87,6 +87,6 @@ The [3D Models](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterControlle
 
 ### [Software](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Software)
 
-The [Editing Tools](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/Detailed-Design-Embedded/Software/editing_tools) was created to make organizing references in IEEE format easier. 
+The [Editing Tools](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Software/editing_tools) was created to make organizing references in IEEE format easier. 
 
-The [Embedded System](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/Detailed-Design-Embedded/Software/embedded_system) contains the necessary initializations to make the NUCLEO-L476RG work, and the code used for the project to control the system can be found in the [src](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/Detailed-Design-Embedded/Software/embedded_system/src). 
+The [Emdedded System Folder](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Software/embedded_system) contains the necessary initializations to make the NUCLEO-L476RG work, and the code used for the project to control the system can be found in the [src](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Software/embedded_system/src). 
