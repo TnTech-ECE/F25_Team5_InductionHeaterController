@@ -83,6 +83,8 @@ The Final Presentation is the presentation presented before the Industrial Advis
 
 The [Meeting Minutes](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Documentation/Meeting%20Minutes) contains a weekly progress update of the team's progress and challenges. 
 
+The [3D Models](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Documentation/3D%20Models) contains a 3D model of the PCB. 
+
 ### [Software](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/main/Software)
 
 The [Editing Tools](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/tree/Detailed-Design-Embedded/Software/editing_tools) was created to make organizing references in IEEE format easier. 
