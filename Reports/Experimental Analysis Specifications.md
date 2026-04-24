@@ -131,3 +131,13 @@ When you have complete all of the experiments: clearly summarize whether your ex
 ## Statement of Contributions
 
 Each team member must contribute meaningfully to the experimental analysis and document their contributions clearly in this section. Contributions should be recorded individually, and one team member may not document contributions on behalf of another. Each team member must clearly outline their involvement in experiment design, execution, data analysis, and reporting. By submitting this report, the team collectively certifies the accuracy and completeness of each member's stated contributions.
+
+## Introduction
+The goal of this experimental analysis is to evaluate how well the induction heater controller meets its critical specifications, safety constraints, and measures of success. This report documents the design, execution, and results of experiments intended to validate the system's ability to safely and accurately heat metal piping while providing real-time data feedback.
+
+## Experimental Design and Procedure
+
+### Experiment 1 - Safety Subsystem
+  - **Purpose**: Validate that hardware and software safety mechanisms successfully trigger a latched fault state during abnormal conditions.
+  - **Procedure:**
+    - 1. 
