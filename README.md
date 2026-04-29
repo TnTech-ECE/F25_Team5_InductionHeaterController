@@ -77,7 +77,7 @@ The [Capstone Final Presentation](https://github.com/TnTech-ECE/F25_Team5_Induct
 
 The Experimental Analysis shows the results of our prototype.  
 
-The Poster is a quick summary of our project to the public. 
+The [Poster](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Capstone_Poster.pdf) is a quick summary of our project to the public. 
 
 The Final Presentation is the presentation presented before the Industrial Advisory Board. 
 
