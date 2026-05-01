@@ -80,7 +80,7 @@ The Detailed Design of the individual subsystems goes into more detail and inclu
 
 The [Capstone Final Presentation](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Capstone%20Final%20Presentation%20%20(1).pptx) is the final presentation given at the end of Capstone 1 explaining our susbsytems. 
 
-The Experimental Analysis shows the results of our prototype.  
+The [Experimental Analysis](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Experimental%20Analysis.md) shows the results of our prototype.  
 
 The [Poster](https://github.com/TnTech-ECE/F25_Team5_InductionHeaterController/blob/main/Reports/Capstone_Poster.pdf) is a quick summary of our project to the public. 
 
