@@ -141,3 +141,7 @@ The goal of this experimental analysis is to evaluate how well the induction hea
   - **Purpose**: Validate that hardware and software safety mechanisms successfully trigger a latched fault state during abnormal conditions.
   - **Procedure:**
     - 1. 
+
+
+## Documenting and Part Tracking
+
