@@ -32,7 +32,9 @@ date the success of the heating.
 
 <img width="546" height="477" alt="image" src="https://github.com/user-attachments/assets/c390a4f8-ff3e-49da-9b36-d5f90274cfe9" />
 
-Demonstration video: https://youtu.be/rrp729hMLYU
+Demonstration videos:
+1. Power: https://youtu.be/rrp729hMLYU
+2. Embedded: https://youtu.be/yX66gHbpfUQ
 
 ## About Us
 
