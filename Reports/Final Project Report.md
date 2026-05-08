@@ -1,3 +1,8 @@
+---
+id: final-project-report
+class: final-project-report
+---
+
 # Table of Contents
 1. [Project Proposal](#1-project-proposal)
 2. [Conceptual Design](#2-conceptual-design)
@@ -940,41 +945,45 @@ This Section will detail ALL of the necessary information to acquire all compone
 
 
 
-| Components         | Manufacturer |  Part#      | Distributor | Dist. Part# | Qty. | Price |  Link |
-| ------------------ | ------------ | ----------- | ----------- | ---------- | ---- | ----   | ----- |           
-| FB1                |  Panjit      | GBJ3510     | Mouser Electronics | 241-GBJ3510_T0_00601 |1| $2.27 |[mouser.com](https://www.mouser.com/c/semiconductors/discrete-semiconductors/diodes-rectifiers/bridge-rectifiers/?q=GBJ3510 )|       
-| Q1,Q2,Q3,Q4        |  ROHM        | RGW80TS65DGC13 | Mouser Electronics | 755-RGW80TS65DGC13 |4|$6.24 | [mouser.com](https://www.mouser.com/ProductDetail/ROHM-Semiconductor/RGW80TS65DGC13?qs=dbcCsuKDzFUOUanxGPiR5w%3D%3D)|
-| G1,G2,G3,G4        | Texas Instruments | UCC21750 | Mouser Electronics |595-UCC21750DWR |4 | $4.55|[mouser.com](https://www.mouser.com/ProductDetail/Texas-Instruments/UCC21750DWR?qs=2WXlatMagcGW8IDFLYjShA%3D%3D )|                                                         
-| U1,U2,U3,U4  | MURATA | MGJ2D151505SC | Mouser Electronics |580-MGJ2D151505SC| 4 |$8.46 |[mouser.com](https://www.mouser.com/ProductDetail/Murata-Power-Solutions/MGJ2D151505SC?qs=xLDY6iXSiQYIfXYEkf8RzA%3D%3D )|          
-|MPM-10-15| MEAN WELL| MPM-10-15 | Mouser Electronics| 709-MPM10-15|  1 | $10.10| [mouser.com](https://www.mouser.com/ProductDetail/MEAN-WELL/MPM-10-15?qs=xhbEVWpZdWesTikav2ic2A%3D%3D)|                             
-| U6  | Microchip Technology |  MIC5219-5.0YMM  | Mouser Electronics | 998-MIC5219-5.0YMM | 1 | $1.56|[mouser.com](https://www.mouser.com/ProductDetail/Microchip-Technology/MIC5219-5.0YMM?qs=kh6iOki%2FeLGcAZQ4JCOeow%3D%3D)|    
-| C1 | KEMET| R46KN410045N1K | Mouser Electronics     |    80-R46KN410045N1K |1|$1.47|[mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN410045N1K?qs=sGAEpiMZZMsh%252B1woXyUXj4OxC4raikkmeB%2FwhDzdQF8%3D)|                         
-| C2,C3 | KEMET| R46KN347000S0K | Mouser Electronics|  80-R46KN347000S0K |2 |$3.36 |[mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN347000S0K?qs=zsw%2FKduBDDCxrxFscGQ5uQ%3D%3D)|        
-| C49 |EPCOS - TDK Electronics|B32676E6205K000 |  Digikey|495-2967-ND | 1  |$3.49| [digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32676E6205K000/1277731?s=N4IgTCBcDaIEIGYwDYDsyCiywAYCsA0jsSALoC%2BQA )|    
-| C53,C56 |Panasonic Electronic Components| ECW-FE2J104PD| Digikey |P124888-ND |2 |$1.48 | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECW-FE2J104PD/10292125?gclid=52232bb22e4e1d00d749429b369ded47&gclsrc=3p.ds&msclkid=52232bb22e4e1d00d749429b369ded47)|  
-|  C4_Bank | Vishay / Sprague | TVA1703| Mouser Electronics |75-TVA1703 | 1 | $7.81 | [mouser.com](https://www.mouser.com/ProductDetail/Vishay-Sprague/TVA1703?qs=Jc0vmPlqnSzO64EtNsmyOw%3D%3D)| 
-| C52| Nichicon | UVR2WR47MPD1TA |Mouser Electronics |647-UVR2WR47MPD1TA |1 |$0.27 |[mouser.com](https://www.mouser.com/ProductDetail/Nichicon/UVR2WR47MPD1TA?qs=sGAEpiMZZMvwFf0viD3Y3bXvgfG2gej7dC5wqpdmRvg7M7%252BgfNUw5Q%3D%3D )| 
-|C_resonant_bank |WIMA |MKP10-.22/630/5P22  | Mouser Electronics |505-MKP10-.226305P22 |4 |$1.88 |[mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D&mgh=1&utm_source=chatgpt.com)|         
-|R1  | YAGEO |   RSF50SJT-52-330K|  Mouser Electronics|603-RSF50SJT-52-330K |1 |$0.18 |[mouser.com](https://www.mouser.com/ProductDetail/YAGEO/RSF50SJT-52-330K?qs=sGAEpiMZZMtlubZbdhIBIMMVXX%252BgggzkwMlyWq3j6Pk%3D )|  
-| R9 |  Bourns  | 3362U-1-504RLF  | Mouser Electronics |652-3362U-1-504RLF |1 |$2.05 |[mouser.com](https://www.mouser.com/ProductDetail/Bourns/3362U-1-504RLF?qs=sGAEpiMZZMtlubZbdhIBIAQM2Qjzi%2FAyAEPNZgNnw3U%3D )|
-| R22 | Bourns | PV32H105A01B00| Mouser Electronics | 81-PV32H105A01B00 |1 |$2.59|[mouser.com](https://www.mouser.com/ProductDetail/Bourns/PV32H105A01B00?qs=sGAEpiMZZMtlubZbdhIBIIiZvkqlAA9uzG1McxUFrHs%3D )|
-|EMI_Choke| KEMET |SC-30-E100 | Digikey|399-SC-30-E100-ND |1 |$15.13 |[digikey.com](https://www.digikey.com/en/products/detail/kemet/SC-30-E100/10385065 )|
-|C44,C46,C50,C48,C69,C64,C66,C71,C6,C8,C10,C12,C28,C30,C32,C33,C36,C37,C40,C41,C75|Murata Electronics |RDER71E104K0P1H03B|Digikey| 490-8809-ND| 20 | $5.40 |[digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/RDER71E104K0P1H03B/4770964?s=N4IgTCBcDaIEoBECicDsBGJ6AMAWA0tgAroAS2AzAEIAEIAugL5A )| 
-| C56,C51,C72,C67 |TDK Corporation|FG18X7R1E105KRT06  | Digikey|445-173261-1-ND - Cut Tape (CT) |4 | $1.20 |[digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X7R1E105KRT06/5802875)| 
-|C29,C31,C34,C35,C38,C39,C42,C43,C13,C11,C9,C7,C23,C24,C4,C21,C65 | Panasonic Electronic Components|ECA-1EM100|Digikey| P5148-ND|18 | $2.61 |[digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECA-1EM100/245007?s=N4IgTCBcDaIKIGECChEAgIxwLJoAw5ALoC%2BQA )|    
-| C19 |KEMET  |C322C471K3G5TA |Digikey|399-C322C471K3G5TA-ND |1 |$0.38|[digikey.com](https://www.digikey.com/en/products/detail/kemet/C322C471K3G5TA/6656585 )|
-| C20,C22 |TDK Corporation |FG18X5R1E225KRT06|Digikey|445-173253-1-ND - Cut Tape (CT) |2 |$0.64|[digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X5R1E225KRT06/5802867 )|
-| R6,R18,R23,R26,R27,R20,R35,R38,R39,R41,R44,R45,R46,R47,R48,R49 | Stackpole Electronics Inc|CF14JT10K0|Digikey|CF14JT10K0CT-ND|16 |$0.50|[digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265)|
-| L1 | Pulse Electronics | BFSI001211094R7M05 | Digikey | 553-BFSI001211094R7M05CT-ND - Cut Tape (CT) | 1 | $1.27 | [digikey.com](https://www.digikey.com/en/products/detail/pulse-electronics/BFSI001211094R7M05/16510826)  |
-| C74 |KEMET |F861DU225M310R | Digikey |399-F861DU225M310RCT-ND |1 |$2.62 |[digikey.com](https://www.digikey.com/en/products/detail/kemet/F861DU225M310R/18144023) |
-| PS1|Mornsun America, LLC |LDE60-20B12 |Digikey |2725-LDE60-20B12-ND |1 |$8.86 |[digikey.com](https://www.digikey.com/en/products/detail/mornsun-america-llc/LDE60-20B12/13168172?s=N4IgTCBcDaIDIBECiA2ADAWjGgQgRggF0BfIA) |
-|R8 |Ohmite |WNE5R0FET |Digikey |WNE5R0FETCT-ND |1 |$2.27 |[digikey.com](https://www.digikey.com/en/products/detail/ohmite/WNE5R0FET/3114558) |
-|C70 |EPCOS - TDK Electronics |B32922C3224M289 |Digikey |495-B32922C3224M289CT-ND |1 |$0.59 |[digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32922C3224M289/2504694) |
-|R2,R24,R42,R36 |Stackpole Electronics Inc |CF12JT10R0 |Digikey |CF12JT10R0CT-ND |4 | $0.10 |[digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF12JT10R0/1741018) |
-|R43,R37,R4,R25|Ohmite |WHA5R0FET |Digikey |WHA5R0FECT-ND |4 |1.85 |[digikey.com](https://www.digikey.com/en/products/detail/ohmite/WHA5R0FET/678818) |
-|F1,F2 |OptiFuse |FSC-18A |Digikey |2298-FSC-18A-ND |2 |$0.88 |[Digikey.com](https://www.digikey.com/en/products/detail/optifuse/FSC-18A/12089887) |
-|-------------------|--------------|------------------|-------------|-----------|-------|-------|--------------|
-|Total: $174.30 |
+<div class="table-bom">
+
+| Components                                                                        | Manufacturer                    | Part#              | Distributor        | Dist. Part#                                 | Qty.    | Price   | Link                                                                                                                                                                                                          |
+| --------------------------------------------------------------------------------- | ------------------------------- | ------------------ | ------------------ | ------------------------------------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FB1                                                                               | Panjit                          | GBJ3510            | Mouser Electronics | 241-GBJ3510_T0_00601                        | 1       | $2.27   | [mouser.com](https://www.mouser.com/c/semiconductors/discrete-semiconductors/diodes-rectifiers/bridge-rectifiers/?q=GBJ3510 )                                                                                 |
+| Q1,Q2,Q3,Q4                                                                       | ROHM                            | RGW80TS65DGC13     | Mouser Electronics | 755-RGW80TS65DGC13                          | 4       | $6.24   | [mouser.com](https://www.mouser.com/ProductDetail/ROHM-Semiconductor/RGW80TS65DGC13?qs=dbcCsuKDzFUOUanxGPiR5w%3D%3D)                                                                                          |
+| G1,G2,G3,G4                                                                       | Texas Instruments               | UCC21750           | Mouser Electronics | 595-UCC21750DWR                             | 4       | $4.55   | [mouser.com](https://www.mouser.com/ProductDetail/Texas-Instruments/UCC21750DWR?qs=2WXlatMagcGW8IDFLYjShA%3D%3D )                                                                                             |
+| U1,U2,U3,U4                                                                       | MURATA                          | MGJ2D151505SC      | Mouser Electronics | 580-MGJ2D151505SC                           | 4       | $8.46   | [mouser.com](https://www.mouser.com/ProductDetail/Murata-Power-Solutions/MGJ2D151505SC?qs=xLDY6iXSiQYIfXYEkf8RzA%3D%3D )                                                                                      |
+| MPM-10-15                                                                         | MEAN WELL                       | MPM-10-15          | Mouser Electronics | 709-MPM10-15                                | 1       | $10.10  | [mouser.com](https://www.mouser.com/ProductDetail/MEAN-WELL/MPM-10-15?qs=xhbEVWpZdWesTikav2ic2A%3D%3D)                                                                                                        |
+| U6                                                                                | Microchip Technology            | MIC5219-5.0YMM     | Mouser Electronics | 998-MIC5219-5.0YMM                          | 1       | $1.56   | [mouser.com](https://www.mouser.com/ProductDetail/Microchip-Technology/MIC5219-5.0YMM?qs=kh6iOki%2FeLGcAZQ4JCOeow%3D%3D)                                                                                      |
+| C1                                                                                | KEMET                           | R46KN410045N1K     | Mouser Electronics | 80-R46KN410045N1K                           | 1       | $1.47   | [mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN410045N1K?qs=sGAEpiMZZMsh%252B1woXyUXj4OxC4raikkmeB%2FwhDzdQF8%3D)                                                                               |
+| C2,C3                                                                             | KEMET                           | R46KN347000S0K     | Mouser Electronics | 80-R46KN347000S0K                           | 2       | $3.36   | [mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN347000S0K?qs=zsw%2FKduBDDCxrxFscGQ5uQ%3D%3D)                                                                                                     |
+| C49                                                                               | EPCOS - TDK Electronics         | B32676E6205K000    | Digikey            | 495-2967-ND                                 | 1       | $3.49   | [digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32676E6205K000/1277731?s=N4IgTCBcDaIEIGYwDYDsyCiywAYCsA0jsSALoC%2BQA )                                                        |
+| C53,C56                                                                           | Panasonic Electronic Components | ECW-FE2J104PD      | Digikey            | P124888-ND                                  | 2       | $1.48   | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECW-FE2J104PD/10292125?gclid=52232bb22e4e1d00d749429b369ded47&gclsrc=3p.ds&msclkid=52232bb22e4e1d00d749429b369ded47) |
+| C4_Bank                                                                           | Vishay / Sprague                | TVA1703            | Mouser Electronics | 75-TVA1703                                  | 1       | $7.81   | [mouser.com](https://www.mouser.com/ProductDetail/Vishay-Sprague/TVA1703?qs=Jc0vmPlqnSzO64EtNsmyOw%3D%3D)                                                                                                     |
+| C52                                                                               | Nichicon                        | UVR2WR47MPD1TA     | Mouser Electronics | 647-UVR2WR47MPD1TA                          | 1       | $0.27   | [mouser.com](https://www.mouser.com/ProductDetail/Nichicon/UVR2WR47MPD1TA?qs=sGAEpiMZZMvwFf0viD3Y3bXvgfG2gej7dC5wqpdmRvg7M7%252BgfNUw5Q%3D%3D )                                                               |
+| C_resonant_bank                                                                   | WIMA                            | MKP10-.22/630/5P22 | Mouser Electronics | 505-MKP10-.226305P22                        | 4       | $1.88   | [mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D&mgh=1&utm_source=chatgpt.com)                                                                    |
+| R1                                                                                | YAGEO                           | RSF50SJT-52-330K   | Mouser Electronics | 603-RSF50SJT-52-330K                        | 1       | $0.18   | [mouser.com](https://www.mouser.com/ProductDetail/YAGEO/RSF50SJT-52-330K?qs=sGAEpiMZZMtlubZbdhIBIMMVXX%252BgggzkwMlyWq3j6Pk%3D )                                                                              |
+| R9                                                                                | Bourns                          | 3362U-1-504RLF     | Mouser Electronics | 652-3362U-1-504RLF                          | 1       | $2.05   | [mouser.com](https://www.mouser.com/ProductDetail/Bourns/3362U-1-504RLF?qs=sGAEpiMZZMtlubZbdhIBIAQM2Qjzi%2FAyAEPNZgNnw3U%3D )                                                                                 |
+| R22                                                                               | Bourns                          | PV32H105A01B00     | Mouser Electronics | 81-PV32H105A01B00                           | 1       | $2.59   | [mouser.com](https://www.mouser.com/ProductDetail/Bourns/PV32H105A01B00?qs=sGAEpiMZZMtlubZbdhIBIIiZvkqlAA9uzG1McxUFrHs%3D )                                                                                   |
+| EMI_Choke                                                                         | KEMET                           | SC-30-E100         | Digikey            | 399-SC-30-E100-ND                           | 1       | $15.13  | [digikey.com](https://www.digikey.com/en/products/detail/kemet/SC-30-E100/10385065 )                                                                                                                          |
+| C44,C46,C50,C48,C69,C64,C66,C71,C6,C8,C10,C12,C28,C30,C32,C33,C36,C37,C40,C41,C75 | Murata Electronics              | RDER71E104K0P1H03B | Digikey            | 490-8809-ND                                 | 20      | $5.40   | [digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/RDER71E104K0P1H03B/4770964?s=N4IgTCBcDaIEoBECicDsBGJ6AMAWA0tgAroAS2AzAEIAEIAugL5A )                                               |
+| C56,C51,C72,C67                                                                   | TDK Corporation                 | FG18X7R1E105KRT06  | Digikey            | 445-173261-1-ND - Cut Tape (CT)             | 4       | $1.20   | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X7R1E105KRT06/5802875)                                                                                                           |
+| C29,C31,C34,C35,C38,C39,C42,C43,C13,C11,C9,C7,C23,C24,C4,C21,C65                  | Panasonic Electronic Components | ECA-1EM100         | Digikey            | P5148-ND                                    | 18      | $2.61   | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECA-1EM100/245007?s=N4IgTCBcDaIKIGECChEAgIxwLJoAw5ALoC%2BQA )                                                        |
+| C19                                                                               | KEMET                           | C322C471K3G5TA     | Digikey            | 399-C322C471K3G5TA-ND                       | 1       | $0.38   | [digikey.com](https://www.digikey.com/en/products/detail/kemet/C322C471K3G5TA/6656585 )                                                                                                                       |
+| C20,C22                                                                           | TDK Corporation                 | FG18X5R1E225KRT06  | Digikey            | 445-173253-1-ND - Cut Tape (CT)             | 2       | $0.64   | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X5R1E225KRT06/5802867 )                                                                                                          |
+| R6,R18,R23,R26,R27,R20,R35,R38,R39,R41,R44,R45,R46,R47,R48,R49                    | Stackpole Electronics Inc       | CF14JT10K0         | Digikey            | CF14JT10K0CT-ND                             | 16      | $0.50   | [digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265)                                                                                                        |
+| L1                                                                                | Pulse Electronics               | BFSI001211094R7M05 | Digikey            | 553-BFSI001211094R7M05CT-ND - Cut Tape (CT) | 1       | $1.27   | [digikey.com](https://www.digikey.com/en/products/detail/pulse-electronics/BFSI001211094R7M05/16510826)                                                                                                       |
+| C74                                                                               | KEMET                           | F861DU225M310R     | Digikey            | 399-F861DU225M310RCT-ND                     | 1       | $2.62   | [digikey.com](https://www.digikey.com/en/products/detail/kemet/F861DU225M310R/18144023)                                                                                                                       |
+| PS1                                                                               | Mornsun America, LLC            | LDE60-20B12        | Digikey            | 2725-LDE60-20B12-ND                         | 1       | $8.86   | [digikey.com](https://www.digikey.com/en/products/detail/mornsun-america-llc/LDE60-20B12/13168172?s=N4IgTCBcDaIDIBECiA2ADAWjGgQgRggF0BfIA)                                                                    |
+| R8                                                                                | Ohmite                          | WNE5R0FET          | Digikey            | WNE5R0FETCT-ND                              | 1       | $2.27   | [digikey.com](https://www.digikey.com/en/products/detail/ohmite/WNE5R0FET/3114558)                                                                                                                            |
+| C70                                                                               | EPCOS - TDK Electronics         | B32922C3224M289    | Digikey            | 495-B32922C3224M289CT-ND                    | 1       | $0.59   | [digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32922C3224M289/2504694)                                                                                                       |
+| R2,R24,R42,R36                                                                    | Stackpole Electronics Inc       | CF12JT10R0         | Digikey            | CF12JT10R0CT-ND                             | 4       | $0.10   | [digikey.com](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF12JT10R0/1741018)                                                                                                        |
+| R43,R37,R4,R25                                                                    | Ohmite                          | WHA5R0FET          | Digikey            | WHA5R0FECT-ND                               | 4       | 1.85    | [digikey.com](https://www.digikey.com/en/products/detail/ohmite/WHA5R0FET/678818)                                                                                                                             |
+| F1,F2                                                                             | OptiFuse                        | FSC-18A            | Digikey            | 2298-FSC-18A-ND                             | 2       | $0.88   | [Digikey.com](https://www.digikey.com/en/products/detail/optifuse/FSC-18A/12089887)                                                                                                                           |
+| -------------------                                                               | --------------                  | ------------------ | -------------      | -----------                                 | ------- | ------- | --------------                                                                                                                                                                                                |
+| Total: $174.30                                                                    |
+
+</div>
 
 
 
@@ -983,28 +992,28 @@ The power budget tables are here to note the normal operation maximums of the co
 
 Table 1:
 
-| Components          | Power Consumption (Watts) |        
-| ------------------ | ------------ | 
-| Fans x 2           | 6             |  
-| MCU                | 1             | 
-| Pipe Workpiece     | 1600          | 
-| Total              | 1607          |
+| Components     | Power Consumption (Watts) |
+| -------------- | ------------------------- |
+| Fans x 2       | 6                         |
+| MCU            | 1                         |
+| Pipe Workpiece | 1600                      |
+| Total          | 1607                      |
 
 
 
 Table 2 below details the estimated losses of the power subsystem.
 
-| Components          | Power Loss (Watts) |        
-| ------------------ | ------------ |
-| FB1                | 77            |
-| Q1,Q2,Q3,Q4        | 100           |
-| G1,G2,G3,G4        | 1.5           |  
-| U1,U2,U3,U4        | 0.25          |  
-| MPM-10-15          | 0.35          |   
-| U6                 |  1            |  
-| Bleed Resistors    |  1.5          |
-| Tank Coil Copper Loss |  20        |
-| Total              |  221.36       |
+| Components            | Power Loss (Watts) |
+| --------------------- | ------------------ |
+| FB1                   | 77                 |
+| Q1,Q2,Q3,Q4           | 100                |
+| G1,G2,G3,G4           | 1.5                |
+| U1,U2,U3,U4           | 0.25               |
+| MPM-10-15             | 0.35               |
+| U6                    | 1                  |
+| Bleed Resistors       | 1.5                |
+| Tank Coil Copper Loss | 20                 |
+| Total                 | 221.36             |
 
 
 Efficiency of system:   (Load_Power / Input_Power) * 100
@@ -1315,47 +1324,52 @@ The operational logic of the Safety and Protections Controls Subsystem is detail
 
 *The following Bill of Materials includes only the discrete components required to implement the safety and sensing circuits discussed above. Components from the main power board or driver sheets (UCC21750 drivers) are listed for reference.*
 
-| Component Name | Description | Manufacturer | Part Number | Distributor | Distributor P/N | Qty | Price (ea) | Total |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Desaturation Sensing (From Driver Sheet)** | | | | | | | | |
-| D2, D3, D4, D5 | Diode, Ultrafast, 600V, 1A | onsemi | `MUR160GOS-ND` | Digi-Key | `MUR160G` | 4 | $0.23 | $0.92 |
-| R5, R6, R7, R8 | Resistor, 10k $\Omega$, 1/4W | Yageo | `RC0603FR-0710KL` | Digi-Key | `13-RC0603FR-1075KLTR-ND` | 4 | $0.01 | $0.04 |
-| N/A | Cap, 100nF, 50V, X7R | Yageo | `CC0603KRX7R9BB104` | Digi-Key | `311-1344-2-ND` | 2 | $0.08 | $0.16 |
-| C1, C2, C3, C4| Cap, 220pF, 50V, X7R | Yageo | `C0603C104K5RACTU` | Digi-Key | `311-1344-2-ND` | 6 | $0.08 | $0.48 |
-| **Hardware Fault Latch** | | | | | | | | |
-| D1 | SCR, 600V, 800mA, 200µA Gate | onsemi | `MCR100-6G` | Digi-Key | `MCR100-6GOS-ND` | 1 | $0.34 | $0.34 |
-| R1, R2, R4 | Resistor, 10k $\Omega$, 1/4W | Yageo | `RC0603FR-0710KL` | Digi-Key | `13-RC0603FR-1075KLTR-ND` | 3 | $0.01 | $0.03 |
-| R3 | Resistor, 1k $\Omega$, 1/4W | Yageo | `RC0603FR-071KL` | Digi-Key | `13-RC0603FR-7W100RLTR-ND` | 1 | $0.01 | $0.01 |
-| SW_OFF | Switch, Toggle | CIT | `	ANT11SECQE` | Digi-Key | `2449-ANT11SECQE-ND` | 1 | $1.94 | $1.94 |
-| Disconnect | DBST Switch, Toggle | VCC | `		VTS-1-2Q4PPM-12SNN-0` | Digi-Key | `28-VTS-1-2Q4PPM-12SNN-0-ND` | 1 | $6.08 | $6.08 |
-| Q1 | Transistor, NPN, 40V, 200mA | onsemi | `2N3904BU` | Digi-Key | `2N3904BU-ND` | 1 | $0.28 | $0.28 |
-| **Heatsink Temp Sensor** | | | | | | | | |
-| U1 | Thermocouple Amp | Adafruit Industries LLC | `3263` | Digi-Key | `1528-1772-ND` | 1 | $17.50 | $17.50 |
-| TC1 | Thermocouple, K-Type, Bolt-On | McMASTER-CARR | `3648K24` | McMASTER-CARR | `3648K24` | 1 | $36.57 | $36.57 |
-| **Current Sensors** | | | | | | | | |
-| SEN-Current(1-2) | Current Sensor | LEM | `HO 15-NP` | Digi-Key | `398-1142-ND` | 2 | $11.35 | $22.70 |
-| N/A | Cap, 0.1uF | Yageo | `CC0603KRX7R9BB104` | Digi-Key | `311-1344-2-ND` | 6 | $0.08 | $0.48 |
-| **Flow Sensor** |See Embedded System |
-| **Enclosure** | | | | | | | | |
-| N/A | 10 AWG Grounding Wire (25ft) | Lowes | `5994007` | Lowes | `5994007` | 1 | $21.33 | $21.33 |
-| N/A | #10 Thread Internal Tooth Washer| Lowes | `453906` | Lowes | `453906` | 1 | $1.48 | $1.48 |
-| N/A | #10 Thread Flat Washer| Lowes | `336610` | Lowes | `336610 ` | 1 | $1.48 | $1.48 |
-| N/A | #10 Thread Stainless Steel Bolt (4)| Lowes | `214015` | Lowes | `214015` | 1 | $2.78 | $2.78 |
-| N/A | AC-428 | Bud Industries | `AC-428` | Digi-Key | `377-1031-ND` | 1 | $57.20 | $57.20 |
-| N/A | BPA-1598 - Bottom Plate to AC-428 | Bud Industries | `BPA-1598` | Digi-Key | `377-1054-ND` | 1 | $19.90 | $19.90 |
-| N/A | 510-6U - Aluminum Heatsink | Wakefield Thermal Solutions | `510-6U` | Digi-Key | `345-1200-ND` | 1 | $64.82 | $64.82 |
-| N/A | TC3-1G Thermal Paste | Chip Quik Inc. | `TC3-1G` | Digi-Key | `315-TC3-1G-ND` | 2 | $5.95 | $11.90   |
-| N/A | Insulating Shoulder Washer | Essentra Components | `MNI-M3-1.3` | Digi-Key | `MNI-M3-1.3-ND` | 5 | $0.304 | $1.52 |
-| N/A | Mica Insulator for IGBT Isolation | Aavid | `56-77-9G` | Mouser | `532-56-77-9G` | 6 | $0.75 | $4.5 |
-| N/A | Steel Pipe | Ferguson | `GBSPA106BD` | Ferguson | `GBSPA106BD` | 6ft | $3.29 | $19.74 |
-| N/A | Fan | Orion Fans | `OD6025-12HSS` | Digi-Key | `1053-1238-ND` | 2 | $7.93 | $15.86 |
-| N/A | Hose-Sink Adapter 3/4 to 3/4 | Lowes | `877063` | Lowes | `877063` | 1 | $6.94 | $6.94 |
-| N/A | Hose to Flow 3/4 to 1/2 Female to Female | Lowes | `877217` | Lowes | `877217` | 1 | $11.34 | $11.34 |
-| N/A | 1/2 to 1/2 Female to Female | Lowes | `877211` | Lowes | `877211` | 1 | $8.93 | $8.93 |
-| N/A | 1/2 to 3/4 F to M | Lowes | `877205` | Lowes | `877205` | 1 | $8.09 | $8.09 |
-| N/A | 15Ft Hose | Lowes | `2626706` | Lowes | `2626706` | 2 | $12.98 | $25.96 |
-| N/A | Plumbers Tape | Lowes | `456833` | Lowes | `456833` | 1 | $1.48 | $1.48 |
-| | | | | | **Subsystem Total:** | **$372.62** | |  |
+<div class="table-container table-bom">
+
+
+| Component Name                               | Description                              | Manufacturer                | Part Number              | Distributor   | Distributor P/N              | Qty         | Price (ea) | Total  |
+| :------------------------------------------- | :--------------------------------------- | :-------------------------- | :----------------------- | :------------ | :--------------------------- | :---------- | :--------- | :----- |
+| **Desaturation Sensing (From Driver Sheet)** |                                          |                             |                          |               |                              |             |            |        |
+| D2, D3, D4, D5                               | Diode, Ultrafast, 600V, 1A               | onsemi                      | `MUR160GOS-ND`           | Digi-Key      | `MUR160G`                    | 4           | $0.23      | $0.92  |
+| R5, R6, R7, R8                               | Resistor, 10k $\Omega$, 1/4W             | Yageo                       | `RC0603FR-0710KL`        | Digi-Key      | `13-RC0603FR-1075KLTR-ND`    | 4           | $0.01      | $0.04  |
+| N/A                                          | Cap, 100nF, 50V, X7R                     | Yageo                       | `CC0603KRX7R9BB104`      | Digi-Key      | `311-1344-2-ND`              | 2           | $0.08      | $0.16  |
+| C1, C2, C3, C4                               | Cap, 220pF, 50V, X7R                     | Yageo                       | `C0603C104K5RACTU`       | Digi-Key      | `311-1344-2-ND`              | 6           | $0.08      | $0.48  |
+| **Hardware Fault Latch**                     |                                          |                             |                          |               |                              |             |            |        |
+| D1                                           | SCR, 600V, 800mA, 200µA Gate             | onsemi                      | `MCR100-6G`              | Digi-Key      | `MCR100-6GOS-ND`             | 1           | $0.34      | $0.34  |
+| R1, R2, R4                                   | Resistor, 10k $\Omega$, 1/4W             | Yageo                       | `RC0603FR-0710KL`        | Digi-Key      | `13-RC0603FR-1075KLTR-ND`    | 3           | $0.01      | $0.03  |
+| R3                                           | Resistor, 1k $\Omega$, 1/4W              | Yageo                       | `RC0603FR-071KL`         | Digi-Key      | `13-RC0603FR-7W100RLTR-ND`   | 1           | $0.01      | $0.01  |
+| SW_OFF                                       | Switch, Toggle                           | CIT                         | `	ANT11SECQE`            | Digi-Key      | `2449-ANT11SECQE-ND`         | 1           | $1.94      | $1.94  |
+| Disconnect                                   | DBST Switch, Toggle                      | VCC                         | `		VTS-1-2Q4PPM-12SNN-0` | Digi-Key      | `28-VTS-1-2Q4PPM-12SNN-0-ND` | 1           | $6.08      | $6.08  |
+| Q1                                           | Transistor, NPN, 40V, 200mA              | onsemi                      | `2N3904BU`               | Digi-Key      | `2N3904BU-ND`                | 1           | $0.28      | $0.28  |
+| **Heatsink Temp Sensor**                     |                                          |                             |                          |               |                              |             |            |        |
+| U1                                           | Thermocouple Amp                         | Adafruit Industries LLC     | `3263`                   | Digi-Key      | `1528-1772-ND`               | 1           | $17.50     | $17.50 |
+| TC1                                          | Thermocouple, K-Type, Bolt-On            | McMASTER-CARR               | `3648K24`                | McMASTER-CARR | `3648K24`                    | 1           | $36.57     | $36.57 |
+| **Current Sensors**                          |                                          |                             |                          |               |                              |             |            |        |
+| SEN-Current(1-2)                             | Current Sensor                           | LEM                         | `HO 15-NP`               | Digi-Key      | `398-1142-ND`                | 2           | $11.35     | $22.70 |
+| N/A                                          | Cap, 0.1uF                               | Yageo                       | `CC0603KRX7R9BB104`      | Digi-Key      | `311-1344-2-ND`              | 6           | $0.08      | $0.48  |
+| **Flow Sensor**                              | See Embedded System                      |
+| **Enclosure**                                |                                          |                             |                          |               |                              |             |            |        |
+| N/A                                          | 10 AWG Grounding Wire (25ft)             | Lowes                       | `5994007`                | Lowes         | `5994007`                    | 1           | $21.33     | $21.33 |
+| N/A                                          | #10 Thread Internal Tooth Washer         | Lowes                       | `453906`                 | Lowes         | `453906`                     | 1           | $1.48      | $1.48  |
+| N/A                                          | #10 Thread Flat Washer                   | Lowes                       | `336610`                 | Lowes         | `336610 `                    | 1           | $1.48      | $1.48  |
+| N/A                                          | #10 Thread Stainless Steel Bolt (4)      | Lowes                       | `214015`                 | Lowes         | `214015`                     | 1           | $2.78      | $2.78  |
+| N/A                                          | AC-428                                   | Bud Industries              | `AC-428`                 | Digi-Key      | `377-1031-ND`                | 1           | $57.20     | $57.20 |
+| N/A                                          | BPA-1598 - Bottom Plate to AC-428        | Bud Industries              | `BPA-1598`               | Digi-Key      | `377-1054-ND`                | 1           | $19.90     | $19.90 |
+| N/A                                          | 510-6U - Aluminum Heatsink               | Wakefield Thermal Solutions | `510-6U`                 | Digi-Key      | `345-1200-ND`                | 1           | $64.82     | $64.82 |
+| N/A                                          | TC3-1G Thermal Paste                     | Chip Quik Inc.              | `TC3-1G`                 | Digi-Key      | `315-TC3-1G-ND`              | 2           | $5.95      | $11.90 |
+| N/A                                          | Insulating Shoulder Washer               | Essentra Components         | `MNI-M3-1.3`             | Digi-Key      | `MNI-M3-1.3-ND`              | 5           | $0.304     | $1.52  |
+| N/A                                          | Mica Insulator for IGBT Isolation        | Aavid                       | `56-77-9G`               | Mouser        | `532-56-77-9G`               | 6           | $0.75      | $4.5   |
+| N/A                                          | Steel Pipe                               | Ferguson                    | `GBSPA106BD`             | Ferguson      | `GBSPA106BD`                 | 6ft         | $3.29      | $19.74 |
+| N/A                                          | Fan                                      | Orion Fans                  | `OD6025-12HSS`           | Digi-Key      | `1053-1238-ND`               | 2           | $7.93      | $15.86 |
+| N/A                                          | Hose-Sink Adapter 3/4 to 3/4             | Lowes                       | `877063`                 | Lowes         | `877063`                     | 1           | $6.94      | $6.94  |
+| N/A                                          | Hose to Flow 3/4 to 1/2 Female to Female | Lowes                       | `877217`                 | Lowes         | `877217`                     | 1           | $11.34     | $11.34 |
+| N/A                                          | 1/2 to 1/2 Female to Female              | Lowes                       | `877211`                 | Lowes         | `877211`                     | 1           | $8.93      | $8.93  |
+| N/A                                          | 1/2 to 3/4 F to M                        | Lowes                       | `877205`                 | Lowes         | `877205`                     | 1           | $8.09      | $8.09  |
+| N/A                                          | 15Ft Hose                                | Lowes                       | `2626706`                | Lowes         | `2626706`                    | 2           | $12.98     | $25.96 |
+| N/A                                          | Plumbers Tape                            | Lowes                       | `456833`                 | Lowes         | `456833`                     | 1           | $1.48      | $1.48  |
+|                                              |                                          |                             |                          |               | **Subsystem Total:**         | **$372.62** |            |        |
+
+</div>
 
 ### Analysis
 The system employs a hybrid safety architecture; integrating a high-speed hardware latch with versatile software monitoring. This hybrid approach ensures protection against all identified failure modes, from slow thermal issues to catastrophic, microsecond-level component failures.
@@ -1548,15 +1562,15 @@ The 5 V supply to the microcontroller to power the board and supply voltage to c
 
 #### 3. Summary of Data Communication Methods
 
-| Interface / Signal Type | Direction | PCB | Method | Description |
-|-------------------------|-----------|-----|--------|-------------|
-| AC Main Power           | Input     | Power PCB | Hardwired | 240 VAC input to rectifier |
-| PWM Gate Signals        | Output    | Power PCB | Digital PWM | Controls IGBT switching |
-| Sensor Feedback (I, V, T) | Input   | Power PCB | Analog to ADC | Real-time measurements |
-| Fault Line              | Output    | Power PCB | Digital logic | Signals abnormal conditions |
-| LCD Control             | Output    | Terminal I/O | I2C / SPI | Sends display data |
-| User Input            | Input     | Terminal I/O |  GPIO | User command input |
-| Low-Voltage Power Rails | Both      | Both PCBs | Hardwired | 5 V distribution |
+| Interface / Signal Type   | Direction | PCB          | Method        | Description                 |
+| ------------------------- | --------- | ------------ | ------------- | --------------------------- |
+| AC Main Power             | Input     | Power PCB    | Hardwired     | 240 VAC input to rectifier  |
+| PWM Gate Signals          | Output    | Power PCB    | Digital PWM   | Controls IGBT switching     |
+| Sensor Feedback (I, V, T) | Input     | Power PCB    | Analog to ADC | Real-time measurements      |
+| Fault Line                | Output    | Power PCB    | Digital logic | Signals abnormal conditions |
+| LCD Control               | Output    | Terminal I/O | I2C / SPI     | Sends display data          |
+| User Input                | Input     | Terminal I/O | GPIO          | User command input          |
+| Low-Voltage Power Rails   | Both      | Both PCBs    | Hardwired     | 5 V distribution            |
 
 
 
@@ -1652,35 +1666,35 @@ This Block diagram gives a visual representation of how the set up of the two bo
  The  Terminal IO board is designed for a 4 layer stack up for the dedicated power, signal, and ground planes. The rough maximum board size is around 5 × 4 inches, with 1 oz copper on both the inside and outside layers fwith a 1.6mm thickness to help with strength and thermal management. Based on these specs, the estimated manufacturing cost from JLCPCB comes out to about **$47.38**.[8]
 
  **Terminal IO shield Board Components**
-| Components         | Manufacturer | Part#           | Distributor | Dist. Part#      | Qty. | Price | Link |
-| ------------------ | ------------ | --------------- | ----------- | ---------------- | ---- | ----- | ---- |
-| J1,J10,J13,J16     | Samtec       | SSW-110-06-G-S  | Digikey     | SSW-110-06-G-S-ND | 4   | $8.52   | [digikey.com](https://www.digikey.com/en/products/detail/samtec-inc/SSW-110-06-G-S/7877530)
-| J2,J5,J6,J9,J11,J12,J14,J15 | On Shore Technology | OSTVN10A150 | Digikey | ED10567-ND | 8 | $29.76 | [digikey.com](https://www.digikey.com/en/products/detail/on-shore-technology-inc/ostvn10a150/1588870) |
-| J3,J4              | Sullins Connector Solutions | PPPC202LFBN-RC | Digikey | S7123-ND | 2 | $3.92 | [digikey.com](https://www.digikey.com/en/products/detail/sullins-connector-solutions/pppc202lfbn-rc/810259) |
-| ------------------- | ------------ | --------------- | ----------- | ---------------- | ---- | ----- | ---- |
-| **Total:** | | | | | | **$42.20** | |
+| Components                  | Manufacturer                | Part#           | Distributor | Dist. Part#       | Qty. | Price      | Link                                                                                                        |
+| --------------------------- | --------------------------- | --------------- | ----------- | ----------------- | ---- | ---------- | ----------------------------------------------------------------------------------------------------------- |
+| J1,J10,J13,J16              | Samtec                      | SSW-110-06-G-S  | Digikey     | SSW-110-06-G-S-ND | 4    | $8.52      | [digikey.com](https://www.digikey.com/en/products/detail/samtec-inc/SSW-110-06-G-S/7877530)                 |
+| J2,J5,J6,J9,J11,J12,J14,J15 | On Shore Technology         | OSTVN10A150     | Digikey     | ED10567-ND        | 8    | $29.76     | [digikey.com](https://www.digikey.com/en/products/detail/on-shore-technology-inc/ostvn10a150/1588870)       |
+| J3,J4                       | Sullins Connector Solutions | PPPC202LFBN-RC  | Digikey     | S7123-ND          | 2    | $3.92      | [digikey.com](https://www.digikey.com/en/products/detail/sullins-connector-solutions/pppc202lfbn-rc/810259) |
+| -------------------         | ------------                | --------------- | ----------- | ----------------  | ---- | -----      | ----                                                                                                        |
+| **Total:**                  |                             |                 |             |                   |      | **$42.20** |                                                                                                             |
 
  The  Power board is designed for a 6 layer stack up for the dedicated power, signal, and ground planes. The rough maximum board size is around 12 × 12 inches, with 2 oz copper on both the inside and outside layers for a toal of 4oz of copper, aswell as 2mm thickness to help with strength and thermal management. there will also be edge plating to support EMC performance and grounding. Based on these specs, the estimated manufacturing cost from JLCPCB comes out to about **$376.46**.[8]
 
  **Power Board Components**
-| Components         | Manufacturer | Part#           | Distributor | Dist. Part#      | Qty. | Price | Link |
-| ------------------ | ------------ | --------------- | ----------- | ---------------- | ---- | ----- | ---- |
-| B1                 | KEMET        | SC-30-E100      | Digikey     | 399-SC-30-E100-ND | 1   | $15.13 | [digikey.com](https://www.digikey.com/en/products/detail/kemet/SC-30-E100/10385065) |
-| C1,C3,C5,C7,C9,C11,C13,C15,C17,C19,C21,C22,C28,C29,C30,C31,C36,C37,C38,C39, C57, C63, C69, C70, C71 | Murata Electronics | RDER71E104K0P1H03B | Digikey | 490-8809-ND | 20 | $6.00 | [digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/RDER71E104K0P1H03B/4770964) |
-| C2,C4,C6,C8,C10,C12,C14,C16,C18,C20,C23,C47,C48,C50,C55,C68, C49 | Panasonic Electronic Components | ECA-1EM100 | Digikey | P5148-ND | 16 | $2.33 | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECA-1EM100/245007) |
-| C24,C26,C32,C34    | TDK Corporation | FG18X7R1E105KRT06 | Digikey | 445-173261-1-ND | 4 | $1.20 | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X7R1E105KRT06/5802875) |
-| C25,C27,C33,C35    | ROHM Semiconductor | KTD250B107M80A0B00 | Mouser | 511-KTD250B107M80A0B00CT-ND | 4 | $46.60 | [mouser.com](https://www.mouser.com/ProductDetail/Chemi-Con/KTD250B107M80A0B00?qs=YQnJFR48xcDR2vQIc5p%2FHg%3D%3D&srsltid=AfmBOoqyxxk7kuU38xjR_rxIa0Q1O5qtc2bZE9aHthkMnr-nPpf-SEqL) |
-| C40,C41,C58,C59,C60,C61 | Panasonic Electronic Components | ECW-FE2J104PD | Digikey | P124888-ND | 6 | $0.89 | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECW-FE2J104PD/10292125) |
-| C42                | EPCOS - TDK Electronics | B32676E6205K000 | Digikey | 495-2967-ND | 1 | $3.49 | [digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32676E6205K000/1277731) |
-| C43                | Vishay / Sprague | TVA1703 | Mouser Electronics | 75-TVA1703 | 1 | $7.81 | [mouser.com](https://www.mouser.com/ProductDetail/Vishay-Sprague/TVA1703?qs=Jc0vmPlqnSzO64EtNsmyOw%3D%3D) |
-| C44,C45,C46        | Nichicon | UVR2WR47MPD1TA | Mouser Electronics | 647-UVR2WR47MPD1TA | 3 | $0.81 | [mouser.com](https://www.mouser.com/ProductDetail/Nichicon/UVR2WR47MPD1TA?qs=sGAEpiMZZMvwFf0viD3Y3bXvgfG2gej7dC5wqpdmRvg7M7%252BgfNUw5Q%3D%3D) |
-| C49                | Murata Electronics | RHS7J2H152J2M2H01A | Digikey | EF2225-ND | 1 | $1.01 | [mouser.com](https://www.mouser.com/ProductDetail/Murata-Electronics/RHS7J2H152J2M2H01A?qs=xhbEVWpZdWf0OAcKZ3HSkA%3D%3D) |
-| C51                | KEMET | ECQ-E2225KF | Digikey | 399-R60MF3220AA30KCT-ND | 1 | TBD | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECQ-E2225KF/56504?gclsrc=aw.ds&gad_source=1&gad_campaignid=120565755&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboHY70d4FeZLD8wrnPCVvqRdf6d-axy_DXUqKA9Gkq7ldYvKHpf8kIhoC-FUQAvD_BwE) |
-| C52                | KEMET | R46KI322050M1K | Mouser | 80-R46KI322050M1K
- | 1 | $0.92 | [Mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KI322050M1K?qs=D0iH%252BVFiYPNDy%252BpzFjt46g%3D%3D&srsltid=AfmBOornaXK3x8LsjX38B5_fvM7R6vKl9AuGBts-nAzb0jyb5uJ-Gc_O) |
-| C53,C62            | TDK Corporation | FG18X5R1E225KRT06 | Digikey | 445-173253-1-ND | 2 | $0.64 | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X5R1E225KRT06/5802867) |
-| C54                | KEMET | C322C471K3G5TA | Digikey | 399-C322C471K3G5TA-ND | 1 | $0.38 | [digikey.com](https://www.digikey.com/en/products/detail/kemet/C322C471K3G5TA/6656585) |
-| C56                | KEMET | R46KN410045N1K | Mouser | 80-R46KN410045N1K | 1 | $1.47 | [mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN410045N1K?qs=D0iH%252BVFiYPOpDN60Y4GCFA%3D%3D&srsltid=AfmBOorubpOkagTzxH3SXlWjrFuPFZxt4yWrAjUvWnKOd_3Cv_s6EwX6) |
+| Components                                                                                          | Manufacturer                    | Part#                                                                                                                                                                            | Distributor        | Dist. Part#                 | Qty. | Price  | Link                                                                                                                                                                                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | --------------------------- | ---- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| B1                                                                                                  | KEMET                           | SC-30-E100                                                                                                                                                                       | Digikey            | 399-SC-30-E100-ND           | 1    | $15.13 | [digikey.com](https://www.digikey.com/en/products/detail/kemet/SC-30-E100/10385065)                                                                                                                                                                                                                        |
+| C1,C3,C5,C7,C9,C11,C13,C15,C17,C19,C21,C22,C28,C29,C30,C31,C36,C37,C38,C39, C57, C63, C69, C70, C71 | Murata Electronics              | RDER71E104K0P1H03B                                                                                                                                                               | Digikey            | 490-8809-ND                 | 20   | $6.00  | [digikey.com](https://www.digikey.com/en/products/detail/murata-electronics/RDER71E104K0P1H03B/4770964)                                                                                                                                                                                                    |
+| C2,C4,C6,C8,C10,C12,C14,C16,C18,C20,C23,C47,C48,C50,C55,C68, C49                                    | Panasonic Electronic Components | ECA-1EM100                                                                                                                                                                       | Digikey            | P5148-ND                    | 16   | $2.33  | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECA-1EM100/245007)                                                                                                                                                                                                |
+| C24,C26,C32,C34                                                                                     | TDK Corporation                 | FG18X7R1E105KRT06                                                                                                                                                                | Digikey            | 445-173261-1-ND             | 4    | $1.20  | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X7R1E105KRT06/5802875)                                                                                                                                                                                                        |
+| C25,C27,C33,C35                                                                                     | ROHM Semiconductor              | KTD250B107M80A0B00                                                                                                                                                               | Mouser             | 511-KTD250B107M80A0B00CT-ND | 4    | $46.60 | [mouser.com](https://www.mouser.com/ProductDetail/Chemi-Con/KTD250B107M80A0B00?qs=YQnJFR48xcDR2vQIc5p%2FHg%3D%3D&srsltid=AfmBOoqyxxk7kuU38xjR_rxIa0Q1O5qtc2bZE9aHthkMnr-nPpf-SEqL)                                                                                                                         |
+| C40,C41,C58,C59,C60,C61                                                                             | Panasonic Electronic Components | ECW-FE2J104PD                                                                                                                                                                    | Digikey            | P124888-ND                  | 6    | $0.89  | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECW-FE2J104PD/10292125)                                                                                                                                                                                           |
+| C42                                                                                                 | EPCOS - TDK Electronics         | B32676E6205K000                                                                                                                                                                  | Digikey            | 495-2967-ND                 | 1    | $3.49  | [digikey.com](https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B32676E6205K000/1277731)                                                                                                                                                                                                    |
+| C43                                                                                                 | Vishay / Sprague                | TVA1703                                                                                                                                                                          | Mouser Electronics | 75-TVA1703                  | 1    | $7.81  | [mouser.com](https://www.mouser.com/ProductDetail/Vishay-Sprague/TVA1703?qs=Jc0vmPlqnSzO64EtNsmyOw%3D%3D)                                                                                                                                                                                                  |
+| C44,C45,C46                                                                                         | Nichicon                        | UVR2WR47MPD1TA                                                                                                                                                                   | Mouser Electronics | 647-UVR2WR47MPD1TA          | 3    | $0.81  | [mouser.com](https://www.mouser.com/ProductDetail/Nichicon/UVR2WR47MPD1TA?qs=sGAEpiMZZMvwFf0viD3Y3bXvgfG2gej7dC5wqpdmRvg7M7%252BgfNUw5Q%3D%3D)                                                                                                                                                             |
+| C49                                                                                                 | Murata Electronics              | RHS7J2H152J2M2H01A                                                                                                                                                               | Digikey            | EF2225-ND                   | 1    | $1.01  | [mouser.com](https://www.mouser.com/ProductDetail/Murata-Electronics/RHS7J2H152J2M2H01A?qs=xhbEVWpZdWf0OAcKZ3HSkA%3D%3D)                                                                                                                                                                                   |
+| C51                                                                                                 | KEMET                           | ECQ-E2225KF                                                                                                                                                                      | Digikey            | 399-R60MF3220AA30KCT-ND     | 1    | TBD    | [digikey.com](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ECQ-E2225KF/56504?gclsrc=aw.ds&gad_source=1&gad_campaignid=120565755&gbraid=0AAAAADrbLlhVFA4kdfKtYjLTu0_u02k_z&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboHY70d4FeZLD8wrnPCVvqRdf6d-axy_DXUqKA9Gkq7ldYvKHpf8kIhoC-FUQAvD_BwE) |
+| C52                                                                                                 | KEMET                           | R46KI322050M1K                                                                                                                                                                   | Mouser             | 80-R46KI322050M1K           |
+| 1                                                                                                   | $0.92                           | [Mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KI322050M1K?qs=D0iH%252BVFiYPNDy%252BpzFjt46g%3D%3D&srsltid=AfmBOornaXK3x8LsjX38B5_fvM7R6vKl9AuGBts-nAzb0jyb5uJ-Gc_O) |
+| C53,C62                                                                                             | TDK Corporation                 | FG18X5R1E225KRT06                                                                                                                                                                | Digikey            | 445-173253-1-ND             | 2    | $0.64  | [digikey.com](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X5R1E225KRT06/5802867)                                                                                                                                                                                                        |
+| C54                                                                                                 | KEMET                           | C322C471K3G5TA                                                                                                                                                                   | Digikey            | 399-C322C471K3G5TA-ND       | 1    | $0.38  | [digikey.com](https://www.digikey.com/en/products/detail/kemet/C322C471K3G5TA/6656585)                                                                                                                                                                                                                     |
+| C56                                                                                                 | KEMET                           | R46KN410045N1K                                                                                                                                                                   | Mouser             | 80-R46KN410045N1K           | 1    | $1.47  | [mouser.com](https://www.mouser.com/ProductDetail/KEMET/R46KN410045N1K?qs=D0iH%252BVFiYPOpDN60Y4GCFA%3D%3D&srsltid=AfmBOorubpOkagTzxH3SXlWjrFuPFZxt4yWrAjUvWnKOd_3Cv_s6EwX6)                                                                                                                               |
 
 | C64,C65,C66,C67    | WIMA | MKP10-.22/630/5P22 | Mouser Electronics | 505-MKP10-.226305P22 | 4 | $7.52 | [mouser.com](https://www.mouser.com/ProductDetail/WIMA/MKP10-22-630-5P22?qs=FsJ%2FjdNESOVRKe%2FLwIXG3Q%3D%3D) |
 | D6                 | Littelfuse | S4X8ES | Digikey | S4X8ES-ND | 1 | $0.82 | (https://www.digikey.com/en/products/detail/littelfuse-inc/S4X8ES/1212630) |
@@ -1931,12 +1945,12 @@ where:
 
 ### BOM
 
-| Component | Manufactuer | Part Number | Distrubutor | Distributor Part Number | Quantity | Price | Purchasing Website URL |
-| --------- | ----------- | ----------- | ----------- | ----------------------- | -------- | ----- | ---------------------- |
-| Surface Temp Thermocouple | Omega | KMQSS-062U-12 | Digikey | 5880-KMQSS-062U-12-ND | 1 | $72.24 | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840) |
-| Thermocouple Amplifier | Adafruit | 3263  | Digikey | 1528-1772-ND | 1 | $17.50 | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3263/6227009) |
-| Ceramic Cement | Rutland | 78 | Amazon | B000V4LTXC | 1 | $11.99 | [Link](https://www.amazon.com/Rutland-Stove-Gasket-Cement-Cartridge/dp/B000V4LTXC/ref=pd_bxgy_d_sccl_1/134-4821432-9170960?pd_rd_w=cU7Um&content-id=amzn1.sym.9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_p=9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_r=Y39JSRBEYQNH54AASQZK&pd_rd_wg=k0ZDf&pd_rd_r=f9976f11-6d41-48c8-9771-a0034455f62a&pd_rd_i=B000V4LTXC&th=1) |
-| Total Cost | N/A | N/A | N/A | N/A | N/A | $101.73 | N/A |
+| Component                 | Manufactuer | Part Number   | Distrubutor | Distributor Part Number | Quantity | Price   | Purchasing Website URL                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------- | ----------- | ------------- | ----------- | ----------------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Surface Temp Thermocouple | Omega       | KMQSS-062U-12 | Digikey     | 5880-KMQSS-062U-12-ND   | 1        | $72.24  | [Link](https://www.digikey.com/en/products/detail/omega/KMQSS-062U-12/25632840)                                                                                                                                                                                                                                                                                   |
+| Thermocouple Amplifier    | Adafruit    | 3263          | Digikey     | 1528-1772-ND            | 1        | $17.50  | [Link](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3263/6227009)                                                                                                                                                                                                                                                                           |
+| Ceramic Cement            | Rutland     | 78            | Amazon      | B000V4LTXC              | 1        | $11.99  | [Link](https://www.amazon.com/Rutland-Stove-Gasket-Cement-Cartridge/dp/B000V4LTXC/ref=pd_bxgy_d_sccl_1/134-4821432-9170960?pd_rd_w=cU7Um&content-id=amzn1.sym.9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_p=9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_r=Y39JSRBEYQNH54AASQZK&pd_rd_wg=k0ZDf&pd_rd_r=f9976f11-6d41-48c8-9771-a0034455f62a&pd_rd_i=B000V4LTXC&th=1) |
+| Total Cost                | N/A         | N/A           | N/A         | N/A                     | N/A      | $101.73 | N/A                                                                                                                                                                                                                                                                                                                                                               |
 
 
 The Embedded Subsystem includes the cost of the Nucleo and provides more detail about the nature of the connections between the Nucleo and the MAX31856. The Embedded Subsystem also includes the cost for shielded extension wire used for connecting the Nucleo and MAX31856 using terminal blocks.  
@@ -2421,10 +2435,10 @@ The goal of this experimental analysis is to evaluate how well the induction hea
      The accuracy was verified using an induction cooker as a heat source and a McMaster-Carr 3648K24 as a reference. Both were immersed in boiling water to test at a consistent 100°C.
   - **Results:**
 
-| Thermocouple    | Average Temp (C) | Error From 100C |
-| -------- | ------- | ------ |
-| Omega KMQSS-062U-12   | 100.227   |   0.23%     |
-| McMaster-Carr 3648K24 | 98.544   |   -1.46%     |
+| Thermocouple          | Average Temp (C) | Error From 100C |
+| --------------------- | ---------------- | --------------- |
+| Omega KMQSS-062U-12   | 100.227          | 0.23%           |
+| McMaster-Carr 3648K24 | 98.544           | -1.46%          |
   
   - **Conclusions:** The thermocouples were tested to ensure that they stay within the standard error of +-2C.
 
