@@ -89,10 +89,43 @@ void TIM1_8_start()
 	if (isPWMStarted)
 		return;
 	isPWMStarted = true;
+	// Switch pins to AF mode for PWM
+	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	// TIM1_CH2: PA9
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	GPIO_InitStruct.Pin = GPIO_PIN_9;
+	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	// TIM8_CH3: PC8
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+	GPIO_InitStruct.Pin = GPIO_PIN_8;
+	GPIO_InitStruct.Alternate = GPIO_AF3_TIM8;
+	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 	HAL_TIMEx_PWMN_Start(&htim8, TIM_CHANNEL_3);
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
+}
+void TIM1_8_setup()
+{
+	// Set PWM pins to GPIO output low to force comparators low
+	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	// TIM1_CH2: PA9
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	GPIO_InitStruct.Pin = GPIO_PIN_9;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+	// TIM8_CH3: PC8
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+	GPIO_InitStruct.Pin = GPIO_PIN_8;
+	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
 }
 void TIM1_8_stop()
 {
@@ -103,6 +136,21 @@ void TIM1_8_stop()
 	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
 	HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);
 	HAL_TIMEx_PWMN_Stop(&htim8, TIM_CHANNEL_3);
+	// Set PWM pins to GPIO output low to force comparators low
+	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	// TIM1_CH2: PA9
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	GPIO_InitStruct.Pin = GPIO_PIN_9;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+	// TIM8_CH3: PC8
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+	GPIO_InitStruct.Pin = GPIO_PIN_8;
+	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
 }
 // /**
 //  * @param frequency
@@ -131,6 +179,6 @@ void updateTIM1_8_PowerLevelWithStart(float frequency, float powerLevel)
 		TIM1_8_stop();
 		return;
 	}
-	TIM1_8_Update(frequency, 50.0f, 0.001, fmax(fmin(powerLevel, 100.0f), 0.0f) * 1.8);
 	TIM1_8_start();
+	TIM1_8_Update(frequency, 50.0f, 0.001, fmax(fmin(powerLevel, 100.0f), 0.0f) * 1.8);
 }

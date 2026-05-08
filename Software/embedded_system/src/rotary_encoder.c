@@ -28,10 +28,11 @@ static unsigned timeoutLast = UINT32_MAX;
 bool onRotateTimeout = false;
 #define ON_ROTATE_TIMEOUT_DELAY 100
 void runRotateTimeout(bool force);
-
+const bool dontRun = true;
 void onRotateTimeoutCallback(void *aux)
 {
-
+	if (dontRun)
+		return;
 	if (TIM3->CNT != timeoutLast)
 	{
 		long delta = ((long)TIM3->CNT - (long)timeoutLast);

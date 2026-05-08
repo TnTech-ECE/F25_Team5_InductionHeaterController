@@ -542,7 +542,7 @@ void DisplayDecimalWithPlaces(double num, int8_t line, int8_t position, uint8_t 
 			if (digitNext >= 5)
 				digit++;
 		}
-		LCD_WriteData(digit + '0');
+		LCD_WriteData(digit > 9 ? '9' : digit + '0');
 
 		if (j++ < maxDigits && i == 0)
 			LCD_WriteData('.');

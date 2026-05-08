@@ -33,6 +33,7 @@ enum DisplayMode
 	SetPID = 5,
 	DisplayFault = 6,
 	DisplayMessage = 7,
+	TestKeypad = 8,
 };
 typedef void MessageCallback(void *aux);
 
