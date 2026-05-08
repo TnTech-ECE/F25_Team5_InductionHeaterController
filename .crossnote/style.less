@@ -1,0 +1,68 @@
+@media screen {
+
+	#final-project-report,
+	body#final-project-report,
+	body.final-project-report,
+	.final-project-report,
+	#final-project-report.markdown-preview,
+	.final-project-report.markdown-preview,
+	#final-project-report .markdown-preview,
+	.final-project-report .markdown-preview,
+	#final-project-report .markdown-preview-view,
+	.final-project-report .markdown-preview-view,
+	#final-project-report .markdown-preview-wrapper,
+	.final-project-report .markdown-preview-wrapper,
+	#final-project-report .markdown-body,
+	.final-project-report .markdown-body,
+	#final-project-report #write,
+	.final-project-report #write {
+		background: white !important;
+	}
+
+	.markdown-preview,
+	.markdown-preview-view,
+	.markdown-preview-wrapper,
+	.markdown-body,
+	body {
+		background: white !important;
+	}
+
+	td,
+	th {
+		overflow-wrap: break-word;
+		/* Modern standard */
+		word-wrap: break-word;
+		/* Alias for older browser support */
+	}
+
+	table {
+		table-layout: fixed;
+		width: 80%;
+	}
+}
+
+@media print {
+	@page {
+		size: letter;
+	}
+
+	table {
+		table-layout: fixed;
+		width: 100%;
+		max-width: 100%;
+	}
+
+	td,
+	th {
+		word-break: break-word;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+	}
+
+	td code,
+	th code {
+		white-space: pre-wrap !important;
+		word-break: break-word !important;
+		overflow-wrap: break-word !important;
+	}
+}
