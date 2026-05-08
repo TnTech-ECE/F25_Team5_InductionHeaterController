@@ -24,4 +24,5 @@ void updateTIM1_8_PowerLevel(float frequency, float powerLevel);
 void updateTIM1_8_PowerLevelWithStart(float frequency, float powerLevel);
 void TIM1_8_Disable();
 void TIM1_8_Enable();
+void TIM1_8_setup();
 #endif // PWM_H_

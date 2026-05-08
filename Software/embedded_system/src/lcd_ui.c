@@ -5,6 +5,7 @@
 #include "./uis/set_number.h"
 #include "./uis/set_settings.h"
 #include "./uis/system_vitals.h"
+#include "./uis/test_keypad.h"
 enum DisplayMode displayMode = NoModeSet;
 
 bool displayLocked = false;
@@ -53,6 +54,7 @@ void modeStartStop(enum DisplayMode displayMode, bool startNotStop)
 	Clear_Display();
 	switch (displayMode)
 	{
+
 	case SystemVitals:
 	{
 		modeStartStopSystemVitals(startNotStop);
@@ -89,6 +91,11 @@ void modeStartStop(enum DisplayMode displayMode, bool startNotStop)
 		{
 			displayLocked = true;
 		}
+		break;
+	}
+	case TestKeypad:
+	{
+		modeStartStopTestKeypad(startNotStop);
 		break;
 	}
 	default:

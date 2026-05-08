@@ -56,3 +56,4 @@
 "./src/uis/set_pid.o"
 "./src/uis/set_settings.o"
 "./src/uis/system_vitals.o"
+"./src/uis/test_keypad.o"

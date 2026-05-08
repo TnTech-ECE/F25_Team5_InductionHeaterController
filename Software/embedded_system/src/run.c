@@ -83,11 +83,12 @@ void run()
 	lcd_init();
 	HAL_Delay(20); // Wait after init
 	startADC();
+	TIM1_8_setup();
 	// sd_send_initial_dummy_clocks();
 	setupTempAmp(&thermoSPI2);
 	setupTempAmp(&thermoSPI3);
-	max31856_setHighFaultTemp(&thermoSPI2, 98);
-	max31856_setHighFaultTemp(&thermoSPI3, 98);
+	max31856_setHighFaultTemp(&thermoSPI2, 95);
+	max31856_setHighFaultTemp(&thermoSPI3, 95);
 	// thermoSPI3 = tc_init(&hspi3, spi_cn3_GPIO_Port, spi_cn3_Pin);
 	//	int fr = sd_mount();
 	//	printf("sd_mount -> %d\r\n", fr);
@@ -99,12 +100,14 @@ void run()
 	// subscribeKeyStateChange(keyStateChangeCallback);
 	FRESULT mountStatus = sd_mount();
 	HAL_Delay(100);
+	// setDisplayMode(TestKeypad);
 	if (mountStatus != FR_OK)
 	{
 		showErrorMessage("mount failed: ram only");
 	}
 	else
 	{
+
 		LCDstartUI();
 	}
 
